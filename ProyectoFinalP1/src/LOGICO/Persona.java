@@ -10,6 +10,15 @@ public class Persona {
 	protected Calendar Fecha_nacimiento;
 	
 	
+	public Persona(String nombre, String apellidos, String cedula, String correo_electronico,
+			Calendar fecha_nacimiento) {
+		super();
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.cedula = cedula;
+		this.correo_electronico = correo_electronico;
+		Fecha_nacimiento = fecha_nacimiento;
+	}
 	public String getNombre() {
 		return nombre;
 	}
