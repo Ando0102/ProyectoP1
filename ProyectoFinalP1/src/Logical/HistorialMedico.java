@@ -1,0 +1,45 @@
+package Logical;
+
+import java.util.Calendar;
+
+public class HistorialMedico {
+
+	private Doctor miDoctor;
+	private Calendar fecha;
+	private String Suceso;
+	
+	public HistorialMedico(Doctor miDoctor, Calendar fecha, String suceso) {
+		super();
+		this.miDoctor = miDoctor;
+		this.fecha = fecha;
+		Suceso = suceso;
+	}
+
+	public Doctor getMiDoctor() {
+		return miDoctor;
+	}
+
+	public void setMiDoctor(Doctor miDoctor) {
+		this.miDoctor = miDoctor;
+	}
+
+	public Calendar getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(Calendar fecha) {
+		this.fecha = fecha;
+	}
+
+	public String getSuceso() {
+		return Suceso;
+	}
+
+	public void setSuceso(String suceso) {
+		Suceso = suceso;
+	}
+	
+	
+	
+
+}
