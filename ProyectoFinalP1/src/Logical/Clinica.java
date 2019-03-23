@@ -59,4 +59,31 @@ public class Clinica {
 	public void setEnfermedades(ArrayList <Enfermedad> enfermedades) {
 		this.enfermedades = enfermedades;
 	}
+//////////////////////////////////////////////////
+//////////////////////METODOS/////////////////////
+//////////////////////////////////////////////////
+
+//Insertar Persona
+public void insertarPersona (Persona personaAux) {
+misPersonas.add(personaAux);
+
+}	
+//Insertar Enfermedad
+public void insertarEnfermedad (Enfermedad enfermedadAux){
+enfermedades.add(enfermedadAux);
+} 
+
+//Insertar Vacuna
+public void insertarVacuna (Vacuna vacunaAux){
+misVacunas.add(vacunaAux);
+}
+
+//Insertar Citas
+public void insertarCitas (Cita citaAux){
+misCitas.add(citaAux);
+}
+//Insertar Historial
+public void insertarHistorial (HistorialMedico misHistoriasAux){
+misHistorias.add(misHistoriasAux);
+}
 }
