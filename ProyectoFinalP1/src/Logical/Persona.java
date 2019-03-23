@@ -8,7 +8,7 @@ public class Persona {
 	protected String apellidos;
 	protected String cedula;
 	protected boolean sexo;
-	
+	//
 	//true masculino
 	//false femenino
 	protected String telefono;
