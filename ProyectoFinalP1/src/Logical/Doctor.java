@@ -34,11 +34,12 @@ public class Doctor extends User {
 	public void setMisConsulta(ArrayList<Consulta> misConsulta) {
 		this.misConsulta = misConsulta;
 	}
-	
+	/////////////////////////////////////
 	public void incertar_Paciente(Paciente miPaciente) {
 		//Incertando Paciente 
 		misPacientes.add(miPaciente);
 	}
+	//////////////////////////////////////
 	public void incertar_Consulta(Consulta miConsulta) {
 		//Incertando Consulta 
 		misConsulta.add(miConsulta);
