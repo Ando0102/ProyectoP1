@@ -12,13 +12,14 @@ public class Clinica {
 	private ArrayList <Enfermedad> enfermedades;
 	private static Clinica miClinica = null;
 	//Constructor vacio de controladora
+	
 	public Clinica() {
 		super();
-		this.misPersonas = new ArrayList<>();
-		this.misCitas = new ArrayList<>();
-		this.misHistorias = new ArrayList<>();
-		this.misVacunas = new ArrayList<>();
-		this.enfermedades = new ArrayList<>();
+		this.misPersonas = new ArrayList<Persona>();
+		this.misCitas = new ArrayList<Cita>();
+		this.misHistorias = new ArrayList<HistorialMedico>();
+		this.misVacunas = new ArrayList<Vacuna>();
+		this.enfermedades = new ArrayList<Enfermedad>();
 	}
 	//Instancia de controladora
 	public static Clinica getInstance(){ 
