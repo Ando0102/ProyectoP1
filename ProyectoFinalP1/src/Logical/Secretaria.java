@@ -26,6 +26,4 @@ public class Secretaria extends User {
 	
 	
 	//-----------------------------------------
-
-
 }

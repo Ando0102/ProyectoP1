@@ -42,7 +42,7 @@ public class Doctor extends User {
 	public void incertar_Consulta(Consulta miConsulta) {
 		//Incertando Consulta 
 		misConsulta.add(miConsulta);
-		//Clinica.getInstance().
+		
 	}
 	
 
