@@ -63,27 +63,29 @@ public class Clinica {
 //////////////////////METODOS/////////////////////
 //////////////////////////////////////////////////
 
-//Insertar Persona
-public void insertarPersona (Persona personaAux) {
-misPersonas.add(personaAux);
-
-}	
-//Insertar Enfermedad
-public void insertarEnfermedad (Enfermedad enfermedadAux){
-enfermedades.add(enfermedadAux);
-} 
-
-//Insertar Vacuna
-public void insertarVacuna (Vacuna vacunaAux){
-misVacunas.add(vacunaAux);
-}
-
-//Insertar Citas
-public void insertarCitas (Cita citaAux){
-misCitas.add(citaAux);
-}
-//Insertar Historial
-public void insertarHistorial (HistorialMedico misHistoriasAux){
-misHistorias.add(misHistoriasAux);
-}
+////////////////////////////////////////////////////
+	public void insertarPersona (Persona personaAux) {
+		//Insertar Persona
+		misPersonas.add(personaAux);
+	}	
+///////////////////////////////////////////////////
+	public void insertarEnfermedad (Enfermedad enfermedadAux){
+		//Insertar Enfermedad
+		enfermedades.add(enfermedadAux);
+	} 
+//////////////////////////////////////////////////
+	public void insertarVacuna (Vacuna vacunaAux){
+		//Insertar Vacuna
+		misVacunas.add(vacunaAux);
+	}
+/////////////////////////////////////////////////
+	public void insertarCitas (Cita citaAux){
+		//Insertar Citas
+		misCitas.add(citaAux);
+	}
+////////////////////////////////////////////////
+	public void insertarHistorial (HistorialMedico misHistoriasAux){
+		//Insertar Historial
+		misHistorias.add(misHistoriasAux);
+	}
 }
