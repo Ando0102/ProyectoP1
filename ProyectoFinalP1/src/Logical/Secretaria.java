@@ -15,7 +15,7 @@ public class Secretaria extends User {
 		this.miPersona = miPersona;
 	}
 
-	//------------[get end set-----------------
+	//------------[ get end set ]-----------------
 	public Persona getMiPersona() {
 		return miPersona;
 	}
@@ -26,5 +26,6 @@ public class Secretaria extends User {
 	
 	
 	//-----------------------------------------
+
 
 }

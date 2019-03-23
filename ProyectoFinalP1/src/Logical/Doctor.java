@@ -35,7 +35,15 @@ public class Doctor extends User {
 		this.misConsulta = misConsulta;
 	}
 	
-	
+	public void incertar_Paciente(Paciente miPaciente) {
+		//Incertando Paciente 
+		misPacientes.add(miPaciente);
+	}
+	public void incertar_Consulta(Consulta miConsulta) {
+		//Incertando Consulta 
+		misConsulta.add(miConsulta);
+		//Clinica.getInstance().
+	}
 	
 
 }
