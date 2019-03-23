@@ -1,28 +1,39 @@
 package Logical;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class Paciente extends Persona {
-	protected String tipo_sangre;
-	protected String estado;
-	protected String contacto_emergencia;
-	protected float peso;
-	
+	private String tipo_sangre;
+	private String estado;
+	private String contacto_emergencia;
+	private float peso;
+	private ArrayList<Vacuna> misVacunas;
+	private ArrayList<Enfermedad> misEnfermedas;
+	private ArrayList<Consulta> misConsultas;
+	private ArrayList<HistorialMedico> misHistorialMedico;
 	//constructor
-	public Paciente(String iD, String nombre, String apellidos, boolean sexo, String telefono, String nacionalidad,
-			Calendar fecha_nacimiento, String correo_electronico, String tipo_sangre, String estado,
-			String contacto_emergencia, float peso) {
-		super(iD, nombre, apellidos, sexo, telefono, nacionalidad, fecha_nacimiento, correo_electronico);
+
+	
+	public Paciente(String iD, String nombre, String apellidos, String cedula, boolean sexo, String telefono,
+			String nacionalidad, Calendar fecha_nacimiento, String correo_electronico, String tipo_sangre,
+			String estado, String contacto_emergencia, float peso) {
+		super(iD, nombre, apellidos, cedula, sexo, telefono, nacionalidad, fecha_nacimiento, correo_electronico);
 		this.tipo_sangre = tipo_sangre;
 		this.estado = estado;
 		this.contacto_emergencia = contacto_emergencia;
 		this.peso = peso;
+		this.misVacunas        = new ArrayList<>();
+		this.misEnfermedas      = new ArrayList<>();
+		this.misConsultas       =  new ArrayList<>();
+		this.misHistorialMedico =  new ArrayList<>();
 	}
-	
+
 	//------------[get end set-----------------
 	public String getTipo_sangre() {
 		return tipo_sangre;
 	}
+
 	public void setTipo_sangre(String tipo_sangre) {
 		this.tipo_sangre = tipo_sangre;
 	}
@@ -45,4 +56,5 @@ public class Paciente extends Persona {
 		this.peso = peso;
 	}
 	//--------------------------------------------
+
 }

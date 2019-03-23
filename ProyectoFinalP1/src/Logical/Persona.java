@@ -6,7 +6,9 @@ public class Persona {
 	protected String ID;
 	protected String nombre;
 	protected String apellidos;
+	protected String cedula;
 	protected boolean sexo;
+	
 	//true masculino
 	//false femenino
 	protected String telefono;
@@ -14,12 +16,13 @@ public class Persona {
 	protected Calendar fecha_nacimiento;
 	protected String correo_electronico;
 	
-	public Persona(String iD, String nombre, String apellidos, boolean sexo, String telefono, String nacionalidad,
+	public Persona(String iD, String nombre, String apellidos,String cedula, boolean sexo, String telefono, String nacionalidad,
 			Calendar fecha_nacimiento, String correo_electronico) {
 		super();
 		ID = iD;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
+		this.cedula = cedula;
 		this.sexo = sexo;
 		this.telefono = telefono;
 		this.nacionalidad = nacionalidad;
