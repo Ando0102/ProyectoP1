@@ -60,11 +60,19 @@ public class Clinica  implements Serializable{
 	public void setEnfermedades(ArrayList <Enfermedad> enfermedades) {
 		this.enfermedades = enfermedades;
 	}
+	
+	public static Clinica getMiClinica() {
+		return miClinica;
+	}
+	public static void setMiClinica(Clinica miClinica) {
+		Clinica.miClinica = miClinica;
+	}
 //////////////////////////////////////////////////
 //////////////////////METODOS/////////////////////
 //////////////////////////////////////////////////
 
-////////////////////////////////////////////////////
+
+	////////////////////////////////////////////////////
 	public void insertarPersona (Persona personaAux) {
 		//Insertar Persona
 		misPersonas.add(personaAux);
