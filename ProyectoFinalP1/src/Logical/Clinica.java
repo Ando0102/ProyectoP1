@@ -1,8 +1,9 @@
 package Logical;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Clinica {
+public class Clinica  implements Serializable{
 
 	
 	private ArrayList <Persona> misPersonas;
@@ -13,7 +14,7 @@ public class Clinica {
 	private static Clinica miClinica = null;
 	//Constructor vacio de controladora
 	
-	public Clinica() {
+	private Clinica() {
 		super();
 		this.misPersonas = new ArrayList<Persona>();
 		this.misCitas = new ArrayList<Cita>();
@@ -89,18 +90,19 @@ public class Clinica {
 		misHistorias.add(misHistoriasAux);
 	}
 ////////////////////////////////////////////////
-	public boolean buscarUsuario(String usuario, String constrasenna) {
+	public User buscarUsuario(String usuario, String constrasenna) {
 		//buscar al usuario
-		boolean estado = false ;
+		User userAux = null;
 		for (Persona miPS : misPersonas) {
 			if(miPS instanceof User) {
 				//verificando usuario y contraseña
 				if(((User) miPS).getUsuario().equals(usuario)&&(((User) miPS).getConstrasenna().equals(constrasenna))) {
-					estado = true;
+					userAux = ((User)miPS);
 				}
 			}
 		}
-		return estado;
+		return userAux;
 	}
-/////////////////////////////////////////////////	
+/////////////////////////////////////////////////
+	
 }
