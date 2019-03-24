@@ -25,12 +25,17 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
+import javax.swing.JPasswordField;
+import java.awt.Color;
+import java.awt.Font;
+import javax.swing.ImageIcon;
 
 public class IniciarSesion extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField txtUsuario;
+	private JPasswordField txtContraseña;
 
 	/**
 	 * Launch the application.
@@ -89,43 +94,54 @@ public class IniciarSesion extends JFrame {
 	 * Create the frame.
 	 */
 	public IniciarSesion() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(IniciarSesion.class.getResource("/Imagenes/LogoPeque.png")));
+		setTitle("Inicio de Sesi\u00F3n");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 592, 336);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		/////////////////////////PROTECTOR DE PANTALLA///////////////////////////////////////
+		final ProtectorDePantalla PantallaTrasera = new ProtectorDePantalla();
+		PantallaTrasera.setVisible(true);
+		////////////////////////////////////////////////////////////////////////////////////
 		JPanel panel = new JPanel();
-		panel.setBounds(48, 25, 323, 191);
+		panel.setBackground(Color.WHITE);
+		panel.setBounds(10, 11, 556, 275);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblUsuario = new JLabel("Usuario:");
-		lblUsuario.setBounds(10, 25, 71, 14);
+		lblUsuario.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		lblUsuario.setBounds(10, 63, 71, 14);
 		panel.add(lblUsuario);
 		
-		JLabel lblContrasea = new JLabel("Contrase\u00F1a");
-		lblContrasea.setBounds(10, 50, 71, 14);
+		JLabel lblContrasea = new JLabel("Contrase\u00F1a:");
+		lblContrasea.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		lblContrasea.setBounds(10, 106, 71, 14);
 		panel.add(lblContrasea);
 		
-		textField = new JTextField();
-		textField.setBounds(75, 22, 86, 20);
-		panel.add(textField);
-		textField.setColumns(10);
+		txtUsuario = new JTextField();
+		txtUsuario.setBounds(67, 75, 177, 20);
+		panel.add(txtUsuario);
+		txtUsuario.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(75, 47, 86, 20);
-		panel.add(textField_1);
+		txtContraseña = new JPasswordField();
+		txtContraseña.setColumns(10);
+		txtContraseña.setBounds(67, 125, 177, 20);
+		panel.add(txtContraseña);
 		
-		JButton btnEntrar = new JButton("Entrar");
+		JButton btnEntrar = new JButton("Iniciar Sesi\u00F3n");
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String usuario = "";
 				String constrasenna = "";
-				usuario = textField.getText().toString();
-				constrasenna = textField_1.getText().toString();
+				usuario = txtUsuario.getText().toString();
+				constrasenna = txtContraseña.getText().toString();
 				if(Clinica.getInstance().buscarUsuario(usuario, constrasenna)!=null) {
 						//(textField.getText(),textField_1.getText())){
 
@@ -133,8 +149,23 @@ public class IniciarSesion extends JFrame {
 			       }
 			}
 		});
-		btnEntrar.setBounds(72, 100, 89, 23);
+		btnEntrar.setBounds(300, 241, 118, 23);
 		panel.add(btnEntrar);
+		
+		JButton btnNewButton = new JButton("Cancelar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				PantallaTrasera.dispose();
+				dispose();
+			}
+		});
+		btnNewButton.setBounds(428, 241, 118, 23);
+		panel.add(btnNewButton);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(IniciarSesion.class.getResource("/Imagenes/users.png")));
+		lblNewLabel.setBounds(344, 11, 142, 177);
+		panel.add(lblNewLabel);
 	}
 	public static Date fechaActual() {
 		Date fecha = new Date();
