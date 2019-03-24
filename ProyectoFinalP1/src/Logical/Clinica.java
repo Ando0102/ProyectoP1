@@ -88,4 +88,19 @@ public class Clinica {
 		//Insertar Historial
 		misHistorias.add(misHistoriasAux);
 	}
+////////////////////////////////////////////////
+	public boolean buscarUsuario(String usuario, String constrasenna) {
+		//buscar al usuario
+		boolean estado = false ;
+		for (Persona miPS : misPersonas) {
+			if(miPS instanceof User) {
+				//verificando usuario y contraseña
+				if(((User) miPS).getUsuario().equals(usuario)&&(((User) miPS).getConstrasenna().equals(constrasenna))) {
+					estado = true;
+				}
+			}
+		}
+		return estado;
+	}
+////////////////////////////////////////////////	
 }
