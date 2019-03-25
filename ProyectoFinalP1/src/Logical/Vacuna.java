@@ -3,7 +3,7 @@ package Logical;
 import java.util.Calendar;
 
 public class Vacuna {
- 
+ private static final long serialVersionUID = 1L;
  private Calendar fecha_vencimiento;
  private Calendar fecha_puesta;
  private String nombre_vacuna;

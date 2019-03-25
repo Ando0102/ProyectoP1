@@ -1,8 +1,10 @@
 package Logical;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
-public class Persona {
+public abstract class Persona implements Serializable, Comparable<Persona> {
+	private static final long serialVersionUID = 1L;
 	protected String ID;
 	protected String nombre;
 	protected String apellidos;

@@ -4,6 +4,7 @@ import java.util.Calendar;
 
 public class Consulta {
 
+	private static final long serialVersionUID = 1L;
 	private String diagnostico;
 	private Calendar fecha;
 	

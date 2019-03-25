@@ -1,6 +1,7 @@
 package Logical;
 
 public class Enfermedad {
+	private static final long serialVersionUID = 1L;
 	private String nombre_enfermedad;
 	private String sintomas;
 	private String tratamiento;

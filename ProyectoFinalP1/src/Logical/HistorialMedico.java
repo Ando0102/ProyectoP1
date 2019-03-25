@@ -4,6 +4,7 @@ import java.util.Calendar;
 
 public class HistorialMedico {
 
+	private static final long serialVersionUID = 1L;
 	private Doctor miDoctor;
 	private Calendar fecha;
 	private String Suceso;

@@ -3,6 +3,7 @@ package Logical;
 import java.util.Calendar;
 
 public class Secretaria extends User {
+	private static final long serialVersionUID = 1L;
 	private Persona miPersona;
 
 

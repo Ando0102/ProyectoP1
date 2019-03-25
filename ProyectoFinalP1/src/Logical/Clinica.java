@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Clinica  implements Serializable{
 
-	
+	private static final long serialVersionUID = 1L;
 	private ArrayList <Persona> misPersonas;
 	private ArrayList <Cita> misCitas;
 	private ArrayList <HistorialMedico> misHistorias;
@@ -104,8 +104,9 @@ public class Clinica  implements Serializable{
 		for (Persona miPS : misPersonas) {
 			if(miPS instanceof User) {
 				//verificando usuario y contraseña
-				if(((User) miPS).getUsuario().equals(usuario)&&(((User) miPS).getConstrasenna().equals(constrasenna))) {
+				if(((User) miPS).getUsuario().equalsIgnoreCase(usuario)&&(((User) miPS).getConstrasenna().equalsIgnoreCase(constrasenna))) {
 					userAux = ((User)miPS);
+					System.out.println("Usuario encontrado");
 				}
 			}
 		}

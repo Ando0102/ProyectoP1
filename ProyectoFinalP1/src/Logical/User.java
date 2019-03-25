@@ -35,5 +35,11 @@ public class User extends Persona {
 	public void setRol(String rol) {
 		this.rol = rol;
 	}
+
+	@Override
+	public int compareTo(Persona o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 }

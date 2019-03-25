@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class Doctor extends User {
+	private static final long serialVersionUID = 1L;
 	private ArrayList<Paciente> misPacientes;
 	private ArrayList<Cita> misCitas;//considero que no deberia estar
 	private ArrayList<Consulta> misConsulta;

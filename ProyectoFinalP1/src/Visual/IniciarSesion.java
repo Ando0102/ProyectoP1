@@ -38,7 +38,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.UIManager;
 
-public class IniciarSesion extends JDialog {
+public class IniciarSesion extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtUsuario;
@@ -49,28 +49,32 @@ public class IniciarSesion extends JDialog {
 	/**
 	 * Launch the application.
 	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				///Creando los objecto para leer y escribir
+				
 				FileInputStream empresa;
 				FileOutputStream empresa2;
 				ObjectInputStream empresaRead;
 				ObjectOutputStream empresaWrite;
+				//esta parte la realizo el profesor. Estudien los Stream
 				try {
 					//leer
-					empresa = new FileInputStream ("empresa.dat");
+					empresa = new FileInputStream ("ADAClinica.dat");
 					empresaRead = new ObjectInputStream(empresa);
 					Clinica temp = (Clinica)empresaRead.readObject();
 					Clinica.setMiClinica(temp);
 				} catch (FileNotFoundException e) {
 					try {
-						empresa2 = new  FileOutputStream("empresa.dat");
+						empresa2 = new  FileOutputStream("ADAClinica.dat");
 						empresaWrite = new ObjectOutputStream(empresa2);
 						Calendar fecha_nacimiento = Calendar.getInstance();
 						fecha_nacimiento.setTime(fechaActual());
-						User aux = new User("Admin", "Admin", "Admin", "Admin", false, "Admin", "Admin", fecha_nacimiento, "Admin", "Admin", "123", "Admin");
-								//User("Administrador", "Admin", "Admin");
+						User aux = new User("Admin-1", "Admi", "Admi", "Admi",false, "Admi", "Admi", fecha_nacimiento, "Admi", "Admin", "123", "Admi");
+			
+								////User("Administrador", "Admin", "Admin");
 						Clinica.getInstance().insertarPersona(aux);
 						empresaWrite.writeObject(Clinica.getInstance());
 					} catch (FileNotFoundException e1) {
@@ -84,7 +88,9 @@ public class IniciarSesion extends JDialog {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				//
+				
+				//////
+				
 				try {
 					IniciarSesion Dialog = new IniciarSesion();
 					Dialog.setVisible(true);
@@ -101,7 +107,7 @@ public class IniciarSesion extends JDialog {
 	public IniciarSesion() {
 		setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 		setBackground(new Color(175, 238, 238));
-		setModal(true);
+	//	setModal(true);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(IniciarSesion.class.getResource("/Imagenes/LogoPeque.png")));
 		setTitle("Inicio de Sesi\u00F3n");
 		setBounds(100, 100, 510, 404);
@@ -113,8 +119,8 @@ public class IniciarSesion extends JDialog {
 		contentPane.setLayout(null);
 		
 		/////////////////////////PROTECTOR DE PANTALLA///////////////////////////////////////
-		final ProtectorDePantalla PantallaTrasera = new ProtectorDePantalla();
-		PantallaTrasera.setVisible(true);
+		//final ProtectorDePantalla PantallaTrasera = new ProtectorDePantalla();
+		//PantallaTrasera.setVisible(true);
 		////////////////////////////////////////////////////////////////////////////////////
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.WHITE);
@@ -134,7 +140,10 @@ public class IniciarSesion extends JDialog {
 						//(textField.getText(),textField_1.getText())){
 
 					JOptionPane.showMessageDialog(null, "Bienvenido", "Información.", JOptionPane.INFORMATION_MESSAGE, null);
-			       }else {
+					///Principal frame = new Principal();
+					//dispose();
+					///frame.setVisible(true);
+				}else {
 			    	   JOptionPane.showMessageDialog(null, "No se pudo Acceder", "Información.", JOptionPane.INFORMATION_MESSAGE, null);
 			       //System.out.println(Clinica.getInstance().getMisPersonas().get(0).getApellidos());
 			       }
@@ -174,7 +183,7 @@ public class IniciarSesion extends JDialog {
 		JButton btnNewButton = new JButton("Cancelar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				PantallaTrasera.dispose();
+				//PantallaTrasera.dispose();
 				dispose();
 			}
 		});
@@ -187,4 +196,5 @@ public class IniciarSesion extends JDialog {
 		
 		return fecha;
 	}
+	
 }

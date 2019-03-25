@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class Paciente extends Persona {
+	private static final long serialVersionUID = 1L;
 	private String tipo_sangre;
 	private String estado;
 	private String contacto_emergencia;
@@ -56,5 +57,11 @@ public class Paciente extends Persona {
 		this.peso = peso;
 	}
 	//--------------------------------------------
+
+	@Override
+	public int compareTo(Persona o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 }

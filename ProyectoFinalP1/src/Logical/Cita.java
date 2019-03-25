@@ -4,6 +4,7 @@ import java.util.Calendar;
 
 public class Cita {
 
+	private static final long serialVersionUID = 1L;
 	private Doctor miDoctor;
 	private Persona miPersona;
 	private Calendar fecha;
