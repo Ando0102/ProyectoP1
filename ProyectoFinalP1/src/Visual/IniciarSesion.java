@@ -44,42 +44,38 @@ public class IniciarSesion extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				///Creando los objecto para leer y escribir
-				FileInputStream Empresa_Clinica;
-				FileOutputStream AuxEmpresa;
-				ObjectInputStream Empresa_Clinica_Read;
-				ObjectOutputStream Empresa_Clinica_Write;
+				FileInputStream empresa;
+				FileOutputStream empresa2;
+				ObjectInputStream empresaRead;
+				ObjectOutputStream empresaWrite;
 				try {
 					//leer
-					Empresa_Clinica = new FileInputStream ("EmpresaClinca.dat");
-					Empresa_Clinica_Read = new ObjectInputStream(Empresa_Clinica);
-					
-					Clinica miClinica = (Clinica)Empresa_Clinica_Read.readObject();
-					Clinica.setMiClinica(miClinica);
+					empresa = new FileInputStream ("empresa.dat");
+					empresaRead = new ObjectInputStream(empresa);
+					Clinica temp = (Clinica)empresaRead.readObject();
+					Clinica.setMiClinica(temp);
 				} catch (FileNotFoundException e) {
 					try {
-						AuxEmpresa = new  FileOutputStream("EmpresaClinca.dat");
-						Empresa_Clinica_Write = new ObjectOutputStream(AuxEmpresa);
-						
+						empresa2 = new  FileOutputStream("empresa.dat");
+						empresaWrite = new ObjectOutputStream(empresa2);
 						Calendar fecha_nacimiento = Calendar.getInstance();
 						fecha_nacimiento.setTime(fechaActual());
-						
-						//usuario Administrador
-						User aux = new User("0", "Admin", "Admin", "Admin", false, "Admin", "Admin", fecha_nacimiento, "Admin", "Admin", "123", "Administrador");
-								//Logical.User("0", "Admin", "Admin", "Admin", false, "0", "Dominica", fecha_nacimiento, "Admin", "Admin", "123", "Admin");
+						User aux = new User("Admin", "Admin", "Admin", "Admin", false, "Admin", "Admin", fecha_nacimiento, "Admin", "Admin", "123", "Admin");
+								//User("Administrador", "Admin", "Admin");
 						Clinica.getInstance().insertarPersona(aux);
-						Empresa_Clinica_Write.writeObject(Clinica.getInstance());
+						empresaWrite.writeObject(Clinica.getInstance());
 					} catch (FileNotFoundException e1) {
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 					}
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					
+					
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				///
+				//
 				try {
 					IniciarSesion frame = new IniciarSesion();
 					frame.setVisible(true);
