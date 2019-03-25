@@ -136,6 +136,7 @@ public class IniciarSesion extends JDialog {
 					JOptionPane.showMessageDialog(null, "Bienvenido", "Información.", JOptionPane.INFORMATION_MESSAGE, null);
 			       }else {
 			    	   JOptionPane.showMessageDialog(null, "No se pudo Acceder", "Información.", JOptionPane.INFORMATION_MESSAGE, null);
+			       //System.out.println(Clinica.getInstance().getMisPersonas().get(0).getApellidos());
 			       }
 			}
 		});
