@@ -23,6 +23,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
@@ -30,12 +32,19 @@ import javax.swing.JPasswordField;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.ImageIcon;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import javax.swing.UIManager;
 
-public class IniciarSesion extends JFrame {
+public class IniciarSesion extends JDialog {
 
 	private JPanel contentPane;
 	private JTextField txtUsuario;
 	private JPasswordField txtContraseña;
+	private JLabel LabelUsuario;
+	private JLabel LabelContraseña;
 
 	/**
 	 * Launch the application.
@@ -77,8 +86,8 @@ public class IniciarSesion extends JFrame {
 				}
 				//
 				try {
-					IniciarSesion frame = new IniciarSesion();
-					frame.setVisible(true);
+					IniciarSesion Dialog = new IniciarSesion();
+					Dialog.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -90,10 +99,12 @@ public class IniciarSesion extends JFrame {
 	 * Create the frame.
 	 */
 	public IniciarSesion() {
+		setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+		setBackground(new Color(175, 238, 238));
+		setModal(true);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(IniciarSesion.class.getResource("/Imagenes/LogoPeque.png")));
 		setTitle("Inicio de Sesi\u00F3n");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 592, 336);
+		setBounds(100, 100, 510, 404);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
@@ -107,31 +118,12 @@ public class IniciarSesion extends JFrame {
 		////////////////////////////////////////////////////////////////////////////////////
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(10, 11, 556, 275);
+		panel.setBounds(10, 11, 474, 343);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblUsuario = new JLabel("Usuario:");
-		lblUsuario.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-		lblUsuario.setBounds(10, 63, 71, 14);
-		panel.add(lblUsuario);
-		
-		JLabel lblContrasea = new JLabel("Contrase\u00F1a:");
-		lblContrasea.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-		lblContrasea.setBounds(10, 106, 71, 14);
-		panel.add(lblContrasea);
-		
-		txtUsuario = new JTextField();
-		txtUsuario.setBounds(67, 75, 177, 20);
-		panel.add(txtUsuario);
-		txtUsuario.setColumns(10);
-		
-		txtContraseña = new JPasswordField();
-		txtContraseña.setColumns(10);
-		txtContraseña.setBounds(67, 125, 177, 20);
-		panel.add(txtContraseña);
-		
 		JButton btnEntrar = new JButton("Iniciar Sesi\u00F3n");
+		btnEntrar.setBackground(UIManager.getColor("Button.background"));
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String usuario = "";
@@ -142,11 +134,41 @@ public class IniciarSesion extends JFrame {
 						//(textField.getText(),textField_1.getText())){
 
 					JOptionPane.showMessageDialog(null, "Bienvenido", "Información.", JOptionPane.INFORMATION_MESSAGE, null);
+			       }else {
+			    	   JOptionPane.showMessageDialog(null, "No se pudo Acceder", "Información.", JOptionPane.INFORMATION_MESSAGE, null);
 			       }
 			}
 		});
-		btnEntrar.setBounds(300, 241, 118, 23);
+		
+		LabelContraseña = new JLabel("");
+		LabelContraseña.setIcon(new ImageIcon("C:\\Users\\arman\\Downloads\\lock-padlock-symbol-for-protect_icon-icons.com_56926.png"));
+		LabelUsuario = new JLabel("");
+		LabelUsuario.setIcon(new ImageIcon("C:\\Users\\arman\\Downloads\\user_icon-icons.com_57997.png"));
+		LabelUsuario.setForeground(UIManager.getColor("Button.darkShadow"));
+		LabelUsuario.setBounds(100, 143, 38, 40);
+		panel.add(LabelUsuario);
+		LabelContraseña.setForeground(UIManager.getColor("Button.darkShadow"));
+		LabelContraseña.setBounds(94, 193, 44, 34);
+		panel.add(LabelContraseña);
+		btnEntrar.setBounds(79, 267, 118, 34);
 		panel.add(btnEntrar);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(IniciarSesion.class.getResource("/Imagenes/users.png")));
+		lblNewLabel.setBounds(178, 11, 135, 128);
+		panel.add(lblNewLabel);
+		
+		txtUsuario = new JTextField();
+		txtUsuario.setForeground(new Color(0, 0, 0));
+		txtUsuario.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		txtUsuario.setBounds(148, 157, 177, 20);
+		panel.add(txtUsuario);
+		txtUsuario.setColumns(10);
+		
+		txtContraseña = new JPasswordField();
+		txtContraseña.setColumns(10);
+		txtContraseña.setBounds(148, 207, 177, 20);
+		panel.add(txtContraseña);
 		
 		JButton btnNewButton = new JButton("Cancelar");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -155,13 +177,8 @@ public class IniciarSesion extends JFrame {
 				dispose();
 			}
 		});
-		btnNewButton.setBounds(428, 241, 118, 23);
+		btnNewButton.setBounds(276, 267, 118, 34);
 		panel.add(btnNewButton);
-		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(IniciarSesion.class.getResource("/Imagenes/users.png")));
-		lblNewLabel.setBounds(344, 11, 142, 177);
-		panel.add(lblNewLabel);
 	}
 	public static Date fechaActual() {
 		Date fecha = new Date();

@@ -37,7 +37,7 @@ public class ProtectorDePantalla extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("BIENVENIDO/A A LA CLINICA BDA ");
 		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 20));
-		lblNewLabel.setBounds(463, 11, 414, 138);
+		lblNewLabel.setBounds(506, 11, 366, 138);
 		panel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
@@ -45,10 +45,14 @@ public class ProtectorDePantalla extends JFrame {
 		lblNewLabel_1.setBounds(10, 11, 366, 541);
 		panel.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("                  \"El mejor m\u00E9dico es el que conoce la inutilidad de la mayor parte de las medicinas.\"\r\n  - Benjamin Franklin");
+		JLabel lblNewLabel_2 = new JLabel("                           \"El mejor m\u00E9dico es el que conoce la inutilidad de la mayor parte de las medicinas.\"\r\n  - Benjamin Franklin");
 		lblNewLabel_2.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 16));
-		lblNewLabel_2.setBounds(188, 477, 961, 138);
+		lblNewLabel_2.setBounds(188, 495, 961, 138);
 		panel.add(lblNewLabel_2);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(ProtectorDePantalla.class.getResource("/Imagenes/LogoMuyGrande.png")));
+		label.setBounds(1074, 11, 256, 541);
+		panel.add(label);
 	}
-
 }
