@@ -41,11 +41,14 @@ import javax.swing.UIManager;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.TitledBorder;
+import java.awt.event.InputMethodListener;
+import java.awt.event.InputMethodEvent;
 
 import com.placeholder.PlaceHolder;
 
 public class IniciarSesion extends JFrame {
 
+	protected static final String String = null;
 	private JPanel contentPane;
 	private JTextField txtUsuario;
 	private JTextField LETRASdeContraseña;
@@ -57,10 +60,14 @@ public class IniciarSesion extends JFrame {
 	private JLabel label_1;
 	private JLabel label_2;
 	private JLabel label_3;
+//<<<<<<< HEAD
 	private PlaceHolder cons; //constrasenna
 	private PlaceHolder us;//usuario
 	private JPasswordField txtContrasenna;
 
+//=======
+//	private static int presionados = 0;
+//>>>>>>> branch 'master' of https://github.com/Ando0102/ProyectoP1.git
 	/**
 	 * Launch the application.
 	 */
@@ -145,6 +152,7 @@ public class IniciarSesion extends JFrame {
 		btnEntrar.setBackground(UIManager.getColor("Button.background"));
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+//<<<<<<< HEAD
 				String usuario = "";
 				String constrasenna = "";
 				usuario = txtUsuario.getText().toString();
@@ -155,13 +163,15 @@ public class IniciarSesion extends JFrame {
 
 					JOptionPane.showMessageDialog(null, "Bienvenido", "Información.", JOptionPane.INFORMATION_MESSAGE, null);
 
-				}else {
+			}else {
+
 			    	   JOptionPane.showMessageDialog(null, "No se pudo Acceder", "Información.", JOptionPane.INFORMATION_MESSAGE, null);
 			      
 				
 				}
 			}
-		});
+
+});
 		
 		LabelContraseña = new JLabel("");
 		LabelContraseña.setIcon(new ImageIcon(IniciarSesion.class.getResource("/Imagenes/candadito.png")));
@@ -182,10 +192,12 @@ public class IniciarSesion extends JFrame {
 		panel.add(lblNewLabel);
 		
 		txtUsuario = new JTextField();
-		
-		txtUsuario.setForeground(new Color(128, 128, 128));
-		
 
+		txtUsuario.setText("Usuario");
+
+		txtUsuario.setForeground(new Color(128, 128, 128));
+
+	
 		txtUsuario.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		txtUsuario.setBounds(148, 157, 177, 20);
 		///
@@ -200,8 +212,29 @@ public class IniciarSesion extends JFrame {
 		///
 		panel.add(txtUsuario);
 		txtUsuario.setColumns(10);
+
+		LETRASdeContraseña = new JTextField();
+		LETRASdeContraseña.setText("Contraseña");
+		LETRASdeContraseña.setForeground(new Color(128, 128, 128));
+		LETRASdeContraseña.setText("Contraseña");
+		LETRASdeContraseña.setForeground(new Color(128, 128, 128));
+		LETRASdeContraseña.setColumns(10);
+		LETRASdeContraseña.setBounds(148, 207, 177, 20);
+		panel.add(LETRASdeContraseña);
 		
+		LETRASdeContraseña.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+				LETRASdeContraseña.setVisible(false);
+				
+				
+			
+			}
+		});
 		
+
+
 		JButton btnNewButton = new JButton("Cancelar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
