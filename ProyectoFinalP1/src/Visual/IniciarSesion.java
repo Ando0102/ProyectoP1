@@ -156,19 +156,21 @@ public class IniciarSesion extends JFrame {
 				String usuario = "";
 				String constrasenna = "";
 				usuario = txtUsuario.getText().toString();
-				///
 				constrasenna = txtContrasenna.getText().toString();
+				
+				if(constrasenna.equalsIgnoreCase("Ingrese su constraseña...")|| usuario.equalsIgnoreCase("Ingrese su usuario...")) {
+					JOptionPane.showMessageDialog(null, "Campos Incompletos!", "ERROR", JOptionPane.ERROR_MESSAGE, null);
+				}else {
 				if(Clinica.getInstance().buscarUsuario(usuario, constrasenna)!=null) {
 
-
-					JOptionPane.showMessageDialog(null, "Bienvenido", "Información.", JOptionPane.INFORMATION_MESSAGE, null);
+					JOptionPane.showMessageDialog(null, "Bienvenido!", "INFORMACION", JOptionPane.INFORMATION_MESSAGE, null);
 
 			}else {
 
-			    	   JOptionPane.showMessageDialog(null, "No se pudo Acceder", "Información.", JOptionPane.INFORMATION_MESSAGE, null);
+			    	   JOptionPane.showMessageDialog(null, "Usuario no existe!", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, null);
 			      
 				
-				}
+				}}
 			}
 
 });
@@ -206,7 +208,7 @@ public class IniciarSesion extends JFrame {
   
         // set initial text for password field 
 	//	txtContraseña.setText("enter password"); 	
-		cons = new PlaceHolder(txtUsuario , "Increse su usuario...");
+		cons = new PlaceHolder(txtUsuario , "Ingrese su usuario...");
 		}
 		///
 		panel.add(txtUsuario);
@@ -238,7 +240,7 @@ public class IniciarSesion extends JFrame {
 				if(txtContrasenna.getText().length()==0) {
 					if(c==8) {
 						txtContrasenna.setEchoChar((char)0); 
-						  cons.muestraHolderTxt(txtContrasenna, "Increce su constraseña...", 10);
+						  cons.muestraHolderTxt(txtContrasenna, "Ingrese su constraseña...", 10);
 				        // set initial text for password field 
 					//	txtContraseña.setText("enter password"); 	
 						
@@ -258,7 +260,7 @@ public class IniciarSesion extends JFrame {
   
         // set initial text for password field 
 	//	txtContraseña.setText("enter password"); 	
-		cons = new PlaceHolder(txtContrasenna, "Increce su constraseña...");
+		cons = new PlaceHolder(txtContrasenna, "Ingrese su constraseña...");
 		}else {
 			txtContrasenna.setEchoChar('*');
 		}
@@ -282,7 +284,7 @@ public class IniciarSesion extends JFrame {
 		label_2.setBounds(194, 545, 961, 138);
 		contentPane.add(label_2);
 		
-		label_3 = new JLabel("BIENVENIDO/A A LA CLINICA BDA ");
+		label_3 = new JLabel("BIENVENIDO/A A LA CLINICA ADA ");
 		label_3.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 20));
 		label_3.setBounds(492, 11, 366, 138);
 		contentPane.add(label_3);
