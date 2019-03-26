@@ -46,6 +46,7 @@ import java.awt.event.InputMethodEvent;
 
 public class IniciarSesion extends JFrame {
 
+	protected static final String String = null;
 	private JPanel contentPane;
 	private JTextField txtUsuario;
 	private JTextField LETRASdeContraseña;
@@ -57,7 +58,7 @@ public class IniciarSesion extends JFrame {
 	private JLabel label_1;
 	private JLabel label_2;
 	private JLabel label_3;
-
+	private static int presionados = 0;
 	/**
 	 * Launch the application.
 	 */
@@ -142,22 +143,17 @@ public class IniciarSesion extends JFrame {
 		btnEntrar.setBackground(UIManager.getColor("Button.background"));
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String usuario = "";
-				String constrasenna = "";
-				usuario = txtUsuario.getText().toString();
-				constrasenna = txtContraseña.getPassword().toString();
-				if(Clinica.getInstance().buscarUsuario(usuario, constrasenna)!=null) {
-						//(textField.getText(),textField_1.getText())){
+				if(txtUsuario.getText().isEmpty()==true|| txtContraseña.getText().toString().isEmpty()== true||txtContraseña.getText().toString().matches("Contraseña")&&txtUsuario.getText().matches("Usuario")|| presionados != 2) {
+					JOptionPane.showMessageDialog(null, "Campos Incompletos!","ERROR", JOptionPane.ERROR_MESSAGE, null);
+				} else {
+				if(Clinica.getInstance().buscarUsuario(txtUsuario.getText().toString(), txtContraseña.getText().toString())!=null) {
 
-					JOptionPane.showMessageDialog(null, "Bienvenido", "Información.", JOptionPane.INFORMATION_MESSAGE, null);
-					///Principal frame = new Principal();
-					//dispose();
-					///frame.setVisible(true);
+					JOptionPane.showMessageDialog(null, "Bienvenido!", "INFORMACION", JOptionPane.INFORMATION_MESSAGE, null);
 				}else {
-			    	   JOptionPane.showMessageDialog(null, "No se pudo Acceder", "Información.", JOptionPane.INFORMATION_MESSAGE, null);
-			       //System.out.println(Clinica.getInstance().getMisPersonas().get(0).getApellidos());
+					
+			    	   JOptionPane.showMessageDialog(null, "Usuario no existe!", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, null);
 			       }
-			}
+			}}
 		});
 		
 		LabelContraseña = new JLabel("");
@@ -179,11 +175,12 @@ public class IniciarSesion extends JFrame {
 		panel.add(lblNewLabel);
 		
 		txtUsuario = new JTextField();
-		txtUsuario.setText(" Usuario");
+		txtUsuario.setText("Usuario");
 		txtUsuario.setForeground(new Color(128, 128, 128));
 		txtUsuario.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				presionados ++;
 				txtUsuario.setText("");
 				txtUsuario.setForeground(new Color(0, 0, 0));
 				txtUsuario.setFont(new Font("Times New Roman", Font.PLAIN, 12));
@@ -196,9 +193,9 @@ public class IniciarSesion extends JFrame {
 		txtUsuario.setColumns(10);
 		
 		LETRASdeContraseña = new JTextField();
-		LETRASdeContraseña.setText(" Contraseña ");
+		LETRASdeContraseña.setText("Contraseña");
 		LETRASdeContraseña.setForeground(new Color(128, 128, 128));
-		LETRASdeContraseña.setText(" Contraseña ");
+		LETRASdeContraseña.setText("Contraseña");
 		LETRASdeContraseña.setForeground(new Color(128, 128, 128));
 		LETRASdeContraseña.setColumns(10);
 		LETRASdeContraseña.setBounds(148, 207, 177, 20);
@@ -207,10 +204,12 @@ public class IniciarSesion extends JFrame {
 		LETRASdeContraseña.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				presionados++;
 				LETRASdeContraseña.setVisible(false);
 				
 				txtContraseña = new JPasswordField();
 				txtContraseña.setColumns(10);
+				txtContraseña.setText("");
 				txtContraseña.setBounds(148, 207, 177, 20);
 				txtContraseña.setForeground(new Color(0, 0, 0));
 				panel.add(txtContraseña);
