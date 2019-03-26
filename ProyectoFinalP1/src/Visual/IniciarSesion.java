@@ -30,6 +30,7 @@ import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 import javax.swing.JPasswordField;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
@@ -37,14 +38,23 @@ import java.awt.event.MouseEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.UIManager;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.TitledBorder;
 
 public class IniciarSesion extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtUsuario;
+	private JTextField LETRASdeContraseña;
 	private JPasswordField txtContraseña;
 	private JLabel LabelUsuario;
 	private JLabel LabelContraseña;
+	private Dimension tamaño; // Dimension de la Ventana
+	private JLabel label;
+	private JLabel label_1;
+	private JLabel label_2;
+	private JLabel label_3;
 
 	/**
 	 * Launch the application.
@@ -105,26 +115,24 @@ public class IniciarSesion extends JFrame {
 	 * Create the frame.
 	 */
 	public IniciarSesion() {
-		setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBackground(new Color(175, 238, 238));
-	//	setModal(true);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(IniciarSesion.class.getResource("/Imagenes/LogoPeque.png")));
 		setTitle("Inicio de Sesi\u00F3n");
 		setBounds(100, 100, 510, 404);
+		tamaño = super.getToolkit().getScreenSize();
+		super.setSize(tamaño.width, tamaño.height);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		/////////////////////////PROTECTOR DE PANTALLA///////////////////////////////////////
-		//final ProtectorDePantalla PantallaTrasera = new ProtectorDePantalla();
-		//PantallaTrasera.setVisible(true);
-		////////////////////////////////////////////////////////////////////////////////////
-		JPanel panel = new JPanel();
+		final JPanel panel = new JPanel();
+		panel.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(10, 11, 474, 343);
+		panel.setBounds(433, 208, 474, 343);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
@@ -135,7 +143,7 @@ public class IniciarSesion extends JFrame {
 				String usuario = "";
 				String constrasenna = "";
 				usuario = txtUsuario.getText().toString();
-				constrasenna = txtContraseña.getText().toString();
+				constrasenna = LETRASdeContraseña.getText().toString();
 				if(Clinica.getInstance().buscarUsuario(usuario, constrasenna)!=null) {
 						//(textField.getText(),textField_1.getText())){
 
@@ -151,34 +159,61 @@ public class IniciarSesion extends JFrame {
 		});
 		
 		LabelContraseña = new JLabel("");
-		LabelContraseña.setIcon(new ImageIcon("C:\\Users\\arman\\Downloads\\lock-padlock-symbol-for-protect_icon-icons.com_56926.png"));
+		LabelContraseña.setIcon(new ImageIcon(IniciarSesion.class.getResource("/Imagenes/candadito.png")));
 		LabelUsuario = new JLabel("");
-		LabelUsuario.setIcon(new ImageIcon("C:\\Users\\arman\\Downloads\\user_icon-icons.com_57997.png"));
+		LabelUsuario.setIcon(new ImageIcon(IniciarSesion.class.getResource("/Imagenes/hombrecito.png")));
 		LabelUsuario.setForeground(UIManager.getColor("Button.darkShadow"));
-		LabelUsuario.setBounds(100, 143, 38, 40);
+		LabelUsuario.setBounds(110, 143, 28, 40);
 		panel.add(LabelUsuario);
 		LabelContraseña.setForeground(UIManager.getColor("Button.darkShadow"));
-		LabelContraseña.setBounds(94, 193, 44, 34);
+		LabelContraseña.setBounds(110, 193, 28, 34);
 		panel.add(LabelContraseña);
 		btnEntrar.setBounds(79, 267, 118, 34);
 		panel.add(btnEntrar);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(IniciarSesion.class.getResource("/Imagenes/users.png")));
+		lblNewLabel.setIcon(new ImageIcon(IniciarSesion.class.getResource("/Imagenes/groups_people_people_1715.png")));
 		lblNewLabel.setBounds(178, 11, 135, 128);
 		panel.add(lblNewLabel);
 		
 		txtUsuario = new JTextField();
-		txtUsuario.setForeground(new Color(0, 0, 0));
+		txtUsuario.setText(" Usuario");
+		txtUsuario.setForeground(new Color(128, 128, 128));
+		txtUsuario.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				txtUsuario.setText("");
+				txtUsuario.setForeground(new Color(0, 0, 0));
+				txtUsuario.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+			}
+		});
+
 		txtUsuario.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		txtUsuario.setBounds(148, 157, 177, 20);
 		panel.add(txtUsuario);
 		txtUsuario.setColumns(10);
 		
-		txtContraseña = new JPasswordField();
-		txtContraseña.setColumns(10);
-		txtContraseña.setBounds(148, 207, 177, 20);
-		panel.add(txtContraseña);
+		LETRASdeContraseña = new JTextField();
+		LETRASdeContraseña.setText(" Contraseña ");
+		LETRASdeContraseña.setForeground(new Color(128, 128, 128));
+		LETRASdeContraseña.setColumns(10);
+		LETRASdeContraseña.setBounds(148, 207, 177, 20);
+		panel.add(LETRASdeContraseña);
+		
+		LETRASdeContraseña.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				LETRASdeContraseña.setVisible(false);
+				
+				txtContraseña = new JPasswordField();
+				txtContraseña.setColumns(10);
+				txtContraseña.setBounds(148, 207, 177, 20);
+				txtContraseña.setForeground(new Color(0, 0, 0));
+				panel.add(txtContraseña);
+			}
+		});
+		
+
 		
 		JButton btnNewButton = new JButton("Cancelar");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -189,6 +224,26 @@ public class IniciarSesion extends JFrame {
 		});
 		btnNewButton.setBounds(276, 267, 118, 34);
 		panel.add(btnNewButton);
+		
+		label = new JLabel("");
+		label.setIcon(new ImageIcon(IniciarSesion.class.getResource("/Imagenes/LogoMuyGrande.png")));
+		label.setBounds(10, 60, 366, 541);
+		contentPane.add(label);
+		
+		label_1 = new JLabel("");
+		label_1.setIcon(new ImageIcon(IniciarSesion.class.getResource("/Imagenes/LogoMuyGrande.png")));
+		label_1.setBounds(1069, 60, 271, 541);
+		contentPane.add(label_1);
+		
+		label_2 = new JLabel("                           \"El mejor m\u00E9dico es el que conoce la inutilidad de la mayor parte de las medicinas.\"\r\n  - Benjamin Franklin");
+		label_2.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 16));
+		label_2.setBounds(194, 545, 961, 138);
+		contentPane.add(label_2);
+		
+		label_3 = new JLabel("BIENVENIDO/A A LA CLINICA BDA ");
+		label_3.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 20));
+		label_3.setBounds(492, 11, 366, 138);
+		contentPane.add(label_3);
 	}
 	public static Date fechaActual() {
 		Date fecha = new Date();
