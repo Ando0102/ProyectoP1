@@ -199,7 +199,7 @@ public class IniciarSesion extends JFrame {
 	
 		txtUsuario.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		txtUsuario.setBounds(148, 157, 177, 20);
-		///
+		/////
 		if(txtUsuario .getText().equalsIgnoreCase("")) {
 	        // set the echo character of the password field 
 			//txtUsuario .setEchoChar((char)0); 
