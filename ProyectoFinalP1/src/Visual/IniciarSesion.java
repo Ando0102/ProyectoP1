@@ -193,8 +193,7 @@ public class IniciarSesion extends JFrame {
 		
 		txtUsuario = new JTextField();
 
-		txtUsuario.setText("Usuario");
-
+		
 		txtUsuario.setForeground(new Color(128, 128, 128));
 
 	
@@ -203,7 +202,7 @@ public class IniciarSesion extends JFrame {
 		///
 		if(txtUsuario .getText().equalsIgnoreCase("")) {
 	        // set the echo character of the password field 
-			///txtUsuario .setEchoChar((char)0); 
+			//txtUsuario .setEchoChar((char)0); 
   
         // set initial text for password field 
 	//	txtContraseña.setText("enter password"); 	
@@ -213,25 +212,6 @@ public class IniciarSesion extends JFrame {
 		panel.add(txtUsuario);
 		txtUsuario.setColumns(10);
 
-		LETRASdeContraseña = new JTextField();
-		LETRASdeContraseña.setText("Contraseña");
-		LETRASdeContraseña.setForeground(new Color(128, 128, 128));
-		LETRASdeContraseña.setText("Contraseña");
-		LETRASdeContraseña.setForeground(new Color(128, 128, 128));
-		LETRASdeContraseña.setColumns(10);
-		LETRASdeContraseña.setBounds(148, 207, 177, 20);
-		panel.add(LETRASdeContraseña);
-		
-		LETRASdeContraseña.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				
-				LETRASdeContraseña.setVisible(false);
-				
-				
-			
-			}
-		});
 		
 
 
