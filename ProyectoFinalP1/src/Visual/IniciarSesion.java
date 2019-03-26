@@ -148,6 +148,7 @@ public class IniciarSesion extends JFrame {
 				String usuario = "";
 				String constrasenna = "";
 				usuario = txtUsuario.getText().toString();
+				///
 				constrasenna = txtContrasenna.getText().toString();
 				if(Clinica.getInstance().buscarUsuario(usuario, constrasenna)!=null) {
 
