@@ -42,12 +42,14 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.TitledBorder;
 
+import com.placeholder.PlaceHolder;
+
 public class IniciarSesion extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtUsuario;
 	private JTextField LETRASdeContraseña;
-	private JPasswordField txtContraseña;
+
 	private JLabel LabelUsuario;
 	private JLabel LabelContraseña;
 	private Dimension tamaño; // Dimension de la Ventana
@@ -55,6 +57,9 @@ public class IniciarSesion extends JFrame {
 	private JLabel label_1;
 	private JLabel label_2;
 	private JLabel label_3;
+	private PlaceHolder cons; //constrasenna
+	private PlaceHolder us;//usuario
+	private JPasswordField txtContrasenna;
 
 	/**
 	 * Launch the application.
@@ -143,18 +148,17 @@ public class IniciarSesion extends JFrame {
 				String usuario = "";
 				String constrasenna = "";
 				usuario = txtUsuario.getText().toString();
-				constrasenna = LETRASdeContraseña.getText().toString();
+				constrasenna = txtContrasenna.getText().toString();
 				if(Clinica.getInstance().buscarUsuario(usuario, constrasenna)!=null) {
-						//(textField.getText(),textField_1.getText())){
+
 
 					JOptionPane.showMessageDialog(null, "Bienvenido", "Información.", JOptionPane.INFORMATION_MESSAGE, null);
-					///Principal frame = new Principal();
-					//dispose();
-					///frame.setVisible(true);
+
 				}else {
 			    	   JOptionPane.showMessageDialog(null, "No se pudo Acceder", "Información.", JOptionPane.INFORMATION_MESSAGE, null);
-			       //System.out.println(Clinica.getInstance().getMisPersonas().get(0).getApellidos());
-			       }
+			      
+				
+				}
 			}
 		});
 		
@@ -177,43 +181,25 @@ public class IniciarSesion extends JFrame {
 		panel.add(lblNewLabel);
 		
 		txtUsuario = new JTextField();
-		txtUsuario.setText(" Usuario");
+		
 		txtUsuario.setForeground(new Color(128, 128, 128));
-		txtUsuario.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				txtUsuario.setText("");
-				txtUsuario.setForeground(new Color(0, 0, 0));
-				txtUsuario.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-			}
-		});
+		
 
 		txtUsuario.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		txtUsuario.setBounds(148, 157, 177, 20);
+		///
+		if(txtUsuario .getText().equalsIgnoreCase("")) {
+	        // set the echo character of the password field 
+			///txtUsuario .setEchoChar((char)0); 
+  
+        // set initial text for password field 
+	//	txtContraseña.setText("enter password"); 	
+		cons = new PlaceHolder(txtUsuario , "Increse su usuario...");
+		}
+		///
 		panel.add(txtUsuario);
 		txtUsuario.setColumns(10);
 		
-		LETRASdeContraseña = new JTextField();
-		LETRASdeContraseña.setText(" Contraseña ");
-		LETRASdeContraseña.setForeground(new Color(128, 128, 128));
-		LETRASdeContraseña.setColumns(10);
-		LETRASdeContraseña.setBounds(148, 207, 177, 20);
-		panel.add(LETRASdeContraseña);
-		
-		LETRASdeContraseña.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				LETRASdeContraseña.setVisible(false);
-				
-				txtContraseña = new JPasswordField();
-				txtContraseña.setColumns(10);
-				txtContraseña.setBounds(148, 207, 177, 20);
-				txtContraseña.setForeground(new Color(0, 0, 0));
-				panel.add(txtContraseña);
-			}
-		});
-		
-
 		
 		JButton btnNewButton = new JButton("Cancelar");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -224,6 +210,48 @@ public class IniciarSesion extends JFrame {
 		});
 		btnNewButton.setBounds(276, 267, 118, 34);
 		panel.add(btnNewButton);
+		
+		txtContrasenna = new JPasswordField();
+		txtContrasenna.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent evt) {
+				///
+				char c = evt.getKeyChar();
+				 if(((c<'a'||c>'z')&&(c<'A'||c>'Z')&&(c<' '||c>' '))||(c<'0'||c>'9')) {
+					 //if(c<'0'||c>'9')
+					 txtContrasenna.setEchoChar('*');
+				 }
+				if(txtContrasenna.getText().length()==0) {
+					if(c==8) {
+						txtContrasenna.setEchoChar((char)0); 
+						  cons.muestraHolderTxt(txtContrasenna, "Increce su constraseña...", 10);
+				        // set initial text for password field 
+					//	txtContraseña.setText("enter password"); 	
+						
+					}
+					
+				}
+				//
+				
+			}
+		});
+		txtContrasenna.setColumns(10);
+		txtContrasenna.setBounds(148, 206, 177, 20);
+		///
+		if(txtContrasenna.getText().equalsIgnoreCase("")) {
+	        // set the echo character of the password field 
+		txtContrasenna.setEchoChar((char)0); 
+  
+        // set initial text for password field 
+	//	txtContraseña.setText("enter password"); 	
+		cons = new PlaceHolder(txtContrasenna, "Increce su constraseña...");
+		}else {
+			txtContrasenna.setEchoChar('*');
+		}
+		//
+		
+		
+		panel.add(txtContrasenna);
 		
 		label = new JLabel("");
 		label.setIcon(new ImageIcon(IniciarSesion.class.getResource("/Imagenes/LogoMuyGrande.png")));
@@ -251,5 +279,4 @@ public class IniciarSesion extends JFrame {
 		
 		return fecha;
 	}
-	
 }
