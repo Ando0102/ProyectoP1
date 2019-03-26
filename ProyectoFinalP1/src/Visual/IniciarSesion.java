@@ -41,6 +41,8 @@ import javax.swing.UIManager;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.TitledBorder;
+import java.awt.event.InputMethodListener;
+import java.awt.event.InputMethodEvent;
 
 public class IniciarSesion extends JFrame {
 
@@ -143,7 +145,7 @@ public class IniciarSesion extends JFrame {
 				String usuario = "";
 				String constrasenna = "";
 				usuario = txtUsuario.getText().toString();
-				constrasenna = LETRASdeContraseña.getText().toString();
+				constrasenna = txtContraseña.getPassword().toString();
 				if(Clinica.getInstance().buscarUsuario(usuario, constrasenna)!=null) {
 						//(textField.getText(),textField_1.getText())){
 
@@ -196,6 +198,8 @@ public class IniciarSesion extends JFrame {
 		LETRASdeContraseña = new JTextField();
 		LETRASdeContraseña.setText(" Contraseña ");
 		LETRASdeContraseña.setForeground(new Color(128, 128, 128));
+		LETRASdeContraseña.setText(" Contraseña ");
+		LETRASdeContraseña.setForeground(new Color(128, 128, 128));
 		LETRASdeContraseña.setColumns(10);
 		LETRASdeContraseña.setBounds(148, 207, 177, 20);
 		panel.add(LETRASdeContraseña);
@@ -210,6 +214,7 @@ public class IniciarSesion extends JFrame {
 				txtContraseña.setBounds(148, 207, 177, 20);
 				txtContraseña.setForeground(new Color(0, 0, 0));
 				panel.add(txtContraseña);
+			
 			}
 		});
 		
