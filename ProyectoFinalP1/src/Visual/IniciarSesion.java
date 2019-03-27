@@ -162,6 +162,24 @@ public class IniciarSesion extends JFrame {
 					JOptionPane.showMessageDialog(null, "Campos Incompletos!", "Error", JOptionPane.ERROR_MESSAGE, null);
 				}else {
 				if(Clinica.getInstance().buscarUsuario(usuario, constrasenna)!=null) {
+					User aux =Clinica.getInstance().buscarUsuario(usuario, constrasenna);
+
+					if(aux instanceof Secretaria) {
+						//secretaria
+					}else if(aux instanceof Doctor) {
+						//Doctor
+					}else {
+						//Administrador general
+						Administrator ad = new Administrator();
+						
+						ad.setVisible(true);
+						dispose();
+						
+						
+					}
+					
+					
+					
 
 					JOptionPane.showMessageDialog(null, "Bienvenido/a a la Clinica ADA!", "Bienvenido/a", JOptionPane.INFORMATION_MESSAGE, null);
 

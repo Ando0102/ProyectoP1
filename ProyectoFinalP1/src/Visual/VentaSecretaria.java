@@ -21,7 +21,7 @@ import java.awt.Toolkit;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 
-public class Secretaria extends JDialog {
+public class VentaSecretaria extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTable tableCitas;
@@ -31,7 +31,7 @@ public class Secretaria extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			Secretaria dialog = new Secretaria();
+			VentaSecretaria dialog = new VentaSecretaria();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -42,7 +42,7 @@ public class Secretaria extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public Secretaria() {
+	public VentaSecretaria() {
 		setResizable(false);
 		setTitle("Secretario/a");
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\bibir\\git\\ProyectoP1\\ProyectoFinalP1\\src\\Imagenes\\LogoPeque.png"));

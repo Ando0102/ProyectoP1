@@ -14,7 +14,7 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 
-public class Doctor extends JDialog {
+public class VentanaDoctor extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 
@@ -23,7 +23,7 @@ public class Doctor extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			Doctor dialog = new Doctor();
+			VentanaDoctor dialog = new VentanaDoctor();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -34,7 +34,7 @@ public class Doctor extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public Doctor() {
+	public VentanaDoctor() {
 		setTitle("Doctor/a");
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\bibir\\git\\ProyectoP1\\ProyectoFinalP1\\src\\Imagenes\\LogoPeque.png"));
