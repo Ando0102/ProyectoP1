@@ -159,15 +159,15 @@ public class IniciarSesion extends JFrame {
 				constrasenna = txtContrasenna.getText().toString();
 				
 				if(constrasenna.equalsIgnoreCase("Ingrese su constraseña...")|| usuario.equalsIgnoreCase("Ingrese su usuario...")) {
-					JOptionPane.showMessageDialog(null, "Campos Incompletos!", "ERROR", JOptionPane.ERROR_MESSAGE, null);
+					JOptionPane.showMessageDialog(null, "Campos Incompletos!", "Error", JOptionPane.ERROR_MESSAGE, null);
 				}else {
 				if(Clinica.getInstance().buscarUsuario(usuario, constrasenna)!=null) {
 
-					JOptionPane.showMessageDialog(null, "Bienvenido!", "INFORMACION", JOptionPane.INFORMATION_MESSAGE, null);
+					JOptionPane.showMessageDialog(null, "Bienvenido/a a la Clinica ADA!", "Bienvenido/a", JOptionPane.INFORMATION_MESSAGE, null);
 
 			}else {
 
-			    	   JOptionPane.showMessageDialog(null, "Usuario no existe!", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, null);
+			    	   JOptionPane.showMessageDialog(null, "Usuario no existe!", "Advertencia", JOptionPane.WARNING_MESSAGE, null);
 			      
 				
 				}}
