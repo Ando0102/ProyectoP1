@@ -54,28 +54,37 @@ public class Secretaria extends JDialog {
 		{
 			JPanel panelBienvenido = new JPanel();
 			panelBienvenido.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-			panelBienvenido.setBounds(10, 11, 115, 564);
+			panelBienvenido.setBounds(10, 11, 145, 564);
 			contentPanel.add(panelBienvenido);
 			panelBienvenido.setLayout(null);
 			
 			JLabel lblNewLabel = new JLabel("New label");
 			lblNewLabel.setIcon(new ImageIcon("C:\\Users\\bibir\\git\\ProyectoP1\\ProyectoFinalP1\\src\\Imagenes\\secretaria.png"));
-			lblNewLabel.setBounds(10, 11, 95, 123);
+			lblNewLabel.setBounds(24, 11, 95, 123);
 			panelBienvenido.add(lblNewLabel);
 			
-			JLabel lblNewLabel_1 = new JLabel("Bienvenido/a !");
-			lblNewLabel_1.setBounds(20, 145, 79, 14);
+			JLabel lblBienvenidoa = new JLabel("Bienvenido/a!");
+			lblBienvenidoa.setBounds(34, 145, 85, 14);
+			panelBienvenido.add(lblBienvenidoa);
+			
+			JLabel lblNewLabel_1 = new JLabel("New label");
+			lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\bibir\\git\\ProyectoP1\\ProyectoFinalP1\\src\\Imagenes\\LogoPeque.png"));
+			lblNewLabel_1.setBounds(10, 419, 50, 57);
 			panelBienvenido.add(lblNewLabel_1);
+			
+			JLabel lblNewLabel_2 = new JLabel("Clinica ADA");
+			lblNewLabel_2.setBounds(47, 455, 65, 14);
+			panelBienvenido.add(lblNewLabel_2);
 		}
 		{
 			JPanel panelCitas = new JPanel();
 			panelCitas.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-			panelCitas.setBounds(138, 11, 774, 564);
+			panelCitas.setBounds(165, 11, 747, 564);
 			contentPanel.add(panelCitas);
 			panelCitas.setLayout(null);
 			
 			JScrollPane scrollPaneCitas = new JScrollPane();
-			scrollPaneCitas.setBounds(10, 45, 754, 508);
+			scrollPaneCitas.setBounds(10, 45, 727, 508);
 			panelCitas.add(scrollPaneCitas);
 			
 			tableCitas = new JTable();
