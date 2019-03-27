@@ -64,6 +64,7 @@ public class IniciarSesion extends JFrame {
 	private PlaceHolder cons; //constrasenna
 	private PlaceHolder us;//usuario
 	private JPasswordField txtContrasenna;
+	private JPanel panel_1;
 
 //=======
 //	private static int presionados = 0;
@@ -136,19 +137,20 @@ public class IniciarSesion extends JFrame {
 		super.setSize(tamaño.width, tamaño.height);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.WHITE);
+		contentPane.setBackground(new Color(176, 224, 230));
 		contentPane.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		final JPanel panel = new JPanel();
-		panel.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		panel.setBorder(new BevelBorder(BevelBorder.RAISED, new Color(192, 192, 192), null, null, new Color(192, 192, 192)));
 		panel.setBackground(Color.WHITE);
 		panel.setBounds(433, 208, 474, 343);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		JButton btnEntrar = new JButton("Iniciar Sesi\u00F3n");
+		btnEntrar.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnEntrar.setBackground(UIManager.getColor("Button.background"));
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -236,6 +238,7 @@ public class IniciarSesion extends JFrame {
 
 
 		JButton btnNewButton = new JButton("Cancelar");
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//PantallaTrasera.dispose();
@@ -294,7 +297,7 @@ public class IniciarSesion extends JFrame {
 		
 		label_1 = new JLabel("");
 		label_1.setIcon(new ImageIcon(IniciarSesion.class.getResource("/Imagenes/LogoMuyGrande.png")));
-		label_1.setBounds(1069, 60, 271, 541);
+		label_1.setBounds(1084, 60, 256, 541);
 		contentPane.add(label_1);
 		
 		label_2 = new JLabel("                           \"El mejor m\u00E9dico es el que conoce la inutilidad de la mayor parte de las medicinas.\"\r\n  - Benjamin Franklin");
@@ -303,9 +306,16 @@ public class IniciarSesion extends JFrame {
 		contentPane.add(label_2);
 		
 		label_3 = new JLabel("BIENVENIDO/A A LA CLINICA ADA ");
-		label_3.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 20));
-		label_3.setBounds(492, 11, 366, 138);
+		label_3.setForeground(Color.GRAY);
+		label_3.setFont(new Font("Sylfaen", Font.BOLD, 22));
+		label_3.setBounds(476, 11, 445, 138);
 		contentPane.add(label_3);
+		
+		panel_1 = new JPanel();
+		panel_1.setBorder(new BevelBorder(BevelBorder.RAISED, new Color(192, 192, 192), null, null, new Color(192, 192, 192)));
+		panel_1.setBackground(new Color(0, 139, 139));
+		panel_1.setBounds(433, 175, 474, 34);
+		contentPane.add(panel_1);
 	}
 	public static Date fechaActual() {
 		Date fecha = new Date();
