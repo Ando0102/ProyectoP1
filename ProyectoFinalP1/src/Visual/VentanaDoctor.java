@@ -52,7 +52,7 @@ public class VentanaDoctor extends JFrame {
 	public VentanaDoctor() {
        // new CambiaPanel(pnlPrincipal, new pnlCitasTodas());
 
-		setTitle("Administrador");
+		setTitle("Doctor");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaDoctor.class.getResource("/Imagenes/LogoPeque.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1042, 503);
