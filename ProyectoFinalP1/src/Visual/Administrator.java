@@ -19,6 +19,8 @@ import javax.swing.JMenuItem;
 import java.awt.Toolkit;
 import javax.swing.border.BevelBorder;
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Administrator extends JFrame {
 
@@ -36,12 +38,18 @@ public class Administrator extends JFrame {
 		setJMenuBar(menuBar);
 		
 		JMenu mnNewMenu = new JMenu("Registrar");
+		mnNewMenu.setIcon(new ImageIcon(Administrator.class.getResource("/Imagenes/cita2.png")));
 		menuBar.add(mnNewMenu);
 		
 		JMenu mnDoctor = new JMenu("Doctor");
 		mnNewMenu.add(mnDoctor);
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("Agregar Doctor");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		mnDoctor.add(mntmNewMenuItem);
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Doctores Existentes");
@@ -57,6 +65,7 @@ public class Administrator extends JFrame {
 		mnSecretaria.add(mntmNewMenuItem_3);
 		
 		JMenu mnNewMenu_1 = new JMenu("Estadisticas");
+		mnNewMenu_1.setIcon(new ImageIcon(Administrator.class.getResource("/Imagenes/grafica2.png")));
 		menuBar.add(mnNewMenu_1);
 		
 		JMenuItem mntmEmpleados = new JMenuItem("Empleados");
@@ -75,6 +84,7 @@ public class Administrator extends JFrame {
 		mnNewMenu_1.add(mntmVacunas);
 		
 		JMenu mnNewMenu_2 = new JMenu("Enfermedades");
+		mnNewMenu_2.setIcon(new ImageIcon(Administrator.class.getResource("/Imagenes/Enfermedad.png")));
 		menuBar.add(mnNewMenu_2);
 		
 		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Nueva Enfermedad");
@@ -84,6 +94,7 @@ public class Administrator extends JFrame {
 		mnNewMenu_2.add(mntmNewMenuItem_5);
 		
 		JMenu mnNewMenu_3 = new JMenu("Vacunas");
+		mnNewMenu_3.setIcon(new ImageIcon(Administrator.class.getResource("/Imagenes/vacuna.png")));
 		menuBar.add(mnNewMenu_3);
 		
 		JMenuItem mntmNewMenuItem_6 = new JMenuItem("Nueva Vacuna");
@@ -108,17 +119,12 @@ public class Administrator extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(Administrator.class.getResource("/Imagenes/man.png")));
-		lblNewLabel.setBounds(10, 11, 89, 129);
+		lblNewLabel.setBounds(55, 11, 89, 129);
 		panel_1.add(lblNewLabel);
 		
 		JLabel lblBienvenidoa = new JLabel("Bienvenido/a ");
 		lblBienvenidoa.setBounds(55, 151, 89, 49);
 		panel_1.add(lblBienvenidoa);
-		
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(Administrator.class.getResource("/Imagenes/woman.png")));
-		lblNewLabel_1.setBounds(109, 11, 80, 129);
-		panel_1.add(lblNewLabel_1);
 		
 		txtHoraYFecha = new JTextField();
 		txtHoraYFecha.setBackground(Color.WHITE);

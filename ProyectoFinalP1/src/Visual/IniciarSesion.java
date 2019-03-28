@@ -51,7 +51,7 @@ public class IniciarSesion extends JFrame {
 	protected static final String String = null;
 	private JPanel contentPane;
 	private JTextField txtUsuario;
-	private JTextField LETRASdeContraseña;
+
 
 	private JLabel LabelUsuario;
 	private JLabel LabelContraseña;
