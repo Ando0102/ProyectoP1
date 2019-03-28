@@ -21,7 +21,6 @@ import java.awt.event.ActionEvent;
 public class VentanaSecretaria extends JFrame {
 
 	private JPanel contentPane;
-	private JTable table;
 	JPanel panelCitas = new JPanel();
 	/**
 	 * Launch the application.
@@ -47,8 +46,8 @@ public class VentanaSecretaria extends JFrame {
 		setResizable(false);
 		setTitle("Secretario/a");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1042, 503);
-		
+		setBounds(100, 100, 1042, 594);
+		setLocationRelativeTo(null);
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
@@ -65,10 +64,6 @@ public class VentanaSecretaria extends JFrame {
 		mnModificarCita.setIcon(new ImageIcon(VentanaSecretaria.class.getResource("/Imagenes/libro2.png")));
 		menuBar.add(mnModificarCita);
 		
-		JMenu mnAgregarPaciente = new JMenu("Agregar Persona");
-		mnAgregarPaciente.setIcon(new ImageIcon(VentanaSecretaria.class.getResource("/Imagenes/agregrarpacientes2.png")));
-		menuBar.add(mnAgregarPaciente);
-		
 		JMenu mnCerrarSesion = new JMenu("Cerrar Sesion");
 		mnCerrarSesion.setIcon(new ImageIcon(VentanaSecretaria.class.getResource("/Imagenes/logoout2.png")));
 		menuBar.add(mnCerrarSesion);
@@ -83,7 +78,7 @@ public class VentanaSecretaria extends JFrame {
 		
 		JPanel panelBienvenida = new JPanel();
 		panelBienvenida.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		panelBienvenida.setBounds(10, 11, 199, 411);
+		panelBienvenida.setBounds(10, 11, 199, 499);
 		panel.add(panelBienvenida);
 		panelBienvenida.setLayout(null);
 		
@@ -98,21 +93,8 @@ public class VentanaSecretaria extends JFrame {
 		
 		JPanel panelCitas = new JPanel();
 		panelCitas.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		panelCitas.setBounds(219, 11, 787, 411);
+		panelCitas.setBounds(219, 11, 797, 499);
 		panel.add(panelCitas);
 		panelCitas.setLayout(null);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 11, 767, 389);
-		panelCitas.add(scrollPane);
-		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-			}
-		));
-		scrollPane.setViewportView(table);
 	}
 }
