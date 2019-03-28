@@ -122,7 +122,7 @@ public class VentanaDoctor extends JFrame {
 		panel_1.add(txtHoraYFecha);
 		txtHoraYFecha.setColumns(10);
 		
-		JPanel pnlPrincipal = new JPanel();
+		final JPanel pnlPrincipal = new JPanel();
 		pnlPrincipal.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		pnlPrincipal.setBounds(219, 11, 787, 411);
 		panel.add(pnlPrincipal);

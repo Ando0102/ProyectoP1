@@ -1,4 +1,4 @@
-package ventanasSecre;
+package PanelesSecretaria;
 
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
