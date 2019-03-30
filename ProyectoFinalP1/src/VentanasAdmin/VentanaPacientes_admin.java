@@ -8,6 +8,8 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Toolkit;
+import javax.swing.border.TitledBorder;
+import javax.swing.JScrollPane;
 
 public class VentanaPacientes_admin extends JDialog {
 
@@ -32,29 +34,20 @@ public class VentanaPacientes_admin extends JDialog {
 	public VentanaPacientes_admin() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaPacientes_admin.class.getResource("/Imagenes/LogoPeque.png")));
 		setTitle("Informaci\u00F3n de Pacientes");
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 680, 406);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JPanel panel = new JPanel();
+			panel.setBorder(new TitledBorder(null, "Informaci\u00F3n de los Pacientes", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			contentPanel.add(panel, BorderLayout.CENTER);
-		}
-		{
-			JPanel buttonPane = new JPanel();
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-			getContentPane().add(buttonPane, BorderLayout.SOUTH);
+			panel.setLayout(null);
 			{
-				JButton okButton = new JButton("OK");
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
-			}
-			{
-				JButton cancelButton = new JButton("Cancel");
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
+				JScrollPane scrollPane = new JScrollPane();
+				scrollPane.setBounds(10, 43, 634, 273);
+				panel.add(scrollPane);
 			}
 		}
 	}
