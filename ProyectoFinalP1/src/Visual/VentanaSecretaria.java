@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
 import javax.swing.JMenu;
 import javax.swing.ImageIcon;
 import java.awt.Toolkit;
@@ -16,8 +17,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import ventanasSecretaria.ModificarCita;
 import ventanasSecretaria.NuevaCita;
-
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -28,6 +29,7 @@ import javax.swing.event.MenuKeyListener;
 import javax.swing.event.MenuKeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.SystemColor;
 
 public class VentanaSecretaria extends JFrame {
 
@@ -54,7 +56,6 @@ public class VentanaSecretaria extends JFrame {
 	 * Create the frame.
 	 */
 	public VentanaSecretaria() {
-		String vi="HOLA";
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\bibir\\git\\ProyectoP1\\ProyectoFinalP1\\src\\Imagenes\\LogoPeque.png"));
 		setResizable(false);
 		setTitle("Secretario/a");
@@ -64,6 +65,7 @@ public class VentanaSecretaria extends JFrame {
 		super.setSize(tamaño.width, tamaño.height);
 		setLocationRelativeTo(null);
 		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBackground(SystemColor.inactiveCaptionBorder);
 		setJMenuBar(menuBar);
 		//Holaaaaaaa
 		
@@ -71,40 +73,65 @@ public class VentanaSecretaria extends JFrame {
 		mnNuevaCita.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+				NuevaCita citas = new NuevaCita();
+				citas.setModal(true);
+				citas.setLocationRelativeTo(null);
+				citas.visualizarCampos(true);
 			}
 		});
-		mnNuevaCita.setIcon(new ImageIcon(VentanaSecretaria.class.getResource("/Imagenes/medical-15_icon-icons.com_73938 (1).png")));
+		mnNuevaCita.setIcon(new ImageIcon(VentanaSecretaria.class.getResource("/Imagenes/controlpanel_task_10822.png")));
 		menuBar.add(mnNuevaCita);
 		
 		JMenu mnModificarCita = new JMenu("Modificar Cita");
-		mnModificarCita.setIcon(new ImageIcon(VentanaSecretaria.class.getResource("/Imagenes/medical-12_icon-icons.com_73944 (1).png")));
+		mnModificarCita.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ModificarCita modi = new ModificarCita();
+				modi.setModal(true);
+				modi.setLocationRelativeTo(null);
+				modi.setVisible(true);
+			}
+		});
+		mnModificarCita.setIcon(new ImageIcon(VentanaSecretaria.class.getResource("/Imagenes/editnote_pencil_edi_6175 (1).png")));
 		menuBar.add(mnModificarCita);
 		
 		JMenu mnCerrarSesion = new JMenu("Cerrar Sesion");
-		mnCerrarSesion.setIcon(new ImageIcon(VentanaSecretaria.class.getResource("/Imagenes/medical-27_icon-icons.com_73934 (1).png")));
+		mnCerrarSesion.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				IniciarSesion inicio = new IniciarSesion();
+				int resp = JOptionPane.showOptionDialog(null, "Estas seguro que deseas salir?", "Advertencia!", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, new Object[] { "Si", "No" }, null); 
+				if(resp == 0){
+				setVisible(false);
+				inicio.setVisible(true);} else{
+					repaint();
+				}
+				
+			}
+		});
+		mnCerrarSesion.setIcon(new ImageIcon(VentanaSecretaria.class.getResource("/Imagenes/stop_exit_close_6291.png")));
 		menuBar.add(mnCerrarSesion);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(240, 255, 255));
+		contentPane.setBackground(SystemColor.text);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(new Color(240, 255, 255));
+		panel.setBackground(SystemColor.textHighlightText);
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
 		JPanel panelBienvenida = new JPanel();
-		panelBienvenida.setBackground(new Color(240, 255, 240));
+		panelBienvenida.setBackground(SystemColor.inactiveCaptionBorder);
 		panelBienvenida.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		panelBienvenida.setBounds(10, 11, 199, 673);
 		panel.add(panelBienvenida);
 		panelBienvenida.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(VentanaSecretaria.class.getResource("/Imagenes/Paciente Mujer.png")));
-		lblNewLabel.setBounds(50, 30, 108, 107);
+		lblNewLabel.setIcon(new ImageIcon(VentanaSecretaria.class.getResource("/Imagenes/nurse_128_44165.png")));
+		lblNewLabel.setBounds(50, 23, 96, 128);
 		panelBienvenida.add(lblNewLabel);
 		
 		JLabel lblBienvenidoa = new JLabel("Bienvenido/a !");
@@ -112,7 +139,7 @@ public class VentanaSecretaria extends JFrame {
 		panelBienvenida.add(lblBienvenidoa);
 		
 		JPanel panelCitas = new JPanel();
-		panelCitas.setBackground(new Color(240, 255, 240));
+		panelCitas.setBackground(SystemColor.inactiveCaptionBorder);
 		panelCitas.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		panelCitas.setBounds(219, 11, 1121, 673);
 		panel.add(panelCitas);

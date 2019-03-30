@@ -1,156 +1,344 @@
 package ventanasSecretaria;
 
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.SystemColor;
 import javax.swing.border.BevelBorder;
-import javax.swing.border.TitledBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JScrollPane;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.border.TitledBorder;
 
-public class NuevaCita extends JPanel {
+import javafx.scene.control.ComboBox;
+
+import java.awt.Toolkit;
+
+public class NuevaCita extends JDialog {
+
+	private final JPanel contentPanel = new JPanel();
 	private JTextField txtBusquedaPersona;
+	private JTextField txtIdPersona;
 	private JTextField txtNombrePersona;
 	private JTextField txtApellidoPersona;
-	private JTextField txtID;
 	private JTextField txtTelefono;
-	private JTextField txtDireccion;
-	private JTextField txtCorreo;
+	private JTextField txtNacimientoPersona;
+	private JTextField txtCorreoPersona;
+	private JTextField txtBusquedaDoctor;
 	private JTextField txtNombreDoctor;
 	private JTextField txtApellidoDoctor;
+	private JTextField txtFechaCita;
+	private JTextField txtHoraCita;
+	private JComboBox cmbSexoPersona;
+	private JComboBox cmbPaisOrigenPersona;
+	private static int opcion = 0;
+	/**
+	 * Launch the application.
+	 */
+	/*public static void main(String[] args) {
+		try {
+			NuevaCita dialog = new NuevaCita();
+			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	/**
-	 * Create the panel.
+	 * Create the dialog.
 	 */
 	public NuevaCita() {
-		setLayout(null);
-		setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		setBounds(219, 11, 797, 499);
+		setTitle("Nueva Cita");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(NuevaCita.class.getResource("/Imagenes/LogoPeque.png")));
+		setBounds(100, 100, 839, 659);
+		setModal(true);
+		setResizable(false);
+		setLocationRelativeTo(null);
+		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(SystemColor.text);
+		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		contentPanel.setLayout(null);
 		
 		JPanel panelDatosPersona = new JPanel();
-		panelDatosPersona.setBorder(new TitledBorder(null, "Datos de Persona:", TitledBorder.CENTER, TitledBorder.TOP, null, null));
-		panelDatosPersona.setBounds(10, 11, 777, 297);
-		add(panelDatosPersona);
+		panelDatosPersona.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		panelDatosPersona.setBackground(SystemColor.inactiveCaptionBorder);
+		panelDatosPersona.setBounds(10, 11, 803, 354);
+		contentPanel.add(panelDatosPersona);
 		panelDatosPersona.setLayout(null);
 		
 		JLabel lblBusquedaDePersona = new JLabel("Busqueda de Persona:");
-		lblBusquedaDePersona.setBounds(10, 11, 127, 14);
+		lblBusquedaDePersona.setBounds(10, 11, 166, 14);
 		panelDatosPersona.add(lblBusquedaDePersona);
 		
 		txtBusquedaPersona = new JTextField();
-		txtBusquedaPersona.setBounds(10, 29, 159, 20);
+		txtBusquedaPersona.setBounds(10, 36, 166, 20);
 		panelDatosPersona.add(txtBusquedaPersona);
 		txtBusquedaPersona.setColumns(10);
 		
 		JButton btnBusquedaPersona = new JButton("");
-		btnBusquedaPersona.setIcon(new ImageIcon(NuevaCita.class.getResource("/javax/swing/plaf/metal/icons/ocean/directory.gif")));
-		btnBusquedaPersona.setBounds(187, 28, 65, 23);
+		btnBusquedaPersona.setBackground(SystemColor.inactiveCaptionBorder);
+		btnBusquedaPersona.setIcon(new ImageIcon(NuevaCita.class.getResource("/Imagenes/preview_search_find_locate_1551.png")));
+		btnBusquedaPersona.setBorder(null);
+		btnBusquedaPersona.setBorderPainted(false);
+		btnBusquedaPersona.setBounds(186, 36, 32, 32);
 		panelDatosPersona.add(btnBusquedaPersona);
 		
-		JLabel lblNombreYApellido = new JLabel("Nombre y Apellido:");
-		lblNombreYApellido.setBounds(10, 79, 127, 14);
-		panelDatosPersona.add(lblNombreYApellido);
+		JLabel lblNumeroDeIdentificacion = new JLabel("Numero de Identificacion:");
+		lblNumeroDeIdentificacion.setBounds(10, 165, 166, 14);
+		panelDatosPersona.add(lblNumeroDeIdentificacion);
+		
+		txtIdPersona = new JTextField();
+		txtIdPersona.setBounds(10, 190, 166, 20);
+		panelDatosPersona.add(txtIdPersona);
+		txtIdPersona.setColumns(10);
+		
+		JLabel lblNombre = new JLabel("Nombre:");
+		lblNombre.setBounds(10, 89, 67, 14);
+		panelDatosPersona.add(lblNombre);
 		
 		txtNombrePersona = new JTextField();
-		txtNombrePersona.setBounds(10, 104, 108, 20);
+		txtNombrePersona.setBounds(10, 114, 166, 20);
 		panelDatosPersona.add(txtNombrePersona);
 		txtNombrePersona.setColumns(10);
 		
+		JLabel lblApellido = new JLabel("Apellido:");
+		lblApellido.setBounds(268, 89, 75, 14);
+		panelDatosPersona.add(lblApellido);
+		
 		txtApellidoPersona = new JTextField();
-		txtApellidoPersona.setBounds(140, 104, 108, 20);
+		txtApellidoPersona.setBounds(268, 114, 166, 20);
 		panelDatosPersona.add(txtApellidoPersona);
 		txtApellidoPersona.setColumns(10);
 		
-		JLabel lblNumeroDeIdentificacion = new JLabel("Numero de Identificacion:");
-		lblNumeroDeIdentificacion.setBounds(10, 144, 143, 14);
-		panelDatosPersona.add(lblNumeroDeIdentificacion);
-		
-		txtID = new JTextField();
-		txtID.setBounds(10, 169, 127, 20);
-		panelDatosPersona.add(txtID);
-		txtID.setColumns(10);
-		
 		JLabel lblSexo = new JLabel("Sexo:");
-		lblSexo.setBounds(10, 209, 46, 14);
+		lblSexo.setBounds(10, 247, 46, 14);
 		panelDatosPersona.add(lblSexo);
 		
-		JComboBox cmbSexo = new JComboBox();
-		cmbSexo.setModel(new DefaultComboBoxModel(new String[] {"F", "M"}));
-		cmbSexo.setBounds(10, 234, 46, 20);
-		panelDatosPersona.add(cmbSexo);
+		cmbSexoPersona = new JComboBox();
+		cmbSexoPersona.setModel(new DefaultComboBoxModel(new String[] {"Masculino", "Femenino"}));
+		cmbSexoPersona.setBackground(SystemColor.inactiveCaptionBorder);
+		cmbSexoPersona.setBounds(10, 272, 166, 20);
+		panelDatosPersona.add(cmbSexoPersona);
 		
-		JLabel lblNumeroDeTelefono = new JLabel("Numero de Telefono:");
-		lblNumeroDeTelefono.setBounds(140, 209, 108, 14);
-		panelDatosPersona.add(lblNumeroDeTelefono);
+		JLabel lblTelefono = new JLabel("Telefono:");
+		lblTelefono.setBounds(268, 247, 75, 14);
+		panelDatosPersona.add(lblTelefono);
 		
 		txtTelefono = new JTextField();
-		txtTelefono.setBounds(140, 234, 108, 20);
+		txtTelefono.setBounds(268, 272, 166, 20);
 		panelDatosPersona.add(txtTelefono);
 		txtTelefono.setColumns(10);
 		
+		JLabel lblFechaDeNacimiento = new JLabel("Fecha de Nacimiento:");
+		lblFechaDeNacimiento.setBounds(268, 165, 146, 14);
+		panelDatosPersona.add(lblFechaDeNacimiento);
+		
+		txtNacimientoPersona = new JTextField();
+		txtNacimientoPersona.setBounds(268, 190, 166, 20);
+		panelDatosPersona.add(txtNacimientoPersona);
+		txtNacimientoPersona.setColumns(10);
+		
 		JLabel lblPaisDeOrigen = new JLabel("Pais de Origen:");
-		lblPaisDeOrigen.setBounds(345, 79, 101, 14);
+		lblPaisDeOrigen.setBounds(516, 165, 109, 14);
 		panelDatosPersona.add(lblPaisDeOrigen);
 		
-		JComboBox cmbPaisOrigen = new JComboBox();
-		cmbPaisOrigen.setBounds(345, 104, 134, 20);
-		panelDatosPersona.add(cmbPaisOrigen);
-		
-		JLabel lblDireccion = new JLabel("Direccion:");
-		lblDireccion.setBounds(345, 209, 101, 14);
-		panelDatosPersona.add(lblDireccion);
-		
-		txtDireccion = new JTextField();
-		txtDireccion.setBounds(345, 234, 265, 20);
-		panelDatosPersona.add(txtDireccion);
-		txtDireccion.setColumns(10);
+		cmbPaisOrigenPersona = new JComboBox();
+		cmbPaisOrigenPersona.setModel(new DefaultComboBoxModel(new String[] {"Estados Unidos", "Republica Dominicana", "Puerto Rico", "Haiti", "Colombia", "Venezuela"}));
+		cmbPaisOrigenPersona.setBackground(SystemColor.inactiveCaptionBorder);
+		cmbPaisOrigenPersona.setBounds(516, 190, 220, 20);
+		panelDatosPersona.add(cmbPaisOrigenPersona);
 		
 		JLabel lblCorreoElectronico = new JLabel("Correo Electronico:");
-		lblCorreoElectronico.setBounds(345, 144, 101, 14);
+		lblCorreoElectronico.setBounds(516, 247, 109, 14);
 		panelDatosPersona.add(lblCorreoElectronico);
 		
-		txtCorreo = new JTextField();
-		txtCorreo.setBounds(345, 169, 265, 20);
-		panelDatosPersona.add(txtCorreo);
-		txtCorreo.setColumns(10);
+		txtCorreoPersona = new JTextField();
+		txtCorreoPersona.setBounds(516, 272, 220, 20);
+		panelDatosPersona.add(txtCorreoPersona);
+		txtCorreoPersona.setColumns(10);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(NuevaCita.class.getResource("/Imagenes/agregarPacientes1.png")));
-		lblNewLabel.setBounds(631, 68, 65, 72);
-		panelDatosPersona.add(lblNewLabel);
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(NuevaCita.class.getResource("/Imagenes/Paciente Mujer.png")));
+		lblNewLabel_1.setBounds(542, 32, 83, 122);
+		panelDatosPersona.add(lblNewLabel_1);
 		
-		JPanel panelDatosCita = new JPanel();
-		panelDatosCita.setBorder(new TitledBorder(null, "Datos de la Cita:", TitledBorder.CENTER, TitledBorder.TOP, null, null));
-		panelDatosCita.setBounds(10, 319, 777, 169);
-		add(panelDatosCita);
-		panelDatosCita.setLayout(null);
+		JLabel lblNewLabel_3 = new JLabel("");
+		lblNewLabel_3.setIcon(new ImageIcon(NuevaCita.class.getResource("/Imagenes/person_user_customer_man_male_man_boy_people_1687.png")));
+		lblNewLabel_3.setBounds(625, 36, 83, 98);
+		panelDatosPersona.add(lblNewLabel_3);
+		
+		JPanel panelBusquedaDoctor = new JPanel();
+		panelBusquedaDoctor.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		panelBusquedaDoctor.setBackground(SystemColor.inactiveCaptionBorder);
+		panelBusquedaDoctor.setBounds(10, 376, 384, 190);
+		contentPanel.add(panelBusquedaDoctor);
+		panelBusquedaDoctor.setLayout(null);
 		
 		JLabel lblBusquedaDeDoctor = new JLabel("Busqueda de Doctor:");
-		lblBusquedaDeDoctor.setBounds(10, 11, 108, 14);
-		panelDatosCita.add(lblBusquedaDeDoctor);
+		lblBusquedaDeDoctor.setBounds(10, 11, 152, 14);
+		panelBusquedaDoctor.add(lblBusquedaDeDoctor);
 		
-		JComboBox cmbBusquedaDoctor = new JComboBox();
-		cmbBusquedaDoctor.setEditable(true);
-		cmbBusquedaDoctor.setBounds(10, 35, 176, 20);
-		panelDatosCita.add(cmbBusquedaDoctor);
+		txtBusquedaDoctor = new JTextField();
+		txtBusquedaDoctor.setBounds(10, 36, 167, 20);
+		panelBusquedaDoctor.add(txtBusquedaDoctor);
+		txtBusquedaDoctor.setColumns(10);
 		
-		JLabel lblNombreYApellido_1 = new JLabel("Nombre y Apellido:");
-		lblNombreYApellido_1.setBounds(10, 77, 118, 14);
-		panelDatosCita.add(lblNombreYApellido_1);
+		JButton btnBusquedaDoctor = new JButton("");
+		btnBusquedaDoctor.setIcon(new ImageIcon(NuevaCita.class.getResource("/Imagenes/preview_search_find_locate_1551.png")));
+		btnBusquedaDoctor.setBackground(SystemColor.inactiveCaptionBorder);
+		btnBusquedaDoctor.setBounds(187, 36, 32, 32);
+		btnBusquedaDoctor.setBorder(null);
+		btnBusquedaDoctor.setBorderPainted(false);
+		panelBusquedaDoctor.add(btnBusquedaDoctor);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 82, 167, 97);
+		panelBusquedaDoctor.add(scrollPane);
+		
+		JList listDoctores = new JList();
+		listDoctores.setBorder(new TitledBorder(null, "Lista de Doctores:", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		scrollPane.setViewportView(listDoctores);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(NuevaCita.class.getResource("/Imagenes/doctor_128_44166.png")));
+		lblNewLabel.setBounds(252, 58, 96, 97);
+		panelBusquedaDoctor.add(lblNewLabel);
+		
+		JPanel panelDatosCita = new JPanel();
+		panelDatosCita.setBackground(SystemColor.inactiveCaptionBorder);
+		panelDatosCita.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		panelDatosCita.setBounds(404, 376, 409, 190);
+		contentPanel.add(panelDatosCita);
+		panelDatosCita.setLayout(null);
+		
+		JLabel lblDatosDeCita = new JLabel("Datos de Cita:");
+		lblDatosDeCita.setBounds(10, 11, 119, 14);
+		panelDatosCita.add(lblDatosDeCita);
+		
+		JLabel lblDoctor = new JLabel("Doctor");
+		lblDoctor.setBounds(10, 36, 66, 14);
+		panelDatosCita.add(lblDoctor);
+		
+		JLabel lblNombre_1 = new JLabel("Nombre:");
+		lblNombre_1.setBounds(10, 61, 66, 14);
+		panelDatosCita.add(lblNombre_1);
+		
+		JLabel lblApellido_1 = new JLabel("Apellido:");
+		lblApellido_1.setBounds(165, 61, 72, 14);
+		panelDatosCita.add(lblApellido_1);
 		
 		txtNombreDoctor = new JTextField();
+		txtNombreDoctor.setBackground(SystemColor.inactiveCaptionBorder);
 		txtNombreDoctor.setEditable(false);
-		txtNombreDoctor.setBounds(10, 100, 108, 20);
+		txtNombreDoctor.setBounds(10, 86, 119, 20);
 		panelDatosCita.add(txtNombreDoctor);
 		txtNombreDoctor.setColumns(10);
 		
 		txtApellidoDoctor = new JTextField();
+		txtApellidoDoctor.setBackground(SystemColor.inactiveCaptionBorder);
 		txtApellidoDoctor.setEditable(false);
-		txtApellidoDoctor.setColumns(10);
-		txtApellidoDoctor.setBounds(140, 100, 108, 20);
+		txtApellidoDoctor.setBounds(165, 86, 119, 20);
 		panelDatosCita.add(txtApellidoDoctor);
+		txtApellidoDoctor.setColumns(10);
 		
+		JLabel lblFecha = new JLabel("Fecha:");
+		lblFecha.setBounds(10, 117, 66, 14);
+		panelDatosCita.add(lblFecha);
+		
+		txtFechaCita = new JTextField();
+		txtFechaCita.setBounds(10, 142, 119, 20);
+		panelDatosCita.add(txtFechaCita);
+		txtFechaCita.setColumns(10);
+		
+		JLabel lblHora = new JLabel("Hora:");
+		lblHora.setBounds(165, 117, 46, 14);
+		panelDatosCita.add(lblHora);
+		
+		txtHoraCita = new JTextField();
+		txtHoraCita.setBounds(165, 142, 119, 20);
+		panelDatosCita.add(txtHoraCita);
+		txtHoraCita.setColumns(10);
+		
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setIcon(new ImageIcon(NuevaCita.class.getResource("/Imagenes/edit_pencil_6320.png")));
+		lblNewLabel_2.setBounds(303, 61, 96, 101);
+		panelDatosCita.add(lblNewLabel_2);
+		{
+			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(SystemColor.text);
+			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
+			getContentPane().add(buttonPane, BorderLayout.SOUTH);
+			{
+				JButton okButton = new JButton("");
+				okButton.setBackground(SystemColor.text);
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if(opcion == 0){
+						JOptionPane.showMessageDialog(null, "Cita creada exitosamente!","Aviso!", JOptionPane.INFORMATION_MESSAGE);
+						repaint(); } else {
+							JOptionPane.showMessageDialog(null, "Cita editada exitosamente!","Aviso!", JOptionPane.INFORMATION_MESSAGE);
+							dispose();
+						}
+						
+					}
+				});
+				okButton.setIcon(new ImageIcon(NuevaCita.class.getResource("/Imagenes/acceptar.png")));
+				okButton.setActionCommand("OK");
+				okButton.setBorder(null);
+				okButton.setBorderPainted(false);
+				buttonPane.add(okButton);
+				getRootPane().setDefaultButton(okButton);
+			}
+			{
+				JButton cancelButton = new JButton("");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
+				cancelButton.setIcon(new ImageIcon(NuevaCita.class.getResource("/Imagenes/cancelar2.png")));
+				cancelButton.setBackground(SystemColor.text);
+				cancelButton.setBorder(null);
+				cancelButton.setBorderPainted(false);
+				cancelButton.setActionCommand("Cancel");
+				buttonPane.add(cancelButton);
+			}
+		}
 	}
+	public void visualizarCampos(boolean visualizar){
+		if(visualizar){
+			opcion = 0;
+			setVisible(true);
+			
+		}
+		else {
+			opcion = 1;
+			txtBusquedaPersona.setEditable(false);
+			txtNombrePersona.setEditable(false);
+			txtApellidoPersona.setEditable(false);
+			txtIdPersona.setEditable(false);
+			txtNacimientoPersona.setEditable(false);
+			txtTelefono.setEditable(false);
+			cmbSexoPersona.setEnabled(false);
+			cmbPaisOrigenPersona.setEnabled(false);
+			txtCorreoPersona.setEditable(false);
+			setTitle("Editar Cita");
+			setVisible(true);
+			
+		}
+	}
+	
 }
