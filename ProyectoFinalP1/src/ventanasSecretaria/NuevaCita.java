@@ -24,6 +24,7 @@ import javax.swing.border.TitledBorder;
 import javafx.scene.control.ComboBox;
 
 import java.awt.Toolkit;
+import java.awt.Color;
 
 public class NuevaCita extends JDialog {
 
@@ -67,14 +68,14 @@ public class NuevaCita extends JDialog {
 		setResizable(false);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setBackground(SystemColor.text);
+		contentPanel.setBackground(new Color(240, 248, 255));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
 		JPanel panelDatosPersona = new JPanel();
 		panelDatosPersona.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		panelDatosPersona.setBackground(SystemColor.inactiveCaptionBorder);
+		panelDatosPersona.setBackground(new Color(230, 230, 250));
 		panelDatosPersona.setBounds(10, 11, 803, 354);
 		contentPanel.add(panelDatosPersona);
 		panelDatosPersona.setLayout(null);
@@ -84,12 +85,13 @@ public class NuevaCita extends JDialog {
 		panelDatosPersona.add(lblBusquedaDePersona);
 		
 		txtBusquedaPersona = new JTextField();
+		txtBusquedaPersona.setBackground(new Color(255, 255, 255));
 		txtBusquedaPersona.setBounds(10, 36, 166, 20);
 		panelDatosPersona.add(txtBusquedaPersona);
 		txtBusquedaPersona.setColumns(10);
 		
 		JButton btnBusquedaPersona = new JButton("");
-		btnBusquedaPersona.setBackground(SystemColor.inactiveCaptionBorder);
+		btnBusquedaPersona.setBackground(new Color(230, 230, 250));
 		btnBusquedaPersona.setIcon(new ImageIcon(NuevaCita.class.getResource("/Imagenes/preview_search_find_locate_1551.png")));
 		btnBusquedaPersona.setBorder(null);
 		btnBusquedaPersona.setBorderPainted(false);
@@ -101,6 +103,7 @@ public class NuevaCita extends JDialog {
 		panelDatosPersona.add(lblNumeroDeIdentificacion);
 		
 		txtIdPersona = new JTextField();
+		txtIdPersona.setBackground(new Color(255, 255, 255));
 		txtIdPersona.setBounds(10, 190, 166, 20);
 		panelDatosPersona.add(txtIdPersona);
 		txtIdPersona.setColumns(10);
@@ -110,6 +113,7 @@ public class NuevaCita extends JDialog {
 		panelDatosPersona.add(lblNombre);
 		
 		txtNombrePersona = new JTextField();
+		txtNombrePersona.setBackground(new Color(255, 255, 255));
 		txtNombrePersona.setBounds(10, 114, 166, 20);
 		panelDatosPersona.add(txtNombrePersona);
 		txtNombrePersona.setColumns(10);
@@ -119,6 +123,7 @@ public class NuevaCita extends JDialog {
 		panelDatosPersona.add(lblApellido);
 		
 		txtApellidoPersona = new JTextField();
+		txtApellidoPersona.setBackground(new Color(255, 255, 255));
 		txtApellidoPersona.setBounds(268, 114, 166, 20);
 		panelDatosPersona.add(txtApellidoPersona);
 		txtApellidoPersona.setColumns(10);
@@ -129,7 +134,7 @@ public class NuevaCita extends JDialog {
 		
 		cmbSexoPersona = new JComboBox();
 		cmbSexoPersona.setModel(new DefaultComboBoxModel(new String[] {"Masculino", "Femenino"}));
-		cmbSexoPersona.setBackground(SystemColor.inactiveCaptionBorder);
+		cmbSexoPersona.setBackground(new Color(240, 248, 255));
 		cmbSexoPersona.setBounds(10, 272, 166, 20);
 		panelDatosPersona.add(cmbSexoPersona);
 		
@@ -138,6 +143,7 @@ public class NuevaCita extends JDialog {
 		panelDatosPersona.add(lblTelefono);
 		
 		txtTelefono = new JTextField();
+		txtTelefono.setBackground(new Color(255, 255, 255));
 		txtTelefono.setBounds(268, 272, 166, 20);
 		panelDatosPersona.add(txtTelefono);
 		txtTelefono.setColumns(10);
@@ -147,6 +153,7 @@ public class NuevaCita extends JDialog {
 		panelDatosPersona.add(lblFechaDeNacimiento);
 		
 		txtNacimientoPersona = new JTextField();
+		txtNacimientoPersona.setBackground(new Color(255, 255, 255));
 		txtNacimientoPersona.setBounds(268, 190, 166, 20);
 		panelDatosPersona.add(txtNacimientoPersona);
 		txtNacimientoPersona.setColumns(10);
@@ -157,7 +164,7 @@ public class NuevaCita extends JDialog {
 		
 		cmbPaisOrigenPersona = new JComboBox();
 		cmbPaisOrigenPersona.setModel(new DefaultComboBoxModel(new String[] {"Estados Unidos", "Republica Dominicana", "Puerto Rico", "Haiti", "Colombia", "Venezuela"}));
-		cmbPaisOrigenPersona.setBackground(SystemColor.inactiveCaptionBorder);
+		cmbPaisOrigenPersona.setBackground(new Color(240, 248, 255));
 		cmbPaisOrigenPersona.setBounds(516, 190, 220, 20);
 		panelDatosPersona.add(cmbPaisOrigenPersona);
 		
@@ -166,6 +173,7 @@ public class NuevaCita extends JDialog {
 		panelDatosPersona.add(lblCorreoElectronico);
 		
 		txtCorreoPersona = new JTextField();
+		txtCorreoPersona.setBackground(new Color(255, 255, 255));
 		txtCorreoPersona.setBounds(516, 272, 220, 20);
 		panelDatosPersona.add(txtCorreoPersona);
 		txtCorreoPersona.setColumns(10);
@@ -182,7 +190,7 @@ public class NuevaCita extends JDialog {
 		
 		JPanel panelBusquedaDoctor = new JPanel();
 		panelBusquedaDoctor.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		panelBusquedaDoctor.setBackground(SystemColor.inactiveCaptionBorder);
+		panelBusquedaDoctor.setBackground(new Color(230, 230, 250));
 		panelBusquedaDoctor.setBounds(10, 376, 384, 190);
 		contentPanel.add(panelBusquedaDoctor);
 		panelBusquedaDoctor.setLayout(null);
@@ -192,13 +200,14 @@ public class NuevaCita extends JDialog {
 		panelBusquedaDoctor.add(lblBusquedaDeDoctor);
 		
 		txtBusquedaDoctor = new JTextField();
+		txtBusquedaDoctor.setBackground(new Color(255, 255, 255));
 		txtBusquedaDoctor.setBounds(10, 36, 167, 20);
 		panelBusquedaDoctor.add(txtBusquedaDoctor);
 		txtBusquedaDoctor.setColumns(10);
 		
 		JButton btnBusquedaDoctor = new JButton("");
 		btnBusquedaDoctor.setIcon(new ImageIcon(NuevaCita.class.getResource("/Imagenes/preview_search_find_locate_1551.png")));
-		btnBusquedaDoctor.setBackground(SystemColor.inactiveCaptionBorder);
+		btnBusquedaDoctor.setBackground(new Color(230, 230, 250));
 		btnBusquedaDoctor.setBounds(187, 36, 32, 32);
 		btnBusquedaDoctor.setBorder(null);
 		btnBusquedaDoctor.setBorderPainted(false);
@@ -209,6 +218,7 @@ public class NuevaCita extends JDialog {
 		panelBusquedaDoctor.add(scrollPane);
 		
 		JList listDoctores = new JList();
+		listDoctores.setBackground(new Color(240, 248, 255));
 		listDoctores.setBorder(new TitledBorder(null, "Lista de Doctores:", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		scrollPane.setViewportView(listDoctores);
 		
@@ -218,7 +228,7 @@ public class NuevaCita extends JDialog {
 		panelBusquedaDoctor.add(lblNewLabel);
 		
 		JPanel panelDatosCita = new JPanel();
-		panelDatosCita.setBackground(SystemColor.inactiveCaptionBorder);
+		panelDatosCita.setBackground(new Color(230, 230, 250));
 		panelDatosCita.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		panelDatosCita.setBounds(404, 376, 409, 190);
 		contentPanel.add(panelDatosCita);
@@ -241,14 +251,14 @@ public class NuevaCita extends JDialog {
 		panelDatosCita.add(lblApellido_1);
 		
 		txtNombreDoctor = new JTextField();
-		txtNombreDoctor.setBackground(SystemColor.inactiveCaptionBorder);
+		txtNombreDoctor.setBackground(new Color(255, 255, 255));
 		txtNombreDoctor.setEditable(false);
 		txtNombreDoctor.setBounds(10, 86, 119, 20);
 		panelDatosCita.add(txtNombreDoctor);
 		txtNombreDoctor.setColumns(10);
 		
 		txtApellidoDoctor = new JTextField();
-		txtApellidoDoctor.setBackground(SystemColor.inactiveCaptionBorder);
+		txtApellidoDoctor.setBackground(new Color(255, 255, 255));
 		txtApellidoDoctor.setEditable(false);
 		txtApellidoDoctor.setBounds(165, 86, 119, 20);
 		panelDatosCita.add(txtApellidoDoctor);
@@ -259,6 +269,7 @@ public class NuevaCita extends JDialog {
 		panelDatosCita.add(lblFecha);
 		
 		txtFechaCita = new JTextField();
+		txtFechaCita.setBackground(new Color(255, 255, 255));
 		txtFechaCita.setBounds(10, 142, 119, 20);
 		panelDatosCita.add(txtFechaCita);
 		txtFechaCita.setColumns(10);
@@ -268,6 +279,7 @@ public class NuevaCita extends JDialog {
 		panelDatosCita.add(lblHora);
 		
 		txtHoraCita = new JTextField();
+		txtHoraCita.setBackground(new Color(255, 255, 255));
 		txtHoraCita.setBounds(165, 142, 119, 20);
 		panelDatosCita.add(txtHoraCita);
 		txtHoraCita.setColumns(10);
@@ -278,12 +290,12 @@ public class NuevaCita extends JDialog {
 		panelDatosCita.add(lblNewLabel_2);
 		{
 			JPanel buttonPane = new JPanel();
-			buttonPane.setBackground(SystemColor.text);
+			buttonPane.setBackground(new Color(240, 248, 255));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("");
-				okButton.setBackground(SystemColor.text);
+				okButton.setBackground(new Color(240, 248, 255));
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if(opcion == 0){
@@ -310,7 +322,7 @@ public class NuevaCita extends JDialog {
 					}
 				});
 				cancelButton.setIcon(new ImageIcon(NuevaCita.class.getResource("/Imagenes/cancelar2.png")));
-				cancelButton.setBackground(SystemColor.text);
+				cancelButton.setBackground(new Color(240, 248, 255));
 				cancelButton.setBorder(null);
 				cancelButton.setBorderPainted(false);
 				cancelButton.setActionCommand("Cancel");

@@ -52,14 +52,14 @@ public class ModificarCita extends JDialog {
 		setResizable(false);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setBackground(SystemColor.text);
+		contentPanel.setBackground(new Color(240, 248, 255));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null), "Listado de Citas:", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel.setBackground(SystemColor.inactiveCaptionBorder);
+		panel.setBackground(new Color(230, 230, 250));
 		panel.setBounds(10, 11, 662, 432);
 		contentPanel.add(panel);
 		panel.setLayout(null);
@@ -81,7 +81,7 @@ public class ModificarCita extends JDialog {
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		panel_1.setBackground(SystemColor.inactiveCaptionBorder);
+		panel_1.setBackground(new Color(230, 230, 250));
 		panel_1.setBounds(682, 11, 141, 432);
 		contentPanel.add(panel_1);
 		panel_1.setLayout(null);

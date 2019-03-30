@@ -30,6 +30,7 @@ import javax.swing.event.MenuKeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.SystemColor;
+import javax.swing.UIManager;
 
 public class VentanaSecretaria extends JFrame {
 
@@ -65,7 +66,7 @@ public class VentanaSecretaria extends JFrame {
 		super.setSize(tamaño.width, tamaño.height);
 		setLocationRelativeTo(null);
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBackground(SystemColor.inactiveCaptionBorder);
+		menuBar.setBackground(new Color(240, 248, 255));
 		setJMenuBar(menuBar);
 		//Holaaaaaaa
 		
@@ -112,18 +113,18 @@ public class VentanaSecretaria extends JFrame {
 		mnCerrarSesion.setIcon(new ImageIcon(VentanaSecretaria.class.getResource("/Imagenes/stop_exit_close_6291.png")));
 		menuBar.add(mnCerrarSesion);
 		contentPane = new JPanel();
-		contentPane.setBackground(SystemColor.text);
+		contentPane.setBackground(new Color(240, 248, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(SystemColor.textHighlightText);
+		panel.setBackground(new Color(240, 248, 255));
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
 		JPanel panelBienvenida = new JPanel();
-		panelBienvenida.setBackground(SystemColor.inactiveCaptionBorder);
+		panelBienvenida.setBackground(new Color(176, 196, 222));
 		panelBienvenida.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		panelBienvenida.setBounds(10, 11, 199, 673);
 		panel.add(panelBienvenida);
@@ -139,7 +140,7 @@ public class VentanaSecretaria extends JFrame {
 		panelBienvenida.add(lblBienvenidoa);
 		
 		JPanel panelCitas = new JPanel();
-		panelCitas.setBackground(SystemColor.inactiveCaptionBorder);
+		panelCitas.setBackground(new Color(176, 196, 222));
 		panelCitas.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		panelCitas.setBounds(219, 11, 1121, 673);
 		panel.add(panelCitas);
