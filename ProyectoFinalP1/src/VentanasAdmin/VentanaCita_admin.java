@@ -10,6 +10,8 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Toolkit;
 import javax.swing.border.TitledBorder;
 import javax.swing.JScrollPane;
+import java.awt.Color;
+import javax.swing.border.BevelBorder;
 
 public class VentanaCita_admin extends JDialog {
 
@@ -36,12 +38,14 @@ public class VentanaCita_admin extends JDialog {
 		setTitle("Informaci\u00F3n de Citas");
 		setBounds(100, 100, 685, 442);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(new Color(240, 248, 255));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JPanel panel = new JPanel();
-			panel.setBorder(new TitledBorder(null, "Informaci\u00F3n de las Citas", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			panel.setBackground(new Color(230, 230, 250));
+			panel.setBorder(new TitledBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null), "Informaci\u00F3n de las Citas", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(null);
 			{

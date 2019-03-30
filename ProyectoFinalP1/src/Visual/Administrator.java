@@ -69,17 +69,18 @@ public class Administrator extends JFrame implements Runnable {
 		super.setSize(tamano.width, (tamano.height-50));
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(240, 248, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(new Color(0, 0, 0));
+		panel.setBackground(new Color(240, 248, 255));
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(135, 206, 235));
+		panel_1.setBackground(new Color(176, 196, 222));
 		panel_1.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		panel_1.setBounds(10, 11, 199, 647);
 		panel.add(panel_1);
@@ -97,7 +98,7 @@ public class Administrator extends JFrame implements Runnable {
 		
 		txtHoraYFecha = new JTextPane();
 		txtHoraYFecha.setFont(new Font("Tahoma", Font.BOLD, 16));
-		txtHoraYFecha.setBackground(Color.WHITE);
+		txtHoraYFecha.setBackground(new Color(240, 248, 255));
 		txtHoraYFecha.setEditable(false);
 		txtHoraYFecha.setBounds(10, 532, 179, 104);
 		
@@ -108,6 +109,7 @@ public class Administrator extends JFrame implements Runnable {
 		panel_1.add(txtHoraYFecha);
 		
 		JButton btnNewButton = new JButton("Cerrar Sesi\u00F3n");
+		btnNewButton.setBackground(UIManager.getColor("Button.highlight"));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -115,17 +117,19 @@ public class Administrator extends JFrame implements Runnable {
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton.setIcon(new ImageIcon(Administrator.class.getResource("/Imagenes/logout1.png")));
+		btnNewButton.setIcon(new ImageIcon(Administrator.class.getResource("/Imagenes/stop_exit_close_6291.png")));
 		btnNewButton.setBounds(10, 376, 179, 57);
 		panel_1.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Tablero");
+		btnNewButton_1.setBackground(UIManager.getColor("Button.highlight"));
 		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton_1.setIcon(new ImageIcon(Administrator.class.getResource("/Imagenes/controlPanel.png")));
 		btnNewButton_1.setBounds(10, 308, 179, 57);
 		panel_1.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Agenda");
+		btnNewButton_2.setBackground(UIManager.getColor("Button.highlight"));
 		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton_2.setIcon(new ImageIcon(Administrator.class.getResource("/Imagenes/calendario.png")));
 		btnNewButton_2.addActionListener(new ActionListener() {
@@ -136,14 +140,14 @@ public class Administrator extends JFrame implements Runnable {
 		panel_1.add(btnNewButton_2);
 		
 		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(new Color(135, 206, 235));
+		panel_2.setBackground(new Color(176, 196, 222));
 		panel_2.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		panel_2.setBounds(219, 11, 1111, 647);
 		panel.add(panel_2);
 		panel_2.setLayout(null);
 		
 		JPanel panelDoctor = new JPanel();
-		panelDoctor.setBackground(new Color(135, 206, 235));
+		panelDoctor.setBackground(new Color(240, 248, 255));
 		panelDoctor.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -175,7 +179,7 @@ public class Administrator extends JFrame implements Runnable {
 		panelDoctor.add(lbltextdoctor);
 		
 		JPanel panelPaciente = new JPanel();
-		panelPaciente.setBackground(new Color(135, 206, 235));
+		panelPaciente.setBackground(new Color(240, 248, 255));
 		panelPaciente.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -207,7 +211,7 @@ public class Administrator extends JFrame implements Runnable {
 		panelPaciente.add(lbltextpaciente);
 		
 		JPanel panelSecretaria = new JPanel();
-		panelSecretaria.setBackground(Color.BLACK);
+		panelSecretaria.setBackground(new Color(240, 248, 255));
 		panelSecretaria.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -233,13 +237,13 @@ public class Administrator extends JFrame implements Runnable {
 		panelSecretaria.add(lblSecretaria);
 		
 		JLabel lbltextsecretaria = new JLabel("SECRETARIA");
-		lbltextsecretaria.setForeground(Color.WHITE);
+		lbltextsecretaria.setForeground(new Color(0, 0, 0));
 		lbltextsecretaria.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lbltextsecretaria.setBounds(83, 107, 91, 22);
 		panelSecretaria.add(lbltextsecretaria);
 		
 		JPanel panelCitas = new JPanel();
-		panelCitas.setBackground(Color.BLACK);
+		panelCitas.setBackground(new Color(240, 248, 255));
 		panelCitas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -265,13 +269,13 @@ public class Administrator extends JFrame implements Runnable {
 		panelCitas.add(lblCita);
 		
 		JLabel lbltextcitas = new JLabel("CITA");
-		lbltextcitas.setForeground(Color.WHITE);
+		lbltextcitas.setForeground(new Color(0, 0, 0));
 		lbltextcitas.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lbltextcitas.setBounds(103, 107, 57, 22);
 		panelCitas.add(lbltextcitas);
 		
 		JPanel panelEnfermedad = new JPanel();
-		panelEnfermedad.setBackground(Color.BLACK);
+		panelEnfermedad.setBackground(new Color(240, 248, 255));
 		panelEnfermedad.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -297,13 +301,13 @@ public class Administrator extends JFrame implements Runnable {
 		panelEnfermedad.add(lblEnfermedad);
 		
 		JLabel lbltextenfermedad = new JLabel("ENFERMEDAD");
-		lbltextenfermedad.setForeground(Color.WHITE);
+		lbltextenfermedad.setForeground(new Color(0, 0, 0));
 		lbltextenfermedad.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lbltextenfermedad.setBounds(81, 101, 89, 28);
 		panelEnfermedad.add(lbltextenfermedad);
 		
 		JPanel panelVacuna = new JPanel();
-		panelVacuna.setBackground(Color.BLACK);
+		panelVacuna.setBackground(new Color(240, 248, 255));
 		panelVacuna.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -329,7 +333,7 @@ public class Administrator extends JFrame implements Runnable {
 		panelVacuna.add(lblVacuna);
 		
 		JLabel lbltextvacuna = new JLabel("VACUNA");
-		lbltextvacuna.setForeground(Color.WHITE);
+		lbltextvacuna.setForeground(new Color(0, 0, 0));
 		lbltextvacuna.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lbltextvacuna.setBounds(100, 107, 58, 22);
 		panelVacuna.add(lbltextvacuna);
