@@ -31,6 +31,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.SystemColor;
 import javax.swing.UIManager;
+import javax.swing.JButton;
 
 public class VentanaSecretaria extends JFrame {
 
@@ -65,53 +66,6 @@ public class VentanaSecretaria extends JFrame {
 		tamaño = super.getToolkit().getScreenSize();
 		super.setSize(tamaño.width, tamaño.height);
 		setLocationRelativeTo(null);
-		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBackground(new Color(240, 248, 255));
-		setJMenuBar(menuBar);
-		//Holaaaaaaa
-		
-		JMenu mnNuevaCita = new JMenu("Nueva Cita");
-		mnNuevaCita.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				NuevaCita citas = new NuevaCita();
-				citas.setModal(true);
-				citas.setLocationRelativeTo(null);
-				citas.visualizarCampos(true);
-			}
-		});
-		mnNuevaCita.setIcon(new ImageIcon(VentanaSecretaria.class.getResource("/Imagenes/controlpanel_task_10822.png")));
-		menuBar.add(mnNuevaCita);
-		
-		JMenu mnModificarCita = new JMenu("Modificar Cita");
-		mnModificarCita.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				ModificarCita modi = new ModificarCita();
-				modi.setModal(true);
-				modi.setLocationRelativeTo(null);
-				modi.setVisible(true);
-			}
-		});
-		mnModificarCita.setIcon(new ImageIcon(VentanaSecretaria.class.getResource("/Imagenes/editnote_pencil_edi_6175 (1).png")));
-		menuBar.add(mnModificarCita);
-		
-		JMenu mnCerrarSesion = new JMenu("Cerrar Sesion");
-		mnCerrarSesion.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				IniciarSesion inicio = new IniciarSesion();
-				int resp = JOptionPane.showOptionDialog(null, "Estas seguro que deseas salir?", "Advertencia!", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, new Object[] { "Si", "No" }, null); 
-				if(resp == 0){
-				setVisible(false);
-				inicio.setVisible(true);} else{
-					repaint();
-				}
-				
-			}
-		});
-		mnCerrarSesion.setIcon(new ImageIcon(VentanaSecretaria.class.getResource("/Imagenes/stop_exit_close_6291.png")));
-		menuBar.add(mnCerrarSesion);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(240, 248, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -126,7 +80,7 @@ public class VentanaSecretaria extends JFrame {
 		JPanel panelBienvenida = new JPanel();
 		panelBienvenida.setBackground(new Color(176, 196, 222));
 		panelBienvenida.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		panelBienvenida.setBounds(10, 11, 199, 673);
+		panelBienvenida.setBounds(10, 11, 199, 707);
 		panel.add(panelBienvenida);
 		panelBienvenida.setLayout(null);
 		
@@ -139,10 +93,52 @@ public class VentanaSecretaria extends JFrame {
 		lblBienvenidoa.setBounds(60, 162, 83, 14);
 		panelBienvenida.add(lblBienvenidoa);
 		
+		JButton btnNuevaCita = new JButton("Nueva Cita");
+		btnNuevaCita.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				NuevaCita citas = new NuevaCita();
+				citas.setModal(true);
+				citas.setLocationRelativeTo(null);
+				citas.visualizarCampos(true);
+			}
+		});
+		btnNuevaCita.setIcon(new ImageIcon(VentanaSecretaria.class.getResource("/Imagenes/controlpanel_task_10822.png")));
+		btnNuevaCita.setBounds(10, 240, 179, 63);
+		panelBienvenida.add(btnNuevaCita);
+		
+		JButton btnModificarCita = new JButton("Modificar Cita");
+		btnModificarCita.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ModificarCita modi = new ModificarCita();
+				modi.setModal(true);
+				modi.setLocationRelativeTo(null);
+				modi.setVisible(true);
+			}
+		});
+		btnModificarCita.setIcon(new ImageIcon(VentanaSecretaria.class.getResource("/Imagenes/editnote_pencil_edi_6175 (1).png")));
+		btnModificarCita.setBounds(10, 332, 179, 63);
+		panelBienvenida.add(btnModificarCita);
+		
+		JButton btnSalir = new JButton("Cerrar Sesion");
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				IniciarSesion inicio = new IniciarSesion();
+				int resp = JOptionPane.showOptionDialog(null, "Estas seguro que deseas salir?", "Advertencia!", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, new Object[] { "Si", "No" }, null); 
+				if(resp == 0){
+				setVisible(false);
+				inicio.setVisible(true);} else{
+					repaint();
+				}
+			}
+		});
+		btnSalir.setIcon(new ImageIcon(VentanaSecretaria.class.getResource("/Imagenes/stop_exit_close_6291.png")));
+		btnSalir.setBounds(10, 424, 179, 63);
+		panelBienvenida.add(btnSalir);
+		
 		JPanel panelCitas = new JPanel();
 		panelCitas.setBackground(new Color(176, 196, 222));
 		panelCitas.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		panelCitas.setBounds(219, 11, 1121, 673);
+		panelCitas.setBounds(219, 11, 1121, 707);
 		panel.add(panelCitas);
 		panelCitas.setLayout(null);
 	}

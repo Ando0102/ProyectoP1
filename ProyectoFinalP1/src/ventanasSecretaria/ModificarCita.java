@@ -89,10 +89,16 @@ public class ModificarCita extends JDialog {
 			JButton cancelButton = new JButton("Salir");
 			cancelButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					int resp = JOptionPane.showOptionDialog(null, "Estas seguro que deseas salir?", "Advertencia!", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, new Object[] { "Si", "No" }, null); 
+					if(resp == 0){
 					dispose();
+					} else{
+						repaint();
+					}
+					
 				}
 			});
-			cancelButton.setBounds(10, 341, 121, 32);
+			cancelButton.setBounds(10, 332, 121, 53);
 			panel_1.add(cancelButton);
 			cancelButton.setBackground(UIManager.getColor("Button.highlight"));
 			cancelButton.setIcon(new ImageIcon(ModificarCita.class.getResource("/Imagenes/cancelar2.png")));
@@ -111,7 +117,7 @@ public class ModificarCita extends JDialog {
 		});
 		btnBorrarCita.setIcon(new ImageIcon(ModificarCita.class.getResource("/Imagenes/recycle_recyclebin_full_delete_trash_1772.png")));
 		btnBorrarCita.setBackground(UIManager.getColor("Button.highlight"));
-		btnBorrarCita.setBounds(10, 259, 121, 32);
+		btnBorrarCita.setBounds(10, 250, 121, 53);
 		panel_1.add(btnBorrarCita);
 		
 		JButton btnModificarCita = new JButton("Editar");
@@ -125,7 +131,7 @@ public class ModificarCita extends JDialog {
 		});
 		btnModificarCita.setBackground(UIManager.getColor("Button.highlight"));
 		btnModificarCita.setIcon(new ImageIcon(ModificarCita.class.getResource("/Imagenes/edit_icon-icons.com_52382.png")));
-		btnModificarCita.setBounds(10, 177, 121, 32);
+		btnModificarCita.setBounds(10, 166, 121, 53);
 		panel_1.add(btnModificarCita);
 		
 		JLabel lblNewLabel = new JLabel("");

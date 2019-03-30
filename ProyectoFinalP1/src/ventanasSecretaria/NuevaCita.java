@@ -25,6 +25,7 @@ import javafx.scene.control.ComboBox;
 
 import java.awt.Toolkit;
 import java.awt.Color;
+import javax.swing.UIManager;
 
 public class NuevaCita extends JDialog {
 
@@ -294,9 +295,9 @@ public class NuevaCita extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("");
-				okButton.setBackground(new Color(240, 248, 255));
-				okButton.addActionListener(new ActionListener() {
+				JButton btnListo = new JButton("Listo");
+				btnListo.setBackground(UIManager.getColor("Button.highlight"));
+				btnListo.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if(opcion == 0){
 						JOptionPane.showMessageDialog(null, "Cita creada exitosamente!","Aviso!", JOptionPane.INFORMATION_MESSAGE);
@@ -307,26 +308,28 @@ public class NuevaCita extends JDialog {
 						
 					}
 				});
-				okButton.setIcon(new ImageIcon(NuevaCita.class.getResource("/Imagenes/acceptar.png")));
-				okButton.setActionCommand("OK");
-				okButton.setBorder(null);
-				okButton.setBorderPainted(false);
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
+				btnListo.setIcon(new ImageIcon(NuevaCita.class.getResource("/Imagenes/acceptar.png")));
+				btnListo.setActionCommand("OK");
+				buttonPane.add(btnListo);
+				getRootPane().setDefaultButton(btnListo);
 			}
 			{
-				JButton cancelButton = new JButton("");
-				cancelButton.addActionListener(new ActionListener() {
+				JButton btnCancelar = new JButton("Cancelar");
+				btnCancelar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						int resp = JOptionPane.showOptionDialog(null, "Estas seguro que deseas salir?", "Advertencia!", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, new Object[] { "Si", "No" }, null); 
+						if(resp == 0){
 						dispose();
+						} else{
+							repaint();
+						}
+						
 					}
 				});
-				cancelButton.setIcon(new ImageIcon(NuevaCita.class.getResource("/Imagenes/cancelar2.png")));
-				cancelButton.setBackground(new Color(240, 248, 255));
-				cancelButton.setBorder(null);
-				cancelButton.setBorderPainted(false);
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
+				btnCancelar.setIcon(new ImageIcon(NuevaCita.class.getResource("/Imagenes/cancelar2.png")));
+				btnCancelar.setBackground(UIManager.getColor("Button.highlight"));
+				btnCancelar.setActionCommand("Cancel");
+				buttonPane.add(btnCancelar);
 			}
 		}
 	}
