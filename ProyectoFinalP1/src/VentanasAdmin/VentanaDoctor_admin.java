@@ -71,7 +71,7 @@ public class VentanaDoctor_admin extends JDialog {
 		setModal(true);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaDoctor_admin.class.getResource("/Imagenes/LogoPeque.png")));
 		setTitle("Informaci\u00F3n de Doctor");
-		setBounds(100, 100, 764, 453);
+		setBounds(100, 100, 799, 494);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -96,7 +96,7 @@ public class VentanaDoctor_admin extends JDialog {
 		
 		panelSeguridad = new JPanel();
 		panelSeguridad.setBackground(new Color(211, 211, 211));
-		panelSeguridad.setBounds(0, 0, 729, 372);
+		panelSeguridad.setBounds(0, 0, 764, 364);
 		panelSeguridad.setVisible(false);
 		panel_2.add(panelSeguridad);
 		panelSeguridad.setLayout(null);
@@ -107,8 +107,8 @@ public class VentanaDoctor_admin extends JDialog {
 		panelSeguridad.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\arman\\Downloads\\Shield_Overlay_24271.png"));
-		lblNewLabel_1.setBounds(604, 11, 115, 161);
+		lblNewLabel_1.setIcon(new ImageIcon(VentanaDoctor_admin.class.getResource("/Imagenes/Escudo.png")));
+		lblNewLabel_1.setBounds(639, 11, 115, 161);
 		panelSeguridad.add(lblNewLabel_1);
 		
 		JButton btnNewButton = new JButton("Finalizar");
@@ -117,7 +117,7 @@ public class VentanaDoctor_admin extends JDialog {
 				dispose();
 			}
 		});
-		btnNewButton.setBounds(630, 338, 89, 23);
+		btnNewButton.setBounds(665, 330, 89, 23);
 		panelSeguridad.add(btnNewButton);
 		
 		JButton btnAtras = new JButton("Atras");
@@ -127,7 +127,7 @@ public class VentanaDoctor_admin extends JDialog {
 				panelSeguridad.setVisible(false);
 			}
 		});
-		btnAtras.setBounds(531, 338, 89, 23);
+		btnAtras.setBounds(566, 330, 89, 23);
 		panelSeguridad.add(btnAtras);
 		
 		JTextPane txtpnLasPartesExponen = new JTextPane();
@@ -251,15 +251,15 @@ public class VentanaDoctor_admin extends JDialog {
 		label_12.setBounds(605, 206, 99, 103);
 		panel_2.add(label_12);
 		
-		JButton button = new JButton("Continua");
-		button.setBounds(630, 338, 89, 23);
-		button.addActionListener(new ActionListener() {
+		JButton btnSiguiente = new JButton("Siguiente");
+		btnSiguiente.setBounds(630, 338, 89, 23);
+		btnSiguiente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				panel_2.setVisible(false);
 				panelSeguridad.setVisible(true);
 			}
 		});
-		panel_2.add(button);
+		panel_2.add(btnSiguiente);
 		
 		JLabel label_13 = new JLabel("");
 		label_13.setIcon(new ImageIcon(VentanaDoctor_admin.class.getResource("/Imagenes/doctora.png")));
@@ -291,18 +291,23 @@ public class VentanaDoctor_admin extends JDialog {
 		comboBox.setBounds(20, 183, 93, 20);
 		panel_2.add(comboBox);
 		
+		JLabel lblNewLabel_4 = new JLabel("");
+		lblNewLabel_4.setIcon(new ImageIcon(VentanaDoctor_admin.class.getResource("/Imagenes/cancelar2.png")));
+		lblNewLabel_4.setBounds(713, 372, 51, 32);
+		panel_2.add(lblNewLabel_4);
+		
 		JPanel panel_3 = new JPanel();
 		tabbedPane.addTab("Modificar Doctor", null, panel_3, null);
 		panel_3.setLayout(null);
 		
 		JPanel panel_4 = new JPanel();
 		panel_4.setBorder(new TitledBorder(null, "Informaci\u00F3n para Modificar del Doctor", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_4.setBounds(10, 135, 709, 226);
+		panel_4.setBounds(10, 135, 744, 226);
 		panel_3.add(panel_4);
 		panel_4.setLayout(null);
 		
 		JLabel lblNewLabel_3 = new JLabel("");
-		lblNewLabel_3.setIcon(new ImageIcon("C:\\Users\\arman\\Downloads\\configuration_config_system_1540.png"));
+		lblNewLabel_3.setIcon(new ImageIcon(VentanaDoctor_admin.class.getResource("/Imagenes/Rueda_dentada.png")));
 		lblNewLabel_3.setBounds(484, 132, 83, 72);
 		panel_4.add(lblNewLabel_3);
 		
@@ -352,7 +357,7 @@ public class VentanaDoctor_admin extends JDialog {
 		textField_12.setColumns(10);
 		
 		JButton btnModificar = new JButton("Modificar");
-		btnModificar.setBounds(610, 192, 89, 23);
+		btnModificar.setBounds(645, 192, 89, 23);
 		panel_4.add(btnModificar);
 		
 		JLabel lblNewLabel_2 = new JLabel("");
@@ -361,16 +366,7 @@ public class VentanaDoctor_admin extends JDialog {
 		panel_4.add(lblNewLabel_2);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 11, 709, 113);
+		scrollPane.setBounds(10, 11, 744, 113);
 		panel_3.add(scrollPane);
-		
-		JButton button_1 = new JButton("");
-		button_1.setIcon(new ImageIcon("C:\\Users\\arman\\Downloads\\closingsession_shutdown_1263.png"));
-		button_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				dispose();
-			}
-		});
-		tabbedPane.addTab("Regresar al Tablero", null, button_1, null);
 	}
 }

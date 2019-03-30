@@ -118,7 +118,7 @@ public class VentanaEnfermedad_admin extends JDialog {
 						}
 						
 						JButton btnAgregarNuevaEnfermedad = new JButton("Agregar Nueva Enfermedad");
-						btnAgregarNuevaEnfermedad.setBounds(500, 119, 174, 23);
+						btnAgregarNuevaEnfermedad.setBounds(475, 119, 199, 23);
 						panel_2.add(btnAgregarNuevaEnfermedad);
 					}
 					{
