@@ -13,6 +13,9 @@ import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
@@ -105,7 +108,7 @@ public class VentanaDoctor_admin extends JDialog {
 		panelSeguridad = new JPanel();
 		panelSeguridad.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		panelSeguridad.setBackground(new Color(230, 230, 250));
-		panelSeguridad.setBounds(10, 24, 731, 344);
+		panelSeguridad.setBounds(10, 24, 744, 344);
 		panelSeguridad.setVisible(false);
 		panel_2.add(panelSeguridad);
 		panelSeguridad.setLayout(null);
@@ -137,9 +140,27 @@ public class VentanaDoctor_admin extends JDialog {
 		panelSeguridad.add(btnAtras);
 		
 		JTextPane txtpnLasPartesExponen = new JTextPane();
-		txtpnLasPartesExponen.setText("Estimado Doctor/a. Por este medio se le informa que la siguiente informaci\u00F3n que usted mismo sumistrar\u00E1 a continuaci\u00F3n, es de total confidencialidad para su persona. Es su deber mantener en secreto y no divulgar u compartir con nadie est\u00E1 informaci\u00F3n, sin importar que a las personas las cuales usted desea compartirla sean colegas o superiores de usted.  Absolutamente nadie debe de saber est\u00E1 informaci\u00F3n a demas de usted. Es su deber como profesional y miembro de est\u00E1 instituci\u00F3n cumplir esta normal. ");
 		txtpnLasPartesExponen.setBackground(new Color(230, 230, 250));
-		txtpnLasPartesExponen.setEditable(false);
+		txtpnLasPartesExponen.setText("Estimado Doctor/a. Por este medio se le informa que la siguiente\r\ninformaci\u00F3n que usted mismo sumistrar\u00E1 a continuaci\u00F3n, es de \r\ntotal confidencialidad para su persona. Es su deber mantener en \r\nsecreto y no divulgar u compartir con nadie est\u00E1 informaci\u00F3n, sin \r\nimportar que a las personas las cuales usted desea compartirla \r\nsean colegas o superiores de usted.  Absolutamente nadie debe de \r\nsaber est\u00E1 informaci\u00F3n a demas de usted. Es su deber como profesional\r\n y miembro de est\u00E1 instituci\u00F3n cumplir esta normal. ");		
+
+		StyledDocument doc = txtpnLasPartesExponen.getStyledDocument();
+
+		//  Define a keyword attribute
+
+		SimpleAttributeSet keyWord = new SimpleAttributeSet();
+		StyleConstants.setForeground(keyWord, Color.BLACK);
+		StyleConstants.setBackground(keyWord, Color.cyan);
+		StyleConstants.setBold(keyWord, true);
+
+		//  Add some text
+
+		try
+		{
+		    doc.insertString(0, "Start of text\n", null );
+		    doc.insertString(doc.getLength(), "\nEnd of text", keyWord );
+		}
+		catch(Exception e) { System.out.println(e); }
+		
 		txtpnLasPartesExponen.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		txtpnLasPartesExponen.setBounds(165, 22, 399, 126);
 		panelSeguridad.add(txtpnLasPartesExponen);
@@ -388,7 +409,7 @@ public class VentanaDoctor_admin extends JDialog {
 		
 		JButton btnModificar = new JButton("Modificar");
 		btnModificar.setIcon(new ImageIcon(VentanaDoctor_admin.class.getResource("/Imagenes/edit_pencil_6320 (1).png")));
-		btnModificar.setBounds(604, 183, 130, 34);
+		btnModificar.setBounds(604, 176, 130, 41);
 		panel_4.add(btnModificar);
 		
 		JLabel lblNewLabel_2 = new JLabel("");

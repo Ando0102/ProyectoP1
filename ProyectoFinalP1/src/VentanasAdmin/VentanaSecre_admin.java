@@ -73,13 +73,16 @@ public class VentanaSecre_admin extends JDialog {
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JPanel panel = new JPanel();
+			panel.setBackground(new Color(230, 230, 250));
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(new BorderLayout(0, 0));
 			{
 				JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+				tabbedPane.setBackground(new Color(230, 230, 250));
 				panel.add(tabbedPane, BorderLayout.CENTER);
 				{
 					JPanel panel_1 = new JPanel();
+					panel_1.setBackground(new Color(230, 230, 250));
 					tabbedPane.addTab("Información General", null, panel_1, null);
 					panel_1.setLayout(null);
 					
@@ -89,12 +92,14 @@ public class VentanaSecre_admin extends JDialog {
 				}
 				{
 					panelAgregar = new JPanel();
+					panelAgregar.setBackground(new Color(230, 230, 250));
 					panelAgregar.setBorder(new TitledBorder(null, "Informaci\u00F3n de Nueva Secretaria", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 					tabbedPane.addTab("Agregar Nueva Secretaria", null, panelAgregar, null);
 					panelAgregar.setLayout(null);
 					
 					panelSegurida = new JPanel();
-					panelSegurida.setBounds(0, 0, 750, 375);
+					panelSegurida.setBackground(new Color(230, 230, 250));
+					panelSegurida.setBounds(0, 0, 750, 388);
 					panelSegurida.setVisible(false);
 					panelAgregar.add(panelSegurida);
 					panelSegurida.setLayout(null);
@@ -107,20 +112,20 @@ public class VentanaSecre_admin extends JDialog {
 							panelAgregar.setVisible(true);
 						}
 					});
-					lblNewLabel_4.setIcon(new ImageIcon("C:\\Users\\arman\\Downloads\\arrow_left_15605.png"));
-					lblNewLabel_4.setBounds(634, 319, 48, 45);
+					lblNewLabel_4.setIcon(new ImageIcon(VentanaSecre_admin.class.getResource("/Imagenes/atraspeque\u00F1a.png")));
+					lblNewLabel_4.setBounds(634, 321, 44, 54);
 					panelSegurida.add(lblNewLabel_4);
 					
 					JTextPane txtpnEstimadaSecretairaPor = new JTextPane();
 					txtpnEstimadaSecretairaPor.setText("Estimada Secretaria. Por este medio se le informa que la siguiente informaci\u00F3n que usted mismo sumistrar\u00E1 a continuaci\u00F3n, es de total confidencialidad para su persona. Es su deber mantener en secreto y no divulgar u compartir con nadie est\u00E1 informaci\u00F3n, sin importar que a las personas las cuales usted desea compartirla sean colegas o superiores de usted.  Absolutamente nadie debe de saber est\u00E1 informaci\u00F3n a demas de usted. Es su deber como profesional y miembro de est\u00E1 instituci\u00F3n cumplir esta normal. ");
 					txtpnEstimadaSecretairaPor.setFont(new Font("Tahoma", Font.PLAIN, 12));
 					txtpnEstimadaSecretairaPor.setEditable(false);
-					txtpnEstimadaSecretairaPor.setBackground(new Color(211, 211, 211));
+					txtpnEstimadaSecretairaPor.setBackground(new Color(230, 230, 250));
 					txtpnEstimadaSecretairaPor.setBounds(160, 11, 399, 126);
 					panelSegurida.add(txtpnEstimadaSecretairaPor);
 					
 					JLabel label_1 = new JLabel("");
-					label_1.setIcon(new ImageIcon("C:\\Users\\arman\\Downloads\\Shield_Overlay_24271.png"));
+					label_1.setIcon(new ImageIcon(VentanaSecre_admin.class.getResource("/Imagenes/Escudo.png")));
 					label_1.setBounds(634, 0, 115, 161);
 					panelSegurida.add(label_1);
 					
@@ -161,13 +166,13 @@ public class VentanaSecre_admin extends JDialog {
 								dispose();
 							}
 						});
-						lblNewLabel_3.setIcon(new ImageIcon("C:\\Users\\arman\\Downloads\\ok_accept_15562.png"));
-						lblNewLabel_3.setBounds(688, 319, 61, 45);
+						lblNewLabel_3.setIcon(new ImageIcon(VentanaSecre_admin.class.getResource("/Imagenes/acceptar.png")));
+						lblNewLabel_3.setBounds(688, 321, 61, 54);
 						panelSegurida.add(lblNewLabel_3);
 					}
 					{
 						JLabel lblNewLabel_1 = new JLabel("");
-						lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\arman\\Downloads\\plus_15650.png"));
+						lblNewLabel_1.setIcon(new ImageIcon(VentanaSecre_admin.class.getResource("/Imagenes/plus_15650.png")));
 						lblNewLabel_1.setBounds(523, 239, 72, 67);
 						panelAgregar.add(lblNewLabel_1);
 					}
@@ -304,8 +309,8 @@ public class VentanaSecre_admin extends JDialog {
 					}
 					{
 						JLabel lblNewLabel = new JLabel("");
-						lblNewLabel.setIcon(new ImageIcon("C:\\Users\\arman\\Downloads\\teacher_128_44171 (1).png"));
-						lblNewLabel.setBounds(479, 191, 116, 93);
+						lblNewLabel.setIcon(new ImageIcon(VentanaSecre_admin.class.getResource("/Imagenes/teacher_128_44171.png")));
+						lblNewLabel.setBounds(531, 166, 125, 128);
 						panelAgregar.add(lblNewLabel);
 					}
 					
@@ -317,16 +322,18 @@ public class VentanaSecre_admin extends JDialog {
 							panelSegurida.setVisible(true);
 						}
 					});
-					lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\arman\\Downloads\\arrow_right_15604.png"));
-					lblNewLabel_2.setBounds(692, 325, 48, 39);
+					lblNewLabel_2.setIcon(new ImageIcon(VentanaSecre_admin.class.getResource("/Imagenes/arrowPeque\u00F1a.png")));
+					lblNewLabel_2.setBounds(686, 325, 64, 52);
 					panelAgregar.add(lblNewLabel_2);
 				}
 				{
 					JPanel panel_1 = new JPanel();
+					panel_1.setBackground(new Color(230, 230, 250));
 					tabbedPane.addTab("Modificar Secretaria", null, panel_1, null);
 					panel_1.setLayout(null);
 					{
 						JPanel panel_2 = new JPanel();
+						panel_2.setBackground(new Color(230, 230, 250));
 						panel_2.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informaci\u00F3n de la Secretaria", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 						panel_2.setBounds(10, 180, 730, 197);
 						panel_1.add(panel_2);
@@ -422,10 +429,6 @@ public class VentanaSecre_admin extends JDialog {
 						scrollPane.setBounds(10, 11, 730, 158);
 						panel_1.add(scrollPane);
 					}
-				}
-				{
-					JPanel panel_1 = new JPanel();
-					tabbedPane.addTab("Regresar al Tablero", null, panel_1, null);
 				}
 			}
 		}
