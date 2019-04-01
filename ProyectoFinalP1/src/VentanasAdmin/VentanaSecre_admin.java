@@ -67,6 +67,7 @@ public class VentanaSecre_admin extends JDialog {
 		setTitle("Informaci\u00F3n de Secretaria");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaSecre_admin.class.getResource("/Imagenes/LogoPeque.png")));
 		setBounds(100, 100, 781, 465);
+		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -98,6 +99,7 @@ public class VentanaSecre_admin extends JDialog {
 					panelAgregar.setLayout(null);
 					
 					panelSegurida = new JPanel();
+					panelSegurida.setBorder(new TitledBorder(null, "Informaci\u00F3n de la Nueva Secretaria", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 					panelSegurida.setBackground(new Color(230, 230, 250));
 					panelSegurida.setBounds(0, 0, 750, 388);
 					panelSegurida.setVisible(false);
@@ -113,7 +115,7 @@ public class VentanaSecre_admin extends JDialog {
 						}
 					});
 					lblNewLabel_4.setIcon(new ImageIcon(VentanaSecre_admin.class.getResource("/Imagenes/atraspeque\u00F1a.png")));
-					lblNewLabel_4.setBounds(634, 321, 44, 54);
+					lblNewLabel_4.setBounds(634, 334, 44, 54);
 					panelSegurida.add(lblNewLabel_4);
 					
 					JTextPane txtpnEstimadaSecretairaPor = new JTextPane();
@@ -121,42 +123,42 @@ public class VentanaSecre_admin extends JDialog {
 					txtpnEstimadaSecretairaPor.setFont(new Font("Tahoma", Font.PLAIN, 12));
 					txtpnEstimadaSecretairaPor.setEditable(false);
 					txtpnEstimadaSecretairaPor.setBackground(new Color(230, 230, 250));
-					txtpnEstimadaSecretairaPor.setBounds(160, 11, 399, 126);
+					txtpnEstimadaSecretairaPor.setBounds(182, 46, 399, 126);
 					panelSegurida.add(txtpnEstimadaSecretairaPor);
 					
 					JLabel label_1 = new JLabel("");
 					label_1.setIcon(new ImageIcon(VentanaSecre_admin.class.getResource("/Imagenes/Escudo.png")));
-					label_1.setBounds(634, 0, 115, 161);
+					label_1.setBounds(634, 41, 115, 161);
 					panelSegurida.add(label_1);
 					
 					JLabel label_2 = new JLabel("");
 					label_2.setIcon(new ImageIcon(VentanaSecre_admin.class.getResource("/Imagenes/LogoGrande.png")));
-					label_2.setBounds(10, 11, 128, 161);
+					label_2.setBounds(10, 46, 128, 161);
 					panelSegurida.add(label_2);
 					
 					JLabel label_3 = new JLabel("Usuario para Iniciar Sesi\u00F3n :");
-					label_3.setBounds(255, 162, 162, 14);
+					label_3.setBounds(255, 188, 162, 14);
 					panelSegurida.add(label_3);
 					
 					textField_7 = new JTextField();
 					textField_7.setColumns(10);
-					textField_7.setBounds(265, 187, 150, 20);
+					textField_7.setBounds(265, 213, 150, 20);
 					panelSegurida.add(textField_7);
 					
 					JLabel label_4 = new JLabel("Contrase\u00F1a :");
-					label_4.setBounds(255, 218, 100, 14);
+					label_4.setBounds(255, 244, 100, 14);
 					panelSegurida.add(label_4);
 					
 					passwordField = new JPasswordField();
-					passwordField.setBounds(265, 243, 152, 20);
+					passwordField.setBounds(265, 269, 152, 20);
 					panelSegurida.add(passwordField);
 					
 					JLabel label_5 = new JLabel("Confimaci\u00F3n de Contrase\u00F1a :");
-					label_5.setBounds(255, 274, 179, 14);
+					label_5.setBounds(255, 300, 179, 14);
 					panelSegurida.add(label_5);
 					
 					passwordField_1 = new JPasswordField();
-					passwordField_1.setBounds(265, 299, 152, 20);
+					passwordField_1.setBounds(265, 325, 152, 20);
 					panelSegurida.add(passwordField_1);
 					{
 						JLabel lblNewLabel_3 = new JLabel("");
@@ -167,7 +169,7 @@ public class VentanaSecre_admin extends JDialog {
 							}
 						});
 						lblNewLabel_3.setIcon(new ImageIcon(VentanaSecre_admin.class.getResource("/Imagenes/acceptar.png")));
-						lblNewLabel_3.setBounds(688, 321, 61, 54);
+						lblNewLabel_3.setBounds(688, 334, 61, 54);
 						panelSegurida.add(lblNewLabel_3);
 					}
 					{
