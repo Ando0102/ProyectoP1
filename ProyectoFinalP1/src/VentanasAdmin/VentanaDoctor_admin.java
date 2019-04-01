@@ -10,12 +10,18 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Toolkit;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JMenu;
 import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
+
+import Logical.Clinica;
+import Logical.Doctor;
+import Logical.Persona;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
@@ -34,20 +40,21 @@ import java.awt.Color;
 import javax.swing.JPasswordField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Calendar;
 
 public class VentanaDoctor_admin extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JPasswordField passwordField;
-	private JPasswordField passwordField_1;
+	private JTextField txtNombre;
+	private JTextField txtApellido;
+	private JTextField txtCedula;
+	private JTextField txtTelefono;
+	private JTextField txtDireccion;
+	private JTextField txtCorreoElect;
+	private JTextField txtanos;
+	private JTextField txtUsuario;
+	private JPasswordField passwordField1;
+	private JPasswordField passwordField2;
 	private JPanel panelSeguridad;
 	private JPanel panel_2;
 	private JTextField textField_8;
@@ -56,6 +63,7 @@ public class VentanaDoctor_admin extends JDialog {
 	private JTextField textField_11;
 	private JTextField textField_12;
 	private JLabel btnSiguiente;
+	private int cantidadDoctores = 0;
 	/**
 	 * Launch the application.
 	 */
@@ -163,34 +171,27 @@ public class VentanaDoctor_admin extends JDialog {
 		lblUsuarioParaIniciar.setBounds(269, 211, 162, 14);
 		panelSeguridad.add(lblUsuarioParaIniciar);
 		
-		textField_7 = new JTextField();
-		textField_7.setBounds(279, 236, 150, 20);
-		panelSeguridad.add(textField_7);
-		textField_7.setColumns(10);
+		txtUsuario = new JTextField();
+		txtUsuario.setBounds(279, 236, 150, 20);
+		panelSeguridad.add(txtUsuario);
+		txtUsuario.setColumns(10);
 		
 		JLabel lblContrasea = new JLabel("Contrase\u00F1a :");
 		lblContrasea.setBounds(269, 267, 100, 14);
 		panelSeguridad.add(lblContrasea);
 		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(279, 292, 152, 20);
-		panelSeguridad.add(passwordField);
+		passwordField1 = new JPasswordField();
+		passwordField1.setBounds(279, 292, 152, 20);
+		panelSeguridad.add(passwordField1);
 		
 		JLabel lblConfimacinDeContrasea = new JLabel("Confimaci\u00F3n de Contrase\u00F1a :");
 		lblConfimacinDeContrasea.setBounds(269, 323, 179, 14);
 		panelSeguridad.add(lblConfimacinDeContrasea);
 		
-		passwordField_1 = new JPasswordField();
-		passwordField_1.setBounds(279, 352, 152, 20);
-		panelSeguridad.add(passwordField_1);
-		
+		passwordField2 = new JPasswordField();
+		passwordField2.setBounds(279, 352, 152, 20);
+		panelSeguridad.add(passwordField2);
 		JLabel lblNewLabel_4 = new JLabel("");
-		lblNewLabel_4.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				dispose();
-			}
-		});
 		lblNewLabel_4.setIcon(new ImageIcon(VentanaDoctor_admin.class.getResource("/Imagenes/acceptar.png")));
 		lblNewLabel_4.setBounds(693, 367, 71, 35);
 		panelSeguridad.add(lblNewLabel_4);
@@ -199,46 +200,46 @@ public class VentanaDoctor_admin extends JDialog {
 		label.setBounds(10, 28, 72, 22);
 		panel_2.add(label);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(20, 56, 135, 20);
-		panel_2.add(textField);
+		txtNombre = new JTextField();
+		txtNombre.setColumns(10);
+		txtNombre.setBounds(20, 56, 135, 20);
+		panel_2.add(txtNombre);
 		
 		JLabel label_1 = new JLabel("Apellidos :");
 		label_1.setBounds(192, 32, 93, 18);
 		panel_2.add(label_1);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(202, 56, 135, 20);
-		panel_2.add(textField_1);
+		txtApellido = new JTextField();
+		txtApellido.setColumns(10);
+		txtApellido.setBounds(202, 56, 135, 20);
+		panel_2.add(txtApellido);
 		
 		JLabel label_2 = new JLabel("Cedula :");
 		label_2.setBounds(396, 32, 64, 18);
 		panel_2.add(label_2);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(406, 56, 135, 20);
-		panel_2.add(textField_2);
+		txtCedula = new JTextField();
+		txtCedula.setColumns(10);
+		txtCedula.setBounds(406, 56, 135, 20);
+		panel_2.add(txtCedula);
 		
 		JLabel label_3 = new JLabel("Tel\u00E9fono :");
 		label_3.setBounds(10, 98, 72, 18);
 		panel_2.add(label_3);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(20, 127, 135, 20);
-		panel_2.add(textField_3);
+		txtTelefono = new JTextField();
+		txtTelefono.setColumns(10);
+		txtTelefono.setBounds(20, 127, 135, 20);
+		panel_2.add(txtTelefono);
 		
 		JLabel label_4 = new JLabel("Direcci\u00F3n :");
 		label_4.setBounds(192, 99, 72, 16);
 		panel_2.add(label_4);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(202, 127, 340, 20);
-		panel_2.add(textField_4);
+		txtDireccion = new JTextField();
+		txtDireccion.setColumns(10);
+		txtDireccion.setBounds(202, 127, 340, 20);
+		panel_2.add(txtDireccion);
 		
 		JLabel label_5 = new JLabel("G\u00E9nero :");
 		label_5.setBounds(10, 183, 72, 14);
@@ -252,10 +253,10 @@ public class VentanaDoctor_admin extends JDialog {
 		label_7.setBounds(10, 252, 145, 20);
 		panel_2.add(label_7);
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(20, 283, 317, 20);
-		panel_2.add(textField_5);
+		txtCorreoElect = new JTextField();
+		txtCorreoElect.setColumns(10);
+		txtCorreoElect.setBounds(20, 283, 317, 20);
+		panel_2.add(txtCorreoElect);
 		
 		JLabel label_8 = new JLabel("Fecha de Nacimiento :");
 		label_8.setBounds(10, 328, 125, 14);
@@ -273,10 +274,10 @@ public class VentanaDoctor_admin extends JDialog {
 		label_11.setBounds(256, 356, 46, 14);
 		panel_2.add(label_11);
 		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		textField_6.setBounds(288, 353, 86, 20);
-		panel_2.add(textField_6);
+		txtanos = new JTextField();
+		txtanos.setColumns(10);
+		txtanos.setBounds(288, 353, 86, 20);
+		panel_2.add(txtanos);
 		
 		JLabel label_12 = new JLabel("");
 		label_12.setIcon(new ImageIcon(VentanaDoctor_admin.class.getResource("/Imagenes/doctor.png")));
@@ -300,34 +301,34 @@ public class VentanaDoctor_admin extends JDialog {
 		label_13.setBounds(512, 238, 93, 109);
 		panel_2.add(label_13);
 		
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setBackground(new Color(240, 248, 255));
-		comboBox_2.setMaximumRowCount(4);
-		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Septiembre", "Agosto", "Octubre", "Noviembre", "Diciembre"}));
-		comboBox_2.setSelectedIndex(0);
-		comboBox_2.setBounds(133, 353, 99, 20);
-		panel_2.add(comboBox_2);
+		final JComboBox cbxMeses = new JComboBox();
+		cbxMeses.setBackground(new Color(240, 248, 255));
+		cbxMeses.setMaximumRowCount(4);
+		cbxMeses.setModel(new DefaultComboBoxModel(new String[] {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Septiembre", "Agosto", "Octubre", "Noviembre", "Diciembre"}));
+		cbxMeses.setSelectedIndex(0);
+		cbxMeses.setBounds(133, 353, 99, 20);
+		panel_2.add(cbxMeses);
 		
-		JSpinner spinner = new JSpinner();
-		spinner.setBackground(new Color(240, 248, 255));
-		spinner.setModel(new SpinnerNumberModel(1, 1, 31, 1));
-		spinner.setBounds(52, 353, 37, 20);
-		panel_2.add(spinner);
+		final JSpinner spinDias = new JSpinner();
+		spinDias.setBackground(new Color(240, 248, 255));
+		spinDias.setModel(new SpinnerNumberModel(1, 1, 31, 1));
+		spinDias.setBounds(52, 353, 37, 20);
+		panel_2.add(spinDias);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBackground(new Color(240, 248, 255));
-		comboBox_1.setMaximumRowCount(5);
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"<Pa\u00EDs>", "Alemania", "Argentina", "Australia", "Burgar\u00EDa", "Canad\u00E1", "Colombia", "Cuba", "Hait\u00ED", "Mexico", "Rep. Dominicana", "Rusia", "Rep. Checa", "Venezuela", "Jap\u00F3n"}));
-		comboBox_1.setSelectedIndex(0);
-		comboBox_1.setBounds(202, 208, 135, 20);
-		panel_2.add(comboBox_1);
+		final JComboBox cbxPais = new JComboBox();
+		cbxPais.setBackground(new Color(240, 248, 255));
+		cbxPais.setMaximumRowCount(5);
+		cbxPais.setModel(new DefaultComboBoxModel(new String[] {"<Pa\u00EDs>", "Alemania", "Argentina", "Australia", "Burgar\u00EDa", "Canad\u00E1", "Colombia", "Cuba", "Hait\u00ED", "Mexico", "Rep. Dominicana", "Rusia", "Rep. Checa", "Venezuela", "Jap\u00F3n"}));
+		cbxPais.setSelectedIndex(0);
+		cbxPais.setBounds(202, 208, 135, 20);
+		panel_2.add(cbxPais);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBackground(new Color(240, 248, 255));
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"<G\u00E9nero>", "Masculino", "Femenino"}));
-		comboBox.setSelectedIndex(0);
-		comboBox.setBounds(20, 208, 93, 20);
-		panel_2.add(comboBox);
+		final JComboBox cbxGenero = new JComboBox();
+		cbxGenero.setBackground(new Color(240, 248, 255));
+		cbxGenero.setModel(new DefaultComboBoxModel(new String[] {"<G\u00E9nero>", "", "Femenino"}));
+		cbxGenero.setSelectedIndex(0);
+		cbxGenero.setBounds(20, 208, 93, 20);
+		panel_2.add(cbxGenero);
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(new Color(230, 230, 250));
@@ -405,5 +406,61 @@ public class VentanaDoctor_admin extends JDialog {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 11, 744, 150);
 		panel_3.add(scrollPane);
+		
+		
+///////////////////////////////////////////////////////////CREANDO NUEVO DOCTOR////////////////////////////////////////////////////////		
+		
+		lblNewLabel_4.addMouseListener(new MouseAdapter() {
+			
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String nombre, cedula, apellido, correo, direccion, telefono, nacionalidad, usuario, contraseña = null;
+				boolean sexo = false;
+				Calendar fecha_de_nacimiento = null;
+				
+				
+				if(!txtNombre.getText().equalsIgnoreCase("") && !txtApellido.getText().equalsIgnoreCase("") && !txtCorreoElect.getText().equalsIgnoreCase("") && !txtDireccion.getText().equalsIgnoreCase("") && cbxGenero.getSelectedIndex() != 0 && !txtanos.getText().equalsIgnoreCase("") &&
+						!txtCedula.getText().equalsIgnoreCase("") && !txtTelefono.getText().equalsIgnoreCase("") && !txtUsuario.getText().equalsIgnoreCase("") && !passwordField1.getText().equalsIgnoreCase("") && !passwordField2.getText().equalsIgnoreCase("") && cbxPais.getSelectedIndex() != 0) {
+					if(passwordField1.getText().equalsIgnoreCase(passwordField2.getText())) {
+						
+						 nombre = txtNombre.getText();
+						 apellido = txtApellido.getText();
+						 cedula = txtCedula.getText();
+						 correo = txtCorreoElect.getText();
+						 telefono = txtTelefono.getText();
+						 direccion = txtDireccion.getText();
+						usuario = txtUsuario.getText();
+						contraseña = passwordField2.getText();
+						nacionalidad = cbxPais.getSelectedItem().toString();
+						fecha_de_nacimiento.set(Integer.parseInt(txtanos.getText()), cbxMeses.getSelectedIndex(), Integer.parseInt(spinDias.getValue().toString()));
+						
+						if(cbxGenero.getSelectedItem().toString().equalsIgnoreCase("Masculino")) {
+							sexo = true;
+						}else if(cbxGenero.getSelectedItem().toString().equalsIgnoreCase("Femenino")) {
+							sexo = false;
+						}
+						
+						Persona aux = new Doctor(Integer.toString(cantidadDoctores), nombre, apellido, cedula, sexo, telefono, nacionalidad, fecha_de_nacimiento, correo, usuario, contraseña, "Doctor");
+							Clinica.getInstance().insertarPersona(aux);
+							cantidadDoctores = cantidadDoctores + 1;
+							JOptionPane.showMessageDialog(null, "Nuevo Doctor/ar Agregado", "Información", JOptionPane.INFORMATION_MESSAGE, null);
+							dispose();	
+						
+					}else {
+						 JOptionPane.showMessageDialog(null, "Las Contraseñas no Coinciden", "Advertencia", JOptionPane.WARNING_MESSAGE, null);
+					}
+					
+					
+				}else {
+					 JOptionPane.showMessageDialog(null, "Por favor, Completar Todos los Campos", "Advertencia", JOptionPane.WARNING_MESSAGE, null);
+				}
+				
+				
+			}
+		});
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	}
+	
+	
 }

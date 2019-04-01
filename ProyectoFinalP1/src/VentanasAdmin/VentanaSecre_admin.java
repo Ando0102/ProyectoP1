@@ -29,18 +29,18 @@ import javax.swing.UIManager;
 public class VentanaSecre_admin extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
+	private JTextField txtNombre;
+	private JTextField txtApellido;
+	private JTextField txtCedula;
+	private JTextField txtTelefono;
+	private JTextField txtDireccion;
+	private JTextField txtCorreoElect;
+	private JTextField txtanos;
 	private JPanel panelAgregar;
 	private JPanel panelSegurida;
-	private JTextField textField_7;
-	private JPasswordField passwordField;
-	private JPasswordField passwordField_1;
+	private JTextField txtUsuario;
+	private JPasswordField passwordField1;
+	private JPasswordField passwordField2;
 	private JTextField textField_8;
 	private JTextField textField_9;
 	private JTextField textField_10;
@@ -94,7 +94,7 @@ public class VentanaSecre_admin extends JDialog {
 				{
 					panelAgregar = new JPanel();
 					panelAgregar.setBackground(new Color(230, 230, 250));
-					panelAgregar.setBorder(new TitledBorder(null, "Informaci\u00F3n de Nueva Secretaria", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+					panelAgregar.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informaci\u00F3n de la Nueva Secretaria", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 					tabbedPane.addTab("Agregar Nueva Secretaria", null, panelAgregar, null);
 					panelAgregar.setLayout(null);
 					
@@ -140,34 +140,28 @@ public class VentanaSecre_admin extends JDialog {
 					label_3.setBounds(255, 188, 162, 14);
 					panelSegurida.add(label_3);
 					
-					textField_7 = new JTextField();
-					textField_7.setColumns(10);
-					textField_7.setBounds(265, 213, 150, 20);
-					panelSegurida.add(textField_7);
+					txtUsuario = new JTextField();
+					txtUsuario.setColumns(10);
+					txtUsuario.setBounds(265, 213, 150, 20);
+					panelSegurida.add(txtUsuario);
 					
 					JLabel label_4 = new JLabel("Contrase\u00F1a :");
 					label_4.setBounds(255, 244, 100, 14);
 					panelSegurida.add(label_4);
 					
-					passwordField = new JPasswordField();
-					passwordField.setBounds(265, 269, 152, 20);
-					panelSegurida.add(passwordField);
+					passwordField1 = new JPasswordField();
+					passwordField1.setBounds(265, 269, 152, 20);
+					panelSegurida.add(passwordField1);
 					
 					JLabel label_5 = new JLabel("Confimaci\u00F3n de Contrase\u00F1a :");
 					label_5.setBounds(255, 300, 179, 14);
 					panelSegurida.add(label_5);
 					
-					passwordField_1 = new JPasswordField();
-					passwordField_1.setBounds(265, 325, 152, 20);
-					panelSegurida.add(passwordField_1);
+					passwordField2 = new JPasswordField();
+					passwordField2.setBounds(265, 325, 152, 20);
+					panelSegurida.add(passwordField2);
 					{
 						JLabel lblNewLabel_3 = new JLabel("");
-						lblNewLabel_3.addMouseListener(new MouseAdapter() {
-							@Override
-							public void mouseClicked(MouseEvent arg0) {
-								dispose();
-							}
-						});
 						lblNewLabel_3.setIcon(new ImageIcon(VentanaSecre_admin.class.getResource("/Imagenes/acceptar.png")));
 						lblNewLabel_3.setBounds(688, 334, 61, 54);
 						panelSegurida.add(lblNewLabel_3);
@@ -184,10 +178,10 @@ public class VentanaSecre_admin extends JDialog {
 						panelAgregar.add(label);
 					}
 					{
-						textField = new JTextField();
-						textField.setColumns(10);
-						textField.setBounds(20, 64, 135, 20);
-						panelAgregar.add(textField);
+						txtNombre = new JTextField();
+						txtNombre.setColumns(10);
+						txtNombre.setBounds(20, 64, 135, 20);
+						panelAgregar.add(txtNombre);
 					}
 					{
 						JLabel label = new JLabel("Apellidos :");
@@ -195,10 +189,10 @@ public class VentanaSecre_admin extends JDialog {
 						panelAgregar.add(label);
 					}
 					{
-						textField_1 = new JTextField();
-						textField_1.setColumns(10);
-						textField_1.setBounds(202, 64, 135, 20);
-						panelAgregar.add(textField_1);
+						txtApellido = new JTextField();
+						txtApellido.setColumns(10);
+						txtApellido.setBounds(202, 64, 135, 20);
+						panelAgregar.add(txtApellido);
 					}
 					{
 						JLabel label = new JLabel("Cedula :");
@@ -206,10 +200,10 @@ public class VentanaSecre_admin extends JDialog {
 						panelAgregar.add(label);
 					}
 					{
-						textField_2 = new JTextField();
-						textField_2.setColumns(10);
-						textField_2.setBounds(406, 64, 135, 20);
-						panelAgregar.add(textField_2);
+						txtCedula = new JTextField();
+						txtCedula.setColumns(10);
+						txtCedula.setBounds(406, 64, 135, 20);
+						panelAgregar.add(txtCedula);
 					}
 					{
 						JLabel label = new JLabel("Tel\u00E9fono :");
@@ -217,10 +211,10 @@ public class VentanaSecre_admin extends JDialog {
 						panelAgregar.add(label);
 					}
 					{
-						textField_3 = new JTextField();
-						textField_3.setColumns(10);
-						textField_3.setBounds(20, 135, 135, 20);
-						panelAgregar.add(textField_3);
+						txtTelefono = new JTextField();
+						txtTelefono.setColumns(10);
+						txtTelefono.setBounds(20, 135, 135, 20);
+						panelAgregar.add(txtTelefono);
 					}
 					{
 						JLabel label = new JLabel("Direcci\u00F3n :");
@@ -228,10 +222,10 @@ public class VentanaSecre_admin extends JDialog {
 						panelAgregar.add(label);
 					}
 					{
-						textField_4 = new JTextField();
-						textField_4.setColumns(10);
-						textField_4.setBounds(202, 135, 340, 20);
-						panelAgregar.add(textField_4);
+						txtDireccion = new JTextField();
+						txtDireccion.setColumns(10);
+						txtDireccion.setBounds(202, 135, 340, 20);
+						panelAgregar.add(txtDireccion);
 					}
 					{
 						JLabel label = new JLabel("G\u00E9nero :");
@@ -239,11 +233,11 @@ public class VentanaSecre_admin extends JDialog {
 						panelAgregar.add(label);
 					}
 					{
-						JComboBox comboBox = new JComboBox();
-						comboBox.setModel(new DefaultComboBoxModel(new String[] {"<G\u00E9nero>", "Masculino", "Femenino"}));
-						comboBox.setSelectedIndex(0);
-						comboBox.setBounds(20, 191, 93, 20);
-						panelAgregar.add(comboBox);
+						JComboBox cbxGenero = new JComboBox();
+						cbxGenero.setModel(new DefaultComboBoxModel(new String[] {"<G\u00E9nero>", "Masculino", "Femenino"}));
+						cbxGenero.setSelectedIndex(0);
+						cbxGenero.setBounds(20, 191, 93, 20);
+						panelAgregar.add(cbxGenero);
 					}
 					{
 						JLabel label = new JLabel("Nacionalidad :");
@@ -251,12 +245,12 @@ public class VentanaSecre_admin extends JDialog {
 						panelAgregar.add(label);
 					}
 					{
-						JComboBox comboBox = new JComboBox();
-						comboBox.setModel(new DefaultComboBoxModel(new String[] {"<Pa\u00EDs>", "Alemania", "Argentina", "Australia", "Burgar\u00EDa", "Canad\u00E1", "Colombia", "Cuba", "Hait\u00ED", "Mexico", "Rep. Dominicana", "Rusia", "Rep. Checa", "Venezuela", "Jap\u00F3n"}));
-						comboBox.setSelectedIndex(0);
-						comboBox.setMaximumRowCount(5);
-						comboBox.setBounds(202, 191, 135, 20);
-						panelAgregar.add(comboBox);
+						JComboBox cbxPais = new JComboBox();
+						cbxPais.setModel(new DefaultComboBoxModel(new String[] {"<Pa\u00EDs>", "Alemania", "Argentina", "Australia", "Burgar\u00EDa", "Canad\u00E1", "Colombia", "Cuba", "Hait\u00ED", "Mexico", "Rep. Dominicana", "Rusia", "Rep. Checa", "Venezuela", "Jap\u00F3n"}));
+						cbxPais.setSelectedIndex(0);
+						cbxPais.setMaximumRowCount(5);
+						cbxPais.setBounds(202, 191, 135, 20);
+						panelAgregar.add(cbxPais);
 					}
 					{
 						JLabel label = new JLabel("Correo El\u00E9ctronico :");
@@ -264,10 +258,10 @@ public class VentanaSecre_admin extends JDialog {
 						panelAgregar.add(label);
 					}
 					{
-						textField_5 = new JTextField();
-						textField_5.setColumns(10);
-						textField_5.setBounds(20, 253, 317, 20);
-						panelAgregar.add(textField_5);
+						txtCorreoElect = new JTextField();
+						txtCorreoElect.setColumns(10);
+						txtCorreoElect.setBounds(20, 253, 317, 20);
+						panelAgregar.add(txtCorreoElect);
 					}
 					{
 						JLabel label = new JLabel("Fecha de Nacimiento :");
@@ -285,12 +279,12 @@ public class VentanaSecre_admin extends JDialog {
 						panelAgregar.add(label);
 					}
 					{
-						JComboBox comboBox = new JComboBox();
-						comboBox.setModel(new DefaultComboBoxModel(new String[] {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Septiembre", "Agosto", "Octubre", "Noviembre", "Diciembre"}));
-						comboBox.setSelectedIndex(0);
-						comboBox.setMaximumRowCount(4);
-						comboBox.setBounds(133, 309, 99, 20);
-						panelAgregar.add(comboBox);
+						JComboBox cbxMeses = new JComboBox();
+						cbxMeses.setModel(new DefaultComboBoxModel(new String[] {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Septiembre", "Agosto", "Octubre", "Noviembre", "Diciembre"}));
+						cbxMeses.setSelectedIndex(0);
+						cbxMeses.setMaximumRowCount(4);
+						cbxMeses.setBounds(133, 309, 99, 20);
+						panelAgregar.add(cbxMeses);
 					}
 					{
 						JLabel label = new JLabel("A\u00F1o :");
@@ -298,16 +292,16 @@ public class VentanaSecre_admin extends JDialog {
 						panelAgregar.add(label);
 					}
 					{
-						textField_6 = new JTextField();
-						textField_6.setColumns(10);
-						textField_6.setBounds(288, 309, 86, 20);
-						panelAgregar.add(textField_6);
+						txtanos = new JTextField();
+						txtanos.setColumns(10);
+						txtanos.setBounds(288, 309, 86, 20);
+						panelAgregar.add(txtanos);
 					}
 					{
-						JSpinner spinner = new JSpinner();
-						spinner.setModel(new SpinnerNumberModel(1, 1, 31, 1));
-						spinner.setBounds(52, 309, 37, 20);
-						panelAgregar.add(spinner);
+						JSpinner spinDias = new JSpinner();
+						spinDias.setModel(new SpinnerNumberModel(1, 1, 31, 1));
+						spinDias.setBounds(52, 309, 37, 20);
+						panelAgregar.add(spinDias);
 					}
 					{
 						JLabel lblNewLabel = new JLabel("");
@@ -434,5 +428,13 @@ public class VentanaSecre_admin extends JDialog {
 				}
 			}
 		}
+		/*
+		
+		lblNewLabel_3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				dispose();
+			}
+		});*/
 	}
 }
