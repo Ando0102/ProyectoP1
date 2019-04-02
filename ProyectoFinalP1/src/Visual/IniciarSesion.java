@@ -171,6 +171,11 @@ public class IniciarSesion extends JFrame {
 						
 					}else if(aux instanceof Doctor) {
 						//Doctor
+						
+						VentaDoctor frame = new VentaDoctor();
+						frame.setVisible(true);
+						dispose();
+						
 					}else {
 						//Administrador general
 						Administrator ad = new Administrator();

@@ -10,10 +10,10 @@ public class Secretaria extends User {
 	
 	public Secretaria(String iD, String nombre, String apellidos, String cedula, boolean sexo, String telefono,
 			String nacionalidad, Calendar fecha_nacimiento, String correo_electronico, String usuario,
-			String constrasenna, String rol, Persona miPersona) {
+			String constrasenna, String rol) {
 		super(iD, nombre, apellidos, cedula, sexo, telefono, nacionalidad, fecha_nacimiento, correo_electronico,
 				usuario, constrasenna, rol);
-		this.miPersona = miPersona;
+		
 	}
 
 	//------------[ get end set ]-----------------
