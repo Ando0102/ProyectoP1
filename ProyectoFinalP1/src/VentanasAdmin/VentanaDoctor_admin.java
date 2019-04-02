@@ -18,6 +18,8 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
+import com.toedter.calendar.JCalendar;
+
 import Logical.Clinica;
 import Logical.Doctor;
 import Logical.Persona;
@@ -325,7 +327,7 @@ public class VentanaDoctor_admin extends JDialog {
 		
 		final JComboBox cbxGenero = new JComboBox();
 		cbxGenero.setBackground(new Color(240, 248, 255));
-		cbxGenero.setModel(new DefaultComboBoxModel(new String[] {"<G\u00E9nero>", "", "Femenino"}));
+		cbxGenero.setModel(new DefaultComboBoxModel(new String[] {"<G\u00E9nero>", "Masculino", "Femenino"}));
 		cbxGenero.setSelectedIndex(0);
 		cbxGenero.setBounds(20, 208, 93, 20);
 		panel_2.add(cbxGenero);
@@ -413,11 +415,14 @@ public class VentanaDoctor_admin extends JDialog {
 		lblNewLabel_4.addMouseListener(new MouseAdapter() {
 			
 
+			
+
+			@SuppressWarnings("null")
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String nombre, cedula, apellido, correo, direccion, telefono, nacionalidad, usuario, contraseña = null;
 				boolean sexo = false;
-				Calendar fecha_de_nacimiento = null;
+				JCalendar fecha_de_nacimiento = null;
 				
 				
 				if(!txtNombre.getText().equalsIgnoreCase("") && !txtApellido.getText().equalsIgnoreCase("") && !txtCorreoElect.getText().equalsIgnoreCase("") && !txtDireccion.getText().equalsIgnoreCase("") && cbxGenero.getSelectedIndex() != 0 && !txtanos.getText().equalsIgnoreCase("") &&
@@ -433,7 +438,7 @@ public class VentanaDoctor_admin extends JDialog {
 						usuario = txtUsuario.getText();
 						contraseña = passwordField2.getText();
 						nacionalidad = cbxPais.getSelectedItem().toString();
-						fecha_de_nacimiento.set(Integer.parseInt(txtanos.getText()), cbxMeses.getSelectedIndex(), Integer.parseInt(spinDias.getValue().toString()));
+						//aqui esta el asuntofecha_de_nacimiento.set(Integer.parseInt(txtanos.getText()), cbxMeses.getSelectedIndex(), Integer.parseInt(spinDias.getValue().toString()));
 						
 						if(cbxGenero.getSelectedItem().toString().equalsIgnoreCase("Masculino")) {
 							sexo = true;

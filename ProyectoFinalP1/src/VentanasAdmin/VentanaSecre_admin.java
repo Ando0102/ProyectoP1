@@ -10,13 +10,21 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Toolkit;
 import javax.swing.JTabbedPane;
 import javax.swing.border.TitledBorder;
+
+import Logical.Clinica;
+import Logical.Doctor;
+import Logical.Persona;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JSpinner;
 import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Calendar;
+
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.JTextPane;
@@ -46,6 +54,12 @@ public class VentanaSecre_admin extends JDialog {
 	private JTextField textField_10;
 	private JTextField textField_11;
 	private JTextField textField_12;
+	private JLabel lblNewLabel_3;
+	private int cantidadSecretarias = 0;
+	private JSpinner spinDias;
+	private JComboBox cbxMeses;
+	private JComboBox cbxPais;
+	private JComboBox cbxGenero;
 
 	/**
 	 * Launch the application.
@@ -161,7 +175,7 @@ public class VentanaSecre_admin extends JDialog {
 					passwordField2.setBounds(265, 325, 152, 20);
 					panelSegurida.add(passwordField2);
 					{
-						JLabel lblNewLabel_3 = new JLabel("");
+						lblNewLabel_3 = new JLabel("");
 						lblNewLabel_3.setIcon(new ImageIcon(VentanaSecre_admin.class.getResource("/Imagenes/acceptar.png")));
 						lblNewLabel_3.setBounds(688, 334, 61, 54);
 						panelSegurida.add(lblNewLabel_3);
@@ -233,7 +247,7 @@ public class VentanaSecre_admin extends JDialog {
 						panelAgregar.add(label);
 					}
 					{
-						JComboBox cbxGenero = new JComboBox();
+						cbxGenero = new JComboBox();
 						cbxGenero.setModel(new DefaultComboBoxModel(new String[] {"<G\u00E9nero>", "Masculino", "Femenino"}));
 						cbxGenero.setSelectedIndex(0);
 						cbxGenero.setBounds(20, 191, 93, 20);
@@ -245,7 +259,7 @@ public class VentanaSecre_admin extends JDialog {
 						panelAgregar.add(label);
 					}
 					{
-						JComboBox cbxPais = new JComboBox();
+						cbxPais = new JComboBox();
 						cbxPais.setModel(new DefaultComboBoxModel(new String[] {"<Pa\u00EDs>", "Alemania", "Argentina", "Australia", "Burgar\u00EDa", "Canad\u00E1", "Colombia", "Cuba", "Hait\u00ED", "Mexico", "Rep. Dominicana", "Rusia", "Rep. Checa", "Venezuela", "Jap\u00F3n"}));
 						cbxPais.setSelectedIndex(0);
 						cbxPais.setMaximumRowCount(5);
@@ -279,7 +293,7 @@ public class VentanaSecre_admin extends JDialog {
 						panelAgregar.add(label);
 					}
 					{
-						JComboBox cbxMeses = new JComboBox();
+						cbxMeses = new JComboBox();
 						cbxMeses.setModel(new DefaultComboBoxModel(new String[] {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Septiembre", "Agosto", "Octubre", "Noviembre", "Diciembre"}));
 						cbxMeses.setSelectedIndex(0);
 						cbxMeses.setMaximumRowCount(4);
@@ -298,7 +312,7 @@ public class VentanaSecre_admin extends JDialog {
 						panelAgregar.add(txtanos);
 					}
 					{
-						JSpinner spinDias = new JSpinner();
+						spinDias = new JSpinner();
 						spinDias.setModel(new SpinnerNumberModel(1, 1, 31, 1));
 						spinDias.setBounds(52, 309, 37, 20);
 						panelAgregar.add(spinDias);
@@ -336,8 +350,8 @@ public class VentanaSecre_admin extends JDialog {
 						panel_2.setLayout(null);
 						{
 							JLabel label = new JLabel("");
-							label.setIcon(new ImageIcon("C:\\Users\\arman\\Downloads\\configuration_config_system_1540.png"));
-							label.setBounds(598, 85, 93, 70);
+							label.setIcon(new ImageIcon(VentanaSecre_admin.class.getResource("/Imagenes/Rueda_dentada.png")));
+							label.setBounds(544, 69, 93, 70);
 							panel_2.add(label);
 						}
 						{
@@ -398,7 +412,7 @@ public class VentanaSecre_admin extends JDialog {
 						{
 							JLabel lblNewLabel_5 = new JLabel("");
 							lblNewLabel_5.setIcon(new ImageIcon(VentanaSecre_admin.class.getResource("/Imagenes/secretaria.png")));
-							lblNewLabel_5.setBounds(567, 28, 93, 86);
+							lblNewLabel_5.setBounds(570, 39, 93, 86);
 							panel_2.add(lblNewLabel_5);
 						}
 						{
@@ -428,13 +442,53 @@ public class VentanaSecre_admin extends JDialog {
 				}
 			}
 		}
-		/*
 		
+//////////////////////////////////////////////////METODO AGREGAR SECRETARIA/////////////////////////////////////////////////////		
 		lblNewLabel_3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				dispose();
+				String nombre, cedula, apellido, correo, direccion, telefono, nacionalidad, usuario, contraseña = null;
+				boolean sexo = false;
+				Calendar fecha_de_nacimiento = null;
+				
+				
+				if(!txtNombre.getText().equalsIgnoreCase("") && !txtApellido.getText().equalsIgnoreCase("") && !txtCorreoElect.getText().equalsIgnoreCase("") && !txtDireccion.getText().equalsIgnoreCase("") && cbxGenero.getSelectedIndex() != 0 && !txtanos.getText().equalsIgnoreCase("") &&
+						!txtCedula.getText().equalsIgnoreCase("") && !txtTelefono.getText().equalsIgnoreCase("") && !txtUsuario.getText().equalsIgnoreCase("") && !passwordField1.getText().equalsIgnoreCase("") && !passwordField2.getText().equalsIgnoreCase("") && cbxPais.getSelectedIndex() != 0) {
+					if(passwordField1.getText().equalsIgnoreCase(passwordField2.getText())) {
+						
+						 nombre = txtNombre.getText();
+						 apellido = txtApellido.getText();
+						 cedula = txtCedula.getText();
+						 correo = txtCorreoElect.getText();
+						 telefono = txtTelefono.getText();
+						 direccion = txtDireccion.getText();
+						usuario = txtUsuario.getText();
+						contraseña = passwordField2.getText();
+						nacionalidad = cbxPais.getSelectedItem().toString();
+					//aqui esta el asunto	fecha_de_nacimiento.set(Integer.parseInt(txtanos.getText()), cbxMeses.getSelectedIndex(), Integer.parseInt(spinDias.getValue().toString()));
+						
+						if(cbxGenero.getSelectedItem().toString().equalsIgnoreCase("Masculino")) {
+							sexo = true;
+						}else if(cbxGenero.getSelectedItem().toString().equalsIgnoreCase("Femenino")) {
+							sexo = false;
+						}
+						
+						Persona aux = new Doctor(Integer.toString(cantidadSecretarias), nombre, apellido, cedula, sexo, telefono, nacionalidad, fecha_de_nacimiento, correo, usuario, contraseña, "Doctor");
+							Clinica.getInstance().insertarPersona(aux);
+							cantidadSecretarias = cantidadSecretarias + 1;
+							JOptionPane.showMessageDialog(null, "Nuevo Doctor/ar Agregado", "Información", JOptionPane.INFORMATION_MESSAGE, null);
+							dispose();	
+						
+					}else {
+						 JOptionPane.showMessageDialog(null, "Las Contraseñas no Coinciden", "Advertencia", JOptionPane.WARNING_MESSAGE, null);
+					}
+					
+					
+				}else {
+					 JOptionPane.showMessageDialog(null, "Por favor, Completar Todos los Campos", "Advertencia", JOptionPane.WARNING_MESSAGE, null);
+				}
+				
 			}
-		});*/
+		});
 	}
 }
