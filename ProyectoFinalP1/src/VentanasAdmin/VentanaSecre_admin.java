@@ -54,6 +54,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JRadioButton;
 import javax.swing.JFormattedTextField;
+import javax.swing.JCheckBox;
 
 public class VentanaSecre_admin extends JDialog {
 
@@ -75,9 +76,9 @@ public class VentanaSecre_admin extends JDialog {
 	public JDateChooser dcFechaNacimiento;
 	private JTabbedPane tabbedPane;
 	private JTextField txtBusqueda;
-	public JRadioButton rtbAdministrador;
-	public JRadioButton rbtDoctor;
-	public JRadioButton rbtSecre;
+	public JCheckBox rtbAdministrador;
+	public JCheckBox rbtDoctor;
+	public JCheckBox rbtSecre;
 	private JPanel PanelinfoEmpleado;
 	public ButtonGroup botones1;
 	private DefaultTableModel model;
@@ -256,19 +257,19 @@ public class VentanaSecre_admin extends JDialog {
 					panelAgregar.add(dcFechaNacimiento);
 					
 					
-					rtbAdministrador = new JRadioButton("Administrador");
+					rtbAdministrador = new JCheckBox("Administrador");
 					rtbAdministrador.setBounds(60, 395, 109, 23);
 					rtbAdministrador.setBackground(new Color(230, 230, 250));
 					panelAgregar.add(rtbAdministrador);
 					botones1.add(rtbAdministrador);
 					
-					rbtDoctor = new JRadioButton("Doctor");
+					rbtDoctor = new JCheckBox("Doctor");
 					rbtDoctor.setBounds(236, 395, 109, 23);
 					rbtDoctor.setBackground(new Color(230, 230, 250));
 					panelAgregar.add(rbtDoctor);
 					botones1.add(rbtDoctor);
 					
-					rbtSecre = new JRadioButton("Secretaria");
+					rbtSecre = new JCheckBox("Secretaria");
 					rbtSecre.setBounds(412, 395, 109, 23);
 					rbtSecre.setBackground(new Color(230, 230, 250));
 					panelAgregar.add(rbtSecre);

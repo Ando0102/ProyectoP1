@@ -32,7 +32,7 @@ public class VentanaVacuna_admin extends JDialog {
 	public VentanaVacuna_admin() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaVacuna_admin.class.getResource("/Imagenes/LogoPeque.png")));
 		setTitle("Informaci\u00F3n de Vacunas");
-		setBounds(100, 100, 682, 433);
+		setBounds(100, 100, 649, 480);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
