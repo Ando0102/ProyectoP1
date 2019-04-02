@@ -49,6 +49,16 @@ public class Doctor extends User {
 	public void insertarCitas (Cita miCita){
 		misCitas.add(miCita);
 	}
-	
+	public ArrayList<Cita> citas_de_semana_actual(Calendar minimo, Calendar maximo){
+		//este metodo debuel las cita de una semana
+		ArrayList<Cita> miCitasSemana = new ArrayList<Cita>();
+		for (Cita cita : misCitas) {
+			//afeter si es despues
+			if((cita.getFecha().equals(minimo)||cita.getFecha().equals(maximo))||(cita.getFecha().after(minimo)&&cita.getFecha().before(maximo))) {
+				miCitasSemana.add(cita);
+			}
+		}
+		return miCitasSemana;
+	}
 
 }
