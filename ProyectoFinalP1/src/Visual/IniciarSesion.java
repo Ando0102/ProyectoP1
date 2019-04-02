@@ -168,6 +168,7 @@ public class IniciarSesion extends JFrame {
 
 					if(aux instanceof Secretaria) {
 						//secretaria
+						
 					}else if(aux instanceof Doctor) {
 						//Doctor
 					}else {
