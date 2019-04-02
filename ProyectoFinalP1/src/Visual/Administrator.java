@@ -7,12 +7,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Logical.Clinica;
 import VentanasAdmin.VentanaCita_admin;
 import VentanasAdmin.VentanaDoctor_admin;
 import VentanasAdmin.VentanaEnfermedad_admin;
 import VentanasAdmin.VentanaPacientes_admin;
 import VentanasAdmin.VentanaSecre_admin;
 import VentanasAdmin.VentanaVacuna_admin;
+
 
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -22,6 +24,12 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.awt.Toolkit;
@@ -46,7 +54,7 @@ public class Administrator extends JFrame implements Runnable {
 	private int mes;
 	private int ano;
 	private int dia;
-	
+	/*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -59,8 +67,44 @@ public class Administrator extends JFrame implements Runnable {
 			}
 		});
 	}
-	
+	*/
 	public Administrator() {
+		//metodo prueba
+		//prueba existosa! 
+		/**
+		 * Sirve para para saber si se ha cerrado 
+		 * la venta
+		*/
+		
+		//Decomentar esta parte para que guarde los datos tomados 
+		//en administrador
+		
+		/*
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				FileOutputStream empresa2;
+				ObjectOutputStream empresaWrite;
+				try {
+					empresa2 = new  FileOutputStream("ADAClinica.dat");
+					empresaWrite = new ObjectOutputStream(empresa2);
+					empresaWrite.writeObject(Clinica.getInstance());
+				empresa2.close();
+				empresaWrite.close();
+				} catch (FileNotFoundException e1) {
+					System.out.println("Error: No se ha podido guardar.");
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
+		
+		*/
+		////
 		setTitle("Administrador");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Administrator.class.getResource("/Imagenes/LogoPeque.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
