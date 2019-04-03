@@ -17,6 +17,7 @@ import VentanasAdmin.VentanaVacuna_admin;
 
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import javax.swing.JPopupMenu;
@@ -54,7 +55,7 @@ public class Administrator extends JFrame implements Runnable {
 	private int mes;
 	private int ano;
 	private int dia;
-	/*
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -67,7 +68,7 @@ public class Administrator extends JFrame implements Runnable {
 			}
 		});
 	}
-	*/
+	
 	public Administrator() {
 		//metodo prueba
 		//prueba existosa! 
@@ -157,6 +158,15 @@ public class Administrator extends JFrame implements Runnable {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
+				int resp = JOptionPane.showOptionDialog(null, "Estas seguro que deseas salir?", "Advertencia!", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[] { "Si", "No" }, null); 
+					if(resp == 0){
+						IniciarSesion aux =  new IniciarSesion();
+						aux.setVisible(true);
+						dispose();						
+					} else{
+							repaint();
+						}
+				
 				
 			}
 		});
@@ -190,15 +200,16 @@ public class Administrator extends JFrame implements Runnable {
 		panel.add(panel_2);
 		panel_2.setLayout(null);
 		
-		JPanel panelDoctor = new JPanel();
-		panelDoctor.setBackground(new Color(240, 248, 255));
-		panelDoctor.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
+		JButton panelDoctor = new JButton();
+		panelDoctor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
 				VentanaDoctor_admin aux = new VentanaDoctor_admin();
 				aux.setVisible(true);
 			}
 		});
+		
+		
+		panelDoctor.setBackground(new Color(240, 248, 255));
 		panelDoctor.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		panelDoctor.setBounds(105, 100, 230, 140);
 		panel_2.add(panelDoctor);
@@ -222,15 +233,14 @@ public class Administrator extends JFrame implements Runnable {
 		lbltextdoctor.setBounds(93, 107, 65, 22);
 		panelDoctor.add(lbltextdoctor);
 		
-		JPanel panelPaciente = new JPanel();
-		panelPaciente.setBackground(new Color(240, 248, 255));
-		panelPaciente.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		JButton panelPaciente = new JButton();
+		panelPaciente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				VentanaPacientes_admin aux = new VentanaPacientes_admin();
 				aux.setVisible(true);
 			}
 		});
+		panelPaciente.setBackground(new Color(240, 248, 255));
 		panelPaciente.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		panelPaciente.setBounds(440, 100, 230, 140);
 		panel_2.add(panelPaciente);
@@ -254,15 +264,14 @@ public class Administrator extends JFrame implements Runnable {
 		lbltextpaciente.setBounds(90, 100, 91, 29);
 		panelPaciente.add(lbltextpaciente);
 		
-		JPanel panelSecretaria = new JPanel();
-		panelSecretaria.setBackground(new Color(240, 248, 255));
-		panelSecretaria.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		JButton panelSecretaria = new JButton();
+		panelSecretaria.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				VentanaSecre_admin aux = new VentanaSecre_admin();
 				aux.setVisible(true);
 			}
 		});
+		panelSecretaria.setBackground(new Color(240, 248, 255));
 		panelSecretaria.setLayout(null);
 		panelSecretaria.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		panelSecretaria.setBounds(105, 342, 230, 140);
@@ -286,47 +295,14 @@ public class Administrator extends JFrame implements Runnable {
 		lbltextsecretaria.setBounds(83, 107, 91, 22);
 		panelSecretaria.add(lbltextsecretaria);
 		
-		JPanel panelCitas = new JPanel();
-		panelCitas.setBackground(new Color(240, 248, 255));
-		panelCitas.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				VentanaCita_admin aux = new VentanaCita_admin();
-				aux.setVisible(true);
-			}
-		});
-		panelCitas.setLayout(null);
-		panelCitas.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		panelCitas.setBounds(440, 342, 230, 140);
-		panel_2.add(panelCitas);
-		
-		JLabel lblCita = new JLabel("");
-		lblCita.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				VentanaCita_admin aux = new VentanaCita_admin();
-				aux.setVisible(true);
-			}
-		});
-		lblCita.setIcon(new ImageIcon(Administrator.class.getResource("/Imagenes/cita5.png")));
-		lblCita.setBounds(67, 11, 96, 94);
-		panelCitas.add(lblCita);
-		
-		JLabel lbltextcitas = new JLabel("CITA");
-		lbltextcitas.setForeground(new Color(0, 0, 0));
-		lbltextcitas.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lbltextcitas.setBounds(103, 107, 57, 22);
-		panelCitas.add(lbltextcitas);
-		
-		JPanel panelEnfermedad = new JPanel();
-		panelEnfermedad.setBackground(new Color(240, 248, 255));
-		panelEnfermedad.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		JButton panelEnfermedad = new JButton();
+		panelEnfermedad.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				VentanaEnfermedad_admin aux = new VentanaEnfermedad_admin();
 				aux.setVisible(true);
 			}
 		});
+		panelEnfermedad.setBackground(new Color(240, 248, 255));
 		panelEnfermedad.setLayout(null);
 		panelEnfermedad.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		panelEnfermedad.setBounds(775, 100, 230, 140);
@@ -350,15 +326,39 @@ public class Administrator extends JFrame implements Runnable {
 		lbltextenfermedad.setBounds(81, 101, 89, 28);
 		panelEnfermedad.add(lbltextenfermedad);
 		
-		JPanel panelVacuna = new JPanel();
-		panelVacuna.setBackground(new Color(240, 248, 255));
-		panelVacuna.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		JButton panelVacuna = new JButton();
+		panelVacuna.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				VentanaVacuna_admin aux = new VentanaVacuna_admin();
 				aux.setVisible(true);
 			}
 		});
+		
+		JButton panelCitas = new JButton();
+		panelCitas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaCita_admin aux = new VentanaCita_admin();
+				aux.setVisible(true);
+			}
+		});
+		panelCitas.setBackground(new Color(240, 248, 255));
+		panelCitas.setLayout(null);
+		panelCitas.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		panelCitas.setBounds(440, 342, 230, 140);
+		panel_2.add(panelCitas);
+		panelCitas.setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(Administrator.class.getResource("/Imagenes/grafica1.png")));
+		lblNewLabel_1.setBounds(65, 11, 97, 88);
+		panelCitas.add(lblNewLabel_1);
+		
+		JLabel lblEstadstica = new JLabel("ESTAD\u00CDSTICA");
+		lblEstadstica.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblEstadstica.setBounds(75, 110, 109, 19);
+		panelCitas.add(lblEstadstica);
+		
+		panelVacuna.setBackground(new Color(240, 248, 255));
 		panelVacuna.setLayout(null);
 		panelVacuna.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		panelVacuna.setBounds(775, 342, 230, 140);
@@ -414,5 +414,4 @@ public class Administrator extends JFrame implements Runnable {
         
         
     }
-	///////////////////////////////////////////////////////////////////////////
 }

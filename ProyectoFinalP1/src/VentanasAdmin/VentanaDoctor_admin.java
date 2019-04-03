@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JMenu;
 import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
+import javax.swing.text.Document;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
@@ -112,18 +113,7 @@ public class VentanaDoctor_admin extends JDialog {
 
 		//  Define a keyword attribute
 
-		SimpleAttributeSet keyWord = new SimpleAttributeSet();
-		StyleConstants.setForeground(keyWord, Color.BLACK);
-		StyleConstants.setBold(keyWord, true);
-
-		//  Add some text
-
-		try
-		{// He comentadod esta parte porque ha dado error, y no se prque
-		    //doc.insertString(0, "Estimado Doctor/ar. Por este medio se le informa que la siguiente información que usted mismo suministrará a continuación, es de total confidencialidad para su persona. Es su deber mantener en secreto y no divulgar u compartir con nadie está información, sin importar que a las personas las cuales usted desea compartirla sean colegas o superiores de usted.  Absolutamente nadie debe de saber está información a demas de usted. Es su deber como profesional y miembro de está institución cumplir esta normal." , null );
-		    //doc.insertString(doc.getLength(), "\n", null );
-		}
-		catch(Exception e) { System.out.println(e); }
+		
 		
 		panel_2 = new JPanel();
 		panel_2.setBackground(new Color(230, 230, 250));
@@ -166,6 +156,18 @@ public class VentanaDoctor_admin extends JDialog {
 		txtpnLasPartesExponen.setBackground(new Color(230, 230, 250));	
 		StyledDocument doc = txtpnLasPartesExponen.getStyledDocument();
 		
+		SimpleAttributeSet keyWord = new SimpleAttributeSet();
+		StyleConstants.setForeground(keyWord, Color.BLACK);
+		StyleConstants.setBold(keyWord, true);
+
+
+		try
+		{
+		    doc.insertString(0, "Estimado Doctor/ar. Por este medio se le informa que la siguiente información que usted mismo suministrará a continuación, es de total confidencialidad para su persona. Es su deber mantener en secreto y no divulgar u compartir con nadie está información, sin importar que a las personas las cuales usted desea compartirla sean colegas o superiores de usted.  Absolutamente nadie debe de saber está información a demas de usted. Es su deber como profesional y miembro de está institución cumplir esta normal." , null );
+		    doc.insertString(doc.getLength(), "\n", null );
+		}
+		catch(Exception e) { System.out.println(e); }
+		
 		txtpnLasPartesExponen.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		txtpnLasPartesExponen.setBounds(178, 51, 411, 150);
 		panelSeguridad.add(txtpnLasPartesExponen);
@@ -203,46 +205,21 @@ public class VentanaDoctor_admin extends JDialog {
 		label.setBounds(10, 28, 72, 22);
 		panel_2.add(label);
 		
-		txtNombre = new JTextField();
-		txtNombre.setColumns(10);
-		txtNombre.setBounds(20, 56, 135, 20);
-		panel_2.add(txtNombre);
-		
 		JLabel label_1 = new JLabel("Apellidos :");
 		label_1.setBounds(192, 32, 93, 18);
 		panel_2.add(label_1);
-		
-		txtApellido = new JTextField();
-		txtApellido.setColumns(10);
-		txtApellido.setBounds(202, 56, 135, 20);
-		panel_2.add(txtApellido);
 		
 		JLabel label_2 = new JLabel("Cedula :");
 		label_2.setBounds(396, 32, 64, 18);
 		panel_2.add(label_2);
 		
-		txtCedula = new JTextField();
-		txtCedula.setColumns(10);
-		txtCedula.setBounds(406, 56, 135, 20);
-		panel_2.add(txtCedula);
-		
 		JLabel label_3 = new JLabel("Tel\u00E9fono :");
 		label_3.setBounds(10, 98, 72, 18);
 		panel_2.add(label_3);
 		
-		txtTelefono = new JTextField();
-		txtTelefono.setColumns(10);
-		txtTelefono.setBounds(20, 127, 135, 20);
-		panel_2.add(txtTelefono);
-		
 		JLabel label_4 = new JLabel("Direcci\u00F3n :");
 		label_4.setBounds(192, 99, 72, 16);
 		panel_2.add(label_4);
-		
-		txtDireccion = new JTextField();
-		txtDireccion.setColumns(10);
-		txtDireccion.setBounds(202, 127, 340, 20);
-		panel_2.add(txtDireccion);
 		
 		JLabel label_5 = new JLabel("G\u00E9nero :");
 		label_5.setBounds(10, 183, 72, 14);
@@ -255,11 +232,6 @@ public class VentanaDoctor_admin extends JDialog {
 		JLabel label_7 = new JLabel("Correo El\u00E9ctronico :");
 		label_7.setBounds(10, 252, 145, 20);
 		panel_2.add(label_7);
-		
-		txtCorreoElect = new JTextField();
-		txtCorreoElect.setColumns(10);
-		txtCorreoElect.setBounds(20, 283, 317, 20);
-		panel_2.add(txtCorreoElect);
 		
 		JLabel label_8 = new JLabel("Fecha de Nacimiento :");
 		label_8.setBounds(10, 328, 125, 14);
@@ -287,6 +259,21 @@ public class VentanaDoctor_admin extends JDialog {
 		label_13.setBounds(512, 238, 93, 109);
 		panel_2.add(label_13);
 		
+		txtTelefono = new JTextField();
+		txtTelefono.setColumns(10);
+		txtTelefono.setBounds(20, 127, 135, 20);
+		panel_2.add(txtTelefono);
+		
+		txtCedula = new JTextField();
+		txtCedula.setColumns(10);
+		txtCedula.setBounds(406, 56, 135, 20);
+		panel_2.add(txtCedula);
+		
+		txtApellido = new JTextField();
+		txtApellido.setColumns(10);
+		txtApellido.setBounds(202, 56, 135, 20);
+		panel_2.add(txtApellido);
+		
 		final JComboBox cbxPais = new JComboBox();
 		cbxPais.setBackground(new Color(240, 248, 255));
 		cbxPais.setMaximumRowCount(5);
@@ -295,6 +282,20 @@ public class VentanaDoctor_admin extends JDialog {
 		cbxPais.setBounds(202, 208, 135, 20);
 		panel_2.add(cbxPais);
 		
+		txtDireccion = new JTextField();
+		txtDireccion.setColumns(10);
+		txtDireccion.setBounds(202, 127, 340, 20);
+		panel_2.add(txtDireccion);
+		
+		dcFechaNacimiento = new JDateChooser();
+		dcFechaNacimiento.setBounds(20, 355, 103, 20);
+		panel_2.add(dcFechaNacimiento);
+		
+		txtNombre = new JTextField();
+		txtNombre.setColumns(10);
+		txtNombre.setBounds(20, 56, 135, 20);
+		panel_2.add(txtNombre);
+		
 		final JComboBox cbxGenero = new JComboBox();
 		cbxGenero.setBackground(new Color(240, 248, 255));
 		cbxGenero.setModel(new DefaultComboBoxModel(new String[] {"<G\u00E9nero>", "Masculino", "Femenino"}));
@@ -302,9 +303,10 @@ public class VentanaDoctor_admin extends JDialog {
 		cbxGenero.setBounds(20, 208, 93, 20);
 		panel_2.add(cbxGenero);
 		
-		dcFechaNacimiento = new JDateChooser();
-		dcFechaNacimiento.setBounds(10, 355, 103, 20);
-		panel_2.add(dcFechaNacimiento);
+		txtCorreoElect = new JTextField();
+		txtCorreoElect.setColumns(10);
+		txtCorreoElect.setBounds(20, 283, 317, 20);
+		panel_2.add(txtCorreoElect);
 		
 		
 ///////////////////////////////////////////////////////////CREANDO NUEVO DOCTOR////////////////////////////////////////////////////////		
