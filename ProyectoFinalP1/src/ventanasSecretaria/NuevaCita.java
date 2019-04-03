@@ -9,23 +9,45 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.border.BevelBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.ListModel;
+import javax.swing.ListSelectionModel;
+import javax.swing.RowFilter;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
+import Logical.Clinica;
+import Logical.Doctor;
+import Logical.Persona;
 import javafx.scene.control.ComboBox;
+
 
 import java.awt.Toolkit;
 import java.awt.Color;
+import java.awt.Container;
+
 import javax.swing.UIManager;
+import javax.swing.JTable;
 
 public class NuevaCita extends JDialog {
 
@@ -45,6 +67,12 @@ public class NuevaCita extends JDialog {
 	private JComboBox cmbSexoPersona;
 	private JComboBox cmbPaisOrigenPersona;
 	private static int opcion = 0;
+	private String [] nombres;
+	private JTable tableDoctores;
+	private TableRowSorter<TableModel> sorter;
+	private DefaultTableModel model;
+	private Object[] rows;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -200,7 +228,23 @@ public class NuevaCita extends JDialog {
 		lblBusquedaDeDoctor.setBounds(10, 11, 152, 14);
 		panelBusquedaDoctor.add(lblBusquedaDeDoctor);
 		
-		txtBusquedaDoctor = new JTextField();
+		
+		txtBusquedaDoctor= new JTextField();
+		txtBusquedaDoctor.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if (!txtBusquedaDoctor.isEnabled()) {
+					return;
+				}
+				else{
+							tableFilter(txtBusquedaDoctor.getText(), tableDoctores.getColumnCount());
+						
+					}
+					
+				}
+			
+		});
+		
 		txtBusquedaDoctor.setBackground(new Color(255, 255, 255));
 		txtBusquedaDoctor.setBounds(10, 36, 167, 20);
 		panelBusquedaDoctor.add(txtBusquedaDoctor);
@@ -215,13 +259,38 @@ public class NuevaCita extends JDialog {
 		panelBusquedaDoctor.add(btnBusquedaDoctor);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 82, 167, 97);
+		scrollPane.setBounds(10, 82, 209, 97);
+		
 		panelBusquedaDoctor.add(scrollPane);
 		
-		JList listDoctores = new JList();
-		listDoctores.setBackground(new Color(240, 248, 255));
-		listDoctores.setBorder(new TitledBorder(null, "Lista de Doctores:", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		scrollPane.setViewportView(listDoctores);
+		model = new DefaultTableModel();
+		sorter = new TableRowSorter<TableModel>(model);
+		model.setColumnCount(1);
+		
+		tableDoctores = new JTable();
+		tableDoctores.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Lista de Doctores"
+			}
+		));
+		JTableHeader header = tableDoctores.getTableHeader();
+	    header.setBackground(new Color(230, 230, 250));
+	     
+	    tableDoctores.setBackground( new Color(240, 248, 255));
+		tableDoctores.setDefaultEditor(Object.class, null);
+		tableDoctores.setAutoCreateRowSorter(true);
+		tableDoctores.setColumnSelectionAllowed(true);
+		tableDoctores.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+		tableDoctores.setCellSelectionEnabled(true);
+		//tableDoctores.setCellEditor(null);
+		tableDoctores.setVisible(true);
+		tableDoctores.setCellSelectionEnabled(true);
+		tableDoctores.setRowSorter(sorter);
+		tableDoctores.setName("Lista de Doctores");
+		loadtable();
+		scrollPane.setViewportView(tableDoctores);
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(NuevaCita.class.getResource("/Imagenes/doctor_128_44166.png")));
@@ -333,6 +402,9 @@ public class NuevaCita extends JDialog {
 			}
 		}
 	}
+	
+	
+	
 	public void visualizarCampos(boolean visualizar){
 		if(visualizar){
 			opcion = 0;
@@ -354,6 +426,46 @@ public class NuevaCita extends JDialog {
 			setVisible(true);
 			
 		}
+	}
+	
+	private Object[][] fillDoctores() {
+		ArrayList <Doctor> misDoctores = new ArrayList <Doctor>();
+		misDoctores =  Clinica.getInstance().doctores();
+		Object[][] result = new Object[misDoctores.size()][1];
+		String[] aux = null;
+		
+		for (int i = 0; i <misDoctores.size() ; i++) {
+			aux = new String[4];
+			aux[0] = misDoctores.get(i).getNombre()+" "+ misDoctores.get(i).getApellidos();
+			result[i] = aux;
+			}
+		return result;
+	}
+	private void loadtable() {
+		//Cargar la tabla
+		model.setRowCount(0);
+		rows = new Object[model.getColumnCount()];
+		for (Doctor aux : Clinica.getInstance().doctores()) {
+			addRow(aux);
+		}
+	}
+
+	private void addRow(Doctor aux) {
+		//Agregar fila
+		rows[0] = aux.getNombre()+" "+ aux.getApellidos();
+		
+		model.addRow(rows);
+	}
+	
+	private void tableFilter(String text, int index) {
+		//Filtro de la tabla
+	    RowFilter<TableModel, Object> filter = null;
+	    try {
+	    	filter = RowFilter.regexFilter("(?i)"+text, 0);
+	    } catch (java.util.regex.PatternSyntaxException e) {
+	        return;
+	    }
+	    sorter.setRowFilter(filter);
 	}
 	
 }

@@ -13,10 +13,12 @@ import javax.swing.JMenu;
 import javax.swing.ImageIcon;
 import java.awt.Toolkit;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import Logical.Clinica;
 import ventanasSecretaria.ModificarCita;
 import ventanasSecretaria.NuevaCita;
 
@@ -100,6 +102,8 @@ public class VentanaSecretaria extends JFrame {
 				citas.setModal(true);
 				citas.setLocationRelativeTo(null);
 				citas.visualizarCampos(true);
+				//citas.cargarLista();
+				
 			}
 		});
 		btnNuevaCita.setIcon(new ImageIcon(VentanaSecretaria.class.getResource("/Imagenes/controlpanel_task_10822.png")));

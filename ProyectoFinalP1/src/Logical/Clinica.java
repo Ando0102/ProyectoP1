@@ -113,5 +113,22 @@ public class Clinica  implements Serializable{
 		return userAux;
 	}
 /////////////////////////////////////////////////
+	public void insertarDoctor (Doctor miDoctor){
+		//Insertar Doctor
+		//Doctor miDoctor = new Doctor ("1", "Bibi", "Romano", "0804", false, "8095679302","Dominicano", null, "bibi0804@", "doctor", "123", "Doctor");
+		misPersonas.add(miDoctor);
+	}
+////////////////////////////////////////////////
+	public ArrayList<Doctor> doctores (){
+		//Arreglo de doctores
+		int i = 0;
+		ArrayList <Doctor> doctores = new ArrayList<>();
+		while(i<getMisPersonas().size()){	
+		if (getMisPersonas().get(i) instanceof Doctor && getMisPersonas() != null){
+			doctores.add((Doctor) getMisPersonas().get(i));
+		}
+			i++;
+		} return doctores;
+	}
 	
 }
