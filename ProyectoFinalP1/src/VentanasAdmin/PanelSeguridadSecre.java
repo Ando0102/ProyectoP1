@@ -24,39 +24,46 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 
 import java.awt.event.ActionListener;
 import java.util.Calendar;
 import java.awt.event.ActionEvent;
+import javax.swing.border.BevelBorder;
+import java.awt.Toolkit;
+import javax.swing.UIManager;
 
-public class PanelSeguridadSecre extends JPanel {
+public class PanelSeguridadSecre extends JDialog {
 	private JTextField txtUsuario;
 	private JPasswordField passwordField;
 	private JPasswordField passwordField_1;
+	private JButton btnNewButton;
 	
 	
 	public PanelSeguridadSecre(final JTextField txtApellido, final JTextField txtCedula, final JTextField txtCorreoElect, final JTextField txtDireccion, final JTextField txtNombre, final JTextField txtTelefono, final JComboBox cbxGenero, final JComboBox cbxPais, final JDateChooser dcFechaNacimiento) {
-		
-		setBorder(new TitledBorder(null, "Informaci\u00F3n de la Nueva Secretaria", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		setModal(true);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(PanelSeguridadSecre.class.getResource("/Imagenes/LogoPeque.png")));
+		setResizable(false);
+		setTitle("Informaci\u00F3n de Secretaria");
 		setBackground(new Color(230, 230, 250));
 		setBounds(100, 100, 617, 541);
-		setLayout(null);
+		setLocationRelativeTo(null);
+		getContentPane().setLayout(null);
+		getContentPane().setBackground(new Color(230, 230, 250));
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(PanelSeguridadSecre.class.getResource("/Imagenes/LogoGrande.png")));
-		lblNewLabel.setBounds(10, 48, 125, 160);
-		add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(PanelSeguridadSecre.class.getResource("/Imagenes/Escudo.png")));
-		lblNewLabel_1.setBounds(485, 48, 114, 160);
-		add(lblNewLabel_1);
-		
+		JPanel panel = new JPanel();
+		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informaci\u00F3n de la Nueva Secretaria", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel.setBounds(10, 11, 581, 480);
+		panel.setBackground(new Color(230, 230, 250));
+		getContentPane().add(panel);
+		panel.setLayout(null);
+	
 		JTextPane textPane = new JTextPane();
+		textPane.setBounds(160, 27, 249, 196);
 		textPane.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		
+		textPane.setBackground(new Color(230, 230, 250));
 		StyledDocument doc = textPane.getStyledDocument();
-		
 		SimpleAttributeSet keyWord = new SimpleAttributeSet();
 		StyleConstants.setForeground(keyWord, Color.BLACK);
 		StyleConstants.setBold(keyWord, true);
@@ -68,36 +75,77 @@ public class PanelSeguridadSecre extends JPanel {
 		}
 		catch(Exception e) { System.out.println(e); }
 		
-		textPane.setBounds(178, 48, 249, 228);
-		textPane.setBackground(new Color(230, 230, 250));
-		add(textPane);
+		panel.add(textPane);
 		
-		JLabel label = new JLabel("Usuario para Iniciar Sesi\u00F3n :");
-		label.setBounds(223, 299, 162, 14);
-		add(label);
+		JButton btnNewButton_1 = new JButton("Atras");
+		btnNewButton_1.setBounds(333, 426, 114, 43);
+		panel.add(btnNewButton_1);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaSecre_admin aux2 = new VentanaSecre_admin();
+				aux2.cbxGenero.setSelectedIndex(cbxGenero.getSelectedIndex());
+				aux2.txtNombre.setText(txtNombre.getText());
+				aux2.cbxPais.setSelectedIndex(cbxPais.getSelectedIndex());
+				aux2.txtApellido.setText(txtApellido.getText());
+				aux2.txtCedula.setText(txtCedula.getText());
+				aux2.txtCorreoElect.setText(txtCorreoElect.getText());
+				aux2.txtDireccion.setText(txtDireccion.getText());
+				aux2.txtTelefono.setText(txtTelefono.getText());
+				aux2.dcFechaNacimiento.setCalendar(dcFechaNacimiento.getCalendar());
+				dispose();
+				aux2.setVisible(true);
+				
+				
+			}
+		});
+		btnNewButton_1.setIcon(new ImageIcon(PanelSeguridadSecre.class.getResource("/Imagenes/atraspeque\u00F1a.png")));
 		
-		txtUsuario = new JTextField();
-		txtUsuario.setColumns(10);
-		txtUsuario.setBounds(223, 324, 150, 20);
-		add(txtUsuario);
+		btnNewButton = new JButton("Listo");
+		btnNewButton.setBounds(457, 426, 114, 43);
+		panel.add(btnNewButton);
 		
-		JLabel label_1 = new JLabel("Contrase\u00F1a :");
-		label_1.setBounds(223, 355, 100, 14);
-		add(label_1);
-		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(223, 380, 152, 20);
-		add(passwordField);
-		
-		JLabel label_2 = new JLabel("Confimaci\u00F3n de Contrase\u00F1a :");
-		label_2.setBounds(223, 411, 179, 14);
-		add(label_2);
+		btnNewButton.setIcon(new ImageIcon(PanelSeguridadSecre.class.getResource("/Imagenes/acceptar.png")));
 		
 		passwordField_1 = new JPasswordField();
-		passwordField_1.setBounds(223, 436, 152, 20);
-		add(passwordField_1);
+		passwordField_1.setBounds(211, 387, 152, 20);
+		panel.add(passwordField_1);
 		
-		JButton btnNewButton = new JButton("Listo");
+
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setBounds(457, 27, 114, 160);
+		panel.add(lblNewLabel_1);
+		lblNewLabel_1.setIcon(new ImageIcon(PanelSeguridadSecre.class.getResource("/Imagenes/Escudo.png")));
+		
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setBounds(10, 27, 125, 160);
+		panel.add(lblNewLabel);
+		lblNewLabel.setIcon(new ImageIcon(PanelSeguridadSecre.class.getResource("/Imagenes/LogoGrande.png")));
+		
+		JLabel label = new JLabel("Usuario para Iniciar Sesi\u00F3n :");
+		label.setBounds(211, 250, 162, 14);
+		panel.add(label);
+		
+		txtUsuario = new JTextField();
+		txtUsuario.setBounds(211, 275, 150, 20);
+		panel.add(txtUsuario);
+		txtUsuario.setColumns(10);
+		
+		JLabel label_1 = new JLabel("Contrase\u00F1a :");
+		label_1.setBounds(211, 306, 100, 14);
+		panel.add(label_1);
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(211, 331, 152, 20);
+		panel.add(passwordField);
+		
+		JLabel label_2 = new JLabel("Confimaci\u00F3n de Contrase\u00F1a :");
+		label_2.setBounds(211, 362, 179, 14);
+		panel.add(label_2);
+		
+		
+		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -153,25 +201,6 @@ public class PanelSeguridadSecre extends JPanel {
 				
 			}
 		});
-		btnNewButton.setIcon(new ImageIcon(PanelSeguridadSecre.class.getResource("/Imagenes/acceptar.png")));
-		btnNewButton.setBounds(485, 487, 114, 43);
-		add(btnNewButton);
-		
-		JButton btnNewButton_1 = new JButton("Atras");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-			}
-		});
-		btnNewButton_1.setIcon(new ImageIcon(PanelSeguridadSecre.class.getResource("/Imagenes/atraspeque\u00F1a.png")));
-		btnNewButton_1.setBounds(354, 487, 114, 43);
-		add(btnNewButton_1);
-		
-		
-		
-		
 		
 	}
-
-	
 }

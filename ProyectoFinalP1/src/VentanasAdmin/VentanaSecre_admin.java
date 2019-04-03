@@ -41,22 +41,22 @@ import java.awt.event.ActionEvent;
 public class VentanaSecre_admin extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField txtNombre;
-	private JTextField txtApellido;
-	private JTextField txtCedula;
-	private JTextField txtTelefono;
-	private JTextField txtDireccion;
-	private JTextField txtCorreoElect;
+	public JTextField txtNombre;
+	public JTextField txtApellido;
+	public JTextField txtCedula;
+	public JTextField txtTelefono;
+	public JTextField txtDireccion;
+	public JTextField txtCorreoElect;
 	private JPanel panelAgregar;
-	private JTextField textField_8;
-	private JTextField textField_9;
-	private JTextField textField_10;
-	private JTextField textField_11;
-	private JTextField textField_12;
-	private int cantidadSecretarias = 0;
-	private JComboBox cbxPais;
-	private JComboBox cbxGenero;
-	private JDateChooser dcFechaNacimiento;
+	public JTextField textField_8;
+	public JTextField textField_9;
+	public JTextField textField_10;
+	public JTextField textField_11;
+	public JTextField textField_12;
+	public JComboBox cbxPais;
+	public JComboBox cbxGenero;
+	public JDateChooser dcFechaNacimiento;
+	private JTabbedPane tabbedPane;
 
 	/**
 	 * Launch the application.
@@ -75,6 +75,8 @@ public class VentanaSecre_admin extends JDialog {
 	 * Create the dialog.
 	 */
 	public VentanaSecre_admin() {
+		setResizable(false);
+		setModal(true);
 		setTitle("Informaci\u00F3n de Secretaria");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaSecre_admin.class.getResource("/Imagenes/LogoPeque.png")));
 		setBounds(100, 100, 617, 541);
@@ -89,7 +91,7 @@ public class VentanaSecre_admin extends JDialog {
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(new BorderLayout(0, 0));
 			{
-				JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+				tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 				tabbedPane.setBackground(new Color(230, 230, 250));
 				panel.add(tabbedPane, BorderLayout.CENTER);
 				{
@@ -216,7 +218,9 @@ public class VentanaSecre_admin extends JDialog {
 							public void actionPerformed(ActionEvent e) {
 								
 								PanelSeguridadSecre aux = new PanelSeguridadSecre(txtApellido, txtCedula, txtCorreoElect, txtDireccion, txtNombre, txtTelefono, cbxGenero, cbxPais, dcFechaNacimiento);
+								dispose();
 								aux.setVisible(true);
+								
 							}
 						});
 						btnNewButton.setIcon(new ImageIcon(VentanaSecre_admin.class.getResource("/Imagenes/arrowPeque\u00F1a.png")));
