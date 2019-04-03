@@ -125,83 +125,6 @@ public class VentanaDoctor_admin extends JDialog {
 		}
 		catch(Exception e) { System.out.println(e); }
 		
-		JPanel panel_3 = new JPanel();
-		panel_3.setBackground(new Color(230, 230, 250));
-		tabbedPane.addTab("Modificar Doctor", null, panel_3, null);
-		panel_3.setLayout(null);
-		
-		JPanel panel_4 = new JPanel();
-		panel_4.setBackground(new Color(230, 230, 250));
-		panel_4.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		panel_4.setBounds(10, 172, 744, 230);
-		panel_3.add(panel_4);
-		panel_4.setLayout(null);
-		
-		JLabel lblNewLabel_3 = new JLabel("");
-		lblNewLabel_3.setIcon(new ImageIcon(VentanaDoctor_admin.class.getResource("/Imagenes/Rueda_dentada.png")));
-		lblNewLabel_3.setBounds(484, 132, 83, 72);
-		panel_4.add(lblNewLabel_3);
-		
-		JLabel lblNombre = new JLabel("Nombres :");
-		lblNombre.setBounds(10, 32, 71, 19);
-		panel_4.add(lblNombre);
-		
-		textField_8 = new JTextField();
-		textField_8.setBackground(new Color(255, 255, 255));
-		textField_8.setBounds(20, 56, 130, 20);
-		panel_4.add(textField_8);
-		textField_8.setColumns(10);
-		
-		JLabel lblApellidos = new JLabel("Apellidos :");
-		lblApellidos.setBounds(182, 34, 83, 14);
-		panel_4.add(lblApellidos);
-		
-		textField_9 = new JTextField();
-		textField_9.setBounds(192, 56, 130, 20);
-		panel_4.add(textField_9);
-		textField_9.setColumns(10);
-		
-		JLabel lblTelfono = new JLabel("Tel\u00E9fono :");
-		lblTelfono.setBounds(358, 34, 83, 19);
-		panel_4.add(lblTelfono);
-		
-		textField_10 = new JTextField();
-		textField_10.setBounds(368, 56, 122, 20);
-		panel_4.add(textField_10);
-		textField_10.setColumns(10);
-		
-		JLabel lblCorreoElctronico = new JLabel("Correo El\u00E9ctronico :");
-		lblCorreoElctronico.setBounds(10, 87, 174, 20);
-		panel_4.add(lblCorreoElctronico);
-		
-		textField_11 = new JTextField();
-		textField_11.setBounds(20, 115, 302, 20);
-		panel_4.add(textField_11);
-		textField_11.setColumns(10);
-		
-		JLabel lblDireccin = new JLabel("Direcci\u00F3n :");
-		lblDireccin.setBounds(10, 146, 93, 19);
-		panel_4.add(lblDireccin);
-		
-		textField_12 = new JTextField();
-		textField_12.setBounds(20, 176, 302, 20);
-		panel_4.add(textField_12);
-		textField_12.setColumns(10);
-		
-		JButton btnModificar = new JButton("Modificar");
-		btnModificar.setIcon(new ImageIcon(VentanaDoctor_admin.class.getResource("/Imagenes/edit_pencil_6320 (1).png")));
-		btnModificar.setBounds(604, 176, 130, 41);
-		panel_4.add(btnModificar);
-		
-		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setIcon(new ImageIcon(VentanaDoctor_admin.class.getResource("/Imagenes/doctora.png")));
-		lblNewLabel_2.setBounds(502, 87, 76, 96);
-		panel_4.add(lblNewLabel_2);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 11, 744, 150);
-		panel_3.add(scrollPane);
-		
 		panel_2 = new JPanel();
 		panel_2.setBackground(new Color(230, 230, 250));
 		panel_2.setLayout(null);
@@ -445,6 +368,83 @@ public class VentanaDoctor_admin extends JDialog {
 				
 			}
 		});
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBackground(new Color(230, 230, 250));
+		tabbedPane.addTab("Modificar Doctor", null, panel_3, null);
+		panel_3.setLayout(null);
+		
+		JPanel panel_4 = new JPanel();
+		panel_4.setBackground(new Color(230, 230, 250));
+		panel_4.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		panel_4.setBounds(10, 172, 744, 230);
+		panel_3.add(panel_4);
+		panel_4.setLayout(null);
+		
+		JLabel lblNewLabel_3 = new JLabel("");
+		lblNewLabel_3.setIcon(new ImageIcon(VentanaDoctor_admin.class.getResource("/Imagenes/Rueda_dentada.png")));
+		lblNewLabel_3.setBounds(484, 132, 83, 72);
+		panel_4.add(lblNewLabel_3);
+		
+		JLabel lblNombre = new JLabel("Nombres :");
+		lblNombre.setBounds(10, 32, 71, 19);
+		panel_4.add(lblNombre);
+		
+		textField_8 = new JTextField();
+		textField_8.setBackground(new Color(255, 255, 255));
+		textField_8.setBounds(20, 56, 130, 20);
+		panel_4.add(textField_8);
+		textField_8.setColumns(10);
+		
+		JLabel lblApellidos = new JLabel("Apellidos :");
+		lblApellidos.setBounds(182, 34, 83, 14);
+		panel_4.add(lblApellidos);
+		
+		textField_9 = new JTextField();
+		textField_9.setBounds(192, 56, 130, 20);
+		panel_4.add(textField_9);
+		textField_9.setColumns(10);
+		
+		JLabel lblTelfono = new JLabel("Tel\u00E9fono :");
+		lblTelfono.setBounds(358, 34, 83, 19);
+		panel_4.add(lblTelfono);
+		
+		textField_10 = new JTextField();
+		textField_10.setBounds(368, 56, 122, 20);
+		panel_4.add(textField_10);
+		textField_10.setColumns(10);
+		
+		JLabel lblCorreoElctronico = new JLabel("Correo El\u00E9ctronico :");
+		lblCorreoElctronico.setBounds(10, 87, 174, 20);
+		panel_4.add(lblCorreoElctronico);
+		
+		textField_11 = new JTextField();
+		textField_11.setBounds(20, 115, 302, 20);
+		panel_4.add(textField_11);
+		textField_11.setColumns(10);
+		
+		JLabel lblDireccin = new JLabel("Direcci\u00F3n :");
+		lblDireccin.setBounds(10, 146, 93, 19);
+		panel_4.add(lblDireccin);
+		
+		textField_12 = new JTextField();
+		textField_12.setBounds(20, 176, 302, 20);
+		panel_4.add(textField_12);
+		textField_12.setColumns(10);
+		
+		JButton btnModificar = new JButton("Modificar");
+		btnModificar.setIcon(new ImageIcon(VentanaDoctor_admin.class.getResource("/Imagenes/edit_pencil_6320 (1).png")));
+		btnModificar.setBounds(604, 176, 130, 41);
+		panel_4.add(btnModificar);
+		
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setIcon(new ImageIcon(VentanaDoctor_admin.class.getResource("/Imagenes/doctora.png")));
+		lblNewLabel_2.setBounds(502, 87, 76, 96);
+		panel_4.add(lblNewLabel_2);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 11, 744, 150);
+		panel_3.add(scrollPane);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	}
 }

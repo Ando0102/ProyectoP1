@@ -48,7 +48,7 @@ public class VentaDoctor extends JFrame implements Runnable {
 	///
 	//private static JTable table;
 	private static Object[] fila;
-	private static String[] columnNames = {"Nombre","Sexo","Fecha"};
+	private static String[] columnNames = {"Nombre","Cedula", "Sexo","Edad","Fecha Cita", "Telefono", "Coreo"};
 	private static DefaultTableModel modelo;
 	private static DefaultTableCellRenderer centrar = new DefaultTableCellRenderer();
 	
@@ -65,7 +65,7 @@ public class VentaDoctor extends JFrame implements Runnable {
 	private int dia;
 	private static JTable table;
 	private JDateChooser dateChooser;
-	
+	/*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -78,10 +78,10 @@ public class VentaDoctor extends JFrame implements Runnable {
 			}
 		});
 	}
-	
+	*/
 	public VentaDoctor() {
 		
-		setTitle("Administrador");
+		setTitle("Doctor");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VentaDoctor.class.getResource("/Imagenes/LogoPeque.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1042, 503);
@@ -311,15 +311,17 @@ public class VentaDoctor extends JFrame implements Runnable {
 			for (int i = 0; i < columnNames.length; i++) {
 				table.getColumnModel().getColumn(i).setCellRenderer(centrar);
 			}	
-			/**
+			*/
 			 //sirve para dar un tamnno a las columnas 
-			columnModel.getColumn(0).setPreferredWidth(68);
-			columnModel.getColumn(1).setPreferredWidth(100);
-			columnModel.getColumn(2).setPreferredWidth(250);
-			columnModel.getColumn(3).setPreferredWidth(250);
-			columnModel.getColumn(4).setPreferredWidth(90); 
-			 */
-			
+			//	private static String[] columnNames = {"Nombre","Cedula", "Sexo","Edad","Fecha Cita", "Telefono", "Coreo"};
+
+			columnModel.getColumn(0).setPreferredWidth(250);
+			columnModel.getColumn(1).setPreferredWidth(150);
+			columnModel.getColumn(2).setPreferredWidth(170);
+			columnModel.getColumn(3).setPreferredWidth(100);
+			columnModel.getColumn(4).setPreferredWidth(170); 
+			columnModel.getColumn(5).setPreferredWidth(101); 
+			columnModel.getColumn(6).setPreferredWidth(123); 
 			
 		}	
 }

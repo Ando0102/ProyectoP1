@@ -79,7 +79,7 @@ public class Administrator extends JFrame implements Runnable {
 		//Decomentar esta parte para que guarde los datos tomados 
 		//en administrador
 		
-		/*
+		
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
@@ -103,7 +103,7 @@ public class Administrator extends JFrame implements Runnable {
 			}
 		});
 		
-		*/
+		
 		////
 		setTitle("Administrador");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Administrator.class.getResource("/Imagenes/LogoPeque.png")));
