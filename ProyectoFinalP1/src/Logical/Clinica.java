@@ -130,5 +130,20 @@ public class Clinica  implements Serializable{
 			i++;
 		} return doctores;
 	}
+////////////////////////////////////////////////
+	public Persona miPersona (String cedula){
+		boolean find = false;
+		int i = 0;
+		Persona miPersona = null;
+		while(find!=true && i<misPersonas.size()){
+			for(Persona aux : misPersonas){
+				if(aux.getID().equalsIgnoreCase(cedula)){
+					find = true;
+					miPersona = aux;
+				}
+			}
+		}
+		return miPersona;
+	}
 	
 }

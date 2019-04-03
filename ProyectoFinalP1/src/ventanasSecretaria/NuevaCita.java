@@ -5,6 +5,7 @@ import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFormattedTextField;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.ImageIcon;
@@ -35,6 +36,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+import javax.swing.text.MaskFormatter;
 
 import Logical.Clinica;
 import Logical.Doctor;
@@ -72,6 +74,7 @@ public class NuevaCita extends JDialog {
 	private TableRowSorter<TableModel> sorter;
 	private DefaultTableModel model;
 	private Object[] rows;
+	private MaskFormatter formatoIDPersona;
 	
 	/**
 	 * Launch the application.
@@ -92,7 +95,7 @@ public class NuevaCita extends JDialog {
 	public NuevaCita() {
 		setTitle("Nueva Cita");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(NuevaCita.class.getResource("/Imagenes/LogoPeque.png")));
-		setBounds(100, 100, 839, 659);
+		setBounds(100, 100, 839, 639);
 		setModal(true);
 		setResizable(false);
 		setLocationRelativeTo(null);
@@ -105,7 +108,7 @@ public class NuevaCita extends JDialog {
 		JPanel panelDatosPersona = new JPanel();
 		panelDatosPersona.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		panelDatosPersona.setBackground(new Color(230, 230, 250));
-		panelDatosPersona.setBounds(10, 11, 803, 354);
+		panelDatosPersona.setBounds(10, 11, 803, 327);
 		contentPanel.add(panelDatosPersona);
 		panelDatosPersona.setLayout(null);
 		
@@ -114,12 +117,63 @@ public class NuevaCita extends JDialog {
 		panelDatosPersona.add(lblBusquedaDePersona);
 		
 		txtBusquedaPersona = new JTextField();
+        formatoIDPersona = null;
+		
+		try {
+			formatoIDPersona = new MaskFormatter("###########");
+			
+		}catch (Exception e) {
+			
+		}
+		txtBusquedaPersona = new JFormattedTextField(formatoIDPersona);
+		txtBusquedaPersona.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c=e.getKeyChar();
+				if(c<'0'||c>'9') e.consume();
+			}
+		});
 		txtBusquedaPersona.setBackground(new Color(255, 255, 255));
 		txtBusquedaPersona.setBounds(10, 36, 166, 20);
 		panelDatosPersona.add(txtBusquedaPersona);
 		txtBusquedaPersona.setColumns(10);
 		
 		JButton btnBusquedaPersona = new JButton("");
+		btnBusquedaPersona.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//Falta validar que no este vacio el textField
+				Persona miPersona = null;
+				if(!txtBusquedaPersona.getText().isEmpty()){
+					miPersona = Clinica.getInstance().miPersona(txtBusquedaPersona.getText().toString());
+					if(miPersona!=null){
+						JOptionPane.showMessageDialog(null, "Persona encontrada","Informacion", JOptionPane.INFORMATION_MESSAGE);
+						txtIdPersona.setText(miPersona.getID().toString());
+						txtIdPersona.setEditable(false);
+						txtNombrePersona.setText(miPersona.getNombre().toString());
+						txtNombrePersona.setEditable(false);
+						txtApellidoPersona.setText(miPersona.getApellidos().toString());
+						txtApellidoPersona.setEditable(false);
+						txtCorreoPersona.setText(miPersona.getCorreo_electronico().toString());
+						txtCorreoPersona.setEditable(false);
+						if(miPersona.isSexo()== true){
+							cmbSexoPersona.setSelectedIndex(0);
+						}else{
+							cmbSexoPersona.setSelectedIndex(1);
+						}
+						cmbSexoPersona.setEditable(false);
+						cmbPaisOrigenPersona.setSelectedItem(miPersona.getNacionalidad().toString());
+						cmbPaisOrigenPersona.setEditable(false);
+						txtTelefono.setText(miPersona.getTelefono().toString());
+						txtTelefono.setEditable(false);
+					}else{
+						JOptionPane.showMessageDialog(null, "Persona no encontrada","Aviso", JOptionPane.WARNING_MESSAGE);
+					}
+					
+				} else {
+					JOptionPane.showMessageDialog(null, "Favor insertar numero de identificacion","Error", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
 		btnBusquedaPersona.setBackground(new Color(230, 230, 250));
 		btnBusquedaPersona.setIcon(new ImageIcon(NuevaCita.class.getResource("/Imagenes/preview_search_find_locate_1551.png")));
 		btnBusquedaPersona.setBorder(null);
@@ -128,52 +182,98 @@ public class NuevaCita extends JDialog {
 		panelDatosPersona.add(btnBusquedaPersona);
 		
 		JLabel lblNumeroDeIdentificacion = new JLabel("Numero de Identificacion:");
-		lblNumeroDeIdentificacion.setBounds(10, 165, 166, 14);
+		lblNumeroDeIdentificacion.setBounds(10, 89, 166, 14);
 		panelDatosPersona.add(lblNumeroDeIdentificacion);
 		
 		txtIdPersona = new JTextField();
+MaskFormatter formatoIDPersona1 = null;
+		
+		try {
+			formatoIDPersona1 = new MaskFormatter("###########");
+			
+		}catch (Exception e) {
+			
+		}
+		txtIdPersona = new JFormattedTextField(formatoIDPersona1);
+		txtIdPersona.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c=e.getKeyChar();
+				if(c<'0'||c>'9') e.consume();
+			}
+		});
 		txtIdPersona.setBackground(new Color(255, 255, 255));
-		txtIdPersona.setBounds(10, 190, 166, 20);
+		txtIdPersona.setBounds(10, 114, 166, 20);
 		panelDatosPersona.add(txtIdPersona);
 		txtIdPersona.setColumns(10);
 		
 		JLabel lblNombre = new JLabel("Nombre:");
-		lblNombre.setBounds(10, 89, 67, 14);
+		lblNombre.setBounds(10, 165, 67, 14);
 		panelDatosPersona.add(lblNombre);
 		
 		txtNombrePersona = new JTextField();
+		txtNombrePersona.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c=e.getKeyChar();
+				if(c>'0'&&c<'9') e.consume();
+			}
+		});
 		txtNombrePersona.setBackground(new Color(255, 255, 255));
-		txtNombrePersona.setBounds(10, 114, 166, 20);
+		txtNombrePersona.setBounds(10, 190, 166, 20);
 		panelDatosPersona.add(txtNombrePersona);
 		txtNombrePersona.setColumns(10);
 		
 		JLabel lblApellido = new JLabel("Apellido:");
-		lblApellido.setBounds(268, 89, 75, 14);
+		lblApellido.setBounds(10, 247, 75, 14);
 		panelDatosPersona.add(lblApellido);
 		
 		txtApellidoPersona = new JTextField();
+		txtApellidoPersona.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c=e.getKeyChar();
+				if(c>'0'&&c<'9') e.consume();
+			}
+		});
 		txtApellidoPersona.setBackground(new Color(255, 255, 255));
-		txtApellidoPersona.setBounds(268, 114, 166, 20);
+		txtApellidoPersona.setBounds(10, 272, 166, 20);
 		panelDatosPersona.add(txtApellidoPersona);
 		txtApellidoPersona.setColumns(10);
 		
 		JLabel lblSexo = new JLabel("Sexo:");
-		lblSexo.setBounds(10, 247, 46, 14);
+		lblSexo.setBounds(268, 89, 46, 14);
 		panelDatosPersona.add(lblSexo);
 		
 		cmbSexoPersona = new JComboBox();
 		cmbSexoPersona.setModel(new DefaultComboBoxModel(new String[] {"Masculino", "Femenino"}));
 		cmbSexoPersona.setBackground(new Color(240, 248, 255));
-		cmbSexoPersona.setBounds(10, 272, 166, 20);
+		cmbSexoPersona.setBounds(268, 114, 166, 20);
 		panelDatosPersona.add(cmbSexoPersona);
 		
 		JLabel lblTelefono = new JLabel("Telefono:");
-		lblTelefono.setBounds(268, 247, 75, 14);
+		lblTelefono.setBounds(516, 165, 75, 14);
 		panelDatosPersona.add(lblTelefono);
 		
 		txtTelefono = new JTextField();
+MaskFormatter formatoIDPersona2 = null;
+		
+		try {
+			formatoIDPersona2 = new MaskFormatter("###-###-####");
+			
+		}catch (Exception e) {
+			
+		}
+		txtTelefono = new JFormattedTextField(formatoIDPersona2);
+		txtTelefono.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c=e.getKeyChar();
+				if(c<'0'||c>'9') e.consume();
+			}
+		});
 		txtTelefono.setBackground(new Color(255, 255, 255));
-		txtTelefono.setBounds(268, 272, 166, 20);
+		txtTelefono.setBounds(516, 190, 220, 20);
 		panelDatosPersona.add(txtTelefono);
 		txtTelefono.setColumns(10);
 		
@@ -188,13 +288,13 @@ public class NuevaCita extends JDialog {
 		txtNacimientoPersona.setColumns(10);
 		
 		JLabel lblPaisDeOrigen = new JLabel("Pais de Origen:");
-		lblPaisDeOrigen.setBounds(516, 165, 109, 14);
+		lblPaisDeOrigen.setBounds(268, 247, 109, 14);
 		panelDatosPersona.add(lblPaisDeOrigen);
 		
 		cmbPaisOrigenPersona = new JComboBox();
 		cmbPaisOrigenPersona.setModel(new DefaultComboBoxModel(new String[] {"Estados Unidos", "Republica Dominicana", "Puerto Rico", "Haiti", "Colombia", "Venezuela"}));
 		cmbPaisOrigenPersona.setBackground(new Color(240, 248, 255));
-		cmbPaisOrigenPersona.setBounds(516, 190, 220, 20);
+		cmbPaisOrigenPersona.setBounds(268, 272, 166, 20);
 		panelDatosPersona.add(cmbPaisOrigenPersona);
 		
 		JLabel lblCorreoElectronico = new JLabel("Correo Electronico:");
@@ -220,7 +320,7 @@ public class NuevaCita extends JDialog {
 		JPanel panelBusquedaDoctor = new JPanel();
 		panelBusquedaDoctor.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		panelBusquedaDoctor.setBackground(new Color(230, 230, 250));
-		panelBusquedaDoctor.setBounds(10, 376, 384, 190);
+		panelBusquedaDoctor.setBounds(10, 349, 384, 199);
 		contentPanel.add(panelBusquedaDoctor);
 		panelBusquedaDoctor.setLayout(null);
 		
@@ -230,6 +330,14 @@ public class NuevaCita extends JDialog {
 		
 		
 		txtBusquedaDoctor= new JTextField();
+		txtBusquedaDoctor.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c=e.getKeyChar();
+				if(c>'0'&&c<'9') e.consume();
+			}
+		});
+		
 		txtBusquedaDoctor.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
@@ -300,7 +408,7 @@ public class NuevaCita extends JDialog {
 		JPanel panelDatosCita = new JPanel();
 		panelDatosCita.setBackground(new Color(230, 230, 250));
 		panelDatosCita.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		panelDatosCita.setBounds(404, 376, 409, 190);
+		panelDatosCita.setBounds(404, 349, 409, 199);
 		contentPanel.add(panelDatosCita);
 		panelDatosCita.setLayout(null);
 		

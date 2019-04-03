@@ -15,6 +15,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import javax.swing.UIManager;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -22,11 +23,13 @@ import javax.swing.JOptionPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import javax.swing.JTextField;
 
 public class ModificarCita extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTable table;
+	private JTextField txtBusquedaPersona;
 
 	/**
 	 * Launch the application.
@@ -47,7 +50,7 @@ public class ModificarCita extends JDialog {
 	public ModificarCita() {
 		setTitle("Modificar Cita");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(ModificarCita.class.getResource("/Imagenes/LogoPeque.png")));
-		setBounds(100, 100, 839, 483);
+		setBounds(100, 100, 839, 444);
 		setModal(true);
 		setResizable(false);
 		setLocationRelativeTo(null);
@@ -60,12 +63,12 @@ public class ModificarCita extends JDialog {
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null), "Listado de Citas:", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel.setBackground(new Color(230, 230, 250));
-		panel.setBounds(10, 11, 662, 432);
+		panel.setBounds(10, 11, 662, 393);
 		contentPanel.add(panel);
 		panel.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 24, 642, 397);
+		scrollPane.setBounds(10, 62, 642, 320);
 		panel.add(scrollPane);
 		
 		table = new JTable();
@@ -76,13 +79,38 @@ public class ModificarCita extends JDialog {
 				"ID", "Nombre Completo", "Doctor", "Fecha", "Hora"
 			}
 		));
+		JTableHeader header = table.getTableHeader();
+	    header.setBackground(new Color(230, 230, 250));
+	    table.setDefaultEditor(Object.class, null);
+	    table.setCellSelectionEnabled(true);
 		table.setBackground(SystemColor.inactiveCaptionBorder);
 		scrollPane.setViewportView(table);
+		
+		JLabel lblBusquedaDePersona = new JLabel("Busqueda de Persona:");
+		lblBusquedaDePersona.setBounds(10, 11, 152, 14);
+		panel.add(lblBusquedaDePersona);
+		
+		txtBusquedaPersona = new JTextField();
+		txtBusquedaPersona.setBounds(10, 32, 225, 20);
+		panel.add(txtBusquedaPersona);
+		txtBusquedaPersona.setColumns(10);
+		
+		JButton btnBusquedaPersona = new JButton("");
+		btnBusquedaPersona.setBackground(new Color(230, 230, 250));
+		btnBusquedaPersona.setBorder(null);
+		btnBusquedaPersona.setBorderPainted(false);
+		btnBusquedaPersona.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnBusquedaPersona.setIcon(new ImageIcon(ModificarCita.class.getResource("/Imagenes/preview_search_find_locate_1551.png")));
+		btnBusquedaPersona.setBounds(245, 32, 32, 32);
+		panel.add(btnBusquedaPersona);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		panel_1.setBackground(new Color(230, 230, 250));
-		panel_1.setBounds(682, 11, 141, 432);
+		panel_1.setBounds(682, 11, 141, 393);
 		contentPanel.add(panel_1);
 		panel_1.setLayout(null);
 		{
@@ -98,7 +126,7 @@ public class ModificarCita extends JDialog {
 					
 				}
 			});
-			cancelButton.setBounds(10, 332, 121, 53);
+			cancelButton.setBounds(10, 305, 121, 53);
 			panel_1.add(cancelButton);
 			cancelButton.setBackground(UIManager.getColor("Button.highlight"));
 			cancelButton.setIcon(new ImageIcon(ModificarCita.class.getResource("/Imagenes/cancelar2.png")));
@@ -117,7 +145,7 @@ public class ModificarCita extends JDialog {
 		});
 		btnBorrarCita.setIcon(new ImageIcon(ModificarCita.class.getResource("/Imagenes/recycle_recyclebin_full_delete_trash_1772.png")));
 		btnBorrarCita.setBackground(UIManager.getColor("Button.highlight"));
-		btnBorrarCita.setBounds(10, 250, 121, 53);
+		btnBorrarCita.setBounds(10, 230, 121, 53);
 		panel_1.add(btnBorrarCita);
 		
 		JButton btnModificarCita = new JButton("Editar");
@@ -131,7 +159,7 @@ public class ModificarCita extends JDialog {
 		});
 		btnModificarCita.setBackground(UIManager.getColor("Button.highlight"));
 		btnModificarCita.setIcon(new ImageIcon(ModificarCita.class.getResource("/Imagenes/edit_icon-icons.com_52382.png")));
-		btnModificarCita.setBounds(10, 166, 121, 53);
+		btnModificarCita.setBounds(10, 155, 121, 53);
 		panel_1.add(btnModificarCita);
 		
 		JLabel lblNewLabel = new JLabel("");
