@@ -105,11 +105,6 @@ public class VentanaDoctor_admin extends JDialog {
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBackground(new Color(230, 230, 250));
 		panel.add(tabbedPane, BorderLayout.CENTER);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new EmptyBorder(0, 0, 0, 0));
-		panel_1.setBackground(new Color(230, 230, 250));
-		tabbedPane.addTab("Estadística", null, panel_1, null);
 
 		//  Define a keyword attribute
 

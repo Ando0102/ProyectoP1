@@ -13,6 +13,8 @@ public class Clinica  implements Serializable{
 	private ArrayList <Enfermedad> enfermedades;
 	private static Clinica miClinica = null;
 	//Constructor vacio de controladora
+	public static int  cantidadSecretaria;
+	private static int cantidadDoctor;
 	
 	private Clinica() {
 		super();
@@ -21,6 +23,8 @@ public class Clinica  implements Serializable{
 		this.misHistorias = new ArrayList<HistorialMedico>();
 		this.misVacunas = new ArrayList<Vacuna>();
 		this.enfermedades = new ArrayList<Enfermedad>();
+		this.cantidadSecretaria = 0;
+		this.cantidadDoctor = 0;
 	}
 	//Instancia de controladora
 	public static Clinica getInstance(){ 
@@ -72,6 +76,18 @@ public class Clinica  implements Serializable{
 //////////////////////////////////////////////////
 
 
+	public static int getCantidadSecretaria() {
+		return cantidadSecretaria;
+	}
+	public static void setCantidadSecretaria(int cantidadSecretaria) {
+		Clinica.cantidadSecretaria = cantidadSecretaria;
+	}
+	public static int getCantidadDoctor() {
+		return cantidadDoctor;
+	}
+	public static void setCantidadDoctor(int cantidadDoctor) {
+		Clinica.cantidadDoctor = cantidadDoctor;
+	}
 	////////////////////////////////////////////////////
 	public void insertarPersona (Persona personaAux) {
 		//Insertar Persona
