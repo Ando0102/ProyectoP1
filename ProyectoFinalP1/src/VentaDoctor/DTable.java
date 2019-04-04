@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -22,6 +23,7 @@ public class DTable extends DefaultTableCellRenderer {
 	cell.setForeground(Color.black);
 	Calendar mi = Calendar.getInstance();
 	mi.setTime(fechaActual());
+
 	switch (mi.get(Calendar.DAY_OF_WEEK)) {
 	case 1:
 		//Domingo
@@ -72,6 +74,7 @@ public class DTable extends DefaultTableCellRenderer {
 	}
 
 	return cell;
+	
 	
 	}
 	public Date fechaActual() {
