@@ -14,6 +14,7 @@ import java.util.Locale;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -33,6 +34,9 @@ import javafx.scene.layout.Background;
 
 public class pnlCitasbtn extends JPanel  {
 	//private static JTable table;
+	//hora fila
+	
+	///
 			private static Object[] fila;
 			private static String[] columnNames = {"", "Domingo", "Lunes", "Martes", 
 					"Miercoles", "Jueves", "Viernes", "Sabado"
@@ -47,6 +51,7 @@ public class pnlCitasbtn extends JPanel  {
 		 * Create the applet.
 		 */
 		public pnlCitasbtn(Doctor miDoc) {
+		
 			this.miDoctor=miDoc;
 			
 			setBackground(Color.BLUE);
@@ -80,27 +85,143 @@ public class pnlCitasbtn extends JPanel  {
 			cargar();
 			table.setModel(modelo);
 		//
-			
+		
 			
 			
 			cargarDatos();
 			scrollPane.setViewportView(table);
 
 			table.addMouseListener(new MouseAdapter() {
+				private Cita ciataDelDia;
+				private Calendar fechaCitaCompara;
+
 				@Override
 				public void mouseClicked(MouseEvent e) {
 
 					Calendar d = Calendar.getInstance();
 					d.setTime(fechaActual());
+					
 				/*String country;
 					int delivery;*/
 					int row =0;
 					int colu = 0;
+					
 					if(table.getSelectedRow()>=0){
+						System.out.println("hora por fila: "+row);
 						row = table.getSelectedRow();
 						colu=table.getSelectedColumn();
-						d.get(Calendar.DAY_OF_WEEK);
-						
+						//d.get(Calendar.DAY_OF_WEEK);//da la dia semana
+
+						if(d.get(Calendar.DAY_OF_WEEK)==colu) {
+							System.out.println("Dia actual selecionado");
+							String n = "";
+							n = (String) table.getValueAt(row, colu);
+							fechaCitaCompara = Calendar.getInstance();
+							fechaCitaCompara.setTime(fechaActual());
+							if(n!=null) {
+								//cargar venta Consulta
+							//	System.out.println("Contendio: "+n);
+								
+								//miDoctor.buscar_Cita_Fecha(d);
+							/*	
+								System.out.println("DESDE CONSULTA");
+								System.out.println("D: "+fechaCitaCompara.get(Calendar.DATE));
+								System.out.println("A: "+fechaCitaCompara.get(Calendar.YEAR));
+								System.out.println("M: "+fechaCitaCompara.get(Calendar.MONTH));
+						*/
+						//	 miDoctor.pruebaFecha(fechaCitaCompara);
+								switch (row) {
+								case 0:
+									//son las 8
+									
+									ciataDelDia = miDoctor.buscar_Cita_Fecha(fechaCitaCompara, 8);
+									System.out.println(ciataDelDia.getMiPersona().getNombre());
+									System.out.println("SOn las 8");
+									break;
+								case 1:
+									//son las 9
+									ciataDelDia = miDoctor.buscar_Cita_Fecha(fechaCitaCompara, 9);
+
+									System.out.println("SOn las 9");
+									break;
+								case 2:
+									//son las 10
+									ciataDelDia = miDoctor.
+									buscar_Cita_Fecha(fechaCitaCompara, 10);
+									System.out.println("SOn las 10");
+									break;
+								case 3:
+									//son las 11
+									ciataDelDia = miDoctor.
+									buscar_Cita_Fecha(fechaCitaCompara, 11);
+									System.out.println("SOn las 11");
+									break;
+								case 4:
+									//son las 12
+									ciataDelDia = miDoctor.
+									buscar_Cita_Fecha(fechaCitaCompara, 12);
+									System.out.println("SOn las 12");
+									break;
+								case 5:
+									//son las 13
+									ciataDelDia = miDoctor.
+									buscar_Cita_Fecha(fechaCitaCompara, 13);
+									System.out.println("SOn las 13");
+									break;
+								case 6:
+									//son las 14
+									ciataDelDia = miDoctor.
+									buscar_Cita_Fecha(fechaCitaCompara, 14);
+									System.out.println("SOn las 14");
+									break;
+								case 7:
+									//son las 15
+									ciataDelDia = miDoctor.
+									buscar_Cita_Fecha(fechaCitaCompara, 15);
+									System.out.println("SOn las 15");
+									break;
+								case 8:
+									//son las 16
+									ciataDelDia = miDoctor.
+									buscar_Cita_Fecha(fechaCitaCompara, 16);
+									System.out.println("SOn las 16");
+									break;
+								case 9:
+									//son las 17
+									ciataDelDia = miDoctor.
+									buscar_Cita_Fecha(fechaCitaCompara, 17);
+									System.out.println("SOn las 17");
+									break;
+								case 10:
+									//son las 14
+									ciataDelDia = miDoctor.
+									buscar_Cita_Fecha(fechaCitaCompara, 18);
+									System.out.println("SOn las 18");
+									break;
+								default:
+									break;
+									
+									
+								}
+								if(ciataDelDia!=null) {
+									//abrimos venta
+									System.out.println("Existo ventana");
+									RealizarConsulta dialog = new RealizarConsulta(ciataDelDia);
+									//dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+									dialog.setVisible(true);
+									
+								}else {
+									System.out.println("No se puedo cargar");
+								}
+								
+							}else {
+								System.out.println("....");
+							}
+							
+						}else {
+							//System.out.println("Dia despus o ante dela actual");
+						}
+						System.out.println("DIAA SEMANA: "+d.get(Calendar.DAY_OF_WEEK));
 						System.out.println("row: "+table.getSelectedRow()+"Column"+table.getSelectedColumn());
 						switch (row) {
 						
@@ -202,8 +323,8 @@ public class pnlCitasbtn extends JPanel  {
 				
 			}	
 		public void  cargarDatos() {
-			String aux = "Bobo lentin";
-			table.getModel().setValueAt(aux, 3, 3);
+		
+		//	table.getModel().setValueAt(aux, 3, 3);
 			//dias_semana();
 			Calendar c = Calendar.getInstance();
 			
@@ -289,7 +410,7 @@ public class pnlCitasbtn extends JPanel  {
 			*/
 			ArrayList<Cita> misC = new ArrayList<Cita>();
 			misC = miDoctor.citas_de_semana_actual(Domingo, Sabado);
-			table.getModel().setValueAt(Color.BLUE, 3, 1);
+			//table.getModel().setValueAt(Color.BLUE, 3, 1);
 
 			for (Cita miCita : misC) {
 				Calendar hora = miCita.getFecha();
@@ -695,6 +816,19 @@ public class pnlCitasbtn extends JPanel  {
 			
 		}
 
+		public Cita buscarCita() {
+			Cita no = null;
+			Calendar obj = Calendar.getInstance();
+			obj.setTime(fechaActual());
+			for (Cita pepe : miDoctor.getMisCitas()) {
+				if(pepe.getFecha().equals(obj)) {
+					System.out.println("prueba pepe");
+				}else {
+					System.out.println("no tengo peque cho pepe");
+				}
+			}
+			return no;
+		}
 
 				
 
