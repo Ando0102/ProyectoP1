@@ -8,10 +8,10 @@ public class Doctor extends User {
 	private ArrayList<Paciente> misPacientes;
 	private ArrayList<Cita> misCitas;//considero que no deberia estar
 	private ArrayList<Consulta> misConsulta;
-	public Doctor(String iD, String nombre, String apellidos, String cedula, boolean sexo, String telefono,
+	public Doctor(String nombre, String apellidos, String cedula, boolean sexo, String telefono,
 			String nacionalidad, Calendar fecha_nacimiento, String correo_electronico, String usuario,
 			String constrasenna, String rol) {
-		super(iD, nombre, apellidos, cedula, sexo, telefono, nacionalidad, fecha_nacimiento, correo_electronico,
+		super(nombre, apellidos, cedula, sexo, telefono, nacionalidad, fecha_nacimiento, correo_electronico,
 				usuario, constrasenna, rol);
 		this.misPacientes = new ArrayList<Paciente>();
 		this.misCitas     = new ArrayList<Cita>();

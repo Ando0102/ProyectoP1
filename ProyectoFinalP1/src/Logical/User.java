@@ -8,7 +8,7 @@ public class User extends Persona {
 	protected String rol;
 	//--------[ agregando conctructor ]----
 	
-	public User(String iD, String nombre, String apellidos, String cedula, boolean sexo, String telefono,
+	public User(String nombre, String apellidos, String cedula, boolean sexo, String telefono,
 			String nacionalidad, Calendar fecha_nacimiento, String correo_electronico, String usuario,
 			String constrasenna, String rol) {
 		super( nombre, apellidos, cedula, sexo, telefono, nacionalidad, fecha_nacimiento, correo_electronico);
