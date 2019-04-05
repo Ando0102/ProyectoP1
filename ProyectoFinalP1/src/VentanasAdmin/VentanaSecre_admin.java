@@ -10,6 +10,8 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Toolkit;
 import javax.swing.JTabbedPane;
 import javax.swing.border.TitledBorder;
+import javax.swing.text.MaskFormatter;
+import javax.swing.text.NumberFormatter;
 
 import Logical.Clinica;
 import Logical.Doctor;
@@ -24,8 +26,10 @@ import javax.swing.JSpinner;
 import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.NumberFormat;
 import java.util.Calendar;
 
+import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.JTextPane;
@@ -37,14 +41,16 @@ import javax.swing.UIManager;
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JRadioButton;
+import javax.swing.JFormattedTextField;
 
 public class VentanaSecre_admin extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	public JTextField txtNombre;
 	public JTextField txtApellido;
-	public JTextField txtCedula;
-	public JTextField txtTelefono;
+	public JFormattedTextField txtCedula;
+	public JFormattedTextField txtTelefono;
 	public JTextField txtDireccion;
 	public JTextField txtCorreoElect;
 	private JPanel panelAgregar;
@@ -57,6 +63,12 @@ public class VentanaSecre_admin extends JDialog {
 	public JComboBox cbxGenero;
 	public JDateChooser dcFechaNacimiento;
 	private JTabbedPane tabbedPane;
+	private JTextField txtBusqueda;
+	public JRadioButton rtbAdministrador;
+	public JRadioButton rbtDoctor;
+	public JRadioButton rbtSecre;
+	private JPanel PanelinfoEmpleado;
+	public ButtonGroup botones1;
 
 	/**
 	 * Launch the application.
@@ -77,14 +89,26 @@ public class VentanaSecre_admin extends JDialog {
 	public VentanaSecre_admin() {
 		setResizable(false);
 		setModal(true);
-		setTitle("Informaci\u00F3n de Secretaria");
+		setTitle("Informaci\u00F3n de los empleados");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaSecre_admin.class.getResource("/Imagenes/LogoPeque.png")));
-		setBounds(100, 100, 617, 541);
+		setBounds(100, 100, 617, 557);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
+		
+		botones1 = new ButtonGroup(); //GRUPO PARA LOS BOTONES
+		
+		MaskFormatter  formatoCedu = null, formatoTele = null;
+		try {
+			formatoTele = new MaskFormatter("###-###-####");
+			formatoCedu = new MaskFormatter("###-#######-#");
+
+		}catch (Exception e) {
+			
+		}
+
 		{
 			JPanel panel = new JPanel();
 			panel.setBackground(new Color(230, 230, 250));
@@ -97,8 +121,8 @@ public class VentanaSecre_admin extends JDialog {
 				{
 					panelAgregar = new JPanel();
 					panelAgregar.setBackground(new Color(230, 230, 250));
-					panelAgregar.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informaci\u00F3n de la Nueva Secretaria", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-					tabbedPane.addTab("Agregar Nueva Secretaria", null, panelAgregar, null);
+					panelAgregar.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informaci\u00F3n del Nuevo Empleado", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+					tabbedPane.addTab("Agregar Nuevo Empleado", null, panelAgregar, null);
 					panelAgregar.setLayout(null);
 					{
 						JLabel lblNewLabel_1 = new JLabel("");
@@ -134,7 +158,7 @@ public class VentanaSecre_admin extends JDialog {
 						panelAgregar.add(label);
 					}
 					{
-						txtCedula = new JTextField();
+						txtCedula = new JFormattedTextField(formatoCedu);
 						txtCedula.setColumns(10);
 						txtCedula.setBounds(36, 130, 158, 20);
 						panelAgregar.add(txtCedula);
@@ -145,7 +169,7 @@ public class VentanaSecre_admin extends JDialog {
 						panelAgregar.add(label);
 					}
 					{
-						txtTelefono = new JTextField();
+						txtTelefono = new JFormattedTextField(formatoTele);
 						txtTelefono.setColumns(10);
 						txtTelefono.setBounds(218, 130, 158, 20);
 						panelAgregar.add(txtTelefono);
@@ -163,19 +187,19 @@ public class VentanaSecre_admin extends JDialog {
 					}
 					{
 						JLabel lblSexo = new JLabel("Sexo :");
-						lblSexo.setBounds(36, 297, 72, 14);
+						lblSexo.setBounds(30, 297, 72, 14);
 						panelAgregar.add(lblSexo);
 					}
 					{
 						cbxGenero = new JComboBox();
 						cbxGenero.setModel(new DefaultComboBoxModel(new String[] {"<Sexo>", "Masculino", "Femenino"}));
 						cbxGenero.setSelectedIndex(0);
-						cbxGenero.setBounds(36, 322, 158, 20);
+						cbxGenero.setBounds(30, 322, 158, 20);
 						panelAgregar.add(cbxGenero);
 					}
 					{
 						JLabel lblPasDeOrigen = new JLabel("Pa\u00EDs de Origen :");
-						lblPasDeOrigen.setBounds(218, 297, 98, 20);
+						lblPasDeOrigen.setBounds(406, 294, 98, 20);
 						panelAgregar.add(lblPasDeOrigen);
 					}
 					{
@@ -183,7 +207,7 @@ public class VentanaSecre_admin extends JDialog {
 						cbxPais.setModel(new DefaultComboBoxModel(new String[] {"<Pa\u00EDs>", "Alemania", "Argentina", "Australia", "Burgar\u00EDa", "Canad\u00E1", "Colombia", "Cuba", "Hait\u00ED", "Mexico", "Rep. Dominicana", "Rusia", "Rep. Checa", "Venezuela", "Jap\u00F3n"}));
 						cbxPais.setSelectedIndex(0);
 						cbxPais.setMaximumRowCount(5);
-						cbxPais.setBounds(218, 322, 158, 20);
+						cbxPais.setBounds(406, 322, 158, 20);
 						panelAgregar.add(cbxPais);
 					}
 					{
@@ -199,7 +223,7 @@ public class VentanaSecre_admin extends JDialog {
 					}
 					{
 						JLabel label = new JLabel("Fecha de Nacimiento :");
-						label.setBounds(36, 365, 125, 14);
+						label.setBounds(218, 297, 125, 14);
 						panelAgregar.add(label);
 					}
 					{
@@ -210,131 +234,186 @@ public class VentanaSecre_admin extends JDialog {
 					}
 					
 					dcFechaNacimiento = new JDateChooser();
-					dcFechaNacimiento.setBounds(36, 392, 158, 20);
+					dcFechaNacimiento.setBounds(218, 324, 158, 20);
 					panelAgregar.add(dcFechaNacimiento);
+					
+					
+					rtbAdministrador = new JRadioButton("Administrador");
+					rtbAdministrador.setBounds(60, 395, 109, 23);
+					rtbAdministrador.setBackground(new Color(230, 230, 250));
+					panelAgregar.add(rtbAdministrador);
+					botones1.add(rtbAdministrador);
+					
+					rbtDoctor = new JRadioButton("Doctor");
+					rbtDoctor.setBounds(236, 395, 109, 23);
+					rbtDoctor.setBackground(new Color(230, 230, 250));
+					panelAgregar.add(rbtDoctor);
+					botones1.add(rbtDoctor);
+					
+					rbtSecre = new JRadioButton("Secretaria");
+					rbtSecre.setBounds(412, 395, 109, 23);
+					rbtSecre.setBackground(new Color(230, 230, 250));
+					panelAgregar.add(rbtSecre);
+					botones1.add(rbtSecre);
+					
 					{
 						JButton btnNewButton = new JButton("Siguiente");
 						btnNewButton.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
 								
-								PanelSeguridadSecre aux = new PanelSeguridadSecre(txtApellido, txtCedula, txtCorreoElect, txtDireccion, txtNombre, txtTelefono, cbxGenero, cbxPais, dcFechaNacimiento);
+								PanelSeguridadSecre aux = new PanelSeguridadSecre(txtApellido, txtCedula, txtCorreoElect, txtDireccion, txtNombre, txtTelefono, cbxGenero, cbxPais, dcFechaNacimiento, rbtDoctor, rbtSecre, rtbAdministrador);
 								dispose();
 								aux.setVisible(true);
 								
 							}
 						});
 						btnNewButton.setIcon(new ImageIcon(VentanaSecre_admin.class.getResource("/Imagenes/arrowPeque\u00F1a.png")));
-						btnNewButton.setBounds(451, 412, 125, 41);
+						btnNewButton.setBounds(461, 438, 125, 41);
 						panelAgregar.add(btnNewButton);
 					}
+					
+
+					
+					JLabel lblRolDelEmpleado = new JLabel("Rol del Empleado en la Clinica :");
+					lblRolDelEmpleado.setBounds(30, 364, 234, 16);
+					panelAgregar.add(lblRolDelEmpleado);
 				}
 				{
 					JPanel panel_1 = new JPanel();
 					panel_1.setBackground(new Color(230, 230, 250));
-					tabbedPane.addTab("Modificar Secretaria", null, panel_1, null);
+					tabbedPane.addTab("Modificar Empleado", null, panel_1, null);
 					panel_1.setLayout(null);
 					{
-						JPanel panel_2 = new JPanel();
-						panel_2.setBackground(new Color(230, 230, 250));
-						panel_2.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informaci\u00F3n de la Secretaria", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-						panel_2.setBounds(10, 185, 566, 268);
-						panel_1.add(panel_2);
-						panel_2.setLayout(null);
+						PanelinfoEmpleado = new JPanel();
+						PanelinfoEmpleado.setBackground(new Color(230, 230, 250));
+						PanelinfoEmpleado.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informaci\u00F3n del Empleado", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+						PanelinfoEmpleado.setBounds(10, 159, 576, 272);
+						panel_1.add(PanelinfoEmpleado);
+						PanelinfoEmpleado.setLayout(null);
 						{
 							JLabel label = new JLabel("");
 							label.setIcon(new ImageIcon(VentanaSecre_admin.class.getResource("/Imagenes/Rueda_dentada.png")));
 							label.setBounds(413, 135, 93, 70);
-							panel_2.add(label);
+							PanelinfoEmpleado.add(label);
 						}
 						{
 							JLabel label = new JLabel("Nombres :");
 							label.setBounds(10, 23, 71, 19);
-							panel_2.add(label);
+							PanelinfoEmpleado.add(label);
 						}
 						{
 							textField_8 = new JTextField();
 							textField_8.setColumns(10);
 							textField_8.setBounds(10, 53, 130, 20);
-							panel_2.add(textField_8);
+							PanelinfoEmpleado.add(textField_8);
 						}
 						{
 							JLabel label = new JLabel("Apellidos :");
 							label.setBounds(182, 28, 83, 14);
-							panel_2.add(label);
+							PanelinfoEmpleado.add(label);
 						}
 						{
 							textField_9 = new JTextField();
 							textField_9.setColumns(10);
 							textField_9.setBounds(182, 53, 130, 20);
-							panel_2.add(textField_9);
+							PanelinfoEmpleado.add(textField_9);
 						}
 						{
 							JLabel label = new JLabel("Tel\u00E9fono :");
 							label.setBounds(348, 24, 83, 19);
-							panel_2.add(label);
+							PanelinfoEmpleado.add(label);
 						}
 						{
 							textField_10 = new JTextField();
 							textField_10.setColumns(10);
 							textField_10.setBounds(348, 53, 130, 20);
-							panel_2.add(textField_10);
+							PanelinfoEmpleado.add(textField_10);
 						}
 						{
 							JLabel label = new JLabel("Correo El\u00E9ctronico :");
 							label.setBounds(10, 135, 174, 20);
-							panel_2.add(label);
+							PanelinfoEmpleado.add(label);
 						}
 						{
 							textField_11 = new JTextField();
 							textField_11.setColumns(10);
 							textField_11.setBounds(10, 105, 302, 20);
-							panel_2.add(textField_11);
+							PanelinfoEmpleado.add(textField_11);
 						}
 						{
 							JLabel label = new JLabel("Direcci\u00F3n :");
 							label.setBounds(10, 84, 93, 19);
-							panel_2.add(label);
+							PanelinfoEmpleado.add(label);
 						}
 						{
 							textField_12 = new JTextField();
 							textField_12.setColumns(10);
 							textField_12.setBounds(10, 166, 302, 20);
-							panel_2.add(textField_12);
+							PanelinfoEmpleado.add(textField_12);
 						}
 						{
 							JLabel lblNewLabel_5 = new JLabel("");
-							lblNewLabel_5.setIcon(new ImageIcon(VentanaSecre_admin.class.getResource("/Imagenes/secretaria.png")));
-							lblNewLabel_5.setBounds(439, 105, 93, 86);
-							panel_2.add(lblNewLabel_5);
+							lblNewLabel_5.setIcon(new ImageIcon(VentanaSecre_admin.class.getResource("/Imagenes/doctora.png")));
+							lblNewLabel_5.setBounds(439, 84, 93, 107);
+							PanelinfoEmpleado.add(lblNewLabel_5);
 						}
 						{
-							JButton btnNewButton_1 = new JButton("Cancelar\r\n");
-							btnNewButton_1.addActionListener(new ActionListener() {
-								public void actionPerformed(ActionEvent e) {
-								}
-							});
-							btnNewButton_1.setIcon(new ImageIcon(VentanaSecre_admin.class.getResource("/Imagenes/cancelar2.png")));
-							btnNewButton_1.setBounds(423, 216, 130, 36);
-							panel_2.add(btnNewButton_1);
+							JLabel label = new JLabel("Rol del Empleado en la Clinica :");
+							label.setBounds(10, 201, 234, 16);
+							PanelinfoEmpleado.add(label);
 						}
 						{
-							JButton btnNewButton_2 = new JButton("Listo");
-							btnNewButton_2.addActionListener(new ActionListener() {
-								public void actionPerformed(ActionEvent e) {
-								}
-							});
-							btnNewButton_2.setIcon(new ImageIcon(VentanaSecre_admin.class.getResource("/Imagenes/acceptar.png")));
-							btnNewButton_2.setBounds(286, 216, 130, 36);
-							panel_2.add(btnNewButton_2);
+							JRadioButton rbtNewAdm = new JRadioButton("Administrador");
+							rbtNewAdm.setBackground(new Color(230, 230, 250));
+							rbtNewAdm.setBounds(40, 224, 109, 23);
+							PanelinfoEmpleado.add(rbtNewAdm);
+						}
+						{
+							JRadioButton rbtNewDoct = new JRadioButton("Doctor");
+							rbtNewDoct.setBackground(new Color(230, 230, 250));
+							rbtNewDoct.setBounds(216, 224, 109, 23);
+							PanelinfoEmpleado.add(rbtNewDoct);
+						}
+						{
+							JRadioButton rbtNewSecre = new JRadioButton("Secretaria");
+							rbtNewSecre.setBackground(new Color(230, 230, 250));
+							rbtNewSecre.setBounds(392, 224, 109, 23);
+							PanelinfoEmpleado.add(rbtNewSecre);
 						}
 					}
 					{
 						JScrollPane scrollPane = new JScrollPane();
-						scrollPane.setBounds(10, 11, 566, 152);
+						scrollPane.setBounds(10, 66, 576, 82);
 						panel_1.add(scrollPane);
+					}
+					
+					JLabel lblEmpleado = new JLabel("Empleado :");
+					lblEmpleado.setBounds(10, 11, 94, 14);
+					panel_1.add(lblEmpleado);
+					
+					txtBusqueda = new JTextField();
+					txtBusqueda.setBounds(10, 35, 145, 20);
+					panel_1.add(txtBusqueda);
+					txtBusqueda.setColumns(10);
+					
+					JButton btnNewButton_3 = new JButton("Buscar");
+					btnNewButton_3.setBounds(173, 34, 89, 23);
+					panel_1.add(btnNewButton_3);
+					{
+						JButton btnNewButton_2 = new JButton("Listo");
+						btnNewButton_2.setBounds(316, 442, 130, 36);
+						panel_1.add(btnNewButton_2);
+						btnNewButton_2.setIcon(new ImageIcon(VentanaSecre_admin.class.getResource("/Imagenes/acceptar.png")));
+					}
+					{
+						JButton btnNewButton_1 = new JButton("Cancelar\r\n");
+						btnNewButton_1.setBounds(456, 442, 130, 36);
+						panel_1.add(btnNewButton_1);
+						btnNewButton_1.setIcon(new ImageIcon(VentanaSecre_admin.class.getResource("/Imagenes/cancelar2.png")));
 					}
 				}
 			}
 		}
 	}
-}
+	}
+
