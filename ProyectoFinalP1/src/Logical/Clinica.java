@@ -141,11 +141,14 @@ public class Clinica  implements Serializable{
 		int i = 0;
 		ArrayList <Doctor> doctores = new ArrayList<>();
 		while(i<getMisPersonas().size()){	
-		if (getMisPersonas().get(i) instanceof Doctor && getMisPersonas() != null){
+			if(getMisPersonas() != null){
+		if (getMisPersonas().get(i) instanceof Doctor){
 			doctores.add((Doctor) getMisPersonas().get(i));
 		}
 			i++;
-		} return doctores;
+		}
+		}
+		return doctores;
 	}
 ////////////////////////////////////////////////
 	public Persona miPersona (String cedula){

@@ -84,6 +84,7 @@ public class NuevaCita extends JDialog {
 	private JDateChooser FechaCita;
 	private JDateChooser fechaNacimiento;
 	private JSpinner spnHoraCita;
+	private JScrollPane scrollPane;
 	
 	/**
 	 * Launch the application.
@@ -395,7 +396,7 @@ MaskFormatter formatoIDPersona2 = null;
 		btnBusquedaDoctor.setBorderPainted(false);
 		panelBusquedaDoctor.add(btnBusquedaDoctor);
 		
-		JScrollPane scrollPane = new JScrollPane();
+		scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 82, 209, 97);
 		
 		panelBusquedaDoctor.add(scrollPane);
@@ -596,8 +597,12 @@ MaskFormatter formatoIDPersona2 = null;
 		model.setRowCount(0);
 		rows = new Object[model.getColumnCount()];
 		for (Doctor aux : Clinica.getInstance().doctores()) {
+			if(aux!=null){
 			addRow(aux);
+		} else {
+			System.out.println("No hay doctores!");
 		}
+		     }
 	}
 
 	private void addRow(Doctor aux) {
