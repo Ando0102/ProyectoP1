@@ -26,6 +26,7 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 
@@ -43,7 +44,7 @@ public class PanelSeguridadSecre extends JDialog {
 	private JButton btnNewButton;
 	
 	
-	public PanelSeguridadSecre(final JTextField txtApellido, final JTextField txtCedula, final JTextField txtCorreoElect, final JTextField txtDireccion, final JTextField txtNombre, final JTextField txtTelefono, final JComboBox cbxGenero, final JComboBox cbxPais, final JDateChooser dcFechaNacimiento, final JRadioButton rbtDoctor, final JRadioButton rbtSecre, final JRadioButton rtbAdministrador) {
+	public PanelSeguridadSecre(final JTextField txtApellido, final JTextField txtCedula, final JTextField txtCorreoElect, final JTextField txtDireccion, final JTextField txtNombre, final JTextField txtTelefono, final JComboBox cbxGenero, final JComboBox cbxPais, final JDateChooser dcFechaNacimiento, final JCheckBox rbtDoctor, final JCheckBox rbtSecre, final JCheckBox rtbAdministrador) {
 		setModal(true);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(PanelSeguridadSecre.class.getResource("/Imagenes/LogoPeque.png")));
 		setResizable(false);
