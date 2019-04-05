@@ -58,23 +58,6 @@ public class VentanaEnfermedad_admin extends JDialog {
 				panel.add(tabbedPane, BorderLayout.CENTER);
 				{
 					JPanel panel_1 = new JPanel();
-					tabbedPane.addTab("Estadística", null, panel_1, null);
-					panel_1.setLayout(null);
-					{
-						JLabel label = new JLabel("");
-						label.addMouseListener(new MouseAdapter() {
-							@Override
-							public void mouseClicked(MouseEvent arg0) {
-								dispose();
-							}
-						});
-						label.setIcon(new ImageIcon(VentanaEnfermedad_admin.class.getResource("/Imagenes/cancelar2.png")));
-						label.setBounds(652, 361, 42, 41);
-						panel_1.add(label);
-					}
-				}
-				{
-					JPanel panel_1 = new JPanel();
 					tabbedPane.addTab("Enfermedades", null, panel_1, null);
 					panel_1.setLayout(null);
 					{
@@ -141,18 +124,6 @@ public class VentanaEnfermedad_admin extends JDialog {
 							btnModificar.setBounds(472, 156, 89, 23);
 							panel_2.add(btnModificar);
 						}
-					}
-					{
-						JLabel lblNewLabel = new JLabel("");
-						lblNewLabel.addMouseListener(new MouseAdapter() {
-							@Override
-							public void mouseClicked(MouseEvent arg0) {
-								dispose();
-							}
-						});
-						lblNewLabel.setIcon(new ImageIcon(VentanaEnfermedad_admin.class.getResource("/Imagenes/cancelar2.png")));
-						lblNewLabel.setBounds(652, 372, 42, 41);
-						panel_1.add(lblNewLabel);
 					}
 				}
 			}
