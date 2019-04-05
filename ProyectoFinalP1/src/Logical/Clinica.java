@@ -129,11 +129,11 @@ public class Clinica  implements Serializable{
 		return userAux;
 	}
 /////////////////////////////////////////////////
-	public void insertarDoctor (){
+/*	public void insertarDoctor (){
 		//Insertar Doctor
-		Doctor miDoctor = new Doctor ("1", "Bibi", "Romano", "0804", false, "8095679302","Dominicano", null, "bibi0804@", "doctor", "123", "Doctor");
+		//Doctor miDoctor = new Doctor ("1", "Bibi", "Romano", "0804", false, "8095679302","Dominicano", null, "bibi0804@", "doctor", "123", "Doctor");
 		misPersonas.add(miDoctor);
-	}
+	}*/
 ////////////////////////////////////////////////
 	public ArrayList<Doctor> doctores (){
 		//Arreglo de doctores

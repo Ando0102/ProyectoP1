@@ -9,14 +9,20 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Toolkit;
 import javax.swing.JTabbedPane;
+import javax.swing.JTable;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import javax.swing.text.MaskFormatter;
 import javax.swing.text.NumberFormatter;
 
+import Logical.Cita;
 import Logical.Clinica;
 import Logical.Doctor;
 import Logical.Persona;
 import Logical.Secretaria;
+import Logical.User;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -33,6 +39,9 @@ import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.JTextPane;
+import javax.swing.ListSelectionModel;
+import javax.swing.RowFilter;
+
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JPasswordField;
@@ -40,6 +49,8 @@ import javax.swing.JScrollPane;
 import javax.swing.UIManager;
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JRadioButton;
 import javax.swing.JFormattedTextField;
@@ -69,6 +80,12 @@ public class VentanaSecre_admin extends JDialog {
 	public JRadioButton rbtSecre;
 	private JPanel PanelinfoEmpleado;
 	public ButtonGroup botones1;
+	private DefaultTableModel model;
+	private Object[] rows;
+	private TableRowSorter<TableModel> sorter;
+	private JTable tablaEmpleados;
+	private int elegido;
+	private JScrollPane scrollPane;
 
 	/**
 	 * Launch the application.
@@ -127,7 +144,7 @@ public class VentanaSecre_admin extends JDialog {
 					{
 						JLabel lblNewLabel_1 = new JLabel("");
 						lblNewLabel_1.setIcon(new ImageIcon(VentanaSecre_admin.class.getResource("/Imagenes/plus_15650.png")));
-						lblNewLabel_1.setBounds(432, 142, 72, 67);
+						lblNewLabel_1.setBounds(412, 142, 72, 67);
 						panelAgregar.add(lblNewLabel_1);
 					}
 					{
@@ -228,8 +245,8 @@ public class VentanaSecre_admin extends JDialog {
 					}
 					{
 						JLabel lblNewLabel = new JLabel("");
-						lblNewLabel.setIcon(new ImageIcon(VentanaSecre_admin.class.getResource("/Imagenes/teacher_128_44171.png")));
-						lblNewLabel.setBounds(432, 64, 125, 128);
+						lblNewLabel.setIcon(new ImageIcon(VentanaSecre_admin.class.getResource("/Imagenes/users.png")));
+						lblNewLabel.setBounds(439, 60, 125, 128);
 						panelAgregar.add(lblNewLabel);
 					}
 					
@@ -261,10 +278,14 @@ public class VentanaSecre_admin extends JDialog {
 						btnNewButton.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
 								
-								PanelSeguridadSecre aux = new PanelSeguridadSecre(txtApellido, txtCedula, txtCorreoElect, txtDireccion, txtNombre, txtTelefono, cbxGenero, cbxPais, dcFechaNacimiento, rbtDoctor, rbtSecre, rtbAdministrador);
-								dispose();
-								aux.setVisible(true);
-								
+								if((dcFechaNacimiento.getDate()!=null)&&!txtNombre.getText().equalsIgnoreCase("") && !txtApellido.getText().equalsIgnoreCase("") && !txtCorreoElect.getText().equalsIgnoreCase("") && !txtDireccion.getText().equalsIgnoreCase("") && cbxGenero.getSelectedIndex() != 0 &&
+										!txtCedula.getText().equalsIgnoreCase("") && !txtTelefono.getText().equalsIgnoreCase("") && rbtDoctor.isSelected() && rbtSecre.isSelected() && rtbAdministrador.isSelected() && cbxPais.getSelectedIndex() != 0){
+										PanelSeguridadSecre aux = new PanelSeguridadSecre(txtApellido, txtCedula, txtCorreoElect, txtDireccion, txtNombre, txtTelefono, cbxGenero, cbxPais, dcFechaNacimiento, rbtDoctor, rbtSecre, rtbAdministrador);
+										dispose();
+										aux.setVisible(true);
+								}else {
+									JOptionPane.showMessageDialog(null, "Por favor, Completar Todos los Campos", "Advertencia", JOptionPane.WARNING_MESSAGE, null);
+								}
 							}
 						});
 						btnNewButton.setIcon(new ImageIcon(VentanaSecre_admin.class.getResource("/Imagenes/arrowPeque\u00F1a.png")));
@@ -381,9 +402,42 @@ public class VentanaSecre_admin extends JDialog {
 							PanelinfoEmpleado.add(rbtNewSecre);
 						}
 					}
+					
+					sorter = new TableRowSorter<TableModel>(model);
+					String[] titu = {"Cedula", "Nombre del Empleado", "Rol del Empleado" };
+					model = new DefaultTableModel();
+					model.setColumnIdentifiers(titu);
+					model.setColumnCount(titu.length);
+					tablaEmpleados = new JTable();
+					tablaEmpleados.setModel(model);
+				    tablaEmpleados.setBackground( new Color(240, 248, 255));
+					tablaEmpleados.setDefaultEditor(Object.class, null);
+					tablaEmpleados.setAutoCreateRowSorter(true);
+					tablaEmpleados.setColumnSelectionAllowed(true);
+					//table.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+					tablaEmpleados.setCellSelectionEnabled(true);
+					//tableDoctores.setCellEditor(null);
+					tablaEmpleados.setVisible(true);
+					tablaEmpleados.setCellSelectionEnabled(true);
+					tablaEmpleados.setRowSorter(sorter);
+					tablaEmpleados.addMouseListener(new MouseAdapter() {
+
+						@Override
+						public void mouseClicked(MouseEvent arg0) {
+								if(tablaEmpleados.getSelectedRow()>=0){
+									elegido = tablaEmpleados.getSelectedRow();
+								}
+						}
+					});
+					tablaEmpleados.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+					
+					loadtable();
+
 					{
-						JScrollPane scrollPane = new JScrollPane();
+						scrollPane = new JScrollPane();
 						scrollPane.setBounds(10, 66, 576, 82);
+					
+						scrollPane.setViewportView(tablaEmpleados);
 						panel_1.add(scrollPane);
 					}
 					
@@ -393,8 +447,19 @@ public class VentanaSecre_admin extends JDialog {
 					
 					txtBusqueda = new JTextField();
 					txtBusqueda.setBounds(10, 35, 145, 20);
-					panel_1.add(txtBusqueda);
 					txtBusqueda.setColumns(10);
+					txtBusqueda.addKeyListener(new KeyAdapter() {
+						@Override
+						public void keyReleased(KeyEvent e) {
+							if (!txtBusqueda.isEnabled()) {
+								return;
+							}else {
+							tableFilter(txtBusqueda.getText()); }
+													
+							}
+						
+					});
+					panel_1.add(txtBusqueda);
 					
 					JButton btnNewButton_3 = new JButton("Buscar");
 					btnNewButton_3.setBounds(173, 34, 89, 23);
@@ -407,6 +472,11 @@ public class VentanaSecre_admin extends JDialog {
 					}
 					{
 						JButton btnNewButton_1 = new JButton("Cancelar\r\n");
+						btnNewButton_1.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent arg0) {
+								dispose();
+							}
+						});
 						btnNewButton_1.setBounds(456, 442, 130, 36);
 						panel_1.add(btnNewButton_1);
 						btnNewButton_1.setIcon(new ImageIcon(VentanaSecre_admin.class.getResource("/Imagenes/cancelar2.png")));
@@ -415,5 +485,44 @@ public class VentanaSecre_admin extends JDialog {
 			}
 		}
 	}
+	
+	/////////////METODOS PARA LA TABLA////////////////////////////////////////
+	
+	private void loadtable() {
+		//Cargar la tabla
+		model.setRowCount(0);
+		rows = new Object[model.getColumnCount()];
+		for (Persona aux : Clinica.getInstance().getMisPersonas()) {
+			if(aux instanceof User) {
+			addRow(aux);
+			}
+		}
+		
+	}
+
+	private void addRow(Persona aux) {
+		User empleado = null;
+		empleado = (User) aux;
+		//Agregar fila
+		rows[0] = empleado.getCedula();
+		rows[1] = empleado.getNombre()+" "+ empleado.getApellidos();
+		rows[2] = empleado.getRol();
+		
+		model.addRow(rows);
+	}
+	
+	private void tableFilter(String text) {
+		//Filtro de la tabla
+	    RowFilter<TableModel, Object> filter = null;
+	    try {
+	    	filter = RowFilter.regexFilter("(?i)"+ text, 1);
+	    } catch (java.util.regex.PatternSyntaxException e) {
+	        return;
+	    }
+	    sorter.setRowFilter(filter);
+	}
+	
+	
+	
 	}
 

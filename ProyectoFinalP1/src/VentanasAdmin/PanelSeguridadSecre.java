@@ -192,7 +192,7 @@ public class PanelSeguridadSecre extends JDialog {
 						}
 						
 								if(rbtDoctor.isSelected()) {	
-									Persona aux = new Doctor("CD - "+Integer.toString(Clinica.getCantidadDoctor()), nombre, apellido, cedula, sexo, telefono, nacionalidad, fecha_de_nacimiento, correo, usuario, contraseña, rol);
+									Persona aux = new Doctor(nombre, apellido, cedula, sexo, telefono, nacionalidad, fecha_de_nacimiento, correo, usuario, contraseña, rol);
 									Clinica.getInstance().insertarPersona(aux);
 									Clinica.setCantidadDoctor(Clinica.getCantidadDoctor() + 1);
 									JOptionPane.showMessageDialog(null, "Nueva Doctor Agregado", "Información", JOptionPane.INFORMATION_MESSAGE, null);
@@ -202,7 +202,7 @@ public class PanelSeguridadSecre extends JDialog {
 									
 								}else if(rbtSecre.isSelected()) {
 									
-									Persona aux = new Secretaria("CS - "+Integer.toString(Clinica.getCantidadDoctor()), nombre, apellido, cedula, sexo, telefono, nacionalidad, fecha_de_nacimiento, correo, usuario, contraseña, rol);
+									Persona aux = new Secretaria(nombre, apellido, cedula, sexo, telefono, nacionalidad, fecha_de_nacimiento, correo, usuario, contraseña, rol);
 									Clinica.getInstance().insertarPersona(aux);
 									Clinica.setCantidadSecretaria(Clinica.getCantidadSecretaria() + 1);
 									JOptionPane.showMessageDialog(null, "Nueva Secretaria Agregada", "Información", JOptionPane.INFORMATION_MESSAGE, null);
@@ -212,7 +212,7 @@ public class PanelSeguridadSecre extends JDialog {
 									
 								}else {
 									
-									Persona aux = new User("C-ADMIN", nombre, apellido, cedula, sexo, telefono, nacionalidad, fecha_de_nacimiento, correo, usuario, contraseña, rol);
+									Persona aux = new User(nombre, apellido, cedula, sexo, telefono, nacionalidad, fecha_de_nacimiento, correo, usuario, contraseña, rol);
 									Clinica.getInstance().insertarPersona(aux);
 									Clinica.setCantidadDoctor(Clinica.getCantidadDoctor() + 1);
 									JOptionPane.showMessageDialog(null, "Nuevo Administrador Agregado", "Información", JOptionPane.INFORMATION_MESSAGE, null);

@@ -95,7 +95,7 @@ public class IniciarSesion extends JFrame {
 						empresaWrite = new ObjectOutputStream(empresa2);
 						Calendar fecha_nacimiento = Calendar.getInstance();
 						fecha_nacimiento.setTime(fechaActual());
-						User aux = new User("Admin-1", "Admi", "Admi", "Admi",false, "Admi", "Admi", fecha_nacimiento, "Admi", "Admin", "123", "Admi");
+						User aux = new User("Admi", "Admi", "Admi",false, "Admi", "Admi", fecha_nacimiento, "Admi", "Admin", "123", "Admi");
 			
 								////User("Administrador", "Admin", "Admin");
 						Clinica.getInstance().insertarPersona(aux);
