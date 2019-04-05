@@ -11,6 +11,7 @@ import Logical.Clinica;
 import VentanasAdmin.VentanaCita_admin;
 import VentanasAdmin.VentanaDoctor_admin;
 import VentanasAdmin.VentanaEnfermedad_admin;
+import VentanasAdmin.VentanaEstadisticas;
 import VentanasAdmin.VentanaPacientes_admin;
 import VentanasAdmin.VentanaSecre_admin;
 import VentanasAdmin.VentanaVacuna_admin;
@@ -200,38 +201,38 @@ public class Administrator extends JFrame implements Runnable {
 		panel.add(panel_2);
 		panel_2.setLayout(null);
 		
-		JButton panelDoctor = new JButton();
-		panelDoctor.addActionListener(new ActionListener() {
+		JButton botonEmpleados = new JButton();
+		botonEmpleados.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				VentanaDoctor_admin aux = new VentanaDoctor_admin();
+				VentanaSecre_admin aux = new VentanaSecre_admin();
 				aux.setVisible(true);
 			}
 		});
 		
 		
-		panelDoctor.setBackground(new Color(240, 248, 255));
-		panelDoctor.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		panelDoctor.setBounds(105, 100, 230, 140);
-		panel_2.add(panelDoctor);
-		panelDoctor.setLayout(null);
+		botonEmpleados.setBackground(new Color(240, 248, 255));
+		botonEmpleados.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		botonEmpleados.setBounds(105, 100, 230, 140);
+		panel_2.add(botonEmpleados);
+		botonEmpleados.setLayout(null);
 		
-		JLabel lblDoctor = new JLabel("");
-		lblDoctor.addMouseListener(new MouseAdapter() {
+		JLabel lblEmpleados = new JLabel("");
+		lblEmpleados.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				VentanaDoctor_admin aux = new VentanaDoctor_admin();
 				aux.setVisible(true);
 			}
 		});
-		lblDoctor.setBounds(72, 11, 86, 94);
-		lblDoctor.setIcon(new ImageIcon(Administrator.class.getResource("/Imagenes/doctor.png")));
-		panelDoctor.add(lblDoctor);
+		lblEmpleados.setBounds(72, 11, 86, 94);
+		lblEmpleados.setIcon(new ImageIcon(Administrator.class.getResource("/Imagenes/doctor.png")));
+		botonEmpleados.add(lblEmpleados);
 		
-		JLabel lbltextdoctor = new JLabel("DOCTOR");
-		lbltextdoctor.setForeground(Color.BLACK);
-		lbltextdoctor.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lbltextdoctor.setBounds(93, 107, 65, 22);
-		panelDoctor.add(lbltextdoctor);
+		JLabel llbTxtEmpleados = new JLabel("EMPLEADOS");
+		llbTxtEmpleados.setForeground(Color.BLACK);
+		llbTxtEmpleados.setFont(new Font("Tahoma", Font.BOLD, 11));
+		llbTxtEmpleados.setBounds(79, 107, 80, 22);
+		botonEmpleados.add(llbTxtEmpleados);
 		
 		JButton panelPaciente = new JButton();
 		panelPaciente.addActionListener(new ActionListener() {
@@ -258,42 +259,42 @@ public class Administrator extends JFrame implements Runnable {
 		lblPaciente.setBounds(77, 11, 104, 94);
 		panelPaciente.add(lblPaciente);
 		
-		JLabel lbltextpaciente = new JLabel("PACIENTE");
+		JLabel lbltextpaciente = new JLabel("PACIENTES");
 		lbltextpaciente.setForeground(Color.BLACK);
 		lbltextpaciente.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lbltextpaciente.setBounds(90, 100, 91, 29);
+		lbltextpaciente.setBounds(89, 105, 91, 29);
 		panelPaciente.add(lbltextpaciente);
 		
-		JButton panelSecretaria = new JButton();
-		panelSecretaria.addActionListener(new ActionListener() {
+		JButton botonEstadistica = new JButton();
+		botonEstadistica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VentanaSecre_admin aux = new VentanaSecre_admin();
+				VentanaEstadisticas aux = new VentanaEstadisticas();
 				aux.setVisible(true);
 			}
 		});
-		panelSecretaria.setBackground(new Color(240, 248, 255));
-		panelSecretaria.setLayout(null);
-		panelSecretaria.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		panelSecretaria.setBounds(105, 342, 230, 140);
-		panel_2.add(panelSecretaria);
+		botonEstadistica.setBackground(new Color(240, 248, 255));
+		botonEstadistica.setLayout(null);
+		botonEstadistica.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		botonEstadistica.setBounds(105, 342, 230, 140);
+		panel_2.add(botonEstadistica);
 		
-		JLabel lblSecretaria = new JLabel("");
-		lblSecretaria.addMouseListener(new MouseAdapter() {
+		JLabel lblEstadistica = new JLabel("");
+		lblEstadistica.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				VentanaSecre_admin aux = new VentanaSecre_admin();
+				VentanaEstadisticas aux = new VentanaEstadisticas();
 				aux.setVisible(true);
 			}
 		});
-		lblSecretaria.setIcon(new ImageIcon(Administrator.class.getResource("/Imagenes/secretaria.png")));
-		lblSecretaria.setBounds(72, 11, 86, 94);
-		panelSecretaria.add(lblSecretaria);
+		lblEstadistica.setIcon(new ImageIcon(Administrator.class.getResource("/Imagenes/grafica1.png")));
+		lblEstadistica.setBounds(62, 11, 100, 94);
+		botonEstadistica.add(lblEstadistica);
 		
-		JLabel lbltextsecretaria = new JLabel("SECRETARIA");
-		lbltextsecretaria.setForeground(new Color(0, 0, 0));
-		lbltextsecretaria.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lbltextsecretaria.setBounds(83, 107, 91, 22);
-		panelSecretaria.add(lbltextsecretaria);
+		JLabel lbltextEstadistica = new JLabel("ESTADÍSTICAS");
+		lbltextEstadistica.setForeground(new Color(0, 0, 0));
+		lbltextEstadistica.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lbltextEstadistica.setBounds(70, 107, 93, 22);
+		botonEstadistica.add(lbltextEstadistica);
 		
 		JButton panelEnfermedad = new JButton();
 		panelEnfermedad.addActionListener(new ActionListener() {
@@ -320,10 +321,10 @@ public class Administrator extends JFrame implements Runnable {
 		lblEnfermedad.setBounds(67, 11, 103, 94);
 		panelEnfermedad.add(lblEnfermedad);
 		
-		JLabel lbltextenfermedad = new JLabel("ENFERMEDAD");
+		JLabel lbltextenfermedad = new JLabel("ENFERMEDADES");
 		lbltextenfermedad.setForeground(new Color(0, 0, 0));
 		lbltextenfermedad.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lbltextenfermedad.setBounds(81, 101, 89, 28);
+		lbltextenfermedad.setBounds(75, 101, 89, 28);
 		panelEnfermedad.add(lbltextenfermedad);
 		
 		JButton panelVacuna = new JButton();
@@ -349,13 +350,14 @@ public class Administrator extends JFrame implements Runnable {
 		panelCitas.setLayout(null);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(Administrator.class.getResource("/Imagenes/grafica1.png")));
+		lblNewLabel_1.setIcon(new ImageIcon(Administrator.class.getResource("/Imagenes/cita5.png")));
 		lblNewLabel_1.setBounds(65, 11, 97, 88);
 		panelCitas.add(lblNewLabel_1);
 		
-		JLabel lblEstadstica = new JLabel("ESTAD\u00CDSTICA");
+		JLabel lblEstadstica = new JLabel("CITAS");
+		lblEstadstica.setForeground(new Color(0, 0, 0));
 		lblEstadstica.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblEstadstica.setBounds(75, 110, 109, 19);
+		lblEstadstica.setBounds(93, 110, 109, 19);
 		panelCitas.add(lblEstadstica);
 		
 		panelVacuna.setBackground(new Color(240, 248, 255));
@@ -376,10 +378,10 @@ public class Administrator extends JFrame implements Runnable {
 		lblVacuna.setBounds(69, 11, 114, 94);
 		panelVacuna.add(lblVacuna);
 		
-		JLabel lbltextvacuna = new JLabel("VACUNA");
+		JLabel lbltextvacuna = new JLabel("VACUNAS");
 		lbltextvacuna.setForeground(new Color(0, 0, 0));
 		lbltextvacuna.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lbltextvacuna.setBounds(100, 107, 58, 22);
+		lbltextvacuna.setBounds(93, 107, 58, 22);
 		panelVacuna.add(lbltextvacuna);
 	}
 	
@@ -409,7 +411,7 @@ public class Administrator extends JFrame implements Runnable {
         
         //Fecha de Forma Manual
         dia = calendario.get(Calendar.DAY_OF_MONTH);
-        mes = 3;  //calendario.get(Calendar.MONTH);
+        mes = 4;  //calendario.get(Calendar.MONTH);
         ano = calendario.get(Calendar.YEAR);
         
         
