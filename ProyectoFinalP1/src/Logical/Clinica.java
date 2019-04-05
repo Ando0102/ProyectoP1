@@ -171,12 +171,13 @@ public class Clinica  implements Serializable{
 		//Buscar doctor por nombre
 		ArrayList <Doctor> misDoctores = new ArrayList<Doctor>();
 		misDoctores = doctores();
-		
+		String nombreCompleto = "";
 		boolean find = false;
 		Doctor miDoctorcito = null;
 		while(find != true){
 			for(Doctor miDoctor : misDoctores){
-				if(miDoctor.getNombre().equalsIgnoreCase(nombre)){
+				nombreCompleto = miDoctor.getNombre()+" "+miDoctor.getApellidos();
+				if(nombreCompleto.equalsIgnoreCase(nombre)){
 					miDoctorcito = miDoctor;
 					find = true;
 				}

@@ -9,7 +9,6 @@ import javax.swing.border.EmptyBorder;
 
 import Logical.Clinica;
 import VentanasAdmin.VentanaCita_admin;
-import VentanasAdmin.VentanaDoctor_admin;
 import VentanasAdmin.VentanaEnfermedad_admin;
 import VentanasAdmin.VentanaEstadisticas;
 import VentanasAdmin.VentanaPacientes_admin;
@@ -220,8 +219,8 @@ public class Administrator extends JFrame implements Runnable {
 		lblEmpleados.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				VentanaDoctor_admin aux = new VentanaDoctor_admin();
-				aux.setVisible(true);
+				
+			
 			}
 		});
 		lblEmpleados.setBounds(72, 11, 86, 94);
