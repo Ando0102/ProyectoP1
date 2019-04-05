@@ -43,6 +43,7 @@ import Logical.Cita;
 import Logical.Clinica;
 import Logical.Doctor;
 import Logical.Persona;
+import Logical.Secretaria;
 import javafx.scene.control.ComboBox;
 
 
@@ -86,9 +87,11 @@ public class NuevaCita extends JDialog {
 	private JSpinner spnHoraCita;
 	private JScrollPane scrollPane;
 	private final String [] headers = {"Lista de Doctores"};
+	private Secretaria secre = null;
 	
 	/**
 	 * Launch the application.
+	 * @param secretaria 
 	 */
 	/*public static void main(String[] args) {
 		try {
@@ -103,7 +106,8 @@ public class NuevaCita extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public NuevaCita() {
+	public NuevaCita(Secretaria secretaria) {
+		this.secre = secretaria;
 		setTitle("Nueva Cita");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(NuevaCita.class.getResource("/Imagenes/LogoPeque.png")));
 		setBounds(100, 100, 839, 639);
@@ -501,6 +505,7 @@ MaskFormatter formatoIDPersona2 = null;
 				btnListo.setBackground(UIManager.getColor("Button.highlight"));
 				btnListo.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						
 				Cita misCitas = null;
 				Calendar fecha = Calendar.getInstance();
 				fechaNacimiento.getCalendar();
@@ -513,8 +518,7 @@ MaskFormatter formatoIDPersona2 = null;
 							
 						}
 						
-						misCitas = new Cita (miDoctor,miPersona,FechaCita.getCalendar(), (Integer)spnHoraCita.getValue());
-						miDoctor.getMisCitas().add(misCitas);
+						misCitas = new Cita (miDoctor,miPersona,FechaCita.getCalendar(), (Integer)spnHoraCita.getValue(),"Pendiente",secre);
 						Clinica.getInstance().insertarCitas(misCitas);
 						JOptionPane.showMessageDialog(null, "Cita creada exitosamente!","Aviso!", JOptionPane.INFORMATION_MESSAGE);
 						repaint(); } else {

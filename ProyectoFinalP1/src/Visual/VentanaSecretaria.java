@@ -25,7 +25,7 @@ import javax.swing.table.TableRowSorter;
 
 import Logical.Cita;
 import Logical.Clinica;
-import ventanasSecretaria.ModificarCita;
+import Logical.Secretaria;
 import ventanasSecretaria.NuevaCita;
 
 import java.awt.event.ActionListener;
@@ -39,6 +39,12 @@ import javax.swing.event.MenuKeyListener;
 import javax.swing.event.MenuKeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.awt.SystemColor;
 import javax.swing.UIManager;
 import javax.swing.JButton;
@@ -59,6 +65,7 @@ public class VentanaSecretaria extends JFrame {
 	private final String [] headers = {"Cedula", "Nombre Completo","Doctor","Fecha", "Hora","Estado"};
 	private JTextField txtFiltradoCitas;
 	private JComboBox cmbFiltroBusqueda;
+	private Secretaria secre = null;
 	/**
 	 * Launch the application.
 	 */
@@ -79,7 +86,31 @@ public class VentanaSecretaria extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VentanaSecretaria() {
+	public VentanaSecretaria(Secretaria secretaria) {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				FileOutputStream empresa2;
+				ObjectOutputStream empresaWrite;
+				try {
+					empresa2 = new  FileOutputStream("ADAClinica.dat");
+					empresaWrite = new ObjectOutputStream(empresa2);
+					empresaWrite.writeObject(Clinica.getInstance());
+				empresa2.close();
+				empresaWrite.close();
+				} catch (FileNotFoundException e1) {
+					System.out.println("Error: No se ha podido guardar.");
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
+		
+		this.secre = secretaria; 
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\bibir\\git\\ProyectoP1\\ProyectoFinalP1\\src\\Imagenes\\LogoPeque.png"));
 		setResizable(false);
 		setTitle("Secretario/a");
@@ -118,7 +149,7 @@ public class VentanaSecretaria extends JFrame {
 		JButton btnNuevaCita = new JButton("Nueva Cita");
 		btnNuevaCita.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				NuevaCita citas = new NuevaCita();
+				NuevaCita citas = new NuevaCita(secre);
 				citas.setModal(true);
 				citas.setLocationRelativeTo(null);
 				citas.setVisible(true);
@@ -135,10 +166,7 @@ public class VentanaSecretaria extends JFrame {
 		JButton btnModificarCita = new JButton("Modificar Cita");
 		btnModificarCita.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ModificarCita modi = new ModificarCita();
-				modi.setModal(true);
-				modi.setLocationRelativeTo(null);
-				modi.setVisible(true);
+				
 			}
 		});
 		btnModificarCita.setIcon(new ImageIcon(VentanaSecretaria.class.getResource("/Imagenes/editnote_pencil_edi_6175 (1).png")));
