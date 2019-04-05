@@ -14,6 +14,7 @@ import Logical.Clinica;
 import Logical.Doctor;
 import Logical.Persona;
 import Logical.Secretaria;
+import Logical.User;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -209,16 +210,16 @@ public class PanelSeguridadSecre extends JDialog {
 									VentanaSecre_admin aux2 = new VentanaSecre_admin();
 									aux2.dispose();
 									
-								}/*else {
+								}else {
 									
-									Persona aux = new Persona("CD - "+Integer.toString(Clinica.getCantidadDoctor()), nombre, apellido, cedula, sexo, telefono, nacionalidad, fecha_de_nacimiento, correo, usuario, contraseña, rol);
+									Persona aux = new User("C-ADMIN", nombre, apellido, cedula, sexo, telefono, nacionalidad, fecha_de_nacimiento, correo, usuario, contraseña, rol);
 									Clinica.getInstance().insertarPersona(aux);
 									Clinica.setCantidadDoctor(Clinica.getCantidadDoctor() + 1);
-									JOptionPane.showMessageDialog(null, "Nueva Doctor Agregado", "Información", JOptionPane.INFORMATION_MESSAGE, null);
+									JOptionPane.showMessageDialog(null, "Nuevo Administrador Agregado", "Información", JOptionPane.INFORMATION_MESSAGE, null);
 									setVisible(false);
 									VentanaSecre_admin aux2 = new VentanaSecre_admin();
 									aux2.dispose();
-								}*/
+								}
 								
 					}else {
 						 JOptionPane.showMessageDialog(null, "Las Contraseñas no Coinciden", "Advertencia", JOptionPane.WARNING_MESSAGE, null);
