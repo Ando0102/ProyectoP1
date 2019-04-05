@@ -45,6 +45,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.text.SimpleDateFormat;
 import java.awt.SystemColor;
 import javax.swing.UIManager;
 import javax.swing.JButton;
@@ -222,6 +223,11 @@ public class VentanaSecretaria extends JFrame {
 		loadtable();
 		scrollPane.setViewportView(tableCitas);
 		
+		cmbFiltroBusqueda = new JComboBox();
+		cmbFiltroBusqueda.setModel(new DefaultComboBoxModel(new String[] {"Doctor", "Cedula de Persona"}));
+		cmbFiltroBusqueda.setBounds(10, 30, 236, 20);
+		panelCitas.add(cmbFiltroBusqueda);
+		
 		JLabel lblBusquedaDeCitas = new JLabel("Busqueda de Citas:");
 		lblBusquedaDeCitas.setBounds(10, 11, 178, 14);
 		panelCitas.add(lblBusquedaDeCitas);
@@ -266,10 +272,7 @@ public class VentanaSecretaria extends JFrame {
 		btnFiltro.setBounds(510, 29, 32, 32);
 		panelCitas.add(btnFiltro);
 		
-		cmbFiltroBusqueda = new JComboBox();
-		cmbFiltroBusqueda.setModel(new DefaultComboBoxModel(new String[] {"Doctor", "Cedula de Persona"}));
-		cmbFiltroBusqueda.setBounds(10, 30, 236, 20);
-		panelCitas.add(cmbFiltroBusqueda);
+		
 		
 	}
 	private void loadtable() {
@@ -283,12 +286,14 @@ public class VentanaSecretaria extends JFrame {
 
 	private void addRow(Cita aux) {
 		//Agregar fila
+		SimpleDateFormat dateformat1 = new SimpleDateFormat("dd-MM-yyyy");
+		//dateformat1.format(aux.getFecha().getTime());
 		rows[0] = aux.getMiPersona().getCedula();
 		rows[1] = aux.getMiPersona().getNombre()+" "+ aux.getMiPersona().getApellidos();
 		rows[2] = aux.getMiDoctor().getNombre()+" "+aux.getMiDoctor().getApellidos();
-		rows[3] = aux.getFecha();
+		rows[3] = dateformat1.format(aux.getFecha().getTime());
 		rows[4] = aux.getHora();
-		
+		rows[5] = aux.getEstado();
 		model.addRow(rows);
 	}
 	
@@ -296,7 +301,7 @@ public class VentanaSecretaria extends JFrame {
 		//Filtro de la tabla
 	    RowFilter<TableModel, Object> filter = null;
 	    try {
-	    	filter = RowFilter.regexFilter("(?i)"+text, tableCitas.getColumnCount());
+	    	filter = RowFilter.regexFilter("(?i)"+text, index);
 	    } catch (java.util.regex.PatternSyntaxException e) {
 	        return;
 	    }

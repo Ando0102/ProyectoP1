@@ -520,6 +520,7 @@ MaskFormatter formatoIDPersona2 = null;
 						
 						misCitas = new Cita (miDoctor,miPersona,FechaCita.getCalendar(), (Integer)spnHoraCita.getValue(),"Pendiente",secre);
 						Clinica.getInstance().insertarCitas(misCitas);
+						Clinica.getInstance().incertarCitaADoctor(miDoctor, misCitas);
 						JOptionPane.showMessageDialog(null, "Cita creada exitosamente!","Aviso!", JOptionPane.INFORMATION_MESSAGE);
 						repaint(); } else {
 							JOptionPane.showMessageDialog(null, "Cita editada exitosamente!","Aviso!", JOptionPane.INFORMATION_MESSAGE);
