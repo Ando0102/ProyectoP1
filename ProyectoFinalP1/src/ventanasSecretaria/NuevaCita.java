@@ -44,6 +44,7 @@ import Logical.Clinica;
 import Logical.Doctor;
 import Logical.Persona;
 import Logical.Secretaria;
+import Visual.VentanaSecretaria;
 import javafx.scene.control.ComboBox;
 
 
@@ -538,9 +539,12 @@ MaskFormatter formatoIDPersona2 = null;
 				JButton btnCancelar = new JButton("Cancelar");
 				btnCancelar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						//VentanaSecretaria secre1= new VentanaSecretaria(secre);
 						int resp = JOptionPane.showOptionDialog(null, "Estas seguro que deseas salir?", "Advertencia!", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, new Object[] { "Si", "No" }, null); 
 						if(resp == 0){
+				        
 						dispose();
+						
 						} else{
 							repaint();
 						}

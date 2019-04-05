@@ -155,7 +155,7 @@ public class VentanaSecretaria extends JFrame {
 				citas.setLocationRelativeTo(null);
 				citas.setVisible(true);
 				citas.visualizarCampos(true);
-				
+				repaint();
 				//citas.cargarLista();
 				
 			}
@@ -275,7 +275,7 @@ public class VentanaSecretaria extends JFrame {
 		
 		
 	}
-	private void loadtable() {
+	public void loadtable() {
 		//Cargar la tabla
 		model.setRowCount(0);
 		rows = new Object[model.getColumnCount()];
