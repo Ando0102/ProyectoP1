@@ -8,12 +8,13 @@ public class Cita {
 	private Doctor miDoctor;
 	private Persona miPersona;
 	private Calendar fecha;
-	
-	public Cita(Doctor miDoctor, Persona miPersona, Calendar fecha) {
+	private int hora;
+	public Cita(Doctor miDoctor, Persona miPersona, Calendar fecha, int hora) {
 		super();
 		this.miDoctor = miDoctor;
 		this.miPersona = miPersona;
 		this.fecha = fecha;
+		this.hora = hora;
 	}
 
 	public Doctor getMiDoctor() {
@@ -38,6 +39,14 @@ public class Cita {
 
 	public void setFecha(Calendar fecha) {
 		this.fecha = fecha;
+	}
+
+	public int getHora() {
+		return hora;
+	}
+
+	public void setHora(int hora) {
+		this.hora = hora;
 	}
 	
 	
