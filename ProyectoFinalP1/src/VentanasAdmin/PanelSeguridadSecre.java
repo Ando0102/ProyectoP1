@@ -17,11 +17,13 @@ import Logical.Secretaria;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JTextPane;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -40,11 +42,11 @@ public class PanelSeguridadSecre extends JDialog {
 	private JButton btnNewButton;
 	
 	
-	public PanelSeguridadSecre(final JTextField txtApellido, final JTextField txtCedula, final JTextField txtCorreoElect, final JTextField txtDireccion, final JTextField txtNombre, final JTextField txtTelefono, final JComboBox cbxGenero, final JComboBox cbxPais, final JDateChooser dcFechaNacimiento) {
+	public PanelSeguridadSecre(final JTextField txtApellido, final JTextField txtCedula, final JTextField txtCorreoElect, final JTextField txtDireccion, final JTextField txtNombre, final JTextField txtTelefono, final JComboBox cbxGenero, final JComboBox cbxPais, final JDateChooser dcFechaNacimiento, final JRadioButton rbtDoctor, final JRadioButton rbtSecre, final JRadioButton rtbAdministrador) {
 		setModal(true);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(PanelSeguridadSecre.class.getResource("/Imagenes/LogoPeque.png")));
 		setResizable(false);
-		setTitle("Informaci\u00F3n de Secretaria");
+		setTitle("Informaci\u00F3n del Nuevo Empleado");
 		setBackground(new Color(230, 230, 250));
 		setBounds(100, 100, 617, 541);
 		setLocationRelativeTo(null);
@@ -53,13 +55,14 @@ public class PanelSeguridadSecre extends JDialog {
 		
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informaci\u00F3n de la Nueva Secretaria", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel.setBounds(10, 11, 581, 480);
+		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informaci\u00F3n Privada del Nuevo Empleado", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel.setBounds(10, 11, 591, 490);
 		panel.setBackground(new Color(230, 230, 250));
 		getContentPane().add(panel);
 		panel.setLayout(null);
 	
 		JTextPane textPane = new JTextPane();
+		textPane.setEditable(false);
 		textPane.setBounds(160, 27, 249, 196);
 		textPane.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		textPane.setBackground(new Color(230, 230, 250));
@@ -70,7 +73,7 @@ public class PanelSeguridadSecre extends JDialog {
 
 		try
 		{
-		    doc.insertString(0, "Estimada Secretaria. Por este medio se le informa que la siguiente informaci\u00F3n que usted mismo sumistrar\u00E1 a continuaci\u00F3n, es de total confidencialidad para su persona. Es su deber mantener en secreto y no divulgar u compartir con nadie est\u00E1 informaci\u00F3n, sin importar que a las personas las cuales usted desea compartirla sean colegas o superiores de usted.  Absolutamente nadie debe de saber est\u00E1 informaci\u00F3n a demas de usted. Es su deber como profesional y miembro de est\u00E1 instituci\u00F3n cumplir esta normal. " , null );
+		    doc.insertString(0, "Por este medio se le informa que la siguiente informaci\u00F3n que usted mismo sumistrar\u00E1 a continuaci\u00F3n, es de total confidencialidad para su persona. Es su deber mantener en secreto y no divulgar u compartir con nadie est\u00E1 informaci\u00F3n, sin importar que a las personas las cuales usted desea compartirla sean colegas o superiores de usted.  Absolutamente nadie debe de saber est\u00E1 informaci\u00F3n a demas de usted. Es su deber como profesional y miembro de est\u00E1 instituci\u00F3n cumplir esta normal. " , null );
 		    doc.insertString(doc.getLength(), "\n", null );
 		}
 		catch(Exception e) { System.out.println(e); }
@@ -78,7 +81,7 @@ public class PanelSeguridadSecre extends JDialog {
 		panel.add(textPane);
 		
 		JButton btnNewButton_1 = new JButton("Atras");
-		btnNewButton_1.setBounds(333, 426, 114, 43);
+		btnNewButton_1.setBounds(343, 436, 114, 43);
 		panel.add(btnNewButton_1);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -101,7 +104,7 @@ public class PanelSeguridadSecre extends JDialog {
 		btnNewButton_1.setIcon(new ImageIcon(PanelSeguridadSecre.class.getResource("/Imagenes/atraspeque\u00F1a.png")));
 		
 		btnNewButton = new JButton("Listo");
-		btnNewButton.setBounds(457, 426, 114, 43);
+		btnNewButton.setBounds(467, 436, 114, 43);
 		panel.add(btnNewButton);
 		
 		btnNewButton.setIcon(new ImageIcon(PanelSeguridadSecre.class.getResource("/Imagenes/acceptar.png")));
@@ -149,7 +152,7 @@ public class PanelSeguridadSecre extends JDialog {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				String nombre, cedula, apellido, correo, direccion, telefono, nacionalidad, usuario, contraseña = null;
+				String nombre, cedula, apellido, correo, direccion, telefono, nacionalidad, usuario, contraseña, rol = null;
 				boolean sexo = false;
 				Calendar fecha_de_nacimiento  = Calendar.getInstance();
 
@@ -167,7 +170,16 @@ public class PanelSeguridadSecre extends JDialog {
 						usuario = txtUsuario.getText();
 						contraseña = passwordField_1.getText();
 						nacionalidad = cbxPais.getSelectedItem().toString();
-						//aqui esta el asuntofecha_de_nacimiento.set(Integer.parseInt(txtanos.getText()), cbxMeses.getSelectedIndex(), Integer.parseInt(spinDias.getValue().toString()));
+						
+						
+						if(rbtDoctor.isSelected()) {
+							rol = rbtDoctor.getText();
+						}else if(rbtSecre.isSelected()) {
+							rol = rbtSecre.getText();
+						}else {
+							rol = rtbAdministrador.getText();
+						}
+						
 					
 						
 						//pasanddo la fecha seleccionada
@@ -178,15 +190,36 @@ public class PanelSeguridadSecre extends JDialog {
 							sexo = false;
 						}
 						
-
-						Persona aux = new Secretaria("CS - "+Integer.toString(Clinica.getCantidadSecretaria()), nombre, apellido, cedula, sexo, telefono, nacionalidad, fecha_de_nacimiento, correo, usuario, contraseña, "Secretaria");
-						Clinica.getInstance().insertarPersona(aux);
-						Clinica.setCantidadSecretaria(Clinica.getCantidadSecretaria() + 1);
-						JOptionPane.showMessageDialog(null, "Nueva Secretaria Agregada", "Información", JOptionPane.INFORMATION_MESSAGE, null);
-						setVisible(false);
-						VentanaSecre_admin aux2 = new VentanaSecre_admin();
-						aux2.dispose();
-						
+								if(rbtDoctor.isSelected()) {	
+									Persona aux = new Doctor("CD - "+Integer.toString(Clinica.getCantidadDoctor()), nombre, apellido, cedula, sexo, telefono, nacionalidad, fecha_de_nacimiento, correo, usuario, contraseña, rol);
+									Clinica.getInstance().insertarPersona(aux);
+									Clinica.setCantidadDoctor(Clinica.getCantidadDoctor() + 1);
+									JOptionPane.showMessageDialog(null, "Nueva Doctor Agregado", "Información", JOptionPane.INFORMATION_MESSAGE, null);
+									setVisible(false);
+									VentanaSecre_admin aux2 = new VentanaSecre_admin();
+									aux2.dispose();
+									
+								}else if(rbtSecre.isSelected()) {
+									
+									Persona aux = new Secretaria("CS - "+Integer.toString(Clinica.getCantidadDoctor()), nombre, apellido, cedula, sexo, telefono, nacionalidad, fecha_de_nacimiento, correo, usuario, contraseña, rol);
+									Clinica.getInstance().insertarPersona(aux);
+									Clinica.setCantidadSecretaria(Clinica.getCantidadSecretaria() + 1);
+									JOptionPane.showMessageDialog(null, "Nueva Secretaria Agregada", "Información", JOptionPane.INFORMATION_MESSAGE, null);
+									setVisible(false);
+									VentanaSecre_admin aux2 = new VentanaSecre_admin();
+									aux2.dispose();
+									
+								}/*else {
+									
+									Persona aux = new Persona("CD - "+Integer.toString(Clinica.getCantidadDoctor()), nombre, apellido, cedula, sexo, telefono, nacionalidad, fecha_de_nacimiento, correo, usuario, contraseña, rol);
+									Clinica.getInstance().insertarPersona(aux);
+									Clinica.setCantidadDoctor(Clinica.getCantidadDoctor() + 1);
+									JOptionPane.showMessageDialog(null, "Nueva Doctor Agregado", "Información", JOptionPane.INFORMATION_MESSAGE, null);
+									setVisible(false);
+									VentanaSecre_admin aux2 = new VentanaSecre_admin();
+									aux2.dispose();
+								}*/
+								
 					}else {
 						 JOptionPane.showMessageDialog(null, "Las Contraseñas no Coinciden", "Advertencia", JOptionPane.WARNING_MESSAGE, null);
 					}
