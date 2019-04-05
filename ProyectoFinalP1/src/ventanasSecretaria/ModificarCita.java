@@ -16,20 +16,36 @@ import javax.swing.JTable;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+
+import Logical.Cita;
+import Logical.Clinica;
+import Logical.Doctor;
+import Logical.Persona;
+
 import javax.swing.UIManager;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.RowFilter;
 
 public class ModificarCita extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTable table;
 	private JTextField txtBusquedaPersona;
+	private TableRowSorter<TableModel> sorter;
+	private DefaultTableModel model;
+	private Object[] rows;
+	private final String [] headers = {"Cedula", "Nombre Completo","Fecha", "Hora","Estado"};
 
 	/**
 	 * Launch the application.
@@ -68,22 +84,28 @@ public class ModificarCita extends JDialog {
 		panel.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 62, 642, 320);
+		scrollPane.setBounds(10, 74, 642, 308);
 		panel.add(scrollPane);
-		
+		model = new DefaultTableModel();
+		sorter = new TableRowSorter<TableModel>(model);
+		model.setColumnCount(headers.length);
+		model.setColumnIdentifiers(headers);
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"ID", "Nombre Completo", "Doctor", "Fecha", "Hora"
-			}
-		));
+		table.setModel(model);
 		JTableHeader header = table.getTableHeader();
 	    header.setBackground(new Color(230, 230, 250));
-	    table.setDefaultEditor(Object.class, null);
-	    table.setCellSelectionEnabled(true);
-		table.setBackground(SystemColor.inactiveCaptionBorder);
+	    table.setBackground( new Color(240, 248, 255));
+		table.setDefaultEditor(Object.class, null);
+		table.setAutoCreateRowSorter(true);
+		table.setColumnSelectionAllowed(true);
+		//table.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+		table.setCellSelectionEnabled(true);
+		//tableDoctores.setCellEditor(null);
+		table.setVisible(true);
+		table.setCellSelectionEnabled(true);
+		table.setRowSorter(sorter);
+		table.setName("Lista de Citas");
+		loadtable();
 		scrollPane.setViewportView(table);
 		
 		JLabel lblBusquedaDePersona = new JLabel("Busqueda de Persona:");
@@ -91,6 +113,28 @@ public class ModificarCita extends JDialog {
 		panel.add(lblBusquedaDePersona);
 		
 		txtBusquedaPersona = new JTextField();
+		txtBusquedaPersona.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c=e.getKeyChar();
+				if(c>'0'&&c<'9') e.consume();
+			}
+		});
+		
+		txtBusquedaPersona.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if (!txtBusquedaPersona.isEnabled()) {
+					return;
+				}
+				else{
+							tableFilter(txtBusquedaPersona.getText(), 0);
+						
+					}
+					
+				}
+			
+		});
 		txtBusquedaPersona.setBounds(10, 32, 225, 20);
 		panel.add(txtBusquedaPersona);
 		txtBusquedaPersona.setColumns(10);
@@ -143,7 +187,7 @@ public class ModificarCita extends JDialog {
 				
 			}
 		});
-		btnBorrarCita.setIcon(new ImageIcon(ModificarCita.class.getResource("/Imagenes/recycle_recyclebin_full_delete_trash_1772.png")));
+		btnBorrarCita.setIcon(new ImageIcon(ModificarCita.class.getResource("/Imagenes/cancelar1.png")));
 		btnBorrarCita.setBackground(UIManager.getColor("Button.highlight"));
 		btnBorrarCita.setBounds(10, 230, 121, 53);
 		panel_1.add(btnBorrarCita);
@@ -167,4 +211,38 @@ public class ModificarCita extends JDialog {
 		lblNewLabel.setBounds(10, 21, 99, 112);
 		panel_1.add(lblNewLabel);
 	}
+///////////////////////////////////////////////	
+//Metodos para llenado y busqueda en la tabla
+	
+	private void loadtable() {
+		//Cargar la tabla
+		model.setRowCount(0);
+		rows = new Object[model.getColumnCount()];
+		for (Cita aux : Clinica.getInstance().getMisCitas()) {
+			addRow(aux);
+		}
+	}
+
+	private void addRow(Cita aux) {
+		//Agregar fila
+		rows[0] = aux.getMiPersona().getCedula();
+		rows[1] = aux.getMiPersona().getNombre()+" "+ aux.getMiPersona().getApellidos();
+		//rows[2] = aux.getMiDoctor().getNombre()+" "+aux.getMiDoctor().getApellidos();
+		rows[2] = aux.getFecha();
+		rows[3] = aux.getHora();
+		
+		model.addRow(rows);
+	}
+	
+	private void tableFilter(String text, int index) {
+		//Filtro de la tabla
+	    RowFilter<TableModel, Object> filter = null;
+	    try {
+	    	filter = RowFilter.regexFilter("(?i)"+text, 0);
+	    } catch (java.util.regex.PatternSyntaxException e) {
+	        return;
+	    }
+	    sorter.setRowFilter(filter);
+	}
+	
 }

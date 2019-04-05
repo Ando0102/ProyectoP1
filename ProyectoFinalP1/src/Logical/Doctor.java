@@ -46,6 +46,9 @@ public class Doctor extends User {
 		misConsulta.add(miConsulta);
 		
 	}
+	public void insertarCitas (Cita miCita){
+		misCitas.add(miCita);
+	}
 	
 
 }

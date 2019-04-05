@@ -17,6 +17,7 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 import Logical.Clinica;
 import ventanasSecretaria.ModificarCita;
@@ -34,12 +35,14 @@ import java.awt.event.MouseEvent;
 import java.awt.SystemColor;
 import javax.swing.UIManager;
 import javax.swing.JButton;
+import javax.swing.border.TitledBorder;
 
 public class VentanaSecretaria extends JFrame {
 
 	private JPanel contentPane;
 	JPanel panelCitas = new JPanel();
 	private Dimension tamaño; 
+	private JTable tableCitas;
 	/**
 	 * Launch the application.
 	 */
@@ -141,9 +144,27 @@ public class VentanaSecretaria extends JFrame {
 		
 		JPanel panelCitas = new JPanel();
 		panelCitas.setBackground(new Color(176, 196, 222));
-		panelCitas.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		panelCitas.setBorder(new TitledBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null), "Lista de Citas:", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panelCitas.setBounds(219, 11, 1121, 707);
 		panel.add(panelCitas);
 		panelCitas.setLayout(null);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 47, 1101, 627);
+		panelCitas.add(scrollPane);
+		
+		tableCitas = new JTable();
+		tableCitas.setModel(new DefaultTableModel(
+				new Object[][] {
+				},
+				new String[] {
+					"Cedula", "Nombre Completo", "Doctor", "Fecha", "Hora","Estado"
+				}
+			));
+			JTableHeader header = tableCitas.getTableHeader();
+		    header.setBackground(new Color(176, 196, 222));
+		    tableCitas.setDefaultEditor(Object.class, null);
+		    tableCitas.setCellSelectionEnabled(true);
+		scrollPane.setViewportView(tableCitas);
 	}
 }

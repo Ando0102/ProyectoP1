@@ -11,7 +11,7 @@ public class User extends Persona {
 	public User(String iD, String nombre, String apellidos, String cedula, boolean sexo, String telefono,
 			String nacionalidad, Calendar fecha_nacimiento, String correo_electronico, String usuario,
 			String constrasenna, String rol) {
-		super(iD, nombre, apellidos, cedula, sexo, telefono, nacionalidad, fecha_nacimiento, correo_electronico);
+		super( nombre, apellidos, cedula, sexo, telefono, nacionalidad, fecha_nacimiento, correo_electronico);
 		this.usuario = usuario;
 		this.constrasenna = constrasenna;
 		this.rol = rol;
@@ -36,10 +36,5 @@ public class User extends Persona {
 		this.rol = rol;
 	}
 
-	@Override
-	public int compareTo(Persona o) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 	
 }

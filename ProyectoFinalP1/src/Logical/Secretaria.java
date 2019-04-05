@@ -4,7 +4,8 @@ import java.util.Calendar;
 
 public class Secretaria extends User {
 	private static final long serialVersionUID = 1L;
-	private Persona miPersona;
+	private Cita misCitas;
+	
 
 
 	
@@ -16,15 +17,22 @@ public class Secretaria extends User {
 		
 	}
 
-	//------------[ get end set ]-----------------
-	public Persona getMiPersona() {
-		return miPersona;
+
+
+
+	public Cita getMisCitas() {
+		return misCitas;
 	}
 
-	public void setMiPersona(Persona miPersona) {
-		this.miPersona = miPersona;
+
+
+
+	public void setMisCitas(Cita misCitas) {
+		this.misCitas = misCitas;
 	}
+
 	
 	
-	//-----------------------------------------
+	
+	
 }

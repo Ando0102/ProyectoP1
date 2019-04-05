@@ -3,12 +3,12 @@ package Logical;
 import java.io.Serializable;
 import java.util.Calendar;
 
-public abstract class Persona implements Serializable, Comparable<Persona> {
+public class Persona implements Serializable {
 	private static final long serialVersionUID = 1L;
-	protected String ID;
+	
 	protected String nombre;
 	protected String apellidos;
-	protected String cedula;
+	private String cedula;
 	protected boolean sexo;
 	//
 	//true masculino
@@ -18,10 +18,10 @@ public abstract class Persona implements Serializable, Comparable<Persona> {
 	protected Calendar fecha_nacimiento;
 	protected String correo_electronico;
 	
-	public Persona(String iD, String nombre, String apellidos,String cedula, boolean sexo, String telefono, String nacionalidad,
+	public Persona( String nombre, String apellidos,String cedula, boolean sexo, String telefono, String nacionalidad,
 			Calendar fecha_nacimiento, String correo_electronico) {
 		super();
-		ID = iD;
+		
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.cedula = cedula;
@@ -31,12 +31,7 @@ public abstract class Persona implements Serializable, Comparable<Persona> {
 		this.fecha_nacimiento = fecha_nacimiento;
 		this.correo_electronico = correo_electronico;
 	}
-	public String getID() {
-		return ID;
-	}
-	public void setID(String iD) {
-		ID = iD;
-	}
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -78,6 +73,14 @@ public abstract class Persona implements Serializable, Comparable<Persona> {
 	}
 	public void setCorreo_electronico(String correo_electronico) {
 		this.correo_electronico = correo_electronico;
+	}
+
+	public String getCedula() {
+		return cedula;
+	}
+
+	public void setCedula(String cedula) {
+		this.cedula = cedula;
 	}
 	
 	

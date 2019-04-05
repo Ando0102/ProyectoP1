@@ -14,6 +14,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
@@ -38,6 +39,7 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import javax.swing.text.MaskFormatter;
 
+import Logical.Cita;
 import Logical.Clinica;
 import Logical.Doctor;
 import Logical.Persona;
@@ -50,6 +52,10 @@ import java.awt.Container;
 
 import javax.swing.UIManager;
 import javax.swing.JTable;
+import com.toedter.calendar.JDateChooser;
+import com.toedter.components.JSpinField;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 
 public class NuevaCita extends JDialog {
 
@@ -59,13 +65,10 @@ public class NuevaCita extends JDialog {
 	private JTextField txtNombrePersona;
 	private JTextField txtApellidoPersona;
 	private JTextField txtTelefono;
-	private JTextField txtNacimientoPersona;
 	private JTextField txtCorreoPersona;
 	private JTextField txtBusquedaDoctor;
 	private JTextField txtNombreDoctor;
 	private JTextField txtApellidoDoctor;
-	private JTextField txtFechaCita;
-	private JTextField txtHoraCita;
 	private JComboBox cmbSexoPersona;
 	private JComboBox cmbPaisOrigenPersona;
 	private static int opcion = 0;
@@ -75,6 +78,12 @@ public class NuevaCita extends JDialog {
 	private DefaultTableModel model;
 	private Object[] rows;
 	private MaskFormatter formatoIDPersona;
+	private int rowDoctores;
+	private Doctor miDoctor = null;
+	private Persona miPersona = null;
+	private JDateChooser FechaCita;
+	private JDateChooser fechaNacimiento;
+	private JSpinner spnHoraCita;
 	
 	/**
 	 * Launch the application.
@@ -146,8 +155,8 @@ public class NuevaCita extends JDialog {
 				if(!txtBusquedaPersona.getText().isEmpty()){
 					miPersona = Clinica.getInstance().miPersona(txtBusquedaPersona.getText().toString());
 					if(miPersona!=null){
-						JOptionPane.showMessageDialog(null, "Persona encontrada","Informacion", JOptionPane.INFORMATION_MESSAGE);
-						txtIdPersona.setText(miPersona.getID().toString());
+						JOptionPane.showMessageDialog(null, "Persona encontrada","Informacion!", JOptionPane.INFORMATION_MESSAGE);
+						txtIdPersona.setText(miPersona.getCedula().toString());
 						txtIdPersona.setEditable(false);
 						txtNombrePersona.setText(miPersona.getNombre().toString());
 						txtNombrePersona.setEditable(false);
@@ -281,12 +290,6 @@ MaskFormatter formatoIDPersona2 = null;
 		lblFechaDeNacimiento.setBounds(268, 165, 146, 14);
 		panelDatosPersona.add(lblFechaDeNacimiento);
 		
-		txtNacimientoPersona = new JTextField();
-		txtNacimientoPersona.setBackground(new Color(255, 255, 255));
-		txtNacimientoPersona.setBounds(268, 190, 166, 20);
-		panelDatosPersona.add(txtNacimientoPersona);
-		txtNacimientoPersona.setColumns(10);
-		
 		JLabel lblPaisDeOrigen = new JLabel("Pais de Origen:");
 		lblPaisDeOrigen.setBounds(268, 247, 109, 14);
 		panelDatosPersona.add(lblPaisDeOrigen);
@@ -316,6 +319,10 @@ MaskFormatter formatoIDPersona2 = null;
 		lblNewLabel_3.setIcon(new ImageIcon(NuevaCita.class.getResource("/Imagenes/person_user_customer_man_male_man_boy_people_1687.png")));
 		lblNewLabel_3.setBounds(625, 36, 83, 98);
 		panelDatosPersona.add(lblNewLabel_3);
+		
+		fechaNacimiento = new JDateChooser();
+		fechaNacimiento.setBounds(268, 190, 166, 20);
+		panelDatosPersona.add(fechaNacimiento);
 		
 		JPanel panelBusquedaDoctor = new JPanel();
 		panelBusquedaDoctor.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
@@ -359,6 +366,28 @@ MaskFormatter formatoIDPersona2 = null;
 		txtBusquedaDoctor.setColumns(10);
 		
 		JButton btnBusquedaDoctor = new JButton("");
+		btnBusquedaDoctor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if(tableDoctores.getSelectedColumn()==0){
+					rowDoctores = tableDoctores.getSelectedRow();
+					if(tableDoctores.isCellSelected(rowDoctores, 0)){
+						String doctor = tableDoctores.getModel().getValueAt(rowDoctores, 0).toString();
+						if(doctor!=null){
+							miDoctor = Clinica.getInstance().buscarDocByName(doctor);
+							if(miDoctor!=null){
+								txtBusquedaDoctor.setText(miDoctor.getNombre()+" "+ miDoctor.getApellidos());
+								txtApellidoDoctor.setText(miDoctor.getApellidos());
+								txtNombreDoctor.setText(miDoctor.getNombre());
+							}
+						}
+					} 
+				}else{
+					JOptionPane.showMessageDialog(null, "Seleccionar doctor en la lista","Aviso!", JOptionPane.WARNING_MESSAGE);
+				}
+				
+			}
+		});
 		btnBusquedaDoctor.setIcon(new ImageIcon(NuevaCita.class.getResource("/Imagenes/preview_search_find_locate_1551.png")));
 		btnBusquedaDoctor.setBackground(new Color(230, 230, 250));
 		btnBusquedaDoctor.setBounds(187, 36, 32, 32);
@@ -446,26 +475,25 @@ MaskFormatter formatoIDPersona2 = null;
 		lblFecha.setBounds(10, 117, 66, 14);
 		panelDatosCita.add(lblFecha);
 		
-		txtFechaCita = new JTextField();
-		txtFechaCita.setBackground(new Color(255, 255, 255));
-		txtFechaCita.setBounds(10, 142, 119, 20);
-		panelDatosCita.add(txtFechaCita);
-		txtFechaCita.setColumns(10);
-		
 		JLabel lblHora = new JLabel("Hora:");
 		lblHora.setBounds(165, 117, 46, 14);
 		panelDatosCita.add(lblHora);
-		
-		txtHoraCita = new JTextField();
-		txtHoraCita.setBackground(new Color(255, 255, 255));
-		txtHoraCita.setBounds(165, 142, 119, 20);
-		panelDatosCita.add(txtHoraCita);
-		txtHoraCita.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("");
 		lblNewLabel_2.setIcon(new ImageIcon(NuevaCita.class.getResource("/Imagenes/edit_pencil_6320.png")));
 		lblNewLabel_2.setBounds(303, 61, 96, 101);
 		panelDatosCita.add(lblNewLabel_2);
+		
+		FechaCita = new JDateChooser();
+		FechaCita.setBounds(10, 142, 119, 20);
+		panelDatosCita.add(FechaCita);
+		
+		spnHoraCita = new JSpinner();
+		spnHoraCita.setModel(new SpinnerNumberModel(8, 8, 18, 1));
+		spnHoraCita.setBounds(165, 142, 119, 20);
+		panelDatosCita.add(spnHoraCita);
+		
+		
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBackground(new Color(240, 248, 255));
@@ -476,7 +504,21 @@ MaskFormatter formatoIDPersona2 = null;
 				btnListo.setBackground(UIManager.getColor("Button.highlight"));
 				btnListo.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						if(opcion == 0){
+				Cita misCitas = null;
+				Calendar fecha = Calendar.getInstance();
+				fechaNacimiento.getCalendar();
+				fecha =fechaNacimiento.getCalendar();		
+				if(opcion == 0){
+						if(cmbSexoPersona.getSelectedIndex()==0){ //Hombre 0 true
+							miPersona = new Persona(txtNombrePersona.getText().toString(),txtApellidoPersona.getText().toString(),txtIdPersona.getText().toString(),true,txtTelefono.getText().toString(),cmbPaisOrigenPersona.getSelectedItem().toString(),fecha,txtCorreoPersona.getText().toString());							
+						}else if (cmbSexoPersona.getSelectedIndex()==1){ //Mujer 1 false
+							miPersona = new Persona(txtNombrePersona.getText().toString(),txtApellidoPersona.getText().toString(),txtIdPersona.getText().toString(),false,txtTelefono.getText().toString(),cmbPaisOrigenPersona.getSelectedItem().toString(),fecha,txtCorreoPersona.getText().toString());							
+							
+						}
+						
+						misCitas = new Cita (miDoctor,miPersona,FechaCita.getCalendar(), (Integer)spnHoraCita.getValue());
+						miDoctor.getMisCitas().add(misCitas);
+						Clinica.getInstance().insertarCitas(misCitas);
 						JOptionPane.showMessageDialog(null, "Cita creada exitosamente!","Aviso!", JOptionPane.INFORMATION_MESSAGE);
 						repaint(); } else {
 							JOptionPane.showMessageDialog(null, "Cita editada exitosamente!","Aviso!", JOptionPane.INFORMATION_MESSAGE);
@@ -525,7 +567,7 @@ MaskFormatter formatoIDPersona2 = null;
 			txtNombrePersona.setEditable(false);
 			txtApellidoPersona.setEditable(false);
 			txtIdPersona.setEditable(false);
-			txtNacimientoPersona.setEditable(false);
+			fechaNacimiento.setEnabled(false);
 			txtTelefono.setEditable(false);
 			cmbSexoPersona.setEnabled(false);
 			cmbPaisOrigenPersona.setEnabled(false);
@@ -575,5 +617,4 @@ MaskFormatter formatoIDPersona2 = null;
 	    }
 	    sorter.setRowFilter(filter);
 	}
-	
 }

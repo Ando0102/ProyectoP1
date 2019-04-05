@@ -19,7 +19,7 @@ public class Paciente extends Persona {
 	public Paciente(String iD, String nombre, String apellidos, String cedula, boolean sexo, String telefono,
 			String nacionalidad, Calendar fecha_nacimiento, String correo_electronico, String tipo_sangre,
 			String estado, String contacto_emergencia, float peso) {
-		super(iD, nombre, apellidos, cedula, sexo, telefono, nacionalidad, fecha_nacimiento, correo_electronico);
+		super( nombre, apellidos, cedula, sexo, telefono, nacionalidad, fecha_nacimiento, correo_electronico);
 		this.tipo_sangre = tipo_sangre;
 		this.estado = estado;
 		this.contacto_emergencia = contacto_emergencia;
@@ -58,10 +58,6 @@ public class Paciente extends Persona {
 	}
 	//--------------------------------------------
 
-	@Override
-	public int compareTo(Persona o) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
 
 }
