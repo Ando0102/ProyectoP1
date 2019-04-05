@@ -129,14 +129,15 @@ public class Clinica  implements Serializable{
 		return userAux;
 	}
 /////////////////////////////////////////////////
-	public void insertarDoctor (Doctor miDoctor){
+	public void insertarDoctor (){
 		//Insertar Doctor
-		//Doctor miDoctor = new Doctor ("1", "Bibi", "Romano", "0804", false, "8095679302","Dominicano", null, "bibi0804@", "doctor", "123", "Doctor");
+		Doctor miDoctor = new Doctor ("1", "Bibi", "Romano", "0804", false, "8095679302","Dominicano", null, "bibi0804@", "doctor", "123", "Doctor");
 		misPersonas.add(miDoctor);
 	}
 ////////////////////////////////////////////////
 	public ArrayList<Doctor> doctores (){
 		//Arreglo de doctores
+		
 		int i = 0;
 		ArrayList <Doctor> doctores = new ArrayList<>();
 		while(i<getMisPersonas().size()){	
@@ -148,18 +149,35 @@ public class Clinica  implements Serializable{
 	}
 ////////////////////////////////////////////////
 	public Persona miPersona (String cedula){
+		//Buscar person por cedula
 		boolean find = false;
-		int i = 0;
 		Persona miPersona = null;
-		while(find!=true && i<misPersonas.size()){
+		while(find!=true ){
 			for(Persona aux : misPersonas){
-				if(aux.getID().equalsIgnoreCase(cedula)){
+				if(aux.getCedula().equalsIgnoreCase(cedula)){
 					find = true;
 					miPersona = aux;
 				}
 			}
 		}
 		return miPersona;
+	}
+	public Doctor buscarDocByName (String nombre){
+		//Buscar doctor por nombre
+		ArrayList <Doctor> misDoctores = new ArrayList<Doctor>();
+		misDoctores = doctores();
+		
+		boolean find = false;
+		Doctor miDoctorcito = null;
+		while(find != true){
+			for(Doctor miDoctor : misDoctores){
+				if(miDoctor.getNombre().equalsIgnoreCase(nombre)){
+					miDoctorcito = miDoctor;
+					find = true;
+				}
+			}
+		}
+		return miDoctorcito;
 	}
 	
 }
