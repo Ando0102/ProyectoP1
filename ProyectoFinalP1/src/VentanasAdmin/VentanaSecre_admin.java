@@ -90,6 +90,7 @@ public class VentanaSecre_admin extends JDialog {
 	/**
 	 * Launch the application.
 	 */
+	/*
 	public static void main(String[] args) {
 		try {
 			VentanaSecre_admin dialog = new VentanaSecre_admin();
@@ -279,7 +280,7 @@ public class VentanaSecre_admin extends JDialog {
 							public void actionPerformed(ActionEvent e) {
 								
 								if((dcFechaNacimiento.getDate()!=null)&&!txtNombre.getText().equalsIgnoreCase("") && !txtApellido.getText().equalsIgnoreCase("") && !txtCorreoElect.getText().equalsIgnoreCase("") && !txtDireccion.getText().equalsIgnoreCase("") && cbxGenero.getSelectedIndex() != 0 &&
-										!txtCedula.getText().equalsIgnoreCase("") && !txtTelefono.getText().equalsIgnoreCase("") && rbtDoctor.isSelected() && rbtSecre.isSelected() && rtbAdministrador.isSelected() && cbxPais.getSelectedIndex() != 0){
+										!txtCedula.getText().equalsIgnoreCase("") && !txtTelefono.getText().equalsIgnoreCase("") && (rbtDoctor.isSelected() || rbtSecre.isSelected() || rtbAdministrador.isSelected()) && cbxPais.getSelectedIndex() != 0){
 										PanelSeguridadSecre aux = new PanelSeguridadSecre(txtApellido, txtCedula, txtCorreoElect, txtDireccion, txtNombre, txtTelefono, cbxGenero, cbxPais, dcFechaNacimiento, rbtDoctor, rbtSecre, rtbAdministrador);
 										dispose();
 										aux.setVisible(true);
@@ -403,41 +404,12 @@ public class VentanaSecre_admin extends JDialog {
 						}
 					}
 					
-					sorter = new TableRowSorter<TableModel>(model);
-					String[] titu = {"Cedula", "Nombre del Empleado", "Rol del Empleado" };
-					model = new DefaultTableModel();
-					model.setColumnIdentifiers(titu);
-					model.setColumnCount(titu.length);
-					tablaEmpleados = new JTable();
-					tablaEmpleados.setModel(model);
-				    tablaEmpleados.setBackground( new Color(240, 248, 255));
-					tablaEmpleados.setDefaultEditor(Object.class, null);
-					tablaEmpleados.setAutoCreateRowSorter(true);
-					tablaEmpleados.setColumnSelectionAllowed(true);
-					//table.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-					tablaEmpleados.setCellSelectionEnabled(true);
-					//tableDoctores.setCellEditor(null);
-					tablaEmpleados.setVisible(true);
-					tablaEmpleados.setCellSelectionEnabled(true);
-					tablaEmpleados.setRowSorter(sorter);
-					tablaEmpleados.addMouseListener(new MouseAdapter() {
-
-						@Override
-						public void mouseClicked(MouseEvent arg0) {
-								if(tablaEmpleados.getSelectedRow()>=0){
-									elegido = tablaEmpleados.getSelectedRow();
-								}
-						}
-					});
-					tablaEmpleados.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-					
-					loadtable();
-
+				
 					{
 						scrollPane = new JScrollPane();
 						scrollPane.setBounds(10, 66, 576, 82);
 					
-						scrollPane.setViewportView(tablaEmpleados);
+					
 						panel_1.add(scrollPane);
 					}
 					

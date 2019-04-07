@@ -263,6 +263,7 @@ public class pnlCitasbtn extends JPanel {
 			System.out.println("Cantida: "+miDoctor.getMisCitas().size());
 			for (Cita miCita : miDoctor.getMisCitas()) {
 				System.out.println("Cantida: "+miDoctor.getMisCitas().size());
+				System.out.println("HORAS: "+ miCita.getHora());
 				switch (miCita.getHora()) {
 				case 8://hora a las 8
 					auxFecha = miCita.getFecha();
@@ -306,8 +307,9 @@ public class pnlCitasbtn extends JPanel {
 						break;
 					}
 					
+///------------------------------
 				case 9:
-//----------------------------------------------------------
+					if(miCita.getHora()==9) {
 					auxFecha = miCita.getFecha();
 					auxFecha.get(Calendar.DAY_OF_WEEK);
 					//
@@ -344,14 +346,18 @@ public class pnlCitasbtn extends JPanel {
 						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 1, 7);
 
 						break;
-
+					
 					default:
-						break;
 					}
+						break;
+						
+					}
+					
+					break;
 						
 //---------------------------------------------------------------------					
 					
-					break;
+				
 				case 10://hora 10
 //----------------------------------------------------------------------
 					auxFecha = miCita.getFecha();

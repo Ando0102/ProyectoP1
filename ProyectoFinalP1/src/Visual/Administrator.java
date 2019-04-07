@@ -55,7 +55,7 @@ public class Administrator extends JFrame implements Runnable {
 	private int mes;
 	private int ano;
 	private int dia;
-	
+	/*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -68,7 +68,7 @@ public class Administrator extends JFrame implements Runnable {
 			}
 		});
 	}
-	
+	*/
 	public Administrator() {
 		//metodo prueba
 		//prueba existosa! 
