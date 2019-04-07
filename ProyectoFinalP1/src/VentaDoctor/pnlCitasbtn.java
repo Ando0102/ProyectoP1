@@ -257,7 +257,12 @@ public class pnlCitasbtn extends JPanel {
 			
 		
 			Calendar auxFecha = Calendar.getInstance();
+			
+			System.out.println("pepe: ");
+			
+			System.out.println("Cantida: "+miDoctor.getMisCitas().size());
 			for (Cita miCita : miDoctor.getMisCitas()) {
+				System.out.println("Cantida: "+miDoctor.getMisCitas().size());
 				switch (miCita.getHora()) {
 				case 8://hora a las 8
 					auxFecha = miCita.getFecha();
@@ -271,7 +276,7 @@ public class pnlCitasbtn extends JPanel {
 						break;
 					case 2:
 						// lunes
-						table.getModel().setValueAt("L-18:00", 0, 2);
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 0, 2);
 						break;
 					case 3:
 						//martes
@@ -298,51 +303,14 @@ public class pnlCitasbtn extends JPanel {
 					default:
 						break;
 					}
-					//
-					
-					break;
-				case 9:
-					
-					break;
-				case 10:
-					
-					break;
-				case 11:
-					
-					break;
-				case 12:
-					
-					break;
-				case 13:
-					
-					break;
-				case 14:
-					
-					break;
-				case 15:
-					
-					break;
-				case 16:
-					
-					break;
-				case 17:
-					
-					break;
-				case 18:
-					
-					break;
-
-				default:
-					break;
-				}
 				
-			}
+				
 			//table.getModel().setValueAt(, 10, 1);
 			//table.getModel().setValueAt("L-18:00", 0, 10);
 		//	table.getModel().setValueAt(aValue, rowIndex, columnIndex);
 		}
-		
-
+		}
+			}
 		public void dias_semana() {
 			int restadia=0;//para obtener luego dia inicial de una semana 
 			String[] strDays = new String[]{

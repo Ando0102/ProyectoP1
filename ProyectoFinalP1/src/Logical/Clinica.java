@@ -186,4 +186,13 @@ public class Clinica  implements Serializable{
 		return miDoctorcito;
 	}
 	
+	////
+	public void incertarCitaADoctor(Doctor miDoctor, Cita micita) {
+		for (Persona miUser : misPersonas) {
+			if(miUser== miDoctor) {
+				((Doctor)miUser).insertarCitas(micita);
+			}
+		}
+	}
+	
 }
