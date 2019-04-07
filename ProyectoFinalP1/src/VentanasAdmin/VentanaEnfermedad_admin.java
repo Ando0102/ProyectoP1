@@ -210,7 +210,7 @@ public class VentanaEnfermedad_admin extends JDialog {
 					Enfermedad aux = new Enfermedad(nombre, sintomas, tratamiento, tipoEnfermedad);
 					Clinica.getInstance().insertarEnfermedad(aux);
 					
-					if(!buttonModificar.isEnabled()) {
+					if(!buttonEliminar.isEnabled()) {
 						
 					JOptionPane.showMessageDialog(null, "Nueva Enfermedad Registrada", "Información", JOptionPane.INFORMATION_MESSAGE, null);
 					}else {
@@ -259,7 +259,7 @@ public class VentanaEnfermedad_admin extends JDialog {
 		scrollPane.setBounds(10, 30, 693, 143);
 		panel_2.add(scrollPane);
 		
-		//////////////////////////////////////7TABLA/////////////////////////////////////////////////////////////
+		//////////////////////////////////////TABLA/////////////////////////////////////////////////////////////
 		String[] titu = {"Tipo", "Nombre", "Sintomas", "Tratamiento"};
 		model = new DefaultTableModel();
 		model.setColumnIdentifiers(titu);
