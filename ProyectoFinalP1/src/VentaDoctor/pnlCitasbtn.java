@@ -31,8 +31,8 @@ import javafx.scene.layout.Background;
 public class pnlCitasbtn extends JPanel {
 	//private static JTable table;
 			private static Object[] fila;
-			private static String[] columnNames = {"", "Lunes", "Martes", 
-					"Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"
+			private static String[] columnNames = {"", "Domingo", "Lunes", "Martes", 
+					"Miercoles", "Jueves", "Viernes", "Sabado"
 
 				};
 			private static DefaultTableModel modelo;
@@ -92,7 +92,7 @@ public class pnlCitasbtn extends JPanel {
 					int delivery;*/
 					if(table.getSelectedRow()>=0){
 						d.get(Calendar.DAY_OF_WEEK);
-						System.out.println("BIENE");
+						System.out.println("row: "+table.getSelectedRow()+"Column"+table.getSelectedColumn());
 						
 					//	btnEliminar.setEnabled(true);
 						///btnModificar.setEnabled(true);
@@ -271,7 +271,7 @@ public class pnlCitasbtn extends JPanel {
 					switch (auxFecha.get(Calendar.DAY_OF_WEEK)) {
 					case 1:
 						//Domingo
-						table.getModel().setValueAt("L-18:00", 0, 1);
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 0, 1);
 						
 						break;
 					case 2:
@@ -280,30 +280,491 @@ public class pnlCitasbtn extends JPanel {
 						break;
 					case 3:
 						//martes
-						table.getModel().setValueAt("L-18:00", 0, 3);
-						break;
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 0, 3);
 					case 4:
 						//miercoles
-						table.getModel().setValueAt("L-18:00", 0, 4);
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 0, 4);
 						break;
 				
 					case 5:
 						//Jueves 
-						table.getModel().setValueAt("L-18:00", 0, 5);
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 0, 5);
+
 						break;
 					case 6:
 						//Viernes
-						table.getModel().setValueAt("L-18:00", 0, 6);
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 0, 6);
+
 						break;
 					case 7:
 						//Sabado
-						table.getModel().setValueAt("L-18:00", 0, 7);
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 0, 7);
+
 						break;
 
 					default:
 						break;
 					}
+					
+				case 9:
+//----------------------------------------------------------
+					auxFecha = miCita.getFecha();
+					auxFecha.get(Calendar.DAY_OF_WEEK);
+					//
+					switch (auxFecha.get(Calendar.DAY_OF_WEEK)) {
+					case 1:
+						//Domingo
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 1, 1);
+						
+						break;
+					case 2:
+						// lunes
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 1, 2);
+						break;
+					case 3:
+						//martes
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 1, 3);
+					case 4:
+						//miercoles
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 1, 4);
+						break;
 				
+					case 5:
+						//Jueves 
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 1, 5);
+
+						break;
+					case 6:
+						//Viernes
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 1, 6);
+
+						break;
+					case 7:
+						//Sabado
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 1, 7);
+
+						break;
+
+					default:
+						break;
+					}
+						
+//---------------------------------------------------------------------					
+					
+					break;
+				case 10://hora 10
+//----------------------------------------------------------------------
+					auxFecha = miCita.getFecha();
+					auxFecha.get(Calendar.DAY_OF_WEEK);
+					//
+					switch (auxFecha.get(Calendar.DAY_OF_WEEK)) {
+					case 1:
+						//Domingo
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 2, 1);
+						
+						break;
+					case 2:
+						// lunes
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 2, 2);
+						break;
+					case 3:
+						//martes
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 2, 3);
+					case 4:
+						//miercoles
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 2, 4);
+						break;
+				
+					case 5:
+						//Jueves 
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 2, 5);
+
+						break;
+					case 6:
+						//Viernes
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 2, 6);
+
+						break;
+					case 7:
+						//Sabado
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 2, 7);
+
+						break;
+
+					default:
+						break;
+					}
+					
+//----------------------------------------------------------------------					
+					break;
+				case 11:
+//----------------------------------------------
+					auxFecha = miCita.getFecha();
+					auxFecha.get(Calendar.DAY_OF_WEEK);
+					//
+					switch (auxFecha.get(Calendar.DAY_OF_WEEK)) {
+					case 1:
+						//Domingo
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 3, 1);
+						
+						break;
+					case 2:
+						// lunes
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 3, 2);
+						break;
+					case 3:
+						//martes
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 3, 3);
+					case 4:
+						//miercoles
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 3, 4);
+						break;
+				
+					case 5:
+						//Jueves 
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 3, 5);
+
+						break;
+					case 6:
+						//Viernes
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 3, 6);
+
+						break;
+					case 7:
+						//Sabado
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 3, 7);
+
+						break;
+
+					default:
+						break;
+					}
+					
+					break;
+//------------------------------------------
+				case 12:
+//------------------------------------------------------------------------------------------------------					
+					auxFecha = miCita.getFecha();
+					auxFecha.get(Calendar.DAY_OF_WEEK);
+					//
+					switch (auxFecha.get(Calendar.DAY_OF_WEEK)) {
+					case 1:
+						//Domingo
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 4, 1);
+						
+						break;
+					case 2:
+						// lunes
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 4, 2);
+						break;
+					case 3:
+						//martes
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 4, 3);
+					case 4:
+						//miercoles
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 4, 4);
+						break;
+				
+					case 5:
+						//Jueves 
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 4, 5);
+
+						break;
+					case 6:
+						//Viernes
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 4, 6);
+
+						break;
+					case 7:
+						//Sabado
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 4, 7);
+
+						break;
+
+					default:
+						break;
+					}
+					
+//---------------------------------------------------------------------------------------------------------					
+					break;
+//--------------------------------------------------------------------------------------------
+				case 13:
+					auxFecha = miCita.getFecha();
+					auxFecha.get(Calendar.DAY_OF_WEEK);
+					//
+					switch (auxFecha.get(Calendar.DAY_OF_WEEK)) {
+					case 1:
+						//Domingo
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 5, 1);
+						
+						break;
+					case 2:
+						// lunes
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 5, 2);
+						break;
+					case 3:
+						//martes
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 5, 3);
+					case 4:
+						//miercoles
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 5, 4);
+						break;
+				
+					case 5:
+						//Jueves 
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 5, 5);
+
+						break;
+					case 6:
+						//Viernes
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 5, 6);
+
+						break;
+					case 7:
+						//Sabado
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 5, 7);
+
+						break;
+
+					default:
+						break;
+					}
+										
+					break;
+//--------------------------------------------------------------------------//--------------------------------------------------------------------------------------------
+				case 14:
+					auxFecha = miCita.getFecha();
+					auxFecha.get(Calendar.DAY_OF_WEEK);
+					//
+					switch (auxFecha.get(Calendar.DAY_OF_WEEK)) {
+					case 1:
+						//Domingo
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 6, 1);
+						
+						break;
+					case 2:
+						// lunes
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 6, 2);
+						break;
+					case 3:
+						//martes
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 6, 3);
+					case 4:
+						//miercoles
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 6, 4);
+						break;
+				
+					case 5:
+						//Jueves 
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 6, 5);
+
+						break;
+					case 6:
+						//Viernes
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 6, 6);
+
+						break;
+					case 7:
+						//Sabado
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 6, 7);
+
+						break;
+
+					default:
+						break;
+					}
+					
+					break;
+					
+					
+//--------------------------------------------------------------------------					
+					//--------------------------------------------------------------------------------------------
+				case 15:
+					auxFecha = miCita.getFecha();
+					auxFecha.get(Calendar.DAY_OF_WEEK);
+					//
+					switch (auxFecha.get(Calendar.DAY_OF_WEEK)) {
+					case 1:
+						//Domingo
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 7, 1);
+						
+						break;
+					case 2:
+						// lunes
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 7, 2);
+						break;
+					case 3:
+						//martes
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 7, 3);
+					case 4:
+						//miercoles
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 7, 4);
+						break;
+				
+					case 5:
+						//Jueves 
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 7, 5);
+
+						break;
+					case 6:
+						//Viernes
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 7, 6);
+
+						break;
+					case 7:
+						//Sabado
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 7, 7);
+
+						break;
+
+					default:
+						break;
+					}
+					
+					break;
+					
+					
+//--------------------------------------------------------------------------					
+//--------------------------------------------------------------------------------------------
+				case 16:
+					auxFecha = miCita.getFecha();
+					auxFecha.get(Calendar.DAY_OF_WEEK);
+					//
+					switch (auxFecha.get(Calendar.DAY_OF_WEEK)) {
+					case 1:
+						//Domingo
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 8, 1);
+						
+						break;
+					case 2:
+						// lunes
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 8, 2);
+						break;
+					case 3:
+						//martes8
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 8, 3);
+					case 4:
+						//miercoles
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 8, 4);
+						break;
+				
+					case 5:
+						//Jueves 
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 8, 5);
+
+						break;
+					case 6:
+						//Viernes
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 8, 6);
+
+						break;
+					case 7:
+						//Sabado
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 8, 7);
+
+						break;
+
+					default:
+						break;
+					}
+						break;
+					
+					
+//--------------------------------------------------------------------------					
+				case 17:
+					auxFecha = miCita.getFecha();
+					auxFecha.get(Calendar.DAY_OF_WEEK);
+					//
+					switch (auxFecha.get(Calendar.DAY_OF_WEEK)) {
+					case 1:
+						//Domingo
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 9, 1);
+						
+						break;
+					case 2:
+						// lunes
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 9, 2);
+						break;
+					case 3:
+						//martes
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 9, 3);
+					case 4:
+						//miercoles
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 9, 4);
+						break;
+				
+					case 5:
+						//Jueves 
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 9, 5);
+
+						break;
+					case 6:
+						//Viernes
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 9, 6);
+
+						break;
+					case 7:
+						//Sabado
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 9, 7);
+
+						break;
+
+					default:
+						break;
+					}
+					
+					break;
+					
+					
+//--------------------------------------------------------------------------					
+				case 18:
+					auxFecha = miCita.getFecha();
+					auxFecha.get(Calendar.DAY_OF_WEEK);
+					//
+					switch (auxFecha.get(Calendar.DAY_OF_WEEK)) {
+					case 1:
+						//Domingo
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 10, 1);
+						
+						break;
+					case 2:
+						// lunes
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 10, 2);
+						break;
+					case 3:
+						//martes
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 10, 3);
+					case 4:
+						//miercoles
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 10, 4);
+						break;
+				
+					case 5:
+						//Jueves 
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 10, 5);
+
+						break;
+					case 6:
+						//Viernes
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 10, 6);
+
+						break;
+					case 7:
+						//Sabado
+						table.getModel().setValueAt(miCita.getMiPersona().getNombre(), 10, 7);
+
+						break;
+
+					default:
+						break;
+					}
+							
+					break;
+					
+					
+//--------------------------------------------------------------------------					
+								default:
+					break;
 				
 			//table.getModel().setValueAt(, 10, 1);
 			//table.getModel().setValueAt("L-18:00", 0, 10);
