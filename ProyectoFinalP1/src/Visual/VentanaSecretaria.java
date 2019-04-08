@@ -18,6 +18,7 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -175,6 +176,7 @@ public class VentanaSecretaria extends JFrame {
 		});
 		btnModificarCita.setIcon(new ImageIcon(VentanaSecretaria.class.getResource("/Imagenes/editnote_pencil_edi_6175 (1).png")));
 		btnModificarCita.setBounds(10, 332, 179, 63);
+		btnModificarCita.setEnabled(false);
 		panelBienvenida.add(btnModificarCita);
 		
 		JButton btnSalir = new JButton("Cerrar Sesion");
@@ -190,8 +192,33 @@ public class VentanaSecretaria extends JFrame {
 			}
 		});
 		btnSalir.setIcon(new ImageIcon(VentanaSecretaria.class.getResource("/Imagenes/stop_exit_close_6291.png")));
-		btnSalir.setBounds(10, 424, 179, 63);
+		btnSalir.setBounds(10, 518, 179, 63);
 		panelBienvenida.add(btnSalir);
+		
+		JButton btnCancelarCita = new JButton("Cancelar Cita");
+		btnCancelarCita.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Cita aux = null;
+				Cita aux1 = null;
+				int row = -1;
+				int row1 = -1;
+				if(tableCitas.isColumnSelected(0)){
+					aux = Clinica.getInstance().getMisCitas().get(tableCitas.convertRowIndexToModel(tableCitas.getSelectedRow()));
+					if(aux!=null){
+						if(aux.getEstado().equalsIgnoreCase("Pendiente")){
+							aux.setEstado("Cancelada");
+							loadtable();
+						} else {
+							JOptionPane.showMessageDialog(null, "Cita ya ha sido cancelada","Aviso", JOptionPane.ERROR_MESSAGE);
+						}
+					}
+				}
+			}
+		});
+		btnCancelarCita.setIcon(new ImageIcon(VentanaSecretaria.class.getResource("/Imagenes/cancelar1.png")));
+		btnCancelarCita.setBounds(10, 426, 179, 63);
+		btnCancelarCita.setEnabled(false);
+		panelBienvenida.add(btnCancelarCita);
 		
 		JPanel panelCitas = new JPanel();
 		panelCitas.setBackground(new Color(176, 196, 222));
@@ -209,6 +236,20 @@ public class VentanaSecretaria extends JFrame {
 		model.setColumnCount(headers.length);
 		model.setColumnIdentifiers(headers);
 		tableCitas = new JTable();
+		tableCitas.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(tableCitas.isColumnSelected(0)){
+					btnModificarCita.setEnabled(true);
+					btnCancelarCita.setEnabled(true);
+				} else{
+					
+					btnModificarCita.setEnabled(false);
+					btnCancelarCita.setEnabled(false);
+					JOptionPane.showMessageDialog(null, "Debe seleccionar cedula de la persona","Aviso", JOptionPane.WARNING_MESSAGE);
+				}}
+			
+		});
 		tableCitas.setModel(model);
 		JTableHeader header = tableCitas.getTableHeader();
 	    header.setBackground(new Color(176, 196, 222));
@@ -216,14 +257,13 @@ public class VentanaSecretaria extends JFrame {
 		tableCitas.setDefaultEditor(Object.class, null);
 		tableCitas.setAutoCreateRowSorter(true);
 		tableCitas.setColumnSelectionAllowed(true);
-		//table.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+		//tableCitas.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		tableCitas.setCellSelectionEnabled(true);
 		//tableDoctores.setCellEditor(null);
 		
 		tableCitas.setCellSelectionEnabled(true);
 		tableCitas.setRowSorter(sorter);
 		tableCitas.setName("Lista de Citas");
-		model.fireTableDataChanged();
 		loadtable();
 		tableCitas.setVisible(true);
 		
@@ -279,7 +319,7 @@ public class VentanaSecretaria extends JFrame {
 		panelCitas.add(btnFiltro);
 		
 		JButton btnActualizar = new JButton("Actualizar");
-		btnActualizar.setIcon(new ImageIcon(VentanaSecretaria.class.getResource("/Imagenes/refresh_arrow_6296.png")));
+		//btnActualizar.setIcon(new ImageIcon(VentanaSecretaria.class.getResource("/Imagenes/refresh_arrow_6296.png")));
 		btnActualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				model.fireTableDataChanged();
