@@ -52,7 +52,8 @@ public class IniciarSesion extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtUsuario;
 
-
+///
+	//metodo de prueba
 	private JLabel LabelUsuario;
 	private JLabel LabelContraseña;
 	private Dimension tamaño; // Dimension de la Ventana
