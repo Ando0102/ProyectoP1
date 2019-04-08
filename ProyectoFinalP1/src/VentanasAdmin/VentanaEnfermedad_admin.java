@@ -78,6 +78,7 @@ public class VentanaEnfermedad_admin extends JDialog {
 	 * Create the dialog.
 	 */
 	public VentanaEnfermedad_admin() {
+		setModal(true);
 		setTitle("Informaci\u00F3n de Enfermedades");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaEnfermedad_admin.class.getResource("/Imagenes/LogoPeque.png")));
 		setBounds(100, 100, 759, 668);

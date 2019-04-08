@@ -72,6 +72,7 @@ public class VentanaVacuna_admin extends JDialog {
 	 * Create the dialog.
 	 */
 	public VentanaVacuna_admin() {
+		setModal(true);
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaVacuna_admin.class.getResource("/Imagenes/LogoPeque.png")));
 		setTitle("Informaci\u00F3n de Vacunas");
