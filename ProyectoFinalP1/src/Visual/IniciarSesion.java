@@ -54,6 +54,7 @@ public class IniciarSesion extends JFrame {
 
 ///
 	//metodo de prueba
+	//dsndns 
 	private JLabel LabelUsuario;
 	private JLabel LabelContraseña;
 	private Dimension tamaño; // Dimension de la Ventana
