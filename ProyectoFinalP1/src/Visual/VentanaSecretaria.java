@@ -2,6 +2,7 @@ package Visual;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.ScrollPane;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -59,7 +60,7 @@ public class VentanaSecretaria extends JFrame {
 	private JPanel panelCitas = new JPanel();
 	private Dimension tamaño; 
 	private JTable tableCitas;
-
+	private JScrollPane scrollPane;
 	private TableRowSorter<TableModel> sorter;
 	private DefaultTableModel model;
 	private Object[] rows;
@@ -151,11 +152,13 @@ public class VentanaSecretaria extends JFrame {
 		btnNuevaCita.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				NuevaCita citas = new NuevaCita(secre);
+				//setVisible(false);
+				
 				citas.setModal(true);
 				citas.setLocationRelativeTo(null);
 				citas.setVisible(true);
 				citas.visualizarCampos(true);
-				repaint();
+				
 				//citas.cargarLista();
 				
 			}
@@ -197,7 +200,7 @@ public class VentanaSecretaria extends JFrame {
 		panel.add(panelCitas);
 		panelCitas.setLayout(null);
 		
-		JScrollPane scrollPane = new JScrollPane();
+		scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 61, 1101, 613);
 		panelCitas.add(scrollPane);
 		
@@ -216,12 +219,15 @@ public class VentanaSecretaria extends JFrame {
 		//table.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		tableCitas.setCellSelectionEnabled(true);
 		//tableDoctores.setCellEditor(null);
-		tableCitas.setVisible(true);
+		
 		tableCitas.setCellSelectionEnabled(true);
 		tableCitas.setRowSorter(sorter);
 		tableCitas.setName("Lista de Citas");
+		model.fireTableDataChanged();
 		loadtable();
-		scrollPane.setViewportView(tableCitas);
+		tableCitas.setVisible(true);
+		
+		
 		
 		cmbFiltroBusqueda = new JComboBox();
 		cmbFiltroBusqueda.setModel(new DefaultComboBoxModel(new String[] {"Doctor", "Cedula de Persona"}));
@@ -272,19 +278,34 @@ public class VentanaSecretaria extends JFrame {
 		btnFiltro.setBounds(510, 29, 32, 32);
 		panelCitas.add(btnFiltro);
 		
+		JButton btnActualizar = new JButton("Actualizar");
+		btnActualizar.setIcon(new ImageIcon(VentanaSecretaria.class.getResource("/Imagenes/refresh_arrow_6296.png")));
+		btnActualizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				model.fireTableDataChanged();
+				loadtable();
+				
+			}
+		});
+		btnActualizar.setBounds(981, 11, 130, 39);
+		panelCitas.add(btnActualizar);
+		
 		
 		
 	}
-	public void loadtable() {
+	public  void loadtable() {
 		//Cargar la tabla
+		
 		model.setRowCount(0);
 		rows = new Object[model.getColumnCount()];
 		for (Cita aux : Clinica.getInstance().getMisCitas()) {
 			addRow(aux);
 		}
+		
+		scrollPane.setViewportView(tableCitas);
 	}
 
-	private void addRow(Cita aux) {
+	public  void addRow(Cita aux) {
 		//Agregar fila
 		SimpleDateFormat dateformat1 = new SimpleDateFormat("dd-MM-yyyy");
 		//dateformat1.format(aux.getFecha().getTime());

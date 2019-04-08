@@ -524,8 +524,11 @@ MaskFormatter formatoIDPersona2 = null;
 						Clinica.getInstance().incertarCitaADoctor(miDoctor, misCitas);
 						JOptionPane.showMessageDialog(null, "Cita creada exitosamente!","Aviso!", JOptionPane.INFORMATION_MESSAGE);
 						repaint(); } else {
+							
+							//secre1.repaint();
 							JOptionPane.showMessageDialog(null, "Cita editada exitosamente!","Aviso!", JOptionPane.INFORMATION_MESSAGE);
 							dispose();
+							//secre1.setVisible(true);
 						}
 						
 					}
@@ -539,11 +542,17 @@ MaskFormatter formatoIDPersona2 = null;
 				JButton btnCancelar = new JButton("Cancelar");
 				btnCancelar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						//VentanaSecretaria secre1= new VentanaSecretaria(secre);
+						VentanaSecretaria secre1 = new VentanaSecretaria(secre);
 						int resp = JOptionPane.showOptionDialog(null, "Estas seguro que deseas salir?", "Advertencia!", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, new Object[] { "Si", "No" }, null); 
 						if(resp == 0){
-				        
-						dispose();
+							//dispose();
+							//secre1.loadtable();
+							
+							secre1.loadtable();
+							dispose();
+							
+							
+							
 						
 						} else{
 							repaint();
