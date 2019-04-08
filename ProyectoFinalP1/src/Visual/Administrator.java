@@ -201,6 +201,8 @@ public class Administrator extends JFrame implements Runnable {
 		panel_2.setLayout(null);
 		
 		JButton botonEmpleados = new JButton();
+		botonEmpleados.setIcon(new ImageIcon(Administrator.class.getResource("/Imagenes/carpeta2.png")));
+		botonEmpleados.setText("EMPLEADOS");
 		botonEmpleados.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				VentanaSecre_admin aux = new VentanaSecre_admin();
@@ -211,30 +213,13 @@ public class Administrator extends JFrame implements Runnable {
 		
 		botonEmpleados.setBackground(new Color(240, 248, 255));
 		botonEmpleados.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		botonEmpleados.setBounds(105, 100, 230, 140);
+		botonEmpleados.setBounds(12, 594, 207, 42);
 		panel_2.add(botonEmpleados);
 		botonEmpleados.setLayout(null);
 		
-		JLabel lblEmpleados = new JLabel("");
-		lblEmpleados.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				VentanaSecre_admin aux = new VentanaSecre_admin();
-				aux.setVisible(true);
-			
-			}
-		});
-		lblEmpleados.setBounds(72, 11, 86, 94);
-		lblEmpleados.setIcon(new ImageIcon(Administrator.class.getResource("/Imagenes/doctor.png")));
-		botonEmpleados.add(lblEmpleados);
-		
-		JLabel llbTxtEmpleados = new JLabel("EMPLEADOS");
-		llbTxtEmpleados.setForeground(Color.BLACK);
-		llbTxtEmpleados.setFont(new Font("Tahoma", Font.BOLD, 11));
-		llbTxtEmpleados.setBounds(79, 107, 80, 22);
-		botonEmpleados.add(llbTxtEmpleados);
-		
 		JButton panelPaciente = new JButton();
+		panelPaciente.setIcon(new ImageIcon(Administrator.class.getResource("/Imagenes/agregrarpacientes2.png")));
+		panelPaciente.setText("PACIENTES");
 		panelPaciente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				VentanaPacientes_admin aux = new VentanaPacientes_admin();
@@ -243,60 +228,13 @@ public class Administrator extends JFrame implements Runnable {
 		});
 		panelPaciente.setBackground(new Color(240, 248, 255));
 		panelPaciente.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		panelPaciente.setBounds(440, 100, 230, 140);
+		panelPaciente.setBounds(231, 594, 207, 42);
 		panel_2.add(panelPaciente);
 		panelPaciente.setLayout(null);
 		
-		JLabel lblPaciente = new JLabel("");
-		lblPaciente.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				VentanaPacientes_admin aux = new VentanaPacientes_admin();
-				aux.setVisible(true);
-			}
-		});
-		lblPaciente.setIcon(new ImageIcon(Administrator.class.getResource("/Imagenes/Paciente Mujer.png")));
-		lblPaciente.setBounds(77, 11, 104, 94);
-		panelPaciente.add(lblPaciente);
-		
-		JLabel lbltextpaciente = new JLabel("PACIENTES");
-		lbltextpaciente.setForeground(Color.BLACK);
-		lbltextpaciente.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lbltextpaciente.setBounds(89, 105, 91, 29);
-		panelPaciente.add(lbltextpaciente);
-		
-		JButton botonEstadistica = new JButton();
-		botonEstadistica.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				VentanaEstadisticas aux = new VentanaEstadisticas();
-				aux.setVisible(true);
-			}
-		});
-		botonEstadistica.setBackground(new Color(240, 248, 255));
-		botonEstadistica.setLayout(null);
-		botonEstadistica.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		botonEstadistica.setBounds(105, 342, 230, 140);
-		panel_2.add(botonEstadistica);
-		
-		JLabel lblEstadistica = new JLabel("");
-		lblEstadistica.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				VentanaEstadisticas aux = new VentanaEstadisticas();
-				aux.setVisible(true);
-			}
-		});
-		lblEstadistica.setIcon(new ImageIcon(Administrator.class.getResource("/Imagenes/grafica1.png")));
-		lblEstadistica.setBounds(62, 11, 100, 94);
-		botonEstadistica.add(lblEstadistica);
-		
-		JLabel lbltextEstadistica = new JLabel("ESTADÍSTICAS");
-		lbltextEstadistica.setForeground(new Color(0, 0, 0));
-		lbltextEstadistica.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lbltextEstadistica.setBounds(70, 107, 93, 22);
-		botonEstadistica.add(lbltextEstadistica);
-		
 		JButton panelEnfermedad = new JButton();
+		panelEnfermedad.setIcon(new ImageIcon(Administrator.class.getResource("/Imagenes/Enfermedad.png")));
+		panelEnfermedad.setText("ENFERMEDADES");
 		panelEnfermedad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				VentanaEnfermedad_admin aux = new VentanaEnfermedad_admin();
@@ -306,28 +244,12 @@ public class Administrator extends JFrame implements Runnable {
 		panelEnfermedad.setBackground(new Color(240, 248, 255));
 		panelEnfermedad.setLayout(null);
 		panelEnfermedad.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		panelEnfermedad.setBounds(775, 100, 230, 140);
+		panelEnfermedad.setBounds(888, 594, 207, 42);
 		panel_2.add(panelEnfermedad);
 		
-		JLabel lblEnfermedad = new JLabel("");
-		lblEnfermedad.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				VentanaEnfermedad_admin aux = new VentanaEnfermedad_admin();
-				aux.setVisible(true);
-			}
-		});
-		lblEnfermedad.setIcon(new ImageIcon(Administrator.class.getResource("/Imagenes/Enfermedad2.png")));
-		lblEnfermedad.setBounds(67, 11, 103, 94);
-		panelEnfermedad.add(lblEnfermedad);
-		
-		JLabel lbltextenfermedad = new JLabel("ENFERMEDADES");
-		lbltextenfermedad.setForeground(new Color(0, 0, 0));
-		lbltextenfermedad.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lbltextenfermedad.setBounds(75, 101, 89, 28);
-		panelEnfermedad.add(lbltextenfermedad);
-		
 		JButton panelVacuna = new JButton();
+		panelVacuna.setIcon(new ImageIcon(Administrator.class.getResource("/Imagenes/vacuna.png")));
+		panelVacuna.setText("VACUNAS\r\n");
 		panelVacuna.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				VentanaVacuna_admin aux = new VentanaVacuna_admin();
@@ -336,6 +258,8 @@ public class Administrator extends JFrame implements Runnable {
 		});
 		
 		JButton panelCitas = new JButton();
+		panelCitas.setIcon(new ImageIcon(Administrator.class.getResource("/Imagenes/cita2.png")));
+		panelCitas.setText("CITAS");
 		panelCitas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				VentanaCita_admin aux = new VentanaCita_admin();
@@ -345,44 +269,15 @@ public class Administrator extends JFrame implements Runnable {
 		panelCitas.setBackground(new Color(240, 248, 255));
 		panelCitas.setLayout(null);
 		panelCitas.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		panelCitas.setBounds(440, 342, 230, 140);
+		panelCitas.setBounds(450, 594, 207, 42);
 		panel_2.add(panelCitas);
 		panelCitas.setLayout(null);
-		
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(Administrator.class.getResource("/Imagenes/cita5.png")));
-		lblNewLabel_1.setBounds(65, 11, 97, 88);
-		panelCitas.add(lblNewLabel_1);
-		
-		JLabel lblEstadstica = new JLabel("CITAS");
-		lblEstadstica.setForeground(new Color(0, 0, 0));
-		lblEstadstica.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblEstadstica.setBounds(93, 110, 109, 19);
-		panelCitas.add(lblEstadstica);
 		
 		panelVacuna.setBackground(new Color(240, 248, 255));
 		panelVacuna.setLayout(null);
 		panelVacuna.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		panelVacuna.setBounds(775, 342, 230, 140);
+		panelVacuna.setBounds(669, 594, 207, 42);
 		panel_2.add(panelVacuna);
-		
-		JLabel lblVacuna = new JLabel("");
-		lblVacuna.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				VentanaVacuna_admin aux = new VentanaVacuna_admin();
-				aux.setVisible(true);
-			}
-		});
-		lblVacuna.setIcon(new ImageIcon(Administrator.class.getResource("/Imagenes/Vacuna2.png")));
-		lblVacuna.setBounds(69, 11, 114, 94);
-		panelVacuna.add(lblVacuna);
-		
-		JLabel lbltextvacuna = new JLabel("VACUNAS");
-		lbltextvacuna.setForeground(new Color(0, 0, 0));
-		lbltextvacuna.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lbltextvacuna.setBounds(93, 107, 58, 22);
-		panelVacuna.add(lbltextvacuna);
 	}
 	
 

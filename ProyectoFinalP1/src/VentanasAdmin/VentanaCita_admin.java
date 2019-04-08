@@ -5,6 +5,7 @@ import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Toolkit;
@@ -23,7 +24,7 @@ public class VentanaCita_admin extends JDialog {
 	public static void main(String[] args) {
 		try {
 			VentanaCita_admin dialog = new VentanaCita_admin();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -34,7 +35,7 @@ public class VentanaCita_admin extends JDialog {
 	 * Create the dialog.
 	 */
 	public VentanaCita_admin() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaCita_admin.class.getResource("/Imagenes/LogoPeque.png")));
+		//setIcon(Toolkit.getDefaultToolkit().getImage(VentanaCita_admin.class.getResource("/Imagenes/LogoPeque.png")));
 		setTitle("Informaci\u00F3n de Citas");
 		setBounds(100, 100, 685, 442);
 		getContentPane().setLayout(new BorderLayout());
