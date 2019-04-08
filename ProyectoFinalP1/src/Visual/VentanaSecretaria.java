@@ -168,7 +168,7 @@ public class VentanaSecretaria extends JFrame {
 		btnNuevaCita.setBounds(10, 240, 179, 63);
 		panelBienvenida.add(btnNuevaCita);
 		
-		JButton btnModificarCita = new JButton("Modificar Cita");
+		final JButton btnModificarCita = new JButton("Modificar Cita");
 		btnModificarCita.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -195,7 +195,7 @@ public class VentanaSecretaria extends JFrame {
 		btnSalir.setBounds(10, 518, 179, 63);
 		panelBienvenida.add(btnSalir);
 		
-		JButton btnCancelarCita = new JButton("Cancelar Cita");
+		final JButton btnCancelarCita = new JButton("Cancelar Cita");
 		btnCancelarCita.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Cita aux = null;
