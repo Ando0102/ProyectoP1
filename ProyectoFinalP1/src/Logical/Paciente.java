@@ -24,10 +24,10 @@ public class Paciente extends Persona {
 		this.estado = estado;
 		this.contacto_emergencia = contacto_emergencia;
 		this.peso = peso;
-		this.misVacunas        = new ArrayList<>();
-		this.misEnfermedas      = new ArrayList<>();
-		this.misConsultas       =  new ArrayList<>();
-		this.misHistorialMedico =  new ArrayList<>();
+		this.misVacunas = new ArrayList<Vacuna>();
+		this.misEnfermedas = new ArrayList<>();
+		this.misConsultas = new ArrayList<>();
+		this.misHistorialMedico = new ArrayList<>();
 	}
 
 	//------------[get end set-----------------
@@ -57,6 +57,38 @@ public class Paciente extends Persona {
 		this.peso = peso;
 	}
 	//--------------------------------------------
+
+	public ArrayList<Vacuna> getMisVacunas() {
+		return misVacunas;
+	}
+
+	public void setMisVacunas(ArrayList<Vacuna> misVacunas) {
+		this.misVacunas = misVacunas;
+	}
+
+	public ArrayList<Enfermedad> getMisEnfermedas() {
+		return misEnfermedas;
+	}
+
+	public void setMisEnfermedas(ArrayList<Enfermedad> misEnfermedas) {
+		this.misEnfermedas = misEnfermedas;
+	}
+
+	public ArrayList<Consulta> getMisConsultas() {
+		return misConsultas;
+	}
+
+	public void setMisConsultas(ArrayList<Consulta> misConsultas) {
+		this.misConsultas = misConsultas;
+	}
+
+	public ArrayList<HistorialMedico> getMisHistorialMedico() {
+		return misHistorialMedico;
+	}
+
+	public void setMisHistorialMedico(ArrayList<HistorialMedico> misHistorialMedico) {
+		this.misHistorialMedico = misHistorialMedico;
+	}
 
 
 
