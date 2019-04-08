@@ -22,12 +22,17 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 
 import Logical.Cita;
 import Logical.Doctor;
 import javafx.scene.layout.Background;
+import javax.swing.JTextField;
+import java.awt.Font;
+import javax.swing.JTextArea;
+import javax.swing.UIManager;
 
 
 
@@ -46,6 +51,7 @@ public class pnlCitasbtn extends JPanel  {
 			private static DefaultTableCellRenderer centrar = new DefaultTableCellRenderer();
 			private static JTable table;
 			Doctor miDoctor = null;
+			private JTextArea txtrBien;
 			
 		/**
 		 * Create the applet.
@@ -54,21 +60,11 @@ public class pnlCitasbtn extends JPanel  {
 		
 			this.miDoctor=miDoc;
 			
-			setBackground(Color.BLUE);
+			setBackground(new Color(240, 248, 255));
 			setLayout(null);
 			
-			JPanel panel = new JPanel();
-			panel.setBounds(0, 550, 1071, 73);
-		    add(panel);
-			panel.setLayout(null);
-			
-			JButton btnRealizarCita = new JButton("Realizar Consulta");
-			btnRealizarCita.setEnabled(false);
-			btnRealizarCita.setBounds(906, 11, 155, 51);
-			panel.add(btnRealizarCita);
-			
 			JPanel panel_1 = new JPanel();
-			panel_1.setBounds(0, 63, 1071, 488);
+			panel_1.setBounds(0, 103, 1071, 481);
 			add(panel_1);
 			panel_1.setLayout(new BoxLayout(panel_1, BoxLayout.X_AXIS));
 			
@@ -76,7 +72,12 @@ public class pnlCitasbtn extends JPanel  {
 			scrollPane.setSize(1071, 443);
 			scrollPane.setLocation(0, 0);
 			panel_1.add(scrollPane);
-			setBounds(0, 0, 1071, 507);
+			setBounds(0, 0, 1071, 783);
+			txtrBien = new JTextArea();
+			txtrBien.setBackground(UIManager.getColor("Button.background"));
+			txtrBien.setEditable(false);
+			txtrBien.setBounds(489, 33, 164, 45);
+			add(txtrBien);
 			table = new JTable();
 			table.setDefaultEditor(Object.class, null);//sirve para evitar que se edite la table
 			table.setDefaultRenderer(Object.class, new DTable());//dando formato
@@ -84,12 +85,18 @@ public class pnlCitasbtn extends JPanel  {
 			modelo = new DefaultTableModel();
 			cargar();
 			table.setModel(modelo);
+			JTableHeader header = table.getTableHeader();
+		    header.setBackground(new Color(176, 196, 222));
+		    table.setBackground( new Color(240, 248, 255));
 		//
 		
 			
 			
 			cargarDatos();
 			scrollPane.setViewportView(table);
+			
+	
+		
 
 			table.addMouseListener(new MouseAdapter() {
 				private Cita ciataDelDia;
@@ -310,7 +317,7 @@ public class pnlCitasbtn extends JPanel  {
 
 				//sirve para dar un tamnno a las columnas 
 			
-				columnModel.getColumn(0).setPreferredWidth(91);
+				columnModel.getColumn(0).setPreferredWidth(90);
 				columnModel.getColumn(1).setPreferredWidth(140);
 				columnModel.getColumn(2).setPreferredWidth(140);
 				columnModel.getColumn(3).setPreferredWidth(140);
@@ -363,9 +370,96 @@ public class pnlCitasbtn extends JPanel  {
 				System.out.println("Error a cargar fecha semanas");
 				e.printStackTrace();
 			}
+			//String n = fechasSemana[0];
+			//textField.set
+			String mesInicio = "";
+			switch (Domingo.get(Calendar.MONTH)) {
+			case 0:
+				mesInicio = "Enero";
+				break;
+			case 1:
+				mesInicio = "Febrero";
+				break;
+			case 2:
+				mesInicio = "Marzo";
+				break;
+			case 3:
+				mesInicio = "Abril";
+				break;
+			case 4:
+				mesInicio = "Mayo";
+				break;
+			case 5:
+				mesInicio = "Junio";
+				break;
+			case 6:
+				mesInicio = "Julio";
+				break;
+			case 7:
+				mesInicio = "Agosto";
+				break;
+			case 8:
+				mesInicio = "Septiembre";
+				break;
+			case 9:
+				mesInicio = "Nobiembre";
+				break;
+			case 10:
+				mesInicio = "Diciembre";
+				break;
+			default:
+				break;
+			}
+			String mesFin = "";
+			switch (Sabado.get(Calendar.MONTH)) {
+			case 0:
+				mesFin = "Enero";
+				break;
+			case 1:
+				mesFin = "Febrero";
+				break;
+			case 2:
+				mesFin = "Marzo";
+				break;
+			case 3:
+				mesFin = "Abril";
+				break;
+			case 4:
+				mesFin = "Mayo";
+				break;
+			case 5:
+				mesFin = "Junio";
+				break;
+			case 6:
+				mesFin = "Julio";
+				break;
+			case 7:
+				mesFin = "Agosto";
+				break;
+			case 8:
+				mesFin = "Septiembre";
+				break;
+			case 9:
+				mesFin = "Nobiembre";
+				break;
+			case 10:
+				mesFin = "Diciembre";
+				break;
+			default:
+				break;
+			}
+			String Incio = "";
+			if(Domingo.get(Calendar.DATE)<10) {
+				Incio = "-Desde el Domingo "+"0"+Domingo.get(Calendar.DATE)+" " +mesInicio;
+
+			}else {
+			Incio = "-Desde el Domingo "+Domingo.get(Calendar.DATE)+" " +mesInicio;
+			}
+			String fin = "";
+			fin ="-Hasta el Sabado "+ Sabado.get(Calendar.DATE)+" "+mesFin;
 			
 			System.out.println("DIA: "+Domingo.get(Calendar.DATE));
-			
+			txtrBien.setText(" "+Incio+"\r\n"+" "+fin);
 //-------------------------------------------------------------------------			
 			
 			System.out.println("Domingo:   " +fechasSemana[0]);
@@ -488,10 +582,8 @@ public class pnlCitasbtn extends JPanel  {
 		public void cargarCitas(Cita miCita, int poner_horaFila) {
 			Calendar auxFecha = Calendar.getInstance();
 			auxFecha = miCita.getFecha();
-			int dia_semana=auxFecha.get(Calendar.DATE);
-			System.out.println("*************");
-			///System.out.println("DIA SEMANA ES: "+dia_semana);
-	
+			int dia_semana=auxFecha.get(Calendar.DAY_OF_WEEK)-1;
+
 			if(dia_semana==0) {
 				System.out.println("****Domingo");
 				System.out.println("");
@@ -829,8 +921,4 @@ public class pnlCitasbtn extends JPanel  {
 			}
 			return no;
 		}
-
-				
-
-		
 }

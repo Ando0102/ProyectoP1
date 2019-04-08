@@ -8,6 +8,7 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 import java.awt.Color;
 import javax.swing.border.BevelBorder;
@@ -39,6 +40,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class RealizarConsulta extends JDialog {
 
@@ -81,9 +84,11 @@ public class RealizarConsulta extends JDialog {
 	 * Create the dialog.
 	 */
 	public RealizarConsulta(Cita mi) {
+		
 		this.micita = mi;
 		setBounds(100, 100, 936, 626);
 		getContentPane().setLayout(new BorderLayout());
+		setLocationRelativeTo(null);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
@@ -115,6 +120,7 @@ public class RealizarConsulta extends JDialog {
 		panel_1.add(lblContactoDeEmergencia);
 		
 		textContactoEmergencia = new JTextField();
+
 		textContactoEmergencia.setEditable(false);
 		textContactoEmergencia.setColumns(10);
 		textContactoEmergencia.setBackground(Color.WHITE);
@@ -159,8 +165,19 @@ public class RealizarConsulta extends JDialog {
 		panel_1.add(lblContactoDeEmergencia_1);
 		
 		textField_1 = new JTextField();
+		textField_1.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				textField_1.setBackground(new Color(240, 248, 255));
+
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				textField_1.setBackground(Color.white);
+			}
+		});
 		textField_1.setColumns(10);
-		textField_1.setBackground(Color.WHITE);
+		textField_1.setBackground(Color.white);
 		textField_1.setBounds(10, 169, 155, 20);
 		panel_1.add(textField_1);
 		
@@ -193,7 +210,12 @@ public class RealizarConsulta extends JDialog {
 		panel.add(scrollPane);
 		
 		tableListaVacuna = new JTable();
+		
 		visualizar_tabla_ListaVacuna();
+
+       
+		
+	//
 		scrollPane.setViewportView(tableListaVacuna);
 		
 		JLabel lblListaDeVacunas = new JLabel("Lista De vacunas: ");
@@ -205,6 +227,8 @@ public class RealizarConsulta extends JDialog {
 		panel.add(scrollPane_2);
 		
 		tableListaEnfermeda = new JTable();
+
+	//
 		scrollPane_2.setViewportView(tableListaEnfermeda);
 		
 		JLabel lblEnfermo = new JLabel("Enfermo:");
@@ -342,7 +366,6 @@ pack(); // abre la ventana conforme el tamaño necesario de los componentes
 		            }
 		           
 		        };
-		       
 		        fila = new Object[dt.getColumnCount()];	
 		        for (Enfermedad b : Clinica.getInstance().getEnfermedades()) {
 		        	 fila[0] = false;
@@ -375,7 +398,7 @@ pack(); // abre la ventana conforme el tamaño necesario de los componentes
 		            }
 		           
 		        };
-		       
+				
 		        filaEnfermedades = new Object[dt.getColumnCount()];	
 		      JCheckBox N = new JCheckBox();
 		      N.setSelected(false);

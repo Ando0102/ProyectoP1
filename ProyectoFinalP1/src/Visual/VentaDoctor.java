@@ -161,7 +161,7 @@ public class VentaDoctor extends JFrame implements Runnable {
 		btnNewButton.setBounds(10, 376, 179, 57);
 		panel_1.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("Tablero");
+		JButton btnNewButton_1 = new JButton("");
 		btnNewButton_1.setBackground(UIManager.getColor("Button.highlight"));
 		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton_1.setIcon(new ImageIcon(VentaDoctor.class.getResource("/Imagenes/controlPanel.png")));
