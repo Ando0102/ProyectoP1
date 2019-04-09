@@ -35,6 +35,7 @@ public class Render extends DefaultTableCellRenderer{
         if(value instanceof JCheckBox){
             JCheckBox ch = (JCheckBox)value;
           //  ch.setSelected(true);
+            
 
             return ch;
         }

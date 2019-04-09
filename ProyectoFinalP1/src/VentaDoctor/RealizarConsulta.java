@@ -22,6 +22,8 @@ import com.toedter.calendar.JDateChooser;
 import Logical.Cita;
 import Logical.Clinica;
 import Logical.Enfermedad;
+import Logical.Paciente;
+import Logical.Vacuna;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -29,17 +31,22 @@ import javax.swing.JTextPane;
 import javax.swing.JScrollBar;
 import javax.swing.JInternalFrame;
 import java.awt.Component;
+
+import javax.swing.AbstractButton;
 import javax.swing.Box;
+import javax.swing.ButtonGroup;
 import javax.swing.JTextArea;
 import javax.swing.JCheckBox;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.Font;
 import java.util.ArrayList;
+import java.util.Date;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.SimpleDateFormat;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
@@ -47,14 +54,17 @@ public class RealizarConsulta extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textNombre;
-	private JTextField textContactoEmergencia;
-	private JTextField textField_3;
-	private JTextField textField_2;
-	private JTextField textField_1;
+	private JTextField txtTelefono;
+	private JTextField textSexo;
+	private JTextField textPeso;
+	private JTextField textContatoEmergencia;
 	private JTable tableListaVacuna;
 	private JCheckBox chckbxNo;
 	private JCheckBox chckbxSi;
 	private JTable tableListaEnfermeda;
+	//Variables para grupar botones
+	private ButtonGroup botonesGrupo1;//sirve para aya;dir un grupo de botones a una famila
+	private ButtonGroup botonesGrupo2;
 	///
 	// 
 	private static String[] columnNames_Enfermedades = {"Código","Cédula","Nombre","Dirección","Prestamos"};
@@ -65,6 +75,7 @@ public class RealizarConsulta extends JDialog {
 	//
 	private static Object[] fila;
 	private Cita micita = null;
+	private JCheckBox chckbxNo_1;
 
 	/**
 	 * Launch the application.
@@ -72,7 +83,7 @@ public class RealizarConsulta extends JDialog {
 	/*
 	public static void main(String[] args) {
 		try {
-			RealizarConsulta dialog = new RealizarConsulta();
+			RealizarConsulta dialog = new RealizarConsulta(null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -100,11 +111,14 @@ public class RealizarConsulta extends JDialog {
 		panel_1.setBounds(10, 11, 480, 250);
 		contentPanel.add(panel_1);
 		
+		botonesGrupo1 = new ButtonGroup(); //GRUPO PARA LOS BOTONES
+		botonesGrupo2 = new ButtonGroup();
+		
 		JLabel label_2 = new JLabel("Nombre:");
 		label_2.setBounds(10, 32, 67, 14);
 		panel_1.add(label_2);
 		
-		textNombre = new JTextField(""+micita.getMiPersona().getNombre()+micita.getMiPersona().getApellidos());
+		textNombre = new JTextField(" "+micita.getMiPersona().getNombre()+" "+micita.getMiPersona().getApellidos());
 		textNombre.setEditable(false);
 		textNombre.setColumns(10);
 		textNombre.setBackground(Color.WHITE);
@@ -119,13 +133,14 @@ public class RealizarConsulta extends JDialog {
 		lblContactoDeEmergencia.setBounds(10, 88, 139, 14);
 		panel_1.add(lblContactoDeEmergencia);
 		
-		textContactoEmergencia = new JTextField();
+		txtTelefono = new JTextField();
 
-		textContactoEmergencia.setEditable(false);
-		textContactoEmergencia.setColumns(10);
-		textContactoEmergencia.setBackground(Color.WHITE);
-		textContactoEmergencia.setBounds(10, 113, 155, 20);
-		panel_1.add(textContactoEmergencia);
+		txtTelefono.setEditable(false);
+		txtTelefono.setColumns(10);
+		txtTelefono.setBackground(Color.WHITE);
+		txtTelefono.setBounds(10, 113, 155, 20);
+		panel_1.add(txtTelefono);
+		txtTelefono.setText(" "+micita.getMiPersona().getTelefono());
 		
 		JLabel label_9 = new JLabel("");
 		label_9.setBounds(542, 32, 83, 122);
@@ -135,12 +150,17 @@ public class RealizarConsulta extends JDialog {
 		label_10.setBounds(625, 36, 83, 98);
 		panel_1.add(label_10);
 		
-		textField_3 = new JTextField();
-		textField_3.setEditable(false);
-		textField_3.setColumns(10);
-		textField_3.setBackground(Color.WHITE);
-		textField_3.setBounds(183, 114, 97, 20);
-		panel_1.add(textField_3);
+		textSexo = new JTextField();
+		textSexo.setEditable(false);
+		textSexo.setColumns(10);
+		textSexo.setBackground(Color.WHITE);
+		textSexo.setBounds(183, 114, 97, 20);
+		panel_1.add(textSexo);
+		if(micita.getMiPersona().isSexo()) {
+			textSexo.setText(" "+"Masculino");
+		}else {
+			textSexo.setText(" "+"Femenino");
+		}
 		
 		JLabel lblTipoDeSangre = new JLabel("Tipo de sangre:\r\n");
 		lblTipoDeSangre.setBounds(306, 141, 97, 14);
@@ -148,38 +168,38 @@ public class RealizarConsulta extends JDialog {
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Eliga tipo Sangre", "A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"}));
-		comboBox.setBounds(304, 166, 133, 20);
+		comboBox.setBounds(306, 169, 133, 20);
 		panel_1.add(comboBox);
 		
 		JLabel lblPesokg = new JLabel("Peso: (kg)");
 		lblPesokg.setBounds(183, 145, 97, 14);
 		panel_1.add(lblPesokg);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(183, 166, 97, 20);
-		panel_1.add(textField_2);
-		textField_2.setColumns(10);
+		textPeso = new JTextField();
+		textPeso.setBounds(183, 169, 97, 20);
+		panel_1.add(textPeso);
+		textPeso.setColumns(10);
 		
 		JLabel lblContactoDeEmergencia_1 = new JLabel("Contacto De Emergencia:\r\n\r\n");
 		lblContactoDeEmergencia_1.setBounds(10, 145, 163, 14);
 		panel_1.add(lblContactoDeEmergencia_1);
 		
-		textField_1 = new JTextField();
-		textField_1.addFocusListener(new FocusAdapter() {
+		textContatoEmergencia = new JTextField();
+		textContatoEmergencia.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				textField_1.setBackground(new Color(240, 248, 255));
+				textContatoEmergencia.setBackground(new Color(240, 248, 255));
 
 			}
 			@Override
 			public void focusLost(FocusEvent e) {
-				textField_1.setBackground(Color.white);
+				textContatoEmergencia.setBackground(Color.white);
 			}
 		});
-		textField_1.setColumns(10);
-		textField_1.setBackground(Color.white);
-		textField_1.setBounds(10, 169, 155, 20);
-		panel_1.add(textField_1);
+		textContatoEmergencia.setColumns(10);
+		textContatoEmergencia.setBackground(Color.white);
+		textContatoEmergencia.setBounds(10, 169, 155, 20);
+		panel_1.add(textContatoEmergencia);
 		
 		JLabel label_1 = new JLabel("");
 		label_1.setIcon(new ImageIcon(RealizarConsulta.class.getResource("/Imagenes/person_user_customer_man_male_man_boy_people_1687.png")));
@@ -245,12 +265,15 @@ public class RealizarConsulta extends JDialog {
 		chckbxSi.setBounds(310, 15, 58, 23);
 		panel.add(chckbxSi);
 		chckbxSi.setBackground(new Color(230, 230, 250));
+		botonesGrupo1.add(chckbxSi);
 		
 		chckbxNo = new JCheckBox("NO.");
 		chckbxNo.setSelected(true);
 		chckbxNo.setBounds(370, 15, 58, 23);
 		panel.add(chckbxNo);
 		chckbxNo.setBackground(new Color(230, 230, 250));
+		botonesGrupo1.add(chckbxNo);
+		
 		
 		JLabel lblListaEnfermedades_1 = new JLabel("Lista Enfermedades:\r\n");
 		lblListaEnfermedades_1.setBounds(233, 49, 170, 14);
@@ -276,12 +299,14 @@ public class RealizarConsulta extends JDialog {
 		panel_2.add(label_5);
 		
 		JLabel lblFechaConsulta = new JLabel("Fecha Consulta:");
-		lblFechaConsulta.setBounds(262, 394, 91, 14);
+		lblFechaConsulta.setBounds(262, 422, 91, 14);
 		panel_2.add(lblFechaConsulta);
 		
-		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.setBounds(262, 426, 111, 20);
-		panel_2.add(dateChooser);
+		JDateChooser fechaConsulta = new JDateChooser();
+		fechaConsulta.setBounds(262, 447, 111, 20);
+		panel_2.add(fechaConsulta);
+		fechaConsulta.setEnabled(false);
+		fechaConsulta.setDate(fechaActual());
 		
 		JLabel lblListaEnfermedades = new JLabel("Diagn\u00F3stico:\r\n\r\n");
 		lblListaEnfermedades.setBounds(20, 11, 216, 34);
@@ -289,18 +314,21 @@ public class RealizarConsulta extends JDialog {
 		
 		JLabel lblDeseaAgregarA = new JLabel("Agregar al historial medico? ");
 		lblDeseaAgregarA.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblDeseaAgregarA.setBounds(28, 394, 161, 14);
+		lblDeseaAgregarA.setBounds(20, 422, 161, 14);
 		panel_2.add(lblDeseaAgregarA);
 		
 		JCheckBox checkBox = new JCheckBox("Si.");
 		checkBox.setBackground(new Color(230, 230, 250));
-		checkBox.setBounds(28, 423, 58, 23);
+		checkBox.setBounds(30, 447, 58, 23);
 		panel_2.add(checkBox);
+		botonesGrupo2.add(checkBox);
 		
-		JCheckBox chckbxNo_1 = new JCheckBox("No.");
+		chckbxNo_1 = new JCheckBox("No.");
+		chckbxNo_1.setSelected(true);
 		chckbxNo_1.setBackground(new Color(230, 230, 250));
-		chckbxNo_1.setBounds(119, 426, 58, 23);
+		chckbxNo_1.setBounds(123, 447, 58, 23);
 		panel_2.add(chckbxNo_1);
+		botonesGrupo2.add(chckbxNo_1);
 		/*
 		 * JScrollPane pScroll = new JScrollPane( ta, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 panel.add( pScroll, BorderLayout.CENTER);
@@ -320,7 +348,7 @@ pack(); // abre la ventana conforme el tamaño necesario de los componentes
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
+				JButton okButton = new JButton("Guardar Consulta");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						Boolean v= (Boolean) tableListaVacuna.getValueAt(0, 1);
@@ -337,12 +365,13 @@ pack(); // abre la ventana conforme el tamaño necesario de los componentes
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
+				JButton cancelButton = new JButton("Cancelar");
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
 			
 		}
+		
 	
 	}
 	  public void visualizar_tabla_ListaVacuna(){
@@ -367,15 +396,31 @@ pack(); // abre la ventana conforme el tamaño necesario de los componentes
 		           
 		        };
 		        fila = new Object[dt.getColumnCount()];	
-		        for (Enfermedad b : Clinica.getInstance().getEnfermedades()) {
-		        	 fila[0] = false;
-				     fila[0] = b.getNombre_enfermedad();
-				       
-				        dt.addRow(fila);
+		
+		        for (Vacuna b : Clinica.getInstance().getMisVacunas()) {
+		        	 fila[0] = b.getNombre_vacuna();
+		        	 
+		        	 if(micita.getMiPersona() instanceof Paciente) {
+		        		Boolean estado = false;
+		        		estado =((Paciente) micita.getMiPersona()).buscar_vacuna(b.getNombre_vacuna());
+		        	 
+		        		if(estado==true) {
+		        			fila[1] = true;
+		        		}else {
+		        			fila[1] = false;
+		        		}
+		        	 }else {
+		        		 
+		        		 fila[1] = false;
+		        	 }
+				    
+				    dt.addRow(fila);
 				}
-		       
-		        
+	
+
 		       tableListaVacuna.setModel(dt);
+		       
+		      
 		    }
 	  public void visualizar_tabla_Enfermedades(){
 		  
@@ -387,31 +432,47 @@ pack(); // abre la ventana conforme el tamaño necesario de los componentes
 		            Class[] types = new Class[]{
 		                java.lang.Object.class,java.lang.Boolean.class,java.lang.Object.class
 		            };
-		 
 		           
 		            public Class getColumnClass(int columnIndex) {
 		                return types[columnIndex];
 		            }
 		           
 		            public boolean isCellEditable(int row, int column){
+		            	
 		                return editable[column];
+		                
 		            }
 		           
 		        };
 				
 		        filaEnfermedades = new Object[dt.getColumnCount()];	
-		      JCheckBox N = new JCheckBox();
-		      N.setSelected(false);
-		      
-		      
-		        filaEnfermedades[0] =",,";
-		       
-		        dt.addRow(filaEnfermedades);
-			
-		      
+		        JCheckBox N = new JCheckBox();
+		        N.setSelected(false);
+		        for (Enfermedad b : Clinica.getInstance().getEnfermedades()) {
+		        	filaEnfermedades[0] = b.getNombre_enfermedad();
+		        	filaEnfermedades[1] = false;
+				   dt.addRow(filaEnfermedades);
+				}
+		        
 		       tableListaEnfermeda.setModel(dt);
-		      
-		      
+		       
+		   
 		    
+
 		    }
+
+	  public Date fechaActual() {
+			Date fecha = new Date();
+			SimpleDateFormat formato= new SimpleDateFormat("dd/MM/YYYY");
+			
+			return fecha;
+		}
+
+	  public void leerDatosConsulta() {
+		  String Diagnostico = "";
+		  Boolean enfermo = false;
+		  ArrayList<Vacuna> misVacunas = null;
+		  
+	  }
+
 }
