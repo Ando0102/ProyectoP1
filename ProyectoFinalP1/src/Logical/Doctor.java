@@ -91,6 +91,14 @@ public class Doctor extends User {
 		}
 		return tu;
 	}
-
+	public boolean acutalizar_Cita(Cita citaVieja, Cita nueva) {
+		boolean estado = false;
+		if(misCitas.contains(citaVieja)) {
+			misCitas.remove(citaVieja);
+			misCitas.add(nueva);
+			estado = true;
+		}
+		return estado;
+	}
 
 }

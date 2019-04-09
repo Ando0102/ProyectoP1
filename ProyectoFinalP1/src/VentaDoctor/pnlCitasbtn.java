@@ -176,7 +176,7 @@ public class pnlCitasbtn extends JPanel  {
 									System.out.println("SOn las 13");
 									break;
 								case 6:
-									//son las 14
+									//son las 14Dd
 									ciataDelDia = miDoctor.
 									buscar_Cita_Fecha(fechaCitaCompara, 14);
 									System.out.println("SOn las 14");
@@ -552,19 +552,19 @@ public class pnlCitasbtn extends JPanel  {
 					break;
 				case 16:
 					System.out.println("La hora es: "+HoraCita);
-					cargarCitas(miCita, 7);
+					cargarCitas(miCita, 8);
 					break;
 				case 17:
 					System.out.println("La hora es: "+HoraCita);
-					cargarCitas(miCita, 8);
+					cargarCitas(miCita, 9);
 					break;
 				case 18:
 					System.out.println("La hora es: "+HoraCita);
-					cargarCitas(miCita, 9);
+					cargarCitas(miCita, 10);
 					break;
 				case 19:
 					System.out.println("La hora es: "+HoraCita);
-					cargarCitas(miCita, 10);
+					cargarCitas(miCita, 11);
 					break;
 				default:
 					break;

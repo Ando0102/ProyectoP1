@@ -84,21 +84,14 @@ public class RealizarConsulta extends JDialog {
 	@SuppressWarnings("unused")
 	private MaskFormatter formatoTele;
 	private JComboBox cbxTipoSangre;
+	private JTextArea textHistorialMedico;
 	
 
 	/**
 	 * Launch the application.
 	 */
-	/*
-	public static void main(String[] args) {
-		try {
-			RealizarConsulta dialog = new RealizarConsulta(null);
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	
+
 
 	/**
 	 * Create the dialog.
@@ -188,6 +181,8 @@ public class RealizarConsulta extends JDialog {
 		panel_1.add(lblTipoDeSangre);
 		
 		cbxTipoSangre = new JComboBox();
+		cbxTipoSangre.setEditable(true);
+		cbxTipoSangre.setBackground(Color.WHITE);
 		cbxTipoSangre.setModel(new DefaultComboBoxModel(new String[] {"Eliga tipo Sangre", "A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"}));
 		cbxTipoSangre.setBounds(306, 169, 133, 20);
 		panel_1.add(cbxTipoSangre);
@@ -197,6 +192,7 @@ public class RealizarConsulta extends JDialog {
 		panel_1.add(lblPesokg);
 		
 		textPeso = new JTextField();
+		textPeso.setBackground(Color.WHITE);
 		textPeso.setBounds(183, 169, 97, 20);
 		panel_1.add(textPeso);
 		textPeso.setColumns(10);
@@ -272,8 +268,8 @@ public class RealizarConsulta extends JDialog {
 	//
 		scrollPane_2.setViewportView(tableListaEnfermeda);
 		
-		JLabel lblEnfermo = new JLabel("Enfermo:");
-		lblEnfermo.setBounds(233, 20, 91, 14);
+		JLabel lblEnfermo = new JLabel("Se Encuentra Enfermo?");
+		lblEnfermo.setBounds(10, 19, 151, 14);
 		panel.add(lblEnfermo);
 		
 		chckbxSi = new JCheckBox("Si.");
@@ -283,14 +279,14 @@ public class RealizarConsulta extends JDialog {
 				visualizar_tabla_Enfermedades();
 			}
 		});
-		chckbxSi.setBounds(310, 15, 58, 23);
+		chckbxSi.setBounds(165, 15, 58, 23);
 		panel.add(chckbxSi);
 		chckbxSi.setBackground(new Color(230, 230, 250));
 		botonesGrupo1.add(chckbxSi);
 		
 		chckbxNo = new JCheckBox("NO.");
 		chckbxNo.setSelected(true);
-		chckbxNo.setBounds(370, 15, 58, 23);
+		chckbxNo.setBounds(233, 15, 58, 23);
 		panel.add(chckbxNo);
 		chckbxNo.setBackground(new Color(230, 230, 250));
 		botonesGrupo1.add(chckbxNo);
@@ -320,11 +316,11 @@ public class RealizarConsulta extends JDialog {
 		panel_2.add(label_5);
 		
 		JLabel lblFechaConsulta = new JLabel("Fecha Consulta:");
-		lblFechaConsulta.setBounds(262, 422, 91, 14);
+		lblFechaConsulta.setBounds(20, 457, 91, 14);
 		panel_2.add(lblFechaConsulta);
 		
 		JDateChooser fechaConsulta = new JDateChooser();
-		fechaConsulta.setBounds(262, 447, 111, 20);
+		fechaConsulta.setBounds(131, 457, 111, 20);
 		panel_2.add(fechaConsulta);
 		fechaConsulta.setEnabled(false);
 		fechaConsulta.setDate(fechaActual());
@@ -333,21 +329,28 @@ public class RealizarConsulta extends JDialog {
 		lblListaEnfermedades.setBounds(20, 11, 216, 34);
 		panel_2.add(lblListaEnfermedades);
 		
-		JLabel lblDeseaAgregarA = new JLabel("Agregar al historial medico? ");
-		lblDeseaAgregarA.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblDeseaAgregarA.setBounds(20, 422, 161, 14);
-		panel_2.add(lblDeseaAgregarA);
-		
 		JCheckBox checkBox = new JCheckBox("Si.");
+		checkBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//boton agregar historial al edico
+				textHistorialMedico.setEnabled(true);
+			}
+			
+		});
 		checkBox.setBackground(new Color(230, 230, 250));
-		checkBox.setBounds(30, 447, 58, 23);
+		checkBox.setBounds(286, 242, 49, 23);
 		panel_2.add(checkBox);
 		botonesGrupo2.add(checkBox);
 		
 		chckbxNo_1 = new JCheckBox("No.");
+		chckbxNo_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textHistorialMedico.setEnabled(false);
+			}
+		});
 		chckbxNo_1.setSelected(true);
 		chckbxNo_1.setBackground(new Color(230, 230, 250));
-		chckbxNo_1.setBounds(123, 447, 58, 23);
+		chckbxNo_1.setBounds(333, 242, 58, 23);
 		panel_2.add(chckbxNo_1);
 		botonesGrupo2.add(chckbxNo_1);
 		/*
@@ -358,11 +361,23 @@ pack(); // abre la ventana conforme el tamaño necesario de los componentes
 		 */
 		
 		scrollPane_3 = new JScrollPane();
-		scrollPane_3.setBounds(20, 56, 353, 316);
+		scrollPane_3.setBounds(20, 56, 353, 160);
 		panel_2.add(scrollPane_3);
 		
 		textDiagnotico = new JTextArea(4,22);
 		scrollPane_3.setViewportView(textDiagnotico);
+		
+		JLabel lblDeseaAgregarAnotaciones = new JLabel("Agregar Observaciones al Historial Medico?");
+		lblDeseaAgregarAnotaciones.setBounds(20, 237, 260, 28);
+		panel_2.add(lblDeseaAgregarAnotaciones);
+		
+		JScrollPane scrollPane_4 = new JScrollPane();
+		scrollPane_4.setBounds(20, 289, 353, 147);
+		panel_2.add(scrollPane_4);
+		
+		textHistorialMedico = new JTextArea();
+		textHistorialMedico.setEnabled(false);
+		scrollPane_4.setViewportView(textHistorialMedico);
 		
 		{
 			JPanel buttonPane = new JPanel();
@@ -395,6 +410,7 @@ pack(); // abre la ventana conforme el tamaño necesario de los componentes
 			}
 			
 		}
+		cargarPaciente();
 		
 	
 	}
@@ -497,33 +513,28 @@ pack(); // abre la ventana conforme el tamaño necesario de los componentes
 		  String Diagnostico = "";
 		  Boolean enfermo = false;
 		  ArrayList<Vacuna> misVacunas = null;
-		if (micita.getMiPersona() instanceof Paciente) {
-			System.out.println("Es un paciente");
-			//leyendo dato paciente
-			String contacto_Emergencia=((Paciente) micita.getMiPersona()).getContacto_emergencia();
-			Float peso =((Paciente) micita.getMiPersona()).getPeso();
-			//mostrando dato
-			textContatoEmergencia.setText(contacto_Emergencia);
-			textContatoEmergencia.setEnabled(false);
-			textPeso.setText(peso.toString());
-			textPeso.setEnabled(false);
-			
-		}else {
-			//leyendo dato de persona para convertirlo paciente("   -       - ")
-			
-			if(textContatoEmergencia.getText().equalsIgnoreCase("(   )-   -    ")&&textPeso.getText().equalsIgnoreCase("")
-					&&textDiagnotico.getText().equalsIgnoreCase("")) {
-				
-				//si los campo estan vacio
-				System.out.println("To rapido");
-			}else {
+
 				//si no esta vacio 
 				Paciente personaAux = null;
 				/*
 				 * String nombre, String apellidos, String cedula, boolean sexo, String telefono,
-			String nacionalidad, Calendar fecha_nacimiento, String correo_electronico, String tipo_sangre,
-			String estado, String contacto_emergencia, float peso
+			      String nacionalidad, Calendar fecha_nacimiento, String correo_electronico, String tipo_sangre,
+			      String estado, String contacto_emergencia, float peso
 				 */
+				
+					//leyendo dato de persona para convertirlo paciente("   -       - ")
+				if (micita.getMiPersona() instanceof Paciente) {
+				System.out.println("Cargar Dato solamente pasiente");	
+				}else {
+					//falta validar mas datos
+					if(textContatoEmergencia.getText().equalsIgnoreCase("(   )-   -    ")&&textPeso.getText().equalsIgnoreCase("")
+							&&textDiagnotico.getText().equalsIgnoreCase("")) {
+						
+						//si los campo estan vacio
+						System.out.println("To rapido");
+					}else {
+						
+					}
 				 String nombre = micita.getMiPersona().getNombre();
 				 String apellidos =micita.getMiPersona().getApellidos();
 				 String cedula = micita.getMiPersona().getCedula();
@@ -559,8 +570,15 @@ pack(); // abre la ventana conforme el tamaño necesario de los componentes
 				 //creando paciente y actualizando cita
 				 
 				 Clinica.getMiClinica().insertarPersona(personaAux);
-				Boolean e= Clinica.getInstance().acutalizar_Cita(micita, citaNueva);
-				if(e) {
+				 Boolean e= Clinica.getInstance().acutalizar_Cita(micita, citaNueva);
+				 miDoctor.acutalizar_Cita(micita, citaNueva);
+				for (Cita n :  miDoctor.getMisCitas()) {
+					if(n.getMiPersona() instanceof Paciente ) {
+						System.out.println("La cita del doctor ya tiene un paciente");
+					}
+					
+				}
+				 if(e) {
 					System.out.println("Dato actualizado");
 				}else {
 					System.out.println("Dato no se pudo actualizar");
@@ -577,11 +595,73 @@ pack(); // abre la ventana conforme el tamaño necesario de los componentes
 				}else {
 					System.out.println("No se pudo eliminar");
 				}
+				}
 			}
 					
-		}
+		
 		
 		  
-	  }
+	  public void cargarPaciente() {
+		  System.out.println("Probando si es paciente");
+			if (micita.getMiPersona() instanceof Paciente) {
+				System.out.println("Es un paciente");
+				//leyendo dato paciente
+				String contacto_Emergencia=((Paciente) micita.getMiPersona()).getContacto_emergencia();
+				Float peso =((Paciente) micita.getMiPersona()).getPeso();
+				//mostrando dato
+				textContatoEmergencia.setText(contacto_Emergencia);
+				textContatoEmergencia.setEditable(false);
+				cbxTipoSangre.setEditable(false);
+				/*
+				 * A+
+				 * A-
+				 * B+
+				 * B-
+				 * O+
+				 * O-
+				 * AB+
+				 * AB-
+				 */
+				switch (((Paciente) micita.getMiPersona()).getTipo_sangre()) {
+				case "A+":
+					cbxTipoSangre.setSelectedIndex(1);
 
+					break;
+				case "A-":
+					cbxTipoSangre.setSelectedIndex(2);
+
+					break;
+				case "B+":
+					cbxTipoSangre.setSelectedIndex(3);
+
+					break;
+				case "B-":
+					cbxTipoSangre.setSelectedIndex(4);
+
+					break;
+				case "O+":
+					cbxTipoSangre.setSelectedIndex(5);
+
+					break;
+				case "O-":
+					cbxTipoSangre.setSelectedIndex(6);
+
+					break;
+				case "AB+":
+					cbxTipoSangre.setSelectedIndex(7);
+
+					break;
+				case "AB-":
+					cbxTipoSangre.setSelectedIndex(8);
+
+					break;
+				default:
+					break;
+				}
+				
+				textPeso.setText(peso.toString());
+				textPeso.setEditable(false);
+				
+			}
+	  }
 }
