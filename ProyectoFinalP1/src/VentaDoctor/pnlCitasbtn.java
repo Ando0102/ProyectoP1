@@ -584,6 +584,9 @@ public class pnlCitasbtn extends JPanel  {
 			auxFecha = miCita.getFecha();
 			int dia_semana=auxFecha.get(Calendar.DAY_OF_WEEK)-1;
 
+			if(miCita.getEstado().equalsIgnoreCase("Pendiente")) {
+				System.out.println("La cita esta esta pendiente");
+			
 			if(dia_semana==0) {
 				System.out.println("****Domingo");
 				System.out.println("");
@@ -626,7 +629,7 @@ public class pnlCitasbtn extends JPanel  {
 				table.getModel().setValueAt(miCita.getMiPersona().getNombre(), poner_horaFila, 7);
 
 			}
-			
+		}
 						
 			/*
 			switch (dia_semana) {

@@ -73,6 +73,7 @@ public class Doctor extends User {
 			*/
 			System.out.println("cita hora"+cita.getHora());
 			if(cita.getHora()==hora) {
+			
 				System.out.println("Hora conicide");
 				if(cita.getFecha().get(Calendar.DATE)==Fecha.get(Calendar.DATE)
 						&&cita.getFecha().get(Calendar.YEAR)==Fecha.get(Calendar.YEAR)&&
@@ -83,6 +84,7 @@ public class Doctor extends User {
 					//System.out.println("FECHA TA MALA");
 				}
 				
+			
 				}
 			
 		}
