@@ -89,7 +89,20 @@ public class Paciente extends Persona {
 	public void setMisHistorialMedico(ArrayList<HistorialMedico> misHistorialMedico) {
 		this.misHistorialMedico = misHistorialMedico;
 	}
-
+//---------------------------------------------------------------------------
+	public boolean buscar_vacuna(String nombre) {
+		//Busca una si el pasiente tiene la vacuna dada por el nombre
+		Boolean aux = false;
+		for (Vacuna consulta : misVacunas) {
+			if(consulta.getNombre_vacuna().equalsIgnoreCase(nombre)) {
+				aux = true;
+				break;
+			}
+		}
+		
+		
+		return aux;
+	}
 
 
 }
