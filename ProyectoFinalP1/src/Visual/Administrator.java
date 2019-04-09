@@ -81,17 +81,7 @@ public class Administrator extends JFrame implements Runnable {
 	
 	public Administrator() {
 		setResizable(false);
-		//metodo prueba
-		//prueba existosa! 
-		/**
-		 * Sirve para para saber si se ha cerrado 
-		 * la venta
-		*/
-		
-		//Decomentar esta parte para que guarde los datos tomados 
-		//en administrador
-		
-		
+//////////////////////////////////////////fichero//////////////////////		
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
@@ -116,7 +106,7 @@ public class Administrator extends JFrame implements Runnable {
 		});
 		
 		
-		////
+//////////////////////////////////////////////////////////////////////		////
 		setTitle("Administrador");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Administrator.class.getResource("/Imagenes/LogoPeque.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -201,10 +191,9 @@ public class Administrator extends JFrame implements Runnable {
         chartVacunas.getTitle().setPaint(Color.black);
         chartVacunas.getTitle().setFont(new Font("Tahoma", Font.BOLD, 12));
         CategoryPlot p = chartVacunas.getCategoryPlot(); 
-        p.setRangeGridlinePaint(Color.red); 
+        p.setRangeGridlinePaint(Color.BLACK); 
         // Mostrar Grafico
         ChartPanel chartPanelVacunas = new ChartPanel(chartVacunas);
-        chartPanelVacunas.setBackground(Color.WHITE);
         chartPanelVacunas.setBounds(100, 120, 200, 300);
         panelDeVacunas.setLayout(new BorderLayout(0, 0));
         panelDeVacunas.add(chartPanelVacunas);
@@ -245,7 +234,7 @@ public class Administrator extends JFrame implements Runnable {
         JButton botonEmpleados = new JButton();
         botonEmpleados.setFont(new Font("Tahoma", Font.BOLD, 11));
         toolBar.add(botonEmpleados);
-        botonEmpleados.setIcon(new ImageIcon(Administrator.class.getResource("/Imagenes/carpeta2.png")));
+        botonEmpleados.setIcon(new ImageIcon(Administrator.class.getResource("/Imagenes/hombrecito.png")));
         botonEmpleados.setText("Empleados   ");
         botonEmpleados.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
@@ -261,8 +250,8 @@ public class Administrator extends JFrame implements Runnable {
         JButton panelPaciente = new JButton();
         panelPaciente.setFont(new Font("Tahoma", Font.BOLD, 11));
         toolBar.add(panelPaciente);
-        panelPaciente.setIcon(new ImageIcon(Administrator.class.getResource("/Imagenes/agregrarpacientes2.png")));
-        panelPaciente.setText("Pacientes   ");
+        panelPaciente.setIcon(new ImageIcon(Administrator.class.getResource("/Imagenes/grafica2.png")));
+        panelPaciente.setText("Poblaci\u00F3n   ");
         panelPaciente.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		VentanaPacientes_admin aux = new VentanaPacientes_admin();
