@@ -152,6 +152,8 @@ public class IniciarSesion extends JFrame {
 		panel.setLayout(null);
 		
 		JButton btnEntrar = new JButton("Iniciar Sesi\u00F3n");
+
+		btnEntrar.setActionCommand("OK");
 		btnEntrar.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnEntrar.setBackground(UIManager.getColor("Button.background"));
 		btnEntrar.addActionListener(new ActionListener() {
@@ -205,7 +207,7 @@ public class IniciarSesion extends JFrame {
 			}
 
 });
-		
+
 		LabelContraseña = new JLabel("");
 		LabelContraseña.setIcon(new ImageIcon(IniciarSesion.class.getResource("/Imagenes/candadito.png")));
 		LabelUsuario = new JLabel("");

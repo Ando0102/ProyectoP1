@@ -114,7 +114,7 @@ public class VentanaVacuna_admin extends JDialog {
 			
 			JPanel panel_1 = new JPanel();
 			panel_1.setBorder(new TitledBorder(null, "Registrar Nueva Vacuna", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-			panel_1.setBounds(10, 274, 646, 195);
+			panel_1.setBounds(10, 11, 646, 195);
 			panel.add(panel_1);
 			panel_1.setLayout(null);
 			
@@ -216,7 +216,7 @@ public class VentanaVacuna_admin extends JDialog {
 			
 			JPanel panel_2 = new JPanel();
 			panel_2.setBorder(new TitledBorder(null, "Vacunas Existentes", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-			panel_2.setBounds(10, 11, 646, 252);
+			panel_2.setBounds(10, 217, 646, 252);
 			panel.add(panel_2);
 			panel_2.setLayout(null);
 			
