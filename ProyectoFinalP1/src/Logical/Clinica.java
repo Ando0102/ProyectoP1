@@ -198,7 +198,27 @@ public class Clinica  implements Serializable{
 			}
 		}
 	}
-	
+	public boolean eliminarPersona(Persona miPersona) {
+		boolean estado = false;
+		if(misPersonas.contains(miPersona)) {
+			misPersonas.remove(miPersona);
+			estado = true;
+		}
+		/*
+		if(mis_Prestamos.contains(pres)) {
+			mis_Prestamos.remove(pres);
+		*/	
+	return estado;
+	}
 
+	public boolean acutalizar_Cita(Cita citaVieja, Cita nueva) {
+		boolean estado = false;
+		if(misCitas.contains(citaVieja)) {
+			misCitas.remove(citaVieja);
+			misCitas.add(nueva);
+			estado = true;
+		}
+		return estado;
+	}
 	
 }
