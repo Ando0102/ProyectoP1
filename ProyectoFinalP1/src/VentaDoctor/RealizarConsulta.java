@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.text.MaskFormatter;
 
 import java.awt.Color;
 import javax.swing.border.BevelBorder;
@@ -21,8 +22,11 @@ import com.toedter.calendar.JDateChooser;
 
 import Logical.Cita;
 import Logical.Clinica;
+import Logical.Doctor;
 import Logical.Enfermedad;
 import Logical.Paciente;
+import Logical.Persona;
+import Logical.Secretaria;
 import Logical.Vacuna;
 
 import javax.swing.DefaultComboBoxModel;
@@ -41,6 +45,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.Font;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -76,6 +81,10 @@ public class RealizarConsulta extends JDialog {
 	private static Object[] fila;
 	private Cita micita = null;
 	private JCheckBox chckbxNo_1;
+	@SuppressWarnings("unused")
+	private MaskFormatter formatoTele;
+	private JComboBox cbxTipoSangre;
+	
 
 	/**
 	 * Launch the application.
@@ -94,8 +103,20 @@ public class RealizarConsulta extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
+	@SuppressWarnings("unused")
 	public RealizarConsulta(Cita mi) {
 		
+		
+		///formato
+		MaskFormatter formatoTele = null;
+		try {
+			
+			formatoTele = new MaskFormatter("(###)-###-####");
+		}catch (Exception e) {
+			
+		}
+		
+		///
 		this.micita = mi;
 		setBounds(100, 100, 936, 626);
 		getContentPane().setLayout(new BorderLayout());
@@ -166,10 +187,10 @@ public class RealizarConsulta extends JDialog {
 		lblTipoDeSangre.setBounds(306, 141, 97, 14);
 		panel_1.add(lblTipoDeSangre);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Eliga tipo Sangre", "A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"}));
-		comboBox.setBounds(306, 169, 133, 20);
-		panel_1.add(comboBox);
+		cbxTipoSangre = new JComboBox();
+		cbxTipoSangre.setModel(new DefaultComboBoxModel(new String[] {"Eliga tipo Sangre", "A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"}));
+		cbxTipoSangre.setBounds(306, 169, 133, 20);
+		panel_1.add(cbxTipoSangre);
 		
 		JLabel lblPesokg = new JLabel("Peso: (kg)");
 		lblPesokg.setBounds(183, 145, 97, 14);
@@ -184,7 +205,7 @@ public class RealizarConsulta extends JDialog {
 		lblContactoDeEmergencia_1.setBounds(10, 145, 163, 14);
 		panel_1.add(lblContactoDeEmergencia_1);
 		
-		textContatoEmergencia = new JTextField();
+		textContatoEmergencia = new JFormattedTextField(formatoTele);
 		textContatoEmergencia.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
@@ -351,13 +372,16 @@ pack(); // abre la ventana conforme el tamaño necesario de los componentes
 				JButton okButton = new JButton("Guardar Consulta");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						/*
 						Boolean v= (Boolean) tableListaVacuna.getValueAt(0, 1);
 				        if(v==true) {
 				        	 System.out.println("VAMOS BIEN"+v);
 				        }else {
 				        	 System.out.println("F");
 
-				        }		
+				        }	
+				        */
+				        leerDatosConsulta_CrearPasiente();
 					}
 				});
 				okButton.setActionCommand("OK");
@@ -468,10 +492,95 @@ pack(); // abre la ventana conforme el tamaño necesario de los componentes
 			return fecha;
 		}
 
-	  public void leerDatosConsulta() {
+	  @SuppressWarnings("unused")
+	public void leerDatosConsulta_CrearPasiente() {
 		  String Diagnostico = "";
 		  Boolean enfermo = false;
 		  ArrayList<Vacuna> misVacunas = null;
+		if (micita.getMiPersona() instanceof Paciente) {
+			System.out.println("Es un paciente");
+			//leyendo dato paciente
+			String contacto_Emergencia=((Paciente) micita.getMiPersona()).getContacto_emergencia();
+			Float peso =((Paciente) micita.getMiPersona()).getPeso();
+			//mostrando dato
+			textContatoEmergencia.setText(contacto_Emergencia);
+			textContatoEmergencia.setEnabled(false);
+			textPeso.setText(peso.toString());
+			textPeso.setEnabled(false);
+			
+		}else {
+			//leyendo dato de persona para convertirlo paciente("   -       - ")
+			
+			if(textContatoEmergencia.getText().equalsIgnoreCase("(   )-   -    ")&&textPeso.getText().equalsIgnoreCase("")
+					&&textDiagnotico.getText().equalsIgnoreCase("")) {
+				
+				//si los campo estan vacio
+				System.out.println("To rapido");
+			}else {
+				//si no esta vacio 
+				Paciente personaAux = null;
+				/*
+				 * String nombre, String apellidos, String cedula, boolean sexo, String telefono,
+			String nacionalidad, Calendar fecha_nacimiento, String correo_electronico, String tipo_sangre,
+			String estado, String contacto_emergencia, float peso
+				 */
+				 String nombre = micita.getMiPersona().getNombre();
+				 String apellidos =micita.getMiPersona().getApellidos();
+				 String cedula = micita.getMiPersona().getCedula();
+				 boolean sexo = micita.getMiPersona().isSexo();
+				 String telefono =  micita.getMiPersona().getTelefono();
+				 String nacionalidad =  micita.getMiPersona().getNacionalidad();
+				 Calendar fecha_nacimiento = Calendar.getInstance();
+				 fecha_nacimiento = micita.getMiPersona().getFecha_nacimiento();
+				 String correo_electronico =  micita.getMiPersona().getCorreo_electronico();
+				 
+				 String tipo_sangre = "";
+				
+				 tipo_sangre = cbxTipoSangre.getSelectedItem().toString();
+				 String contacto_emergencia=textContatoEmergencia.getText();
+				 Float peso = Float.parseFloat(textPeso.getText());
+				 String estado ="";//no se que significa el estado
+				 boolean estadoEliminado = Clinica.getInstance().eliminarPersona(micita.getMiPersona());
+				 
+				 personaAux = new Paciente(nombre, apellidos, cedula, sexo, telefono, nacionalidad, fecha_nacimiento, correo_electronico, tipo_sangre, estado, contacto_emergencia, peso);
+				
+				 //dato para actualizar cita
+				 Calendar fecha = Calendar.getInstance();
+				 fecha = micita.getFecha();
+				 Doctor miDoctor = null;
+				 miDoctor = micita.getMiDoctor();
+				 int hora = micita.getHora();
+				 Secretaria secretaria = null;
+				 secretaria = micita.getSecretaria();
+				 String estadoA ="Realizada";
+				 Cita citaNueva = new Cita(miDoctor, personaAux, fecha, hora, estadoA, secretaria);
+				 ////
+				 
+				 //creando paciente y actualizando cita
+				 
+				 Clinica.getMiClinica().insertarPersona(personaAux);
+				Boolean e= Clinica.getInstance().acutalizar_Cita(micita, citaNueva);
+				if(e) {
+					System.out.println("Dato actualizado");
+				}else {
+					System.out.println("Dato no se pudo actualizar");
+				}
+				/*
+				 for (Persona mi : Clinica.getMiClinica().getMisPersonas()) {
+					if(mi instanceof Paciente) {
+						System.out.println("Incertado paciente");
+					}
+				}
+				*/
+				if(estadoEliminado) {
+				System.out.println("Se realizo de manera correcta");
+				}else {
+					System.out.println("No se pudo eliminar");
+				}
+			}
+					
+		}
+		
 		  
 	  }
 
