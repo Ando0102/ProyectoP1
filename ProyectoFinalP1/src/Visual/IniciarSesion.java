@@ -130,6 +130,12 @@ public class IniciarSesion extends JFrame {
 	 * Create the frame.
 	 */
 	public IniciarSesion() {
+	for (Persona pa : Clinica.getInstance().getMisPersonas()) {
+		if(pa instanceof Paciente) {
+		System.out.println("Existe el pasiente");
+		}
+		
+	}
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBackground(new Color(175, 238, 238));
 		setIconImage(Toolkit.getDefaultToolkit().getImage(IniciarSesion.class.getResource("/Imagenes/LogoPeque.png")));

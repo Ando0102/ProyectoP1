@@ -16,7 +16,7 @@ public class Paciente extends Persona {
 	//constructor
 
 	
-	public Paciente(String iD, String nombre, String apellidos, String cedula, boolean sexo, String telefono,
+	public Paciente(String nombre, String apellidos, String cedula, boolean sexo, String telefono,
 			String nacionalidad, Calendar fecha_nacimiento, String correo_electronico, String tipo_sangre,
 			String estado, String contacto_emergencia, float peso) {
 		super( nombre, apellidos, cedula, sexo, telefono, nacionalidad, fecha_nacimiento, correo_electronico);
@@ -29,6 +29,8 @@ public class Paciente extends Persona {
 		this.misConsultas = new ArrayList<>();
 		this.misHistorialMedico = new ArrayList<>();
 	}
+
+
 
 	//------------[get end set-----------------
 	public String getTipo_sangre() {

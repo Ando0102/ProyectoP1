@@ -21,6 +21,12 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -37,6 +43,7 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import com.toedter.calendar.JDateChooser;
 
+import Logical.Clinica;
 import Logical.Doctor;
 import VentaDoctor.pnlCitasbtn;
 
@@ -84,6 +91,31 @@ public class VentaDoctor extends JFrame implements Runnable {
 	}
 */
 	public VentaDoctor(Doctor mi) {
+//////////////////////////////////////////fichero//////////////////////		
+addWindowListener(new WindowAdapter() {
+@Override
+public void windowClosing(WindowEvent e) {
+FileOutputStream empresa2;
+ObjectOutputStream empresaWrite;
+try {
+empresa2 = new  FileOutputStream("ADAClinica.dat");
+empresaWrite = new ObjectOutputStream(empresa2);
+empresaWrite.writeObject(Clinica.getInstance());
+empresa2.close();
+empresaWrite.close();
+} catch (FileNotFoundException e1) {
+System.out.println("Error: No se ha podido guardar.");
+// TODO Auto-generated catch block
+e1.printStackTrace();
+} catch (IOException e1) {
+// TODO Auto-generated catch block
+e1.printStackTrace();
+}
+
+}
+});
+
+
 		this.miDoctor = mi;
 		setTitle("Doctor");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VentaDoctor.class.getResource("/Imagenes/LogoPeque.png")));
