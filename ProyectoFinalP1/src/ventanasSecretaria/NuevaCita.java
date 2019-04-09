@@ -522,6 +522,7 @@ MaskFormatter formatoIDPersona2 = null;
 						misCitas = new Cita (miDoctor,miPersona,FechaCita.getCalendar(), (Integer)spnHoraCita.getValue(),"Pendiente",secre);
 						Clinica.getInstance().insertarCitas(misCitas);
 						Clinica.getInstance().incertarCitaADoctor(miDoctor, misCitas);
+						Clinica.getInstance().insertarPersona(miPersona);
 						JOptionPane.showMessageDialog(null, "Cita creada exitosamente!","Aviso!", JOptionPane.INFORMATION_MESSAGE);
 						repaint(); } else {
 							
@@ -570,14 +571,25 @@ MaskFormatter formatoIDPersona2 = null;
 	
 	
 	
-	public void visualizarCampos(boolean visualizar){
+	public void visualizarCampos(boolean visualizar, Persona miPersona){
 		if(visualizar){
 			opcion = 0;
-			//setVisible(true);
+			setVisible(true);
 			
 		}
 		else {
 			opcion = 1;
+			txtNombrePersona.setText(miPersona.getNombre().toString());
+			txtApellidoPersona.setText(miPersona.getApellidos().toString());
+			txtIdPersona.setText(miPersona.getCedula().toString());
+			fechaNacimiento.setCalendar(miPersona.getFecha_nacimiento());
+			txtTelefono.setText(miPersona.getTelefono().toString());
+			if(miPersona.isSexo() == true){
+			cmbSexoPersona.setSelectedIndex(0);} else {
+				cmbSexoPersona.setSelectedIndex(1);
+			}
+			cmbPaisOrigenPersona.setSelectedItem(miPersona.getNacionalidad().toString());
+			txtCorreoPersona.setText(miPersona.getCorreo_electronico().toString());
 			txtBusquedaPersona.setEditable(false);
 			txtNombrePersona.setEditable(false);
 			txtApellidoPersona.setEditable(false);

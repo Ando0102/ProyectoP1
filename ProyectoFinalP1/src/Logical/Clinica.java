@@ -158,13 +158,16 @@ public class Clinica  implements Serializable{
 		//Buscar person por cedula
 		boolean find = false;
 		Persona miPersona = null;
-		while(find!=true ){
+		
+		while(find!=true){
 			for(Persona aux : misPersonas){
 				if(aux.getCedula().equalsIgnoreCase(cedula)){
-					find = true;
 					miPersona = aux;
+					find = true;
+					
 				}
 			}
+			
 		}
 		return miPersona;
 	}

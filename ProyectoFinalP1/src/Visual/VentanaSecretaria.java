@@ -27,6 +27,7 @@ import javax.swing.table.TableRowSorter;
 
 import Logical.Cita;
 import Logical.Clinica;
+import Logical.Persona;
 import Logical.Secretaria;
 import ventanasSecretaria.NuevaCita;
 
@@ -153,14 +154,12 @@ public class VentanaSecretaria extends JFrame {
 		btnNuevaCita.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				NuevaCita citas = new NuevaCita(secre);
-				//setVisible(false);
 				
 				citas.setModal(true);
 				citas.setLocationRelativeTo(null);
-				citas.setVisible(true);
-				citas.visualizarCampos(true);
+				citas.visualizarCampos(true,null);
 				
-				//citas.cargarLista();
+				
 				
 			}
 		});
@@ -168,9 +167,19 @@ public class VentanaSecretaria extends JFrame {
 		btnNuevaCita.setBounds(10, 240, 179, 63);
 		panelBienvenida.add(btnNuevaCita);
 		
-		final JButton btnModificarCita = new JButton("Modificar Cita");
+		JButton btnModificarCita = new JButton("Modificar Cita");
 		btnModificarCita.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Persona miPersona = null;
+				NuevaCita modi = new NuevaCita (secre);
+				String cedula = " ";
+				cedula = tableCitas.getModel().getValueAt(tableCitas.convertRowIndexToModel(tableCitas.getSelectedRow()), 0).toString();
+				miPersona = Clinica.getInstance().miPersona(cedula);
+				modi.visualizarCampos(false,miPersona);
+				
+				//modi.rellenarDatos(miPersona);
+				 
+			
 				
 			}
 		});
@@ -195,7 +204,7 @@ public class VentanaSecretaria extends JFrame {
 		btnSalir.setBounds(10, 518, 179, 63);
 		panelBienvenida.add(btnSalir);
 		
-		final JButton btnCancelarCita = new JButton("Cancelar Cita");
+		JButton btnCancelarCita = new JButton("Cancelar Cita");
 		btnCancelarCita.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Cita aux = null;
