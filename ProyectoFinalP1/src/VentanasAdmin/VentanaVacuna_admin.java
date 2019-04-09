@@ -36,6 +36,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
@@ -55,9 +56,10 @@ public class VentanaVacuna_admin extends JDialog {
 	private int index = 0;
 	private Object[] fila;
 	private JButton btnRegistrarNuevaVacuna;
+	private SimpleDateFormat dateformart1 = new SimpleDateFormat("dd - MM - yyyy");
 	/**
 	 * Launch the application.
-	 *//*
+	 */
 	public static void main(String[] args) {
 		try {
 			VentanaVacuna_admin dialog = new VentanaVacuna_admin();
@@ -311,7 +313,7 @@ public class VentanaVacuna_admin extends JDialog {
 			
 			
 			fila[0] = Clinica.getInstance().getMisVacunas().get(i).getNombre_vacuna();
-			fila[1] = Clinica.getInstance().getMisVacunas().get(i).getFecha_vencimiento().toString();///ERROR AQUI!!!
+			fila[1] = dateformart1.format(Clinica.getInstance().getMisVacunas().get(i).getFecha_vencimiento().getTime());
 			model.addRow(fila);
 		}
 		

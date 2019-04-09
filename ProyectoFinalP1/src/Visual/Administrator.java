@@ -177,6 +177,10 @@ public class Administrator extends JFrame implements Runnable {
       //EJEMPLO DE PRUEBA
     	   dataset.setValue(8, "Vacunados", "Contra el Dengue");
     	   dataset.setValue(4, "No Vacunados", "Contra el Dengue");
+    	   dataset.setValue(3, "Vacunados", "colera");
+    	   dataset.setValue(9, "No Vacunados", "colera");
+    	   dataset.setValue(1, "Vacunados", "sida");
+    	   dataset.setValue(5, "No Vacunados", "sida");
     	   
     	for(int i=0; i<Clinica.getInstance().getMisVacunas().size(); i++) { 
     		
@@ -189,6 +193,7 @@ public class Administrator extends JFrame implements Runnable {
         ("Pacientes Vacunados","Vacunas", "Pacientes", dataset, PlotOrientation.VERTICAL, true,true, false);
         chartVacunas.setBackgroundPaint(new Color(176, 196, 222));
         chartVacunas.getTitle().setPaint(Color.black);
+        chartVacunas.getPlot().setBackgroundPaint(Color.WHITE);
         chartVacunas.getTitle().setFont(new Font("Tahoma", Font.BOLD, 12));
         CategoryPlot p = chartVacunas.getCategoryPlot(); 
         p.setRangeGridlinePaint(Color.BLACK); 
@@ -217,11 +222,12 @@ public class Administrator extends JFrame implements Runnable {
         }*/
  
         // Creando el Grafico
-        JFreeChart chartEnfermedades=ChartFactory.createBarChart3D("Estadisticas de Enfermedades", "Enfermedad", "Contagios", datasetEnfermedades, PlotOrientation.VERTICAL,true, true, false); 
+        JFreeChart chartEnfermedades=ChartFactory.createBarChart3D("Enfermedades Bajo Observación", "Enfermedades", "Pacientes Infectados", datasetEnfermedades, PlotOrientation.VERTICAL,true, true, false); 
         chartEnfermedades.getTitle().setFont(new Font("Tahoma", Font.BOLD, 12));
         chartEnfermedades.setBackgroundPaint(new Color(176, 196, 222));
+        chartEnfermedades.getPlot().setBackgroundPaint(Color.WHITE);
         CategoryPlot q = chartEnfermedades.getCategoryPlot(); 
-        q.setRangeGridlinePaint(Color.red); 
+        q.setRangeGridlinePaint(Color.BLACK); 
         
         // Mostrar Grafico
         ChartPanel chartPanelEnfermedades = new ChartPanel(chartEnfermedades);

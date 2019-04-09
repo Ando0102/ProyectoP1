@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.SimpleDateFormat;
 
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
@@ -45,6 +46,7 @@ public class VentanaPacientes_admin extends JDialog {
 	private Object[] filaDoctor;
 	private Object[] filaSecre;
 	private Object[] filaAdmin;
+	private SimpleDateFormat dateformart1 = new SimpleDateFormat("dd - MM - yyyy");
 
 	/**
 	 * Launch the application.
@@ -158,7 +160,7 @@ public class VentanaPacientes_admin extends JDialog {
 					
 					filaPacientes[0] = Clinica.getInstance().getMisPersonas().get(i).getNombre() + " " + Clinica.getInstance().getMisPersonas().get(i).getApellidos();
 					filaPacientes[1] = Sexo(i);
-					filaPacientes[2] = " - ";
+					filaPacientes[2] = dateformart1.format(Clinica.getInstance().getMisPersonas().get(i).getFecha_nacimiento().getTime());
 					filaPacientes[3] = Clinica.getInstance().getMisPersonas().get(i).getTelefono();
 					modelPacientes.addRow(filaPacientes);
 				}
