@@ -70,6 +70,11 @@ public class VentanaSecretaria extends JFrame {
 	private JTextField txtFiltradoCitas;
 	private JComboBox cmbFiltroBusqueda;
 	private Secretaria secre = null;
+	private final JButton btnModificarCita;
+	private final JButton btnNuevaCita;
+	private final JButton btnSalir;
+	private final JButton btnCancelarCita;
+	private final JButton btnActualizar;
 	/**
 	 * Launch the application.
 	 */
@@ -150,7 +155,7 @@ public class VentanaSecretaria extends JFrame {
 		lblBienvenidoa.setBounds(60, 162, 83, 14);
 		panelBienvenida.add(lblBienvenidoa);
 		
-		JButton btnNuevaCita = new JButton("Nueva Cita");
+		btnNuevaCita = new JButton("Nueva Cita");
 		btnNuevaCita.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				NuevaCita citas = new NuevaCita(secre);
@@ -167,7 +172,7 @@ public class VentanaSecretaria extends JFrame {
 		btnNuevaCita.setBounds(10, 240, 179, 63);
 		panelBienvenida.add(btnNuevaCita);
 		
-		JButton btnModificarCita = new JButton("Modificar Cita");
+		btnModificarCita = new JButton("Modificar Cita");
 		btnModificarCita.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Persona miPersona = null;
@@ -175,9 +180,13 @@ public class VentanaSecretaria extends JFrame {
 				String cedula = " ";
 				cedula = tableCitas.getModel().getValueAt(tableCitas.convertRowIndexToModel(tableCitas.getSelectedRow()), 0).toString();
 				miPersona = Clinica.getInstance().miPersona(cedula);
-				modi.visualizarCampos(false,miPersona);
+				if(miPersona != null){
+				modi.visualizarCampos(false,miPersona);}
+				else{
+					JOptionPane.showMessageDialog(null, "Cita no encontrada","Aviso", JOptionPane.ERROR_MESSAGE);
+				}
 				
-				//modi.rellenarDatos(miPersona);
+				
 				 
 			
 				
@@ -188,7 +197,7 @@ public class VentanaSecretaria extends JFrame {
 		btnModificarCita.setEnabled(false);
 		panelBienvenida.add(btnModificarCita);
 		
-		JButton btnSalir = new JButton("Cerrar Sesion");
+		btnSalir = new JButton("Cerrar Sesion");
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				IniciarSesion inicio = new IniciarSesion();
@@ -204,7 +213,7 @@ public class VentanaSecretaria extends JFrame {
 		btnSalir.setBounds(10, 518, 179, 63);
 		panelBienvenida.add(btnSalir);
 		
-		JButton btnCancelarCita = new JButton("Cancelar Cita");
+		btnCancelarCita = new JButton("Cancelar Cita");
 		btnCancelarCita.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Cita aux = null;
@@ -327,7 +336,7 @@ public class VentanaSecretaria extends JFrame {
 		btnFiltro.setBounds(510, 29, 32, 32);
 		panelCitas.add(btnFiltro);
 		
-		JButton btnActualizar = new JButton("Actualizar");
+		btnActualizar = new JButton("Actualizar");
 		//btnActualizar.setIcon(new ImageIcon(VentanaSecretaria.class.getResource("/Imagenes/refresh_arrow_6296.png")));
 		btnActualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
