@@ -36,6 +36,10 @@ import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import com.toedter.calendar.JDateChooser;
+
+
+import VentaDoctor.pnlCitasbtn;
+
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -63,9 +67,8 @@ public class VentaDoctor extends JFrame implements Runnable {
 	private int mes;
 	private int ano;
 	private int dia;
-	private static JTable table;
 	private JDateChooser dateChooser;
-	/*
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -78,7 +81,7 @@ public class VentaDoctor extends JFrame implements Runnable {
 			}
 		});
 	}
-	*/
+
 	public VentaDoctor() {
 		
 		setTitle("Doctor");
@@ -191,31 +194,11 @@ public class VentaDoctor extends JFrame implements Runnable {
 		
 
 		panelCitas.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		panelCitas.setBounds(20, 20, 1071, 537);
+		panelCitas.setBounds(20, 20, 1071, 627);
 		panel_2.add(panelCitas);
 		panelCitas.setLayout(new BorderLayout(0, 0));
-		
-		JScrollPane scrollPane = new JScrollPane();
-		panelCitas.add(scrollPane, BorderLayout.CENTER);
-		
-		table = new JTable();
 		///
-		modelo = new DefaultTableModel();
-		cargar();
-		table.setModel(modelo);
-		///
-		scrollPane.setViewportView(table);
-		
-		JPanel panel_3 = new JPanel();
-		panel_3.setBounds(20, 568, 1071, 68);
-		panel_3.setBackground(new Color(240, 248, 255));
-		panel_2.add(panel_3);
-		panel_3.setLayout(null);
-		
-		JButton btnRealizarConsulta = new JButton("Realizar Consulta");
-		btnRealizarConsulta.setEnabled(false);
-		btnRealizarConsulta.setBounds(902, 11, 153, 40);
-		panel_3.add(btnRealizarConsulta);
+	    new CambiaPanel(panelCitas, new pnlCitasbtn());
 		inciarFecha();
 		
 		
@@ -284,44 +267,5 @@ public class VentaDoctor extends JFrame implements Runnable {
 		fecha.setTime(fechaActual());
 		dateChooser.setCalendar(fecha);
 	}
-	public static void  cargar() {
-		
-		modelo.setColumnIdentifiers(columnNames);	
-		modelo.setRowCount(0);
-		fila = new Object[modelo.getColumnCount()];		
-		/*
-		for (Cliente cliente : Biblioteca.getInstance().getMis_Clientes()) {	
-
-				fila[0] = cliente.getCodigo();
-				fila[1] = cliente.getNumero_identida();
-				fila[2] = cliente.getNombre();
-				fila[3] = cliente.getDireccion();
-				fila[4] = cliente.getCantPrestamos();
-
-			modelo.addRow(fila);
-				
-			}	
-			*/
-			table.setModel(modelo);		
-			table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-			table.getTableHeader().setReorderingAllowed(false);
-			TableColumnModel columnModel = table.getColumnModel();	
-			centrar.setHorizontalAlignment(SwingConstants.CENTER); 
-			/*
-			for (int i = 0; i < columnNames.length; i++) {
-				table.getColumnModel().getColumn(i).setCellRenderer(centrar);
-			}	
-			*/
-			 //sirve para dar un tamnno a las columnas 
-			//	private static String[] columnNames = {"Nombre","Cedula", "Sexo","Edad","Fecha Cita", "Telefono", "Coreo"};
-
-			columnModel.getColumn(0).setPreferredWidth(250);
-			columnModel.getColumn(1).setPreferredWidth(150);
-			columnModel.getColumn(2).setPreferredWidth(170);
-			columnModel.getColumn(3).setPreferredWidth(100);
-			columnModel.getColumn(4).setPreferredWidth(170); 
-			columnModel.getColumn(5).setPreferredWidth(101); 
-			columnModel.getColumn(6).setPreferredWidth(123); 
-			
-		}	
+	
 }
