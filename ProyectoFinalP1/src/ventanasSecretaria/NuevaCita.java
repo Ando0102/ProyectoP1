@@ -85,6 +85,7 @@ public class NuevaCita extends JDialog {
 	private JDateChooser fechaNacimiento;
 	private JSpinner spnHoraCita;
 	private JScrollPane scrollPane;
+	private final String [] headers = {"Lista de Doctores"};
 	
 	/**
 	 * Launch the application.
@@ -400,19 +401,12 @@ MaskFormatter formatoIDPersona2 = null;
 		scrollPane.setBounds(10, 82, 209, 97);
 		
 		panelBusquedaDoctor.add(scrollPane);
-		
 		model = new DefaultTableModel();
 		sorter = new TableRowSorter<TableModel>(model);
-		model.setColumnCount(1);
-		
+		model.setColumnCount(headers.length);
+		model.setColumnIdentifiers(headers);
 		tableDoctores = new JTable();
-		tableDoctores.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Lista de Doctores"
-			}
-		));
+		tableDoctores.setModel(model);
 		JTableHeader header = tableDoctores.getTableHeader();
 	    header.setBackground(new Color(230, 230, 250));
 	     
@@ -427,7 +421,9 @@ MaskFormatter formatoIDPersona2 = null;
 		tableDoctores.setCellSelectionEnabled(true);
 		tableDoctores.setRowSorter(sorter);
 		tableDoctores.setName("Lista de Doctores");
+		if(Clinica.getInstance().doctores().size()>0) {
 		loadtable();
+			}
 		scrollPane.setViewportView(tableDoctores);
 		
 		JLabel lblNewLabel = new JLabel("");
@@ -559,7 +555,7 @@ MaskFormatter formatoIDPersona2 = null;
 	public void visualizarCampos(boolean visualizar){
 		if(visualizar){
 			opcion = 0;
-			setVisible(true);
+			//setVisible(true);
 			
 		}
 		else {

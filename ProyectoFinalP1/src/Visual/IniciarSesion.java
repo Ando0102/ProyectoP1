@@ -168,6 +168,9 @@ public class IniciarSesion extends JFrame {
 
 					if(aux instanceof Secretaria) {
 						//secretaria
+						VentanaSecretaria frame = new VentanaSecretaria();
+						frame.setVisible(true);
+						dispose();
 						
 					}else if(aux instanceof Doctor) {
 						//Doctor
@@ -189,7 +192,7 @@ public class IniciarSesion extends JFrame {
 					
 					
 
-					JOptionPane.showMessageDialog(null, "Bienvenido/a a la Clinica ADA!", "Bienvenido/a", JOptionPane.INFORMATION_MESSAGE, null);
+				//	JOptionPane.showMessageDialog(null, "Bienvenido/a a la Clinica ADA!", "Bienvenido/a", JOptionPane.INFORMATION_MESSAGE, null);
 
 			}else {
 

@@ -62,6 +62,7 @@ public class VentanaSecretaria extends JFrame {
 	/**
 	 * Launch the application.
 	 */
+	/*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -120,7 +121,9 @@ public class VentanaSecretaria extends JFrame {
 				NuevaCita citas = new NuevaCita();
 				citas.setModal(true);
 				citas.setLocationRelativeTo(null);
+				citas.setVisible(true);
 				citas.visualizarCampos(true);
+				
 				//citas.cargarLista();
 				
 			}

@@ -139,14 +139,16 @@ public class Clinica  implements Serializable{
 		//Arreglo de doctores
 		
 		int i = 0;
+		Doctor aux =null;
 		ArrayList <Doctor> doctores = new ArrayList<>();
 		while(i<getMisPersonas().size()){	
-			if(getMisPersonas() != null){
+			if(getMisPersonas().get(i) != null){
 		if (getMisPersonas().get(i) instanceof Doctor){
-			doctores.add((Doctor) getMisPersonas().get(i));
+			aux = (Doctor) getMisPersonas().get(i);
+			doctores.add(aux);
 		}
-			i++;
-		}
+			
+		}i++;
 		}
 		return doctores;
 	}
