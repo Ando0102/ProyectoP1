@@ -21,6 +21,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 
+import Logical.Cita;
+import Logical.Doctor;
 import javafx.scene.layout.Background;
 
 
@@ -36,11 +38,14 @@ public class pnlCitasbtn extends JPanel {
 			private static DefaultTableModel modelo;
 			private static DefaultTableCellRenderer centrar = new DefaultTableCellRenderer();
 			private static JTable table;
+			Doctor miDoctor = null;
 			
 		/**
 		 * Create the applet.
 		 */
-		public pnlCitasbtn() {
+		public pnlCitasbtn(Doctor miDoc) {
+			this.miDoctor=miDoc;
+			
 			setBackground(Color.BLUE);
 			setLayout(null);
 			
@@ -249,6 +254,89 @@ public class pnlCitasbtn extends JPanel {
 			table.getModel().setValueAt("L-16:00", 8, 1);
 			table.getModel().setValueAt("L-17:00", 9, 1);
 			table.getModel().setValueAt("L-18:00", 10, 1);
+			
+		
+			Calendar auxFecha = Calendar.getInstance();
+			for (Cita miCita : miDoctor.getMisCitas()) {
+				switch (miCita.getHora()) {
+				case 8://hora a las 8
+					auxFecha = miCita.getFecha();
+					auxFecha.get(Calendar.DAY_OF_WEEK);
+					//
+					switch (auxFecha.get(Calendar.DAY_OF_WEEK)) {
+					case 1:
+						//Domingo
+						table.getModel().setValueAt("L-18:00", 0, 1);
+						
+						break;
+					case 2:
+						// lunes
+						table.getModel().setValueAt("L-18:00", 0, 2);
+						break;
+					case 3:
+						//martes
+						table.getModel().setValueAt("L-18:00", 0, 3);
+						break;
+					case 4:
+						//miercoles
+						table.getModel().setValueAt("L-18:00", 0, 4);
+						break;
+				
+					case 5:
+						//Jueves 
+						table.getModel().setValueAt("L-18:00", 0, 5);
+						break;
+					case 6:
+						//Viernes
+						table.getModel().setValueAt("L-18:00", 0, 6);
+						break;
+					case 7:
+						//Sabado
+						table.getModel().setValueAt("L-18:00", 0, 7);
+						break;
+
+					default:
+						break;
+					}
+					//
+					
+					break;
+				case 9:
+					
+					break;
+				case 10:
+					
+					break;
+				case 11:
+					
+					break;
+				case 12:
+					
+					break;
+				case 13:
+					
+					break;
+				case 14:
+					
+					break;
+				case 15:
+					
+					break;
+				case 16:
+					
+					break;
+				case 17:
+					
+					break;
+				case 18:
+					
+					break;
+
+				default:
+					break;
+				}
+				
+			}
 			//table.getModel().setValueAt(, 10, 1);
 			//table.getModel().setValueAt("L-18:00", 0, 10);
 		//	table.getModel().setValueAt(aValue, rowIndex, columnIndex);
@@ -468,5 +556,15 @@ public class pnlCitasbtn extends JPanel {
 		}
 
 
-
+		public void cargar_Agenda_Doctor() {
+			Doctor miDoctor= null;
+			
+			for (Cita miCita : miDoctor.getMisCitas()) {
+				
+				
+			}
+			
+			
+			
+		}
 }

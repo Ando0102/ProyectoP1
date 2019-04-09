@@ -37,7 +37,7 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import com.toedter.calendar.JDateChooser;
 
-
+import Logical.Doctor;
 import VentaDoctor.pnlCitasbtn;
 
 import javax.swing.JMenuItem;
@@ -68,7 +68,8 @@ public class VentaDoctor extends JFrame implements Runnable {
 	private int ano;
 	private int dia;
 	private JDateChooser dateChooser;
-	
+	private Doctor miDoctor=null;
+	/*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -81,9 +82,9 @@ public class VentaDoctor extends JFrame implements Runnable {
 			}
 		});
 	}
-
-	public VentaDoctor() {
-		
+*/
+	public VentaDoctor(Doctor mi) {
+		this.miDoctor = mi;
 		setTitle("Doctor");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VentaDoctor.class.getResource("/Imagenes/LogoPeque.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -198,7 +199,7 @@ public class VentaDoctor extends JFrame implements Runnable {
 		panel_2.add(panelCitas);
 		panelCitas.setLayout(new BorderLayout(0, 0));
 		///
-	    new CambiaPanel(panelCitas, new pnlCitasbtn());
+	    new CambiaPanel(panelCitas, new pnlCitasbtn(miDoctor));
 		inciarFecha();
 		
 		

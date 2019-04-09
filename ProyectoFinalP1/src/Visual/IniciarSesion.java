@@ -168,14 +168,14 @@ public class IniciarSesion extends JFrame {
 
 					if(aux instanceof Secretaria) {
 						//secretaria
-						VentanaSecretaria frame = new VentanaSecretaria();
+						VentanaSecretaria frame = new VentanaSecretaria((Secretaria) aux);
 						frame.setVisible(true);
 						dispose();
 						
 					}else if(aux instanceof Doctor) {
 						//Doctor
 						
-						VentaDoctor frame = new VentaDoctor();
+						VentaDoctor frame = new VentaDoctor((Doctor) aux);
 						frame.setVisible(true);
 						dispose();
 						
