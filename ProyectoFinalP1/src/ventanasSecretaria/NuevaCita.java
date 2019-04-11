@@ -82,13 +82,16 @@ public class NuevaCita extends JDialog {
 	private MaskFormatter formatoIDPersona;
 	private int rowDoctores;
 	private Doctor miDoctor = null;
-	private Persona miPersona = null;
+	private Persona miPersonaAux = null;
 	private JDateChooser FechaCita;
 	private JDateChooser fechaNacimiento;
 	private JSpinner spnHoraCita;
 	private JScrollPane scrollPane;
 	private final String [] headers = {"Lista de Doctores"};
 	private Secretaria secre = null;
+	private Cita miCitaAuxi = null;
+	private int rowModi = -1;
+	
 	
 	/**
 	 * Launch the application.
@@ -108,6 +111,7 @@ public class NuevaCita extends JDialog {
 	 * Create the dialog.
 	 */
 	public NuevaCita(Secretaria secretaria) {
+		
 		this.secre = secretaria;
 		setTitle("Nueva Cita");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(NuevaCita.class.getResource("/Imagenes/LogoPeque.png")));
@@ -133,15 +137,6 @@ public class NuevaCita extends JDialog {
 		panelDatosPersona.add(lblBusquedaDePersona);
 		
 		txtBusquedaPersona = new JTextField();
-        formatoIDPersona = null;
-		
-		try {
-			formatoIDPersona = new MaskFormatter("###########");
-			
-		}catch (Exception e) {
-			
-		}
-		txtBusquedaPersona = new JFormattedTextField(formatoIDPersona);
 		txtBusquedaPersona.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -163,6 +158,7 @@ public class NuevaCita extends JDialog {
 					miPersona = Clinica.getInstance().miPersona(txtBusquedaPersona.getText().toString());
 					if(miPersona!=null){
 						JOptionPane.showMessageDialog(null, "Persona encontrada","Informacion!", JOptionPane.INFORMATION_MESSAGE);
+						miPersonaAux = miPersona;
 						txtIdPersona.setText(miPersona.getCedula().toString());
 						txtIdPersona.setEditable(false);
 						txtNombrePersona.setText(miPersona.getNombre().toString());
@@ -176,11 +172,12 @@ public class NuevaCita extends JDialog {
 						}else{
 							cmbSexoPersona.setSelectedIndex(1);
 						}
-						cmbSexoPersona.setEditable(false);
+						cmbSexoPersona.setEnabled(false);
 						cmbPaisOrigenPersona.setSelectedItem(miPersona.getNacionalidad().toString());
-						cmbPaisOrigenPersona.setEditable(false);
+						cmbPaisOrigenPersona.setEnabled(false);
 						txtTelefono.setText(miPersona.getTelefono().toString());
 						txtTelefono.setEditable(false);
+						fechaNacimiento.setCalendar(miPersona.getFecha_nacimiento());
 					}else{
 						JOptionPane.showMessageDialog(null, "Persona no encontrada","Aviso", JOptionPane.WARNING_MESSAGE);
 					}
@@ -426,9 +423,7 @@ MaskFormatter formatoIDPersona2 = null;
 		tableDoctores.setCellSelectionEnabled(true);
 		tableDoctores.setRowSorter(sorter);
 		tableDoctores.setName("Lista de Doctores");
-		if(Clinica.getInstance().doctores().size()>0) {
 		loadtable();
-			}
 		scrollPane.setViewportView(tableDoctores);
 		
 		JLabel lblNewLabel = new JLabel("");
@@ -506,34 +501,57 @@ MaskFormatter formatoIDPersona2 = null;
 				btnListo.setBackground(UIManager.getColor("Button.highlight"));
 				btnListo.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						
+				boolean vieja = false;		
 				Cita misCitas = null;
 				Calendar fecha = Calendar.getInstance();
 				fechaNacimiento.getCalendar();
-				fecha =fechaNacimiento.getCalendar();		
-				if(opcion == 0){
+				fecha =fechaNacimiento.getCalendar();	
+				switch (opcion) {
+				////////////NUEVA CITA/////////////////////
+				case 0:
+					if(miPersonaAux == null){
 						if(cmbSexoPersona.getSelectedIndex()==0){ //Hombre 0 true
-							miPersona = new Persona(txtNombrePersona.getText().toString(),txtApellidoPersona.getText().toString(),txtIdPersona.getText().toString(),true,txtTelefono.getText().toString(),cmbPaisOrigenPersona.getSelectedItem().toString(),fecha,txtCorreoPersona.getText().toString());							
+							miPersonaAux = new Persona(txtNombrePersona.getText().toString(),txtApellidoPersona.getText().toString(),txtIdPersona.getText().toString(),true,txtTelefono.getText().toString(),cmbPaisOrigenPersona.getSelectedItem().toString(),fecha,txtCorreoPersona.getText().toString());							
 						}else if (cmbSexoPersona.getSelectedIndex()==1){ //Mujer 1 false
-							miPersona = new Persona(txtNombrePersona.getText().toString(),txtApellidoPersona.getText().toString(),txtIdPersona.getText().toString(),false,txtTelefono.getText().toString(),cmbPaisOrigenPersona.getSelectedItem().toString(),fecha,txtCorreoPersona.getText().toString());							
+							miPersonaAux = new Persona(txtNombrePersona.getText().toString(),txtApellidoPersona.getText().toString(),txtIdPersona.getText().toString(),false,txtTelefono.getText().toString(),cmbPaisOrigenPersona.getSelectedItem().toString(),fecha,txtCorreoPersona.getText().toString());							
 							
-						}
-						
-						misCitas = new Cita (miDoctor,miPersona,FechaCita.getCalendar(), (Integer)spnHoraCita.getValue(),"Pendiente",secre);
+						}  Clinica.getInstance().insertarPersona(miPersonaAux);
+							}
+						misCitas = new Cita (miDoctor,miPersonaAux,FechaCita.getCalendar(), (Integer)spnHoraCita.getValue(),"Pendiente",secre);
+						vieja = Clinica.getInstance().citaEncontrada(misCitas);
+						if(vieja == false){
 						Clinica.getInstance().insertarCitas(misCitas);
 						Clinica.getInstance().incertarCitaADoctor(miDoctor, misCitas);
-						Clinica.getInstance().insertarPersona(miPersona);
-						JOptionPane.showMessageDialog(null, "Cita creada exitosamente!","Aviso!", JOptionPane.INFORMATION_MESSAGE);
-						repaint(); } else {
-							
-							//secre1.repaint();
-							JOptionPane.showMessageDialog(null, "Cita editada exitosamente!","Aviso!", JOptionPane.INFORMATION_MESSAGE);
-							dispose();
-							//secre1.setVisible(true);
+						JOptionPane.showMessageDialog(null, "Cita creada exitosamente","Aviso", JOptionPane.INFORMATION_MESSAGE);
+						repaint();}
+						else {
+						JOptionPane.showMessageDialog(null, "Cita fue creada anteriormente","Aviso", JOptionPane.WARNING_MESSAGE);	
+						repaint();
 						}
-						
+					break;
+				////////////MODIFICAR CITA//////////////////////
+				case 1:
+					if(miCitaAuxi != null){
+					miCitaAuxi.setEstado("Modificada");
+					miCitaAuxi.setFecha(FechaCita.getCalendar());
+					miCitaAuxi.setMiDoctor(miDoctor);
+					miCitaAuxi.setHora((Integer)spnHoraCita.getValue());
+					Clinica.getInstance().getMisCitas().set(rowModi, miCitaAuxi);
+					JOptionPane.showMessageDialog(null, "Cita modificada exitosamente","Aviso", JOptionPane.INFORMATION_MESSAGE);
+					dispose();	} else{
+						JOptionPane.showMessageDialog(null, "Cita no pudo ser modificada","Aviso", JOptionPane.INFORMATION_MESSAGE);
+						repaint();
 					}
-				});
+				default:
+					break;
+				}
+				
+					} }		
+									
+						
+						
+					
+				);
 				btnListo.setIcon(new ImageIcon(NuevaCita.class.getResource("/Imagenes/acceptar.png")));
 				btnListo.setActionCommand("OK");
 				buttonPane.add(btnListo);
@@ -543,17 +561,10 @@ MaskFormatter formatoIDPersona2 = null;
 				JButton btnCancelar = new JButton("Cancelar");
 				btnCancelar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						VentanaSecretaria secre1 = new VentanaSecretaria(secre);
 						int resp = JOptionPane.showOptionDialog(null, "Estas seguro que deseas salir?", "Advertencia!", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, new Object[] { "Si", "No" }, null); 
 						if(resp == 0){
-							//dispose();
-							//secre1.loadtable();
-							
-							secre1.loadtable();
+							loadtable();
 							dispose();
-							
-							
-							
 						
 						} else{
 							repaint();
@@ -571,7 +582,7 @@ MaskFormatter formatoIDPersona2 = null;
 	
 	
 	
-	public void visualizarCampos(boolean visualizar, Persona miPersona){
+	public void visualizarCampos(boolean visualizar, Persona miPersona, int row, Cita miCita){
 		if(visualizar){
 			opcion = 0;
 			setVisible(true);
@@ -599,8 +610,12 @@ MaskFormatter formatoIDPersona2 = null;
 			cmbSexoPersona.setEnabled(false);
 			cmbPaisOrigenPersona.setEnabled(false);
 			txtCorreoPersona.setEditable(false);
-			setTitle("Editar Cita");
-			setVisible(true);
+			setTitle("Modificar Cita");
+			rowModi = row;
+			miCitaAuxi = miCita;
+			if(rowModi!= -1 && miCita!= null){
+			setVisible(true);} 
+			
 			
 		}
 	}
@@ -648,4 +663,5 @@ MaskFormatter formatoIDPersona2 = null;
 	    }
 	    sorter.setRowFilter(filter);
 	}
+	
 }

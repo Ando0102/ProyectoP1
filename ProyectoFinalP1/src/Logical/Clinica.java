@@ -158,15 +158,15 @@ public class Clinica  implements Serializable{
 		//Buscar person por cedula
 		boolean find = false;
 		Persona miPersona = null;
-		
-		while(find!=true){
+		int i = 0;
+		while(find!=true && i<misPersonas.size()){
 			for(Persona aux : misPersonas){
 				if(aux.getCedula().equalsIgnoreCase(cedula)){
 					miPersona = aux;
 					find = true;
 					
 				}
-			}
+			} i++;
 			
 		}
 		return miPersona;
@@ -178,18 +178,18 @@ public class Clinica  implements Serializable{
 		String nombreCompleto = "";
 		boolean find = false;
 		Doctor miDoctorcito = null;
-		while(find != true){
+		int i = 0;
+		while(find != true && i< misDoctores.size()){
 			for(Doctor miDoctor : misDoctores){
 				nombreCompleto = miDoctor.getNombre()+" "+miDoctor.getApellidos();
 				if(nombreCompleto.equalsIgnoreCase(nombre)){
 					miDoctorcito = miDoctor;
 					find = true;
 				}
-			}
+			} i++;
 		}
 		return miDoctorcito;
 	}
-	
 	////
 	public void incertarCitaADoctor(Doctor miDoctor, Cita micita) {
 		for (Persona miUser : misPersonas) {
@@ -302,5 +302,19 @@ public class Clinica  implements Serializable{
 		}
 		
 		return aux;
+	}
+	public boolean citaEncontrada (Cita miCita){
+		boolean find = false;
+		////busqueda de cita///////////////////
+		int i  =0;
+		while(i<misCitas.size() && find!=true){
+			for(Cita miCitita : misCitas){
+				if(miCitita == misCitas.get(i)){
+					find = true;
+				}
+			}
+			i++;
+		}
+		return find;
 	}
 }

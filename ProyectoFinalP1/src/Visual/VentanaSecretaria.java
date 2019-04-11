@@ -74,7 +74,6 @@ public class VentanaSecretaria extends JFrame {
 	private final JButton btnNuevaCita;
 	private final JButton btnSalir;
 	private final JButton btnCancelarCita;
-	private final JButton btnActualizar;
 	/**
 	 * Launch the application.
 	 */
@@ -162,7 +161,8 @@ public class VentanaSecretaria extends JFrame {
 				
 				citas.setModal(true);
 				citas.setLocationRelativeTo(null);
-				citas.visualizarCampos(true,null);
+				citas.visualizarCampos(true,null,-1,null);
+				loadtable();
 				
 				
 				
@@ -175,15 +175,22 @@ public class VentanaSecretaria extends JFrame {
 		btnModificarCita = new JButton("Modificar Cita");
 		btnModificarCita.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int row = 0;
+				row = tableCitas.convertRowIndexToModel(tableCitas.getSelectedRow());
 				Persona miPersona = null;
-				NuevaCita modi = new NuevaCita (secre);
+				Cita miCita = null;
 				String cedula = " ";
-				cedula = tableCitas.getModel().getValueAt(tableCitas.convertRowIndexToModel(tableCitas.getSelectedRow()), 0).toString();
+				cedula = tableCitas.getModel().getValueAt(row, 0).toString();
+				miCita =Clinica.getInstance().getMisCitas().get(row);
+				NuevaCita modi = new NuevaCita (secre);
 				miPersona = Clinica.getInstance().miPersona(cedula);
-				if(miPersona != null){
-				modi.visualizarCampos(false,miPersona);}
+				if(miPersona != null&&(miCita.getEstado().equalsIgnoreCase("Pendiente")|| miCita.getEstado().equalsIgnoreCase("Modificada"))){
+				modi.visualizarCampos(false,miPersona, row,miCita); 
+				loadtable();
+				}
 				else{
-					JOptionPane.showMessageDialog(null, "Cita no encontrada","Aviso", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Cita no puede ser modificada","Aviso", JOptionPane.ERROR_MESSAGE);
+					loadtable();
 				}
 				
 				
@@ -217,15 +224,18 @@ public class VentanaSecretaria extends JFrame {
 		btnCancelarCita.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Cita aux = null;
-				Cita aux1 = null;
 				int row = -1;
-				int row1 = -1;
+				row = tableCitas.convertRowIndexToModel(tableCitas.getSelectedRow());
 				if(tableCitas.isColumnSelected(0)){
-					aux = Clinica.getInstance().getMisCitas().get(tableCitas.convertRowIndexToModel(tableCitas.getSelectedRow()));
+					aux = Clinica.getInstance().getMisCitas().get(row);
 					if(aux!=null){
-						if(aux.getEstado().equalsIgnoreCase("Pendiente")){
-							aux.setEstado("Cancelada");
-							loadtable();
+						if(aux.getEstado().equalsIgnoreCase("Pendiente")|| aux.getEstado().equalsIgnoreCase("Modificada")){
+							int resp = JOptionPane.showOptionDialog(null, "Estas seguro que deseas cancelarla?", "Advertencia!", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, new Object[] { "Si", "No" }, null); 
+							if(resp == 0){
+								aux.setEstado("Cancelada");
+								loadtable();} else{
+								loadtable();
+							}
 						} else {
 							JOptionPane.showMessageDialog(null, "Cita ya ha sido cancelada","Aviso", JOptionPane.ERROR_MESSAGE);
 						}
@@ -335,18 +345,6 @@ public class VentanaSecretaria extends JFrame {
 		btnFiltro.setBorderPainted(false);
 		btnFiltro.setBounds(510, 29, 32, 32);
 		panelCitas.add(btnFiltro);
-		
-		btnActualizar = new JButton("Actualizar");
-		//btnActualizar.setIcon(new ImageIcon(VentanaSecretaria.class.getResource("/Imagenes/refresh_arrow_6296.png")));
-		btnActualizar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				model.fireTableDataChanged();
-				loadtable();
-				
-			}
-		});
-		btnActualizar.setBounds(981, 11, 130, 39);
-		panelCitas.add(btnActualizar);
 		
 		
 		
