@@ -191,7 +191,7 @@ public class IniciarSesion extends JFrame {
 						
 					}else {
 						//Administrador general
-						Administrator ad = new Administrator();
+						Administrator ad = new Administrator((User) aux);
 						
 						ad.setVisible(true);
 						dispose();

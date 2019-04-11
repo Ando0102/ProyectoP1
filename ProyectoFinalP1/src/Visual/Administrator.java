@@ -16,6 +16,8 @@ import org.jfree.data.category.DefaultCategoryDataset;
 
 import Logical.Clinica;
 import Logical.Paciente;
+import Logical.Persona;
+import Logical.User;
 import VentanasAdmin.VentanaCita_admin;
 import VentanasAdmin.VentanaEnfermedad_admin;
 import VentanasAdmin.VentanaEstadisticas;
@@ -66,12 +68,19 @@ public class Administrator extends JFrame implements Runnable {
 	private int mes;
 	private int ano;
 	private int dia;
+	private User admin;
+	
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			
+
 			public void run() {
 				try {
-					Administrator frame = new Administrator();
+					
+					Calendar lilo = new GregorianCalendar();
+					User aux = new User("Armando", "Roman", "123456", true, "2123134", "dominic", lilo, "dasda", "ando2", "123", "Administrador");
+					Administrator frame = new Administrator(aux);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -80,8 +89,9 @@ public class Administrator extends JFrame implements Runnable {
 		});
 	}
 	
-	public Administrator() {
+	public Administrator(User aux) {
 		setResizable(false);
+		this.admin= aux;
 //////////////////////////////////////////fichero//////////////////////		
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -158,15 +168,15 @@ public class Administrator extends JFrame implements Runnable {
 			
 		if(hora >= 12 && hora <18) {
 			
-			lblBienvenidoa.setText("<html><P ALIGN=center> Buenas Tardes");
+			lblBienvenidoa.setText("<html><P ALIGN=center>Buenas Tardes<P>"+ admin.getNombre() + " " + admin.getApellidos());
 			
 		}else if(hora >=18 && hora <24) {
 			
-			lblBienvenidoa.setText("<html><P ALIGN=center> Buenas Noches");
+			lblBienvenidoa.setText("<html><P ALIGN=center>Buenas Noches<P>"+ admin.getNombre() + " " + admin.getApellidos());
 			
 		}else if(hora >= 0 && hora<12) {
 			
-			lblBienvenidoa.setText("<html><P ALIGN=center> Buenos Dias");
+			lblBienvenidoa.setText("<html><P ALIGN=center>Buenos Dias<P>" + admin.getNombre() + " " + admin.getApellidos());
 			
 		}
 		panel_1.add(lblBienvenidoa);
