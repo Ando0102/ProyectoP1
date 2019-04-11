@@ -37,6 +37,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.border.BevelBorder;
 import java.awt.Toolkit;
 import javax.swing.UIManager;
+import javax.swing.JEditorPane;
 
 public class PanelSeguridadSecre extends JDialog {
 	private JTextField txtUsuario;
@@ -64,24 +65,25 @@ public class PanelSeguridadSecre extends JDialog {
 		getContentPane().add(panel);
 		panel.setLayout(null);
 	
-		JTextPane textPane = new JTextPane();
+		
+		/*JEditorPane textPane = new JEditorPane();
 		textPane.setEditable(false);
 		textPane.setBounds(160, 27, 249, 196);
 		textPane.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		textPane.setBackground(new Color(230, 230, 250));
-		StyledDocument doc = textPane.getStyledDocument();
+		textPane.setText("<html><center> Hola");
 		SimpleAttributeSet keyWord = new SimpleAttributeSet();
 		StyleConstants.setForeground(keyWord, Color.BLACK);
 		StyleConstants.setBold(keyWord, true);
 
-		try
+		/*try
 		{
 		    doc.insertString(0, "Por este medio se le informa que la siguiente informaci\u00F3n que usted mismo sumistrar\u00E1 a continuaci\u00F3n, es de total confidencialidad para su persona. Es su deber mantener en secreto y no divulgar u compartir con nadie est\u00E1 informaci\u00F3n, sin importar que a las personas las cuales usted desea compartirla sean colegas o superiores de usted.  Absolutamente nadie debe de saber est\u00E1 informaci\u00F3n a demas de usted. Es su deber como profesional y miembro de est\u00E1 instituci\u00F3n cumplir esta normal. " , null );
 		    doc.insertString(doc.getLength(), "\n", null );
 		}
 		catch(Exception e) { System.out.println(e); }
 		
-		panel.add(textPane);
+		panel.add(textPane);*/
 		
 		JButton btnNewButton_1 = new JButton("Atras");
 		btnNewButton_1.setBounds(343, 436, 114, 43);
@@ -149,6 +151,11 @@ public class PanelSeguridadSecre extends JDialog {
 		JLabel label_2 = new JLabel("Confimaci\u00F3n de Contrase\u00F1a :");
 		label_2.setBounds(211, 362, 179, 14);
 		panel.add(label_2);
+		
+		JLabel lblTextPanel = new JLabel("New label");
+		lblTextPanel.setBounds(150, 27, 290, 195);
+		lblTextPanel.setText("<html><P ALIGN=justify>Por este medio se le informa que la siguiente información que usted mismo sumistrará a continuación, es de total confidencialidad para su persona. Es su deber mantener en secreto y no divulgar u compartir con nadie está información, sin importar que a las personas las cuales usted desea compartirla sean colegas o superiores de usted. Absolutamente nadie debe de saber está información a demas de usted. Es su deber como profesional y miembro de está institución cumplir esta normal.");
+		panel.add(lblTextPanel);
 		
 		
 		
