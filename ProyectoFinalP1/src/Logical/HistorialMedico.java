@@ -1,8 +1,9 @@
 package Logical;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
-public class HistorialMedico {
+public class HistorialMedico  implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private Doctor miDoctor;

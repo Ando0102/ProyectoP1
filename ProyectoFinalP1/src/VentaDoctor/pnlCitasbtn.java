@@ -215,6 +215,7 @@ public class pnlCitasbtn extends JPanel  {
 									System.out.println("Existo ventana");
 									RealizarConsulta dialog = new RealizarConsulta(ciataDelDia);
 									//dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+									dialog.setModal(true);
 									dialog.setVisible(true);
 									
 								}else {

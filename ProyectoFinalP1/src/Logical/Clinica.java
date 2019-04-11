@@ -213,6 +213,9 @@ public class Clinica  implements Serializable{
 
 	public boolean acutalizar_Cita(Cita citaVieja, Cita nueva) {
 		boolean estado = false;
+		for (Cita mici : misCitas) {
+			
+		}
 		if(misCitas.contains(citaVieja)) {
 			misCitas.remove(citaVieja);
 			misCitas.add(nueva);

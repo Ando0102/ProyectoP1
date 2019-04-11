@@ -92,15 +92,15 @@ public class VentaDoctor extends JFrame implements Runnable {
 */
 	public VentaDoctor(Doctor mi) {
 //////////////////////////////////////////fichero//////////////////////		
-addWindowListener(new WindowAdapter() {
-@Override
-public void windowClosing(WindowEvent e) {
-FileOutputStream empresa2;
-ObjectOutputStream empresaWrite;
-try {
-empresa2 = new  FileOutputStream("ADAClinica.dat");
-empresaWrite = new ObjectOutputStream(empresa2);
-empresaWrite.writeObject(Clinica.getInstance());
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				FileOutputStream empresa2;
+				ObjectOutputStream empresaWrite;
+				try {
+					empresa2 = new  FileOutputStream("ADAClinica.dat");
+					empresaWrite = new ObjectOutputStream(empresa2);
+					empresaWrite.writeObject(Clinica.getInstance());
 empresa2.close();
 empresaWrite.close();
 } catch (FileNotFoundException e1) {
@@ -118,6 +118,7 @@ e1.printStackTrace();
 
 		this.miDoctor = mi;
 		setTitle("Doctor");
+		setLocationRelativeTo(null);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VentaDoctor.class.getResource("/Imagenes/LogoPeque.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1042, 503);
