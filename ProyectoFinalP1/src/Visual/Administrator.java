@@ -291,7 +291,6 @@ public class Administrator extends JFrame implements Runnable {
       	 line_chart_dataset.setValue(12, "Mujeres", "Dic."); 
  
         //Datos
-        
     	for(int i=0; i<Clinica.getInstance().getMisPersonas().size(); i++) { 
     		if(Clinica.getInstance().getMisPersonas().get(i) instanceof Paciente) {
     			
@@ -460,11 +459,11 @@ public class Administrator extends JFrame implements Runnable {
 	private int ContadordePaciente(int mes, boolean sexo) {
 		int Cantidad = 0;
 			
-			for(int i = 0; i<Clinica.getInstance().getMisPersonas().size(); i++) {
+			for(int i = 0; i<Clinica.getInstance().getMisCitas().size(); i++) {
 				
-				if(Clinica.getInstance().getMisPersonas().get(i) instanceof Paciente) {
+				if(Clinica.getInstance().getMisCitas().get(i).getMiPersona() instanceof Paciente) {
 						
-					if(Clinica.getInstance().getMisPersonas().get(i).isSexo() == sexo && Clinica.getInstance().getMisPersonas().get(i).getFecha_nacimiento().getTime().getMonth() == mes) {
+					if(Clinica.getInstance().getMisCitas().get(i).getMiPersona().isSexo() == sexo && Clinica.getInstance().getMisCitas().get(i).getFecha().getTime().getMonth() == mes) {
 						Cantidad++;
 					}
 				
