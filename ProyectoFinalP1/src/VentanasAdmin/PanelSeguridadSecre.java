@@ -29,6 +29,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JFormattedTextField;
 
 import java.awt.event.ActionListener;
 import java.util.Calendar;
@@ -44,7 +45,7 @@ public class PanelSeguridadSecre extends JDialog {
 	private JButton btnNewButton;
 	
 	
-	public PanelSeguridadSecre(final JTextField txtApellido, final JTextField txtCedula, final JTextField txtCorreoElect, final JTextField txtDireccion, final JTextField txtNombre, final JTextField txtTelefono, final JComboBox cbxGenero, final JComboBox cbxPais, final JDateChooser dcFechaNacimiento, final JCheckBox rbtDoctor, final JCheckBox rbtSecre, final JCheckBox rtbAdministrador) {
+	public PanelSeguridadSecre(final JTextField txtApellido, final JFormattedTextField txtCedula, final JTextField txtCorreoElect, final JTextField txtDireccion, final JTextField txtNombre, final JFormattedTextField txtTelefono, final JComboBox cbxGenero, final JComboBox cbxPais, final JDateChooser dcFechaNacimiento, final JCheckBox rbtDoctor, final JCheckBox rbtSecre, final JCheckBox rtbAdministrador) {
 		setModal(true);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(PanelSeguridadSecre.class.getResource("/Imagenes/LogoPeque.png")));
 		setResizable(false);
@@ -92,10 +93,10 @@ public class PanelSeguridadSecre extends JDialog {
 				aux2.txtNombre.setText(txtNombre.getText());
 				aux2.cbxPais.setSelectedIndex(cbxPais.getSelectedIndex());
 				aux2.txtApellido.setText(txtApellido.getText());
-				aux2.txtCedula.setText(txtCedula.getText());
+				aux2.txtCedula.setValue(txtCedula.getValue());
 				aux2.txtCorreoElect.setText(txtCorreoElect.getText());
 				aux2.txtDireccion.setText(txtDireccion.getText());
-				aux2.txtTelefono.setText(txtTelefono.getText());
+				aux2.txtTelefono.setValue(txtTelefono.getValue());
 				aux2.dcFechaNacimiento.setCalendar(dcFechaNacimiento.getCalendar());
 				dispose();
 				aux2.setVisible(true);
@@ -154,25 +155,29 @@ public class PanelSeguridadSecre extends JDialog {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				String nombre, cedula, apellido, correo, direccion, telefono, nacionalidad, usuario, contraseña, rol = null;
+				String nombre, cedula, apellido, correo, direccion, telefono, nacionalidad, usuario = null, contraseña, rol = null;
 				boolean sexo = false;
 				Calendar fecha_de_nacimiento  = Calendar.getInstance();
 
 				
 				if((dcFechaNacimiento.getDate()!=null)&&!txtNombre.getText().equalsIgnoreCase("") && !txtApellido.getText().equalsIgnoreCase("") && !txtCorreoElect.getText().equalsIgnoreCase("") && !txtDireccion.getText().equalsIgnoreCase("") && cbxGenero.getSelectedIndex() != 0 &&
-						!txtCedula.getText().equalsIgnoreCase("") && !txtTelefono.getText().equalsIgnoreCase("") && !txtUsuario.getText().equalsIgnoreCase("") && !passwordField.getText().equalsIgnoreCase("") && !passwordField_1.getText().equalsIgnoreCase("") && cbxPais.getSelectedIndex() != 0) {
+						txtCedula.getValue() != null && txtTelefono.getValue() != null && !txtUsuario.getText().equalsIgnoreCase("") && !passwordField.getText().equalsIgnoreCase("") && !passwordField_1.getText().equalsIgnoreCase("") && cbxPais.getSelectedIndex() != 0) {
+					
+					if(!VerificadorUsuario(usuario)) {
+					
 					if(passwordField.getText().equalsIgnoreCase(passwordField_1.getText())) {
 						
 						 nombre = txtNombre.getText();
 						 apellido = txtApellido.getText();
-						 cedula = txtCedula.getText();
+						 cedula = (String) txtCedula.getValue();
 						 correo = txtCorreoElect.getText();
-						 telefono = txtTelefono.getText();
+						 telefono = (String)txtTelefono.getValue();
 						 direccion = txtDireccion.getText();
 						usuario = txtUsuario.getText();
 						contraseña = passwordField_1.getText();
 						nacionalidad = cbxPais.getSelectedItem().toString();
 						
+				
 						
 						if(rbtDoctor.isSelected()) {
 							rol = rbtDoctor.getText();
@@ -191,7 +196,7 @@ public class PanelSeguridadSecre extends JDialog {
 						}else if(cbxGenero.getSelectedItem().toString().equalsIgnoreCase("Femenino")) {
 							sexo = false;
 						}
-						
+							
 								if(rbtDoctor.isSelected()) {	
 									Persona aux = new Doctor(nombre, apellido, cedula, sexo, telefono, nacionalidad, fecha_de_nacimiento, correo, usuario, contraseña, rol);
 									Clinica.getInstance().insertarPersona(aux);
@@ -220,12 +225,17 @@ public class PanelSeguridadSecre extends JDialog {
 									setVisible(false);
 									VentanaSecre_admin aux2 = new VentanaSecre_admin();
 									aux2.dispose();
+						
 								}
-								
-					}else {
-						 JOptionPane.showMessageDialog(null, "Las Contraseñas no Coinciden", "Advertencia", JOptionPane.WARNING_MESSAGE, null);
-					}
+						
+						}else {
+							 JOptionPane.showMessageDialog(null, "Las Contraseñas no Coinciden", "Advertencia", JOptionPane.WARNING_MESSAGE, null);
+						}
 					
+					}else {
+						 JOptionPane.showMessageDialog(null, "Este Usuario Ya Existe", "Advertencia", JOptionPane.WARNING_MESSAGE, null);
+
+					}
 					
 				}else {
 					 JOptionPane.showMessageDialog(null, "Por favor, Completar Todos los Campos", "Advertencia", JOptionPane.WARNING_MESSAGE, null);
@@ -235,7 +245,29 @@ public class PanelSeguridadSecre extends JDialog {
 				
 				
 			}
+
+			private boolean VerificadorUsuario(String usuario) {
+				boolean esta = false;
+				
+				for(int i = 0; i<Clinica.getInstance().getMisPersonas().size(); i++) {
+					
+					if(Clinica.getInstance().getMisPersonas().get(i) instanceof User) {
+						
+						if(((User)Clinica.getInstance().getMisPersonas().get(i)).getUsuario().equalsIgnoreCase(usuario)) {
+							esta = true;
+						}
+						
+					}
+					
+				}
+				
+				return esta;
+			}
+
+			
 		});
+
+		
 		
 	}
 }
