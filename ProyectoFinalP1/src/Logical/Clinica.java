@@ -309,7 +309,7 @@ public class Clinica  implements Serializable{
 		int i  =0;
 		while(i<misCitas.size() && find!=true){
 			for(Cita miCitita : misCitas){
-				if(miCitita == misCitas.get(i)){
+				if(miCitita == miCita){
 					find = true;
 				}
 			}
