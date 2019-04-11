@@ -91,6 +91,7 @@ public class VentanaSecre_admin extends JDialog {
 	private JTable tablaEmpleados;
 	private int elegido;
 	private JScrollPane scrollPane;
+	private Object[] fila;
 
 	/**
 	 * Launch the application.
@@ -346,16 +347,19 @@ public class VentanaSecre_admin extends JDialog {
 						btnNewButton.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
 								
-								///Calendario ACTUAL////
-								  Calendar calendario = new GregorianCalendar();
-								  calendario.add(Calendar.DATE, -30);
-								  Calendar esfimero = new GregorianCalendar();
-								  esfimero.setTime(dcFechaNacimiento.getDate());
-								/////////////
-								
+												
 								if((dcFechaNacimiento.getDate()!=null)&&!txtNombre.getText().equalsIgnoreCase("") && !txtApellido.getText().equalsIgnoreCase("") && !txtCorreoElect.getText().equalsIgnoreCase("") && !txtDireccion.getText().equalsIgnoreCase("") && cbxGenero.getSelectedIndex() != 0 &&
 										txtCedula.getValue() != null && txtTelefono.getValue() != null && (rbtDoctor.isSelected() || rbtSecre.isSelected() || rtbAdministrador.isSelected()) && cbxPais.getSelectedIndex() != 0){
 										
+									
+									///Calendario ACTUAL//// Esto está aqui adentro por protección/
+									  Calendar calendario = new GregorianCalendar();
+									  calendario.add(Calendar.DATE, -30);
+									  Calendar esfimero = new GregorianCalendar();
+									  esfimero.setTime(dcFechaNacimiento.getDate());
+									/////////////////////////////////
+
+									
 									if(esfimero.getTime().compareTo(calendario.getTime()) < 0) {			
 											if(VerificandoExistencia((String)txtCedula.getValue())) {
 														PanelSeguridadSecre aux = new PanelSeguridadSecre(txtApellido, txtCedula, txtCorreoElect, txtDireccion, txtNombre, txtTelefono, cbxGenero, cbxPais, dcFechaNacimiento, rbtDoctor, rbtSecre, rtbAdministrador);
@@ -580,25 +584,24 @@ public class VentanaSecre_admin extends JDialog {
 	private void loadtable() {
 		//Cargar la tabla
 		model.setRowCount(0);
-		rows = new Object[model.getColumnCount()];
-		for (Persona aux : Clinica.getInstance().getMisPersonas()) {
-			if(aux instanceof User) {
-			addRow(aux);
+		fila = new Object[model.getColumnCount()];
+		for (int i= 0; i<Clinica.getInstance().getMisPersonas().size(); i++) {
+			if(Clinica.getInstance().getMisPersonas().get(i) instanceof User) {
+				
+				
+				fila[0] = Clinica.getInstance().getMisPersonas().get(i).getCedula();
+				fila[1] = Clinica.getInstance().getMisPersonas().get(i).getNombre() + " " + Clinica.getInstance().getMisPersonas().get(i).getApellidos();
+				fila[2] = ((User)Clinica.getInstance().getMisPersonas().get(i)).getRol();
+						
+				
+				model.addRow(fila);
+				
+			
 			}
 		}
 		
 	}
 
-	private void addRow(Persona aux) {
-		User empleado = null;
-		empleado = (User) aux;
-		//Agregar fila
-		rows[0] = empleado.getCedula();
-		rows[1] = empleado.getNombre()+" "+ empleado.getApellidos();
-		rows[2] = empleado.getRol();
-		
-		model.addRow(rows);
-	}
 	
 	private void tableFilter(String text) {
 		//Filtro de la tabla

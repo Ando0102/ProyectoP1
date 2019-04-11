@@ -52,6 +52,7 @@ import javax.swing.JTextPane;
 import javax.swing.UIManager;
 import java.awt.Rectangle;
 import javax.swing.JToolBar;
+import javax.swing.border.TitledBorder;
 
 public class Administrator extends JFrame implements Runnable {
 
@@ -137,10 +138,7 @@ public class Administrator extends JFrame implements Runnable {
 		lblNewLabel.setBounds(55, 11, 89, 129);
 		panel_1.add(lblNewLabel);
 		
-		JLabel lblBienvenidoa = new JLabel("Bienvenido/a ");
-		lblBienvenidoa.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblBienvenidoa.setBounds(55, 151, 89, 49);
-		panel_1.add(lblBienvenidoa);
+	
 		
 		txtHoraYFecha = new JTextPane();
 		txtHoraYFecha.setFont(new Font("Tahoma", Font.BOLD, 16));
@@ -154,6 +152,26 @@ public class Administrator extends JFrame implements Runnable {
 		/////////////////////////////////////////////////////////////////
 		panel_1.add(txtHoraYFecha);
 		
+		JLabel lblBienvenidoa = new JLabel("");
+		lblBienvenidoa.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblBienvenidoa.setBounds(10, 151, 179, 96);
+			
+		if(hora >= 12 && hora <18) {
+			
+			lblBienvenidoa.setText("<html><P ALIGN=center> Buenas Tardes");
+			
+		}else if(hora >=18 && hora <24) {
+			
+			lblBienvenidoa.setText("<html><P ALIGN=center> Buenas Noches");
+			
+		}else if(hora >= 0 && hora<12) {
+			
+			lblBienvenidoa.setText("<html><P ALIGN=center> Buenos Dias");
+			
+		}
+		panel_1.add(lblBienvenidoa);
+		
+		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(new Color(176, 196, 222));
 		panel_2.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
@@ -162,25 +180,23 @@ public class Administrator extends JFrame implements Runnable {
 		panel_2.setLayout(null);
 		
 		JPanel panelDeVacunas = new JPanel();
+		panelDeVacunas.setBorder(new TitledBorder(null, "Estadisticas de Pacientes Vacunados", TitledBorder.CENTER, TitledBorder.TOP, null, null));
 		panelDeVacunas.setBackground(new Color(176, 196, 222));
-		panelDeVacunas.setBounds(21, 112, 528, 426);
+		panelDeVacunas.setBounds(10, 11, 551, 296);
 		panel_2.add(panelDeVacunas);
 		
 	    JPanel panelDeEnfermedades = new JPanel();
-	    panelDeEnfermedades.setBounds(570, 109, 528, 426);
+	    panelDeEnfermedades.setBorder(new TitledBorder(null, "Estad\u00EDstica de Enfermedad Bajo Observaci\u00F3n", TitledBorder.CENTER, TitledBorder.TOP, null, null));
+	    panelDeEnfermedades.setBounds(571, 11, 540, 296);
+	    panelDeEnfermedades.setBackground(new Color(176, 196, 222));
 	    panel_2.add(panelDeEnfermedades);
 	    panelDeEnfermedades.setLayout(new BorderLayout(0, 0));
 		
 ////////////////////////////////////////////////GRAFICOS/////////////////////////////////////////////////////////
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 		
-      //EJEMPLO DE PRUEBA
-    	   dataset.setValue(8, "Vacunados", "Contra el Dengue");
-    	   dataset.setValue(4, "No Vacunados", "Contra el Dengue");
-    	   dataset.setValue(3, "Vacunados", "colera");
-    	   dataset.setValue(9, "No Vacunados", "colera");
-    	   dataset.setValue(1, "Vacunados", "sida");
-    	   dataset.setValue(5, "No Vacunados", "sida");
+		dataset.setValue(3, "Vacunados", "pentavalina");
+		dataset.setValue(3, "No Vacunados", "pentavalina");
     	   
     	for(int i=0; i<Clinica.getInstance().getMisVacunas().size(); i++) { 
     		
@@ -190,7 +206,7 @@ public class Administrator extends JFrame implements Runnable {
     	}
         // Creando el Grafico
         JFreeChart chartVacunas = ChartFactory.createBarChart3D
-        ("Pacientes Vacunados","Vacunas", "Pacientes", dataset, PlotOrientation.VERTICAL, true,true, false);
+        ("","Vacunas", "Pacientes", dataset, PlotOrientation.VERTICAL, true,true, false);
         chartVacunas.setBackgroundPaint(new Color(176, 196, 222));
         chartVacunas.getTitle().setPaint(Color.black);
         chartVacunas.getPlot().setBackgroundPaint(Color.WHITE);
@@ -208,21 +224,18 @@ public class Administrator extends JFrame implements Runnable {
         // Fuente de Datos
         DefaultCategoryDataset datasetEnfermedades = new DefaultCategoryDataset();
         
-        datasetEnfermedades.setValue(3, "Peligrosas", "Dengue");
-        datasetEnfermedades.setValue(10, "Normal", "Fiebre");
-        datasetEnfermedades.setValue(8, "Normal", "Diarrea");
-        datasetEnfermedades.setValue(20, "Peligrosas", "Colera");
+        datasetEnfermedades.setValue(3, "Peligrosas", "JAJAJA");
+        datasetEnfermedades.setValue(10, "Normal", "Jejeje");
         
-        
-        /*for(int i = 0; i<Clinica.getInstance().getEnfermedades().size(); i++) {
+        for(int i = 0; i<Clinica.getInstance().getEnfermedades().size(); i++) {
         	
 	        datasetEnfermedades.setValue(ContadorDeEfermedades(true), "Peligrosas", Clinica.getInstance().getEnfermedades().get(i).getNombre_enfermedad());
 	        datasetEnfermedades.setValue(ContadorDeEfermedades(false), "Normales", Clinica.getInstance().getEnfermedades().get(i).getNombre_enfermedad());
 
-        }*/
+        }
  
         // Creando el Grafico
-        JFreeChart chartEnfermedades=ChartFactory.createBarChart3D("Enfermedades Bajo Observación", "Enfermedades", "Pacientes Infectados", datasetEnfermedades, PlotOrientation.VERTICAL,true, true, false); 
+        JFreeChart chartEnfermedades=ChartFactory.createBarChart3D("", "Enfermedades", "Pacientes Infectados", datasetEnfermedades, PlotOrientation.VERTICAL,true, true, false); 
         chartEnfermedades.getTitle().setFont(new Font("Tahoma", Font.BOLD, 12));
         chartEnfermedades.setBackgroundPaint(new Color(176, 196, 222));
         chartEnfermedades.getPlot().setBackgroundPaint(Color.WHITE);
@@ -233,6 +246,86 @@ public class Administrator extends JFrame implements Runnable {
         ChartPanel chartPanelEnfermedades = new ChartPanel(chartEnfermedades);
         chartPanelEnfermedades.setSize(528, 426);
         panelDeEnfermedades.add(chartPanelEnfermedades);
+        
+        JPanel panelGraficaPastel = new JPanel();
+        panelGraficaPastel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Cantidad de Pacientes Ingresados Por Mes", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
+        panelGraficaPastel.setBackground(new Color(176, 196, 222));
+        panelGraficaPastel.setBounds(10, 311, 1101, 296);
+        panel_2.add(panelGraficaPastel);
+        panelGraficaPastel.setLayout(new BorderLayout(0, 0));
+        
+        DefaultCategoryDataset line_chart_dataset = new DefaultCategoryDataset();
+        line_chart_dataset.setValue(14, "Hombres", "Ener.");
+      	 line_chart_dataset.setValue(17, "Mujeres", "Ener.");
+      	 line_chart_dataset.setValue(10, "Hombres", "Febr.");
+      	 line_chart_dataset.setValue(5, "Mujeres", "Febr.");
+      	 line_chart_dataset.setValue(20, "Hombres", "Mar.");
+      	 line_chart_dataset.setValue(50, "Mujeres", "Mar.");
+      	 line_chart_dataset.setValue(44, "Hombres", "Abr.");
+      	 line_chart_dataset.setValue(13, "Mujeres", "Abr.");
+      	 line_chart_dataset.setValue(90, "Hombres", "May.");
+      	 line_chart_dataset.setValue(22, "Mujeres", "May.");
+      	 line_chart_dataset.setValue(12, "Hombres", "Jun.");
+      	 line_chart_dataset.setValue(11, "Mujeres", "Jun.");
+      	 line_chart_dataset.setValue(54, "Hombres", "Jul.");
+      	 line_chart_dataset.setValue(32, "Mujeres", "Jul.");
+      	 line_chart_dataset.setValue(18, "Hombres", "Agos.");
+      	 line_chart_dataset.setValue(78, "Mujeres", "Agos.");
+      	 line_chart_dataset.setValue(32, "Hombres", "Sept.");
+      	 line_chart_dataset.setValue(64, "Mujeres", "Sept.");
+      	 line_chart_dataset.setValue(39, "Hombres", "Oct.");
+      	 line_chart_dataset.setValue(98, "Mujeres", "Oct.");
+      	 line_chart_dataset.setValue(43, "Hombres", "Nov.");
+      	 line_chart_dataset.setValue(21, "Mujeres", "Nov.");
+      	 line_chart_dataset.setValue(5, "Hombres", "Dic.");
+      	 line_chart_dataset.setValue(12, "Mujeres", "Dic."); 
+ 
+        //Datos
+        
+    	for(int i=0; i<Clinica.getInstance().getMisPersonas().size(); i++) { 
+    		if(Clinica.getInstance().getMisPersonas().get(i) instanceof Paciente) {
+    			
+		       	 line_chart_dataset.setValue(ContadordePaciente(0, true), "Hombres", "Ener.");
+		       	 line_chart_dataset.setValue(ContadordePaciente(0, false), "Mujeres", "Ener.");
+		       	 line_chart_dataset.setValue(ContadordePaciente(1, true), "Hombres", "Febr.");
+		       	 line_chart_dataset.setValue(ContadordePaciente(1, false), "Mujeres", "Febr.");
+		       	 line_chart_dataset.setValue(ContadordePaciente(2, true), "Hombres", "Mar.");
+		       	 line_chart_dataset.setValue(ContadordePaciente(2, false), "Mujeres", "Mar.");
+		       	 line_chart_dataset.setValue(ContadordePaciente(3, true), "Hombres", "Abr.");
+		       	 line_chart_dataset.setValue(ContadordePaciente(3, false), "Mujeres", "Abr.");
+		       	 line_chart_dataset.setValue(ContadordePaciente(4, true), "Hombres", "May.");
+		       	 line_chart_dataset.setValue(ContadordePaciente(4, false), "Mujeres", "May.");
+		       	 line_chart_dataset.setValue(ContadordePaciente(5, true), "Hombres", "Jun.");
+		       	 line_chart_dataset.setValue(ContadordePaciente(5, false), "Mujeres", "Jun.");
+		       	 line_chart_dataset.setValue(ContadordePaciente(6, true), "Hombres", "Jul.");
+		       	 line_chart_dataset.setValue(ContadordePaciente(6, false), "Mujeres", "Jul.");
+		       	 line_chart_dataset.setValue(ContadordePaciente(7, true), "Hombres", "Agos.");
+		       	 line_chart_dataset.setValue(ContadordePaciente(7, false), "Mujeres", "Agos.");
+		       	 line_chart_dataset.setValue(ContadordePaciente(8, true), "Hombres", "Sept.");
+		       	 line_chart_dataset.setValue(ContadordePaciente(8, false), "Mujeres", "Sept.");
+		       	 line_chart_dataset.setValue(ContadordePaciente(9, true), "Hombres", "Oct.");
+		       	 line_chart_dataset.setValue(ContadordePaciente(9, false), "Mujeres", "Oct.");
+		       	 line_chart_dataset.setValue(ContadordePaciente(10, true), "Hombres", "Nov.");
+		       	 line_chart_dataset.setValue(ContadordePaciente(10, false), "Mujeres", "Nov.");
+		       	 line_chart_dataset.setValue(ContadordePaciente(11, true), "Hombres", "Dic.");
+		       	 line_chart_dataset.setValue(ContadordePaciente(11, false), "Mujeres", "Dic.");
+    		}
+       	}
+        // Creando el Grafico
+        JFreeChart chart3=ChartFactory.createLineChart3D("",
+                "Meses","Pacientes Enfermos",line_chart_dataset,PlotOrientation.VERTICAL,
+                true,true,false);
+        chart3.getPlot().setBackgroundPaint(Color.WHITE);
+        chart3.setBackgroundPaint(new Color(176, 196, 222));
+        CategoryPlot z = chart3.getCategoryPlot(); 
+        z.setRangeGridlinePaint(Color.BLACK); 
+        
+        // Mostrar Grafico
+        ChartPanel chartPanel3 = new ChartPanel(chart3);
+        panelGraficaPastel.add(chartPanel3);
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
         
         JToolBar toolBar = new JToolBar();
         contentPane.add(toolBar, BorderLayout.NORTH);
@@ -319,6 +412,24 @@ public class Administrator extends JFrame implements Runnable {
         		
         		int resp = JOptionPane.showOptionDialog(null, "Estas seguro que deseas salir?", "Advertencia!", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[] { "Si", "No"}, null); 
         			if(resp == 0){
+     ///////////////////////////////////////fichero///////////////////////////////////////////////////////////////
+        				FileOutputStream empresa2;
+        				ObjectOutputStream empresaWrite;
+        				try {
+        					empresa2 = new  FileOutputStream("ADAClinica.dat");
+        					empresaWrite = new ObjectOutputStream(empresa2);
+        					empresaWrite.writeObject(Clinica.getInstance());
+        				empresa2.close();
+        				empresaWrite.close();
+        				} catch (FileNotFoundException e1) {
+        					System.out.println("Error: No se ha podido guardar.");
+        					// TODO Auto-generated catch block
+        					e1.printStackTrace();
+        				} catch (IOException e1) {
+        					// TODO Auto-generated catch block
+        					e1.printStackTrace();
+        				}
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////    				
         				IniciarSesion aux =  new IniciarSesion();
         				aux.setVisible(true);
         				dispose();						
@@ -335,6 +446,26 @@ public class Administrator extends JFrame implements Runnable {
 	
 
 
+
+	private int ContadordePaciente(int mes, boolean sexo) {
+		int Cantidad = 0;
+			
+			for(int i = 0; i<Clinica.getInstance().getMisPersonas().size(); i++) {
+				
+				if(Clinica.getInstance().getMisPersonas().get(i) instanceof Paciente) {
+						
+					if(Clinica.getInstance().getMisPersonas().get(i).isSexo() == sexo && Clinica.getInstance().getMisPersonas().get(i).getFecha_nacimiento().getTime().getMonth() == mes) {
+						Cantidad++;
+					}
+				
+				
+				
+				}
+			}
+		
+		
+		return Cantidad;
+	}
 
 	////////////////////////////////////FUNCIONES PARA EL RELOJ//////////////////////////////
 	@Override
@@ -366,7 +497,7 @@ public class Administrator extends JFrame implements Runnable {
         
         
     }
-	
+	///////////////////////////////////////////////////////////////////////////////
 	public int ContadorDeVacunas(String NombreVacuna, boolean Return) { //TRUE = return Vacunados FALSE = return NO Vacunados
 		int Vacunados = 0;
 		int NOvacunados = 0;
