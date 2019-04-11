@@ -7,6 +7,8 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+
 import java.awt.Toolkit;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
@@ -23,6 +25,7 @@ import Logical.Doctor;
 import Logical.Persona;
 import Logical.Secretaria;
 import Logical.User;
+import Visual.Administrator;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -34,6 +37,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.NumberFormat;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
@@ -91,7 +95,7 @@ public class VentanaSecre_admin extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	/*
+	
 	public static void main(String[] args) {
 		try {
 			VentanaSecre_admin dialog = new VentanaSecre_admin();
@@ -156,8 +160,15 @@ public class VentanaSecre_admin extends JDialog {
 					}
 					{
 						txtNombre = new JTextField();
+						txtNombre.addKeyListener(new KeyAdapter() {
+							@Override
+							public void keyPressed(KeyEvent arg0) {
+								txtNombre.setBorder( new LineBorder(new Color(192, 192, 192)));
+							}
+						});
 						txtNombre.setColumns(10);
 						txtNombre.setBounds(36, 64, 158, 20);
+						txtNombre.setBorder(new LineBorder(new Color(192, 192, 192)));
 						panelAgregar.add(txtNombre);
 					}
 					{
@@ -167,8 +178,15 @@ public class VentanaSecre_admin extends JDialog {
 					}
 					{
 						txtApellido = new JTextField();
+						txtApellido.addKeyListener(new KeyAdapter() {
+							@Override
+							public void keyPressed(KeyEvent e) {
+								txtApellido.setBorder(new LineBorder(new Color(192, 192, 192)));
+							}
+						});
 						txtApellido.setColumns(10);
 						txtApellido.setBounds(218, 64, 158, 20);
+						txtApellido.setBorder(new LineBorder(new Color(192, 192, 192)));
 						panelAgregar.add(txtApellido);
 					}
 					{
@@ -178,8 +196,15 @@ public class VentanaSecre_admin extends JDialog {
 					}
 					{
 						txtCedula = new JFormattedTextField(formatoCedu);
+						txtCedula.addKeyListener(new KeyAdapter() {
+							@Override
+							public void keyPressed(KeyEvent e) {
+								txtCedula.setBorder(new LineBorder(new Color(192, 192, 192)));
+							}
+						});
 						txtCedula.setColumns(10);
 						txtCedula.setBounds(36, 130, 158, 20);
+						txtCedula.setBorder(new LineBorder(new Color(192, 192, 192)));
 						panelAgregar.add(txtCedula);
 					}
 					{
@@ -189,8 +214,15 @@ public class VentanaSecre_admin extends JDialog {
 					}
 					{
 						txtTelefono = new JFormattedTextField(formatoTele);
+						txtTelefono.addKeyListener(new KeyAdapter() {
+							@Override
+							public void keyPressed(KeyEvent e) {
+								txtTelefono.setBorder(new LineBorder(new Color(192, 192, 192)));
+							}
+						});
 						txtTelefono.setColumns(10);
 						txtTelefono.setBounds(218, 130, 158, 20);
+						txtTelefono.setBorder(new LineBorder(new Color(192, 192, 192)));
 						panelAgregar.add(txtTelefono);
 					}
 					{
@@ -200,8 +232,16 @@ public class VentanaSecre_admin extends JDialog {
 					}
 					{
 						txtDireccion = new JTextField();
+						txtDireccion.addKeyListener(new KeyAdapter() {
+							@Override
+							public void keyPressed(KeyEvent e) {
+								txtDireccion.setBorder(new LineBorder(new Color(192, 192, 192)));
+							}
+						});
 						txtDireccion.setColumns(10);
 						txtDireccion.setBounds(36, 189, 340, 20);
+						txtDireccion.setBorder(new LineBorder(new Color(192, 192, 192)));
+						
 						panelAgregar.add(txtDireccion);
 					}
 					{
@@ -211,9 +251,15 @@ public class VentanaSecre_admin extends JDialog {
 					}
 					{
 						cbxGenero = new JComboBox();
+						cbxGenero.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent arg0) {
+								cbxGenero.setBorder(new LineBorder(new Color(192, 192, 192)));
+							}
+						});
 						cbxGenero.setModel(new DefaultComboBoxModel(new String[] {"<Sexo>", "Masculino", "Femenino"}));
 						cbxGenero.setSelectedIndex(0);
 						cbxGenero.setBounds(30, 322, 158, 20);
+						cbxGenero.setBorder(new LineBorder(new Color(192, 192, 192)));
 						panelAgregar.add(cbxGenero);
 					}
 					{
@@ -223,10 +269,16 @@ public class VentanaSecre_admin extends JDialog {
 					}
 					{
 						cbxPais = new JComboBox();
+						cbxPais.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								cbxPais.setBorder(new LineBorder(new Color(192, 192, 192)));
+							}
+						});
 						cbxPais.setModel(new DefaultComboBoxModel(new String[] {"<Pa\u00EDs>", "Alemania", "Argentina", "Australia", "Burgar\u00EDa", "Canad\u00E1", "Colombia", "Cuba", "Hait\u00ED", "Mexico", "Rep. Dominicana", "Rusia", "Rep. Checa", "Venezuela", "Jap\u00F3n"}));
 						cbxPais.setSelectedIndex(0);
 						cbxPais.setMaximumRowCount(5);
 						cbxPais.setBounds(406, 322, 158, 20);
+						cbxPais.setBorder(new LineBorder(new Color(192, 192, 192)));
 						panelAgregar.add(cbxPais);
 					}
 					{
@@ -236,8 +288,16 @@ public class VentanaSecre_admin extends JDialog {
 					}
 					{
 						txtCorreoElect = new JTextField();
+						txtCorreoElect.addKeyListener(new KeyAdapter() {
+							@Override
+							public void keyPressed(KeyEvent e) {
+								txtCorreoElect.setBorder(new LineBorder(new Color(192, 192, 192)));
+							}
+						});
 						txtCorreoElect.setColumns(10);
 						txtCorreoElect.setBounds(36, 251, 340, 20);
+						txtCorreoElect.setBorder(new LineBorder(new Color(192, 192, 192)));
+						
 						panelAgregar.add(txtCorreoElect);
 					}
 					{
@@ -253,7 +313,13 @@ public class VentanaSecre_admin extends JDialog {
 					}
 					
 					dcFechaNacimiento = new JDateChooser();
+					dcFechaNacimiento.getCalendarButton().addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							dcFechaNacimiento.setBorder( new LineBorder( new Color(192, 192, 192)));
+						}
+					});
 					dcFechaNacimiento.setBounds(218, 324, 158, 20);
+					dcFechaNacimiento.setBorder( new LineBorder( new Color(192, 192, 192)));
 					panelAgregar.add(dcFechaNacimiento);
 					
 					
@@ -280,15 +346,65 @@ public class VentanaSecre_admin extends JDialog {
 						btnNewButton.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
 								
+								///Calendario ACTUAL////
+								  Calendar calendario = new GregorianCalendar();
+								  calendario.add(Calendar.DATE, -30);
+								  Calendar esfimero = new GregorianCalendar();
+								  esfimero.setTime(dcFechaNacimiento.getDate());
+								/////////////
+								
 								if((dcFechaNacimiento.getDate()!=null)&&!txtNombre.getText().equalsIgnoreCase("") && !txtApellido.getText().equalsIgnoreCase("") && !txtCorreoElect.getText().equalsIgnoreCase("") && !txtDireccion.getText().equalsIgnoreCase("") && cbxGenero.getSelectedIndex() != 0 &&
-										!txtCedula.getText().equalsIgnoreCase("") && !txtTelefono.getText().equalsIgnoreCase("") && (rbtDoctor.isSelected() || rbtSecre.isSelected() || rtbAdministrador.isSelected()) && cbxPais.getSelectedIndex() != 0){
-										PanelSeguridadSecre aux = new PanelSeguridadSecre(txtApellido, txtCedula, txtCorreoElect, txtDireccion, txtNombre, txtTelefono, cbxGenero, cbxPais, dcFechaNacimiento, rbtDoctor, rbtSecre, rtbAdministrador);
-										dispose();
-										aux.setVisible(true);
+										txtCedula.getValue() != null && txtTelefono.getValue() != null && (rbtDoctor.isSelected() || rbtSecre.isSelected() || rtbAdministrador.isSelected()) && cbxPais.getSelectedIndex() != 0){
+										
+									if(esfimero.getTime().compareTo(calendario.getTime()) < 0) {			
+											if(VerificandoExistencia((String)txtCedula.getValue())) {
+														PanelSeguridadSecre aux = new PanelSeguridadSecre(txtApellido, txtCedula, txtCorreoElect, txtDireccion, txtNombre, txtTelefono, cbxGenero, cbxPais, dcFechaNacimiento, rbtDoctor, rbtSecre, rtbAdministrador);
+														dispose();
+														aux.setVisible(true);
+											}else {
+												JOptionPane.showMessageDialog(null, "La persona que desea agregar, ya está Registrada", "Advertencia", JOptionPane.WARNING_MESSAGE, null);
+		
+											}
+										}else {
+											JOptionPane.showMessageDialog(null, "Revisar Fecha de Nacimiento, la persona debe tener 1 mes de nacida ", "Advertencia", JOptionPane.WARNING_MESSAGE, null);
+
+										}
+									
 								}else {
 									JOptionPane.showMessageDialog(null, "Por favor, Completar Todos los Campos", "Advertencia", JOptionPane.WARNING_MESSAGE, null);
-								}
+									
+									if(txtNombre.getText().equalsIgnoreCase("")) {
+										
+										txtNombre.setBorder(new LineBorder(new Color(204, 0, 0)));
+									}
+									if(txtApellido.getText().equalsIgnoreCase("")) {
+										txtApellido.setBorder(new LineBorder(new Color(204, 0 , 0)));
+									}
+									if(txtCedula.getValue() == null) {
+										txtCedula.setBorder(new LineBorder(new Color(204, 0, 0)));
+									}
+									if(txtTelefono.getValue() == null) {
+										txtTelefono.setBorder( new LineBorder( new Color(204, 0, 0)));
+									}
+									if(txtCorreoElect.getText().equalsIgnoreCase("")) {
+										txtCorreoElect.setBorder(new LineBorder(new Color(204, 0 , 0)));
+									}
+									if(txtDireccion.getText().equalsIgnoreCase("")) {
+										txtDireccion.setBorder(new LineBorder(new Color(204, 0 , 0)));
+									}
+									if(cbxGenero.getSelectedIndex() == 0) {
+										cbxGenero.setBorder( new LineBorder(new Color(204, 0, 0)));
+									}
+									if(cbxPais.getSelectedIndex() == 0) {
+										cbxPais.setBorder( new LineBorder(new Color(204, 0, 0)));
+									}
+									if(dcFechaNacimiento.getDate() == null) {
+										dcFechaNacimiento.setBorder( new LineBorder(new Color(204, 0, 0)));
+									}
+								}	
 							}
+
+							
 						});
 						btnNewButton.setIcon(new ImageIcon(VentanaSecre_admin.class.getResource("/Imagenes/arrowPeque\u00F1a.png")));
 						btnNewButton.setBounds(461, 438, 125, 41);
@@ -495,6 +611,20 @@ public class VentanaSecre_admin extends JDialog {
 	    sorter.setRowFilter(filter);
 	}
 	
+	private boolean VerificandoExistencia(String value) {
+		Boolean No_esta = true;
+		
+			for(int i =0 ; i<Clinica.getInstance().getMisPersonas().size(); i++) {
+				
+				if(Clinica.getInstance().getMisPersonas().get(i).getCedula().equalsIgnoreCase(value)) {
+					No_esta = false;
+				}
+				
+			}
+		
+		
+		return No_esta;
+	}
 	
 	
 	}
