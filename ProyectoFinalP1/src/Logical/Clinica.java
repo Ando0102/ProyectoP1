@@ -220,5 +220,23 @@ public class Clinica  implements Serializable{
 		}
 		return estado;
 	}
+	public Vacuna buscarVacuna(String nombre) {
+		Vacuna miVa = null;
+		for (Vacuna v : misVacunas) {
+			if(v.getNombre_vacuna().equalsIgnoreCase(nombre)) {
+				miVa = v;
+			}
+		}
+		return miVa;
+	}
+	public Enfermedad buscarEnfermedad(String nombre) {
+		Enfermedad miVa = null;
+		for (Enfermedad v : enfermedades) {
+			if(v.getNombre_enfermedad().equalsIgnoreCase(nombre)) {
+				miVa = v;
+			}
+		}
+		return miVa;
+	}
 	
 }

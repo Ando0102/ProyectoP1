@@ -105,6 +105,28 @@ public class Paciente extends Persona {
 		
 		return aux;
 	}
+	public void incertarConsulta(Consulta mi) {
+		misConsultas.add(mi);
+	}
+
+
+
+	public void incertar_HistorialMedico(HistorialMedico his) {
+		// TODO Auto-generated method stub
+		misHistorialMedico.add(his);
+		
+	}
+	public void incertar_Vacuna(Vacuna mi) {
+		misVacunas.add(mi);
+	}
+
+
+
+	public void incertar_enfermedades(Enfermedad miVa) {
+		// TODO Auto-generated method stub
+		misEnfermedas.add(miVa);
+		
+	}
 
 
 }
