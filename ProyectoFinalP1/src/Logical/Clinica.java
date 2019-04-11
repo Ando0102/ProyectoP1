@@ -239,4 +239,35 @@ public class Clinica  implements Serializable{
 		return miVa;
 	}
 	
+
+	public boolean incertarConsulta_paciente(Persona mipaciente, Consulta micounlta) {
+		boolean aux =  false;
+		for (Persona pe : misPersonas) {
+			if(pe instanceof Paciente) {
+				if(pe.getCedula().equalsIgnoreCase(mipaciente.getCedula())) {
+					//pasciente encontrado
+					((Paciente) pe).incertarConsulta(micounlta);
+					aux = true;
+				   
+				}
+			}
+		}
+		
+		return aux;
+	}
+	public boolean incertarHisto_paciente(Paciente mipaciente, HistorialMedico miHistoria) {
+		boolean aux =  false;
+		for (Persona pe : misPersonas) {
+			if(pe instanceof Paciente) {
+				if(pe.getCedula().equalsIgnoreCase(mipaciente.getCedula())) {
+					//pasciente encontrado
+					((Paciente) pe).incertar_HistorialMedico(miHistoria);
+					aux = true;
+				   
+				}
+			}
+		}
+		
+		return aux;
+	}
 }
