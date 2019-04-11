@@ -270,4 +270,34 @@ public class Clinica  implements Serializable{
 		
 		return aux;
 	}
+	public boolean incertarVacuna_paciente(Paciente mipaciente, Vacuna miVacuna) {
+		boolean aux =  false;
+		for (Persona pe : misPersonas) {
+			if(pe instanceof Paciente) {
+				if(pe.getCedula().equalsIgnoreCase(mipaciente.getCedula())) {
+					//pasciente encontrado
+					((Paciente) pe).incertar_Vacuna(miVacuna);
+					aux = true;
+				   
+				}
+			}
+		}
+		
+		return aux;
+	}
+	public boolean incertarEnfermedad_paciente(Paciente mipaciente, Enfermedad miEnfermedad) {
+		boolean aux =  false;
+		for (Persona pe : misPersonas) {
+			if(pe instanceof Paciente) {
+				if(pe.getCedula().equalsIgnoreCase(mipaciente.getCedula())) {
+					//pasciente encontrado
+					((Paciente) pe).incertar_enfermedades(miEnfermedad);
+					aux = true;
+				   
+				}
+			}
+		}
+		
+		return aux;
+	}
 }
