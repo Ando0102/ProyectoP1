@@ -102,5 +102,21 @@ public class Doctor extends User {
 		}
 		return estado;
 	}
+	public boolean buscarPaciente_YCrealo(Paciente pa) {
+		boolean find = false;
+		for (Paciente p : misPacientes) {
+			if(p.getCedula().equalsIgnoreCase(pa.getApellidos())) {
+				find = true;
+			}
+			
+		}
+		if(find==false) {
+			misPacientes.add(pa);
+			
+		}
+		
+		return find;
+	}
 
+	
 }

@@ -258,17 +258,17 @@ public class Clinica  implements Serializable{
 		
 		return aux;
 	}
-	public boolean incertarHisto_paciente(Paciente mipaciente, HistorialMedico miHistoria) {
-		boolean aux =  false;
-		for (Persona pe : misPersonas) {
-			if(pe instanceof Paciente) {
-				if(pe.getCedula().equalsIgnoreCase(mipaciente.getCedula())) {
+	public boolean incertarHisto_paciente(Persona mipaciente, HistorialMedico miHistoria) {
+		boolean aux = false;
+		for (Persona mip : misPersonas) {
+			if(mip instanceof Paciente) {
+				System.out.println("ES PACIENTE.DESDE CLINICA");
+				if(mip.getCedula().equalsIgnoreCase(mipaciente.getCedula())) {
 					//pasciente encontrado
-					((Paciente) pe).incertar_HistorialMedico(miHistoria);
-					aux = true;
-				   
+					((Paciente) mip).incertar_HistorialMedico(miHistoria);
 				}
 			}
+			
 		}
 		
 		return aux;
@@ -317,5 +317,6 @@ public class Clinica  implements Serializable{
 		}
 		return find;
 	}
+
 	
 }

@@ -68,6 +68,8 @@ import java.text.SimpleDateFormat;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.Toolkit;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class RealizarConsulta extends JDialog {
 
@@ -210,6 +212,13 @@ public class RealizarConsulta extends JDialog {
 		panel_1.add(lblPesokg);
 		
 		textPeso = new JTextField();
+		textPeso.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent evt) {
+				char c=evt.getKeyChar();
+				if(c<'0'||c>'9') evt.consume();
+			}
+		});
 		textPeso.setBackground(Color.WHITE);
 		textPeso.setBounds(183, 169, 97, 20);
 		panel_1.add(textPeso);
@@ -442,6 +451,9 @@ pack(); // abre la ventana conforme el tamaño necesario de los componentes
 						&&!diagnotico.equalsIgnoreCase("")&&!tiposangr.equalsIgnoreCase("")) {
 					System.out.println("Campos rellenados");
 					leerDatosConsulta_CrearPasiente();
+					JOptionPane.showMessageDialog(null, "La consulta se realizó de manera satifactoria.", "Infromación", JOptionPane.INFORMATION_MESSAGE, null);	
+
+					dispose();
 				}else {
 					JOptionPane.showMessageDialog(null, "No se admiten campos vacios", "ATENCION", JOptionPane.INFORMATION_MESSAGE, null);	
 					System.out.println("Debe completar los campos");
@@ -588,7 +600,7 @@ pack(); // abre la ventana conforme el tamaño necesario de los componentes
 				Calendar f = Calendar.getInstance();
 				f.setTime(fechaActual());
 				miHistoria = new HistorialMedico(micita.getMiDoctor(), f, textHistorialMedico.getText());
-				Clinica.getInstance().incertarHisto_paciente((Paciente) micita.getMiPersona(), miHistoria);
+				Clinica.getInstance().incertarHisto_paciente(micita.getMiPersona(), miHistoria);
 			}
 			
 			
@@ -797,6 +809,7 @@ pack(); // abre la ventana conforme el tamaño necesario de los componentes
 				 Clinica.getMiClinica().insertarPersona(personaAux);
 				 Boolean e= Clinica.getInstance().acutalizar_Cita(micita, citaNueva);
 				 miDoctor.acutalizar_Cita(micita, citaNueva);
+				 miDoctor.buscarPaciente_YCrealo(personaAux);
 				for (Cita n :  miDoctor.getMisCitas()) {
 					if(n.getMiPersona() instanceof Paciente ) {
 						System.out.println("La cita del doctor ya tiene un paciente");
@@ -893,4 +906,5 @@ pack(); // abre la ventana conforme el tamaño necesario de los componentes
 		        }
 		    }
 
+		    
 }

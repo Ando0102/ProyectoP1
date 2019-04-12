@@ -29,6 +29,8 @@ import javax.swing.table.TableColumnModel;
 import Logical.Cita;
 import Logical.Doctor;
 import javafx.scene.layout.Background;
+import sun.print.DialogOnTop;
+
 import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.JTextArea;
@@ -56,6 +58,7 @@ public class pnlCitasbtn extends JPanel  {
 		/**
 		 * Create the applet.
 		 */
+			
 		public pnlCitasbtn(Doctor miDoc) {
 		
 			this.miDoctor=miDoc;
@@ -218,11 +221,15 @@ public class pnlCitasbtn extends JPanel  {
 									dialog.setModal(true);
 									dialog.setVisible(true);
 									
+									
+									
 								}else {
 									System.out.println("No se puedo cargar");
 								}
 								
-							}else {
+						
+							}
+							else {
 								System.out.println("....");
 							}
 							
@@ -250,6 +257,7 @@ public class pnlCitasbtn extends JPanel  {
 						
 					}
 				}
+			
 			});
 
 		}

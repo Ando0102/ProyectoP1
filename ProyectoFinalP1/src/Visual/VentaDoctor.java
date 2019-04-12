@@ -45,6 +45,7 @@ import com.toedter.calendar.JDateChooser;
 
 import Logical.Clinica;
 import Logical.Doctor;
+import VentaDoctor.ListaPaciente;
 import VentaDoctor.pnlCitasbtn;
 
 import javax.swing.JMenuItem;
@@ -77,6 +78,7 @@ public class VentaDoctor extends JFrame implements Runnable {
 	private int dia;
 	private JDateChooser dateChooser;
 	private Doctor miDoctor=null;
+	private JPanel panelCitas;
 	/*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -182,6 +184,9 @@ e1.printStackTrace();
 		btnNewButton_2.setIcon(new ImageIcon(VentaDoctor.class.getResource("/Imagenes/calendario.png")));
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+			
+			    new CambiaPanel(panelCitas, new pnlCitasbtn(miDoctor));
+
 			}
 		});
 		btnNewButton_2.setBounds(10, 232, 179, 57);
@@ -214,6 +219,16 @@ e1.printStackTrace();
 		panel_1.add(btnEditarPerfil);
 		
 		JButton btnNewButton_1 = new JButton("Pacientes");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			    new CambiaPanel(panelCitas, new ListaPaciente(miDoctor));
+			    System.out.println("CANTidad "+miDoctor.getMisPacientes().size());
+
+				
+				
+				
+			}
+		});
 		btnNewButton_1.setIcon(new ImageIcon(VentaDoctor.class.getResource("/Imagenes/caucasian_head_man_person_people_avatar_2859.png")));
 		btnNewButton_1.setBounds(10, 368, 179, 57);
 		panel_1.add(btnNewButton_1);
@@ -232,7 +247,7 @@ e1.printStackTrace();
 		panel.add(panel_2);
 		panel_2.setLayout(null);
 		
-		JPanel panelCitas = new JPanel();
+		 panelCitas = new JPanel();
 		panelCitas.setBackground(new Color(240, 248, 255));
 		
 
