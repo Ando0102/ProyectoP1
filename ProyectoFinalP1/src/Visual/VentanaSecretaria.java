@@ -25,6 +25,8 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
+import com.sun.org.apache.xml.internal.resolver.readers.TR9401CatalogReader;
+
 import Logical.Cita;
 import Logical.Clinica;
 import Logical.Persona;
@@ -49,6 +51,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.awt.SystemColor;
 import javax.swing.UIManager;
 import javax.swing.JButton;
@@ -56,6 +60,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Font;
+import javax.swing.JTextPane;
 
 public class VentanaSecretaria extends JFrame {
 
@@ -75,15 +80,17 @@ public class VentanaSecretaria extends JFrame {
 	private final JButton btnNuevaCita;
 	private final JButton btnSalir;
 	private final JButton btnCancelarCita;
+
 	/**
 	 * Launch the application.
-	 */
-	/*
+	 *//*
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VentanaSecretaria frame = new VentanaSecretaria();
+					Persona aux = new Secretaria("bibi", "roma", "dasd", true, "23123", "rd", null, "asdasda", "abc", "123", "Secretaria");
+					VentanaSecretaria frame = new VentanaSecretaria((Secretaria) aux);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -120,19 +127,20 @@ public class VentanaSecretaria extends JFrame {
 		});
 		
 		this.secre = secretaria; 
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\bibir\\git\\ProyectoP1\\ProyectoFinalP1\\src\\Imagenes\\LogoPeque.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaSecretaria.class.getResource("/Imagenes/LogoPeque.png")));
 		setResizable(false);
 		setTitle("Secretario/a");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1042, 594);
 		tamaño = super.getToolkit().getScreenSize();
-		super.setSize(tamaño.width, tamaño.height);
+		super.setSize(tamaño.width, tamaño.height-50);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(240, 248, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(240, 248, 255));
@@ -151,9 +159,15 @@ public class VentanaSecretaria extends JFrame {
 		lblNewLabel.setBounds(58, 23, 96, 128);
 		panelBienvenida.add(lblNewLabel);
 		
-		JLabel lblBienvenidoa = new JLabel("Bienvenido/a !");
-		lblBienvenidoa.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblBienvenidoa.setBounds(60, 162, 83, 14);
+		JLabel lblBienvenidoa = new JLabel("");
+		lblBienvenidoa.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblBienvenidoa.setBounds(46, 162, 143, 54);
+		
+		if(secre.isSexo()) {
+			lblBienvenidoa.setText("<html><P align=center> Bienvenido </P><H align=center>Señor " + secre.getNombre() + " " + secre.getApellidos() + "</H>");
+		}else {
+			lblBienvenidoa.setText("<html><P align=center> Bienvenida </P>Señora " + secre.getNombre() + " " + secre.getApellidos());
+		}
 		panelBienvenida.add(lblBienvenidoa);
 		
 		btnNuevaCita = new JButton("Nueva Cita");
@@ -390,4 +404,6 @@ public class VentanaSecretaria extends JFrame {
 	    }
 	    sorter.setRowFilter(filter);
 	}
+	
+	
 }
