@@ -118,7 +118,7 @@ e1.printStackTrace();
 
 
 		this.miDoctor = mi;
-		setTitle("Doctor");
+		setTitle("Doctor/a");
 		setLocationRelativeTo(null);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VentaDoctor.class.getResource("/Imagenes/LogoPeque.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -126,21 +126,6 @@ e1.printStackTrace();
 		tamano = super.getToolkit().getScreenSize();
 		super.setSize(tamano.width, (tamano.height-50));
 		setLocationRelativeTo(null);
-		
-		JMenuBar menuBar = new JMenuBar();
-		setJMenuBar(menuBar);
-		
-		JMenu mnNewMenu = new JMenu("Pasiente");
-		menuBar.add(mnNewMenu);
-		
-		JMenuItem mntmLista_1 = new JMenuItem("Lista");
-		mnNewMenu.add(mntmLista_1);
-		
-		JMenu mnEnfermedades = new JMenu("Enfermedades");
-		menuBar.add(mnEnfermedades);
-		
-		JMenuItem mntmLista = new JMenuItem("Lista");
-		mnEnfermedades.add(mntmLista);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(240, 248, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -156,20 +141,20 @@ e1.printStackTrace();
 		
 		panel_1.setBackground(new Color(176, 196, 222));
 		panel_1.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		panel_1.setBounds(10, 0, 199, 658);
+		panel_1.setBounds(10, 11, 199, 647);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(VentaDoctor.class.getResource("/Imagenes/medical-29_icon-icons.com_73943.png")));
-		lblNewLabel.setBounds(55, 11, 89, 129);
+		lblNewLabel.setIcon(new ImageIcon(VentaDoctor.class.getResource("/Imagenes/doctor.png")));
+		lblNewLabel.setBounds(58, 24, 89, 129);
 		panel_1.add(lblNewLabel);
 		
 		txtHoraYFecha = new JTextPane();
 		txtHoraYFecha.setFont(new Font("Tahoma", Font.BOLD, 16));
 		txtHoraYFecha.setBackground(new Color(240, 248, 255));
 		txtHoraYFecha.setEditable(false);
-		txtHoraYFecha.setBounds(10, 553, 179, 33);
+		txtHoraYFecha.setBounds(10, 535, 179, 45);
 		
 		////////HILO PARA EL RELOJ///////////////////////////////////////////
 		Tiempo = new Thread(this);
@@ -187,8 +172,8 @@ e1.printStackTrace();
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton.setIcon(new ImageIcon(VentaDoctor.class.getResource("/Imagenes/stop_exit_close_6291.png")));
-		btnNewButton.setBounds(10, 395, 179, 57);
+		btnNewButton.setIcon(new ImageIcon(VentaDoctor.class.getResource("/Imagenes/logoout2.png")));
+		btnNewButton.setBounds(10, 436, 179, 57);
 		panel_1.add(btnNewButton);
 		
 		JButton btnNewButton_2 = new JButton("Agenda");
@@ -199,11 +184,11 @@ e1.printStackTrace();
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnNewButton_2.setBounds(10, 240, 179, 57);
+		btnNewButton_2.setBounds(10, 232, 179, 57);
 		panel_1.add(btnNewButton_2);
 		
 		dateChooser = new JDateChooser();
-		dateChooser.setBounds(10, 597, 179, 33);
+		dateChooser.setBounds(10, 591, 179, 45);
 		panel_1.add(dateChooser);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -216,6 +201,7 @@ e1.printStackTrace();
 		scrollPane.setViewportView(txtrDanielMsnds);
 		
 		JButton btnEditarPerfil = new JButton("Editar Perfil\r\n");
+		btnEditarPerfil.setIcon(new ImageIcon(VentaDoctor.class.getResource("/Imagenes/edit_pencil_6320 (1).png")));
 		btnEditarPerfil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			//editar perfil
@@ -223,9 +209,14 @@ e1.printStackTrace();
 			}
 		});
 		btnEditarPerfil.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnEditarPerfil.setBackground(Color.WHITE);
-		btnEditarPerfil.setBounds(10, 319, 179, 57);
+		btnEditarPerfil.setBackground(UIManager.getColor("Button.highlight"));
+		btnEditarPerfil.setBounds(10, 300, 179, 57);
 		panel_1.add(btnEditarPerfil);
+		
+		JButton btnNewButton_1 = new JButton("Pacientes");
+		btnNewButton_1.setIcon(new ImageIcon(VentaDoctor.class.getResource("/Imagenes/caucasian_head_man_person_people_avatar_2859.png")));
+		btnNewButton_1.setBounds(10, 368, 179, 57);
+		panel_1.add(btnNewButton_1);
 		if(miDoctor.isSexo()) {
 			String name = miDoctor.getApellidos();
 			txtrDanielMsnds.setText("Buenas,\r\nDR. "+name);
@@ -237,7 +228,7 @@ e1.printStackTrace();
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(new Color(176, 196, 222));
 		panel_2.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		panel_2.setBounds(219, 0, 1111, 658);
+		panel_2.setBounds(219, 11, 1111, 647);
 		panel.add(panel_2);
 		panel_2.setLayout(null);
 		
@@ -246,7 +237,7 @@ e1.printStackTrace();
 		
 
 		panelCitas.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		panelCitas.setBounds(20, 20, 1071, 627);
+		panelCitas.setBounds(30, 11, 1071, 625);
 		panel_2.add(panelCitas);
 		panelCitas.setLayout(new BorderLayout(0, 0));
 		///

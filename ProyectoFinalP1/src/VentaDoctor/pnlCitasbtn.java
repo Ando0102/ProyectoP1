@@ -74,7 +74,7 @@ public class pnlCitasbtn extends JPanel  {
 			panel_1.add(scrollPane);
 			setBounds(0, 0, 1071, 783);
 			txtrBien = new JTextArea();
-			txtrBien.setBackground(UIManager.getColor("Button.background"));
+			txtrBien.setBackground(new Color(240, 248, 255));
 			txtrBien.setEditable(false);
 			txtrBien.setBounds(489, 33, 164, 45);
 			add(txtrBien);

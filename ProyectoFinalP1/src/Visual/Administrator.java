@@ -337,6 +337,7 @@ public class Administrator extends JFrame implements Runnable {
         
         
         JToolBar toolBar = new JToolBar();
+        toolBar.setBackground(UIManager.getColor("Button.highlight"));
         contentPane.add(toolBar, BorderLayout.NORTH);
         
         JButton botonEmpleados = new JButton();
@@ -372,7 +373,7 @@ public class Administrator extends JFrame implements Runnable {
         JButton panelCitas = new JButton();
         panelCitas.setFont(new Font("Tahoma", Font.BOLD, 11));
         toolBar.add(panelCitas);
-        panelCitas.setIcon(new ImageIcon(Administrator.class.getResource("/Imagenes/cita2.png")));
+        panelCitas.setIcon(new ImageIcon(Administrator.class.getResource("/Imagenes/controlpanel_task_10822.png")));
         panelCitas.setText("Citas    ");
         panelCitas.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
@@ -450,7 +451,7 @@ public class Administrator extends JFrame implements Runnable {
         	}
         });
         btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
-        btnNewButton.setIcon(new ImageIcon(Administrator.class.getResource("/Imagenes/stop_exit_close_6291.png")));
+        btnNewButton.setIcon(new ImageIcon(Administrator.class.getResource("/Imagenes/logoout2.png")));
 	}
 	
 

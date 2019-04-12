@@ -145,23 +145,24 @@ public class IniciarSesion extends JFrame {
 		super.setSize(tamaño.width, tamaño.height);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(176, 224, 230));
+		contentPane.setBackground(new Color(176, 196, 222));
 		contentPane.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		final JPanel panel = new JPanel();
 		panel.setBorder(new BevelBorder(BevelBorder.RAISED, new Color(192, 192, 192), null, null, new Color(192, 192, 192)));
-		panel.setBackground(Color.WHITE);
+		panel.setBackground(new Color(240, 248, 255));
 		panel.setBounds(433, 208, 474, 343);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		JButton btnEntrar = new JButton("Iniciar Sesi\u00F3n");
+		btnEntrar.setIcon(new ImageIcon(IniciarSesion.class.getResource("/Imagenes/Login_37128.png")));
 
 		btnEntrar.setActionCommand("OK");
-		btnEntrar.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnEntrar.setBackground(UIManager.getColor("Button.background"));
+		btnEntrar.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnEntrar.setBackground(UIManager.getColor("Button.highlight"));
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 //<<<<<<< HEAD
@@ -224,12 +225,12 @@ public class IniciarSesion extends JFrame {
 		LabelContraseña.setForeground(UIManager.getColor("Button.darkShadow"));
 		LabelContraseña.setBounds(110, 193, 28, 34);
 		panel.add(LabelContraseña);
-		btnEntrar.setBounds(79, 267, 118, 34);
+		btnEntrar.setBounds(66, 267, 157, 46);
 		panel.add(btnEntrar);
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(IniciarSesion.class.getResource("/Imagenes/groups_people_people_1715.png")));
-		lblNewLabel.setBounds(178, 11, 135, 128);
+		lblNewLabel.setBounds(167, 11, 135, 128);
 		panel.add(lblNewLabel);
 		
 		txtUsuario = new JTextField();
@@ -257,14 +258,16 @@ public class IniciarSesion extends JFrame {
 
 
 		JButton btnNewButton = new JButton("Cancelar");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnNewButton.setBackground(UIManager.getColor("Button.highlight"));
+		btnNewButton.setIcon(new ImageIcon(IniciarSesion.class.getResource("/Imagenes/cancelar1.png")));
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//PantallaTrasera.dispose();
 				dispose();
 			}
 		});
-		btnNewButton.setBounds(276, 267, 118, 34);
+		btnNewButton.setBounds(246, 267, 157, 46);
 		panel.add(btnNewButton);
 		
 		txtContrasenna = new JPasswordField();
@@ -311,12 +314,12 @@ public class IniciarSesion extends JFrame {
 		
 		label = new JLabel("");
 		label.setIcon(new ImageIcon(IniciarSesion.class.getResource("/Imagenes/LogoMuyGrande.png")));
-		label.setBounds(10, 60, 366, 541);
+		label.setBounds(57, 60, 366, 541);
 		contentPane.add(label);
 		
 		label_1 = new JLabel("");
 		label_1.setIcon(new ImageIcon(IniciarSesion.class.getResource("/Imagenes/LogoMuyGrande.png")));
-		label_1.setBounds(1084, 60, 256, 541);
+		label_1.setBounds(1013, 60, 256, 541);
 		contentPane.add(label_1);
 		
 		label_2 = new JLabel("                           \"El mejor m\u00E9dico es el que conoce la inutilidad de la mayor parte de las medicinas.\"\r\n  - Benjamin Franklin");
@@ -326,13 +329,13 @@ public class IniciarSesion extends JFrame {
 		
 		label_3 = new JLabel("BIENVENIDO/A A LA CLINICA ADA ");
 		label_3.setForeground(Color.GRAY);
-		label_3.setFont(new Font("Sylfaen", Font.BOLD, 22));
+		label_3.setFont(new Font("Bookman Old Style", Font.BOLD, 22));
 		label_3.setBounds(476, 11, 445, 138);
 		contentPane.add(label_3);
 		
 		panel_1 = new JPanel();
 		panel_1.setBorder(new BevelBorder(BevelBorder.RAISED, new Color(192, 192, 192), null, null, new Color(192, 192, 192)));
-		panel_1.setBackground(new Color(0, 139, 139));
+		panel_1.setBackground(new Color(176, 196, 222));
 		panel_1.setBounds(433, 175, 474, 34);
 		contentPane.add(panel_1);
 	}

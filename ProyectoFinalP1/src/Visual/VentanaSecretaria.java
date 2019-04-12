@@ -55,6 +55,7 @@ import javax.swing.JButton;
 import javax.swing.border.TitledBorder;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.Font;
 
 public class VentanaSecretaria extends JFrame {
 
@@ -146,15 +147,17 @@ public class VentanaSecretaria extends JFrame {
 		panelBienvenida.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(VentanaSecretaria.class.getResource("/Imagenes/nurse_128_44165.png")));
-		lblNewLabel.setBounds(50, 23, 96, 128);
+		lblNewLabel.setIcon(new ImageIcon(VentanaSecretaria.class.getResource("/Imagenes/secretaria.png")));
+		lblNewLabel.setBounds(58, 23, 96, 128);
 		panelBienvenida.add(lblNewLabel);
 		
 		JLabel lblBienvenidoa = new JLabel("Bienvenido/a !");
+		lblBienvenidoa.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblBienvenidoa.setBounds(60, 162, 83, 14);
 		panelBienvenida.add(lblBienvenidoa);
 		
 		btnNuevaCita = new JButton("Nueva Cita");
+		btnNuevaCita.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNuevaCita.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				NuevaCita citas = new NuevaCita(secre);
@@ -173,6 +176,7 @@ public class VentanaSecretaria extends JFrame {
 		panelBienvenida.add(btnNuevaCita);
 		
 		btnModificarCita = new JButton("Modificar Cita");
+		btnModificarCita.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnModificarCita.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int row = 0;
@@ -205,6 +209,7 @@ public class VentanaSecretaria extends JFrame {
 		panelBienvenida.add(btnModificarCita);
 		
 		btnSalir = new JButton("Cerrar Sesion");
+		btnSalir.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				IniciarSesion inicio = new IniciarSesion();
@@ -216,11 +221,12 @@ public class VentanaSecretaria extends JFrame {
 				}
 			}
 		});
-		btnSalir.setIcon(new ImageIcon(VentanaSecretaria.class.getResource("/Imagenes/stop_exit_close_6291.png")));
+		btnSalir.setIcon(new ImageIcon(VentanaSecretaria.class.getResource("/Imagenes/logoout2.png")));
 		btnSalir.setBounds(10, 518, 179, 63);
 		panelBienvenida.add(btnSalir);
 		
 		btnCancelarCita = new JButton("Cancelar Cita");
+		btnCancelarCita.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnCancelarCita.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Cita aux = null;

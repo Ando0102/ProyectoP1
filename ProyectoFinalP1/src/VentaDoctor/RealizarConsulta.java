@@ -67,6 +67,7 @@ import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.Toolkit;
 
 public class RealizarConsulta extends JDialog {
 
@@ -113,6 +114,7 @@ public class RealizarConsulta extends JDialog {
 	 */
 	@SuppressWarnings("unused")
 	public RealizarConsulta(Cita mi) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(RealizarConsulta.class.getResource("/Imagenes/LogoPeque.png")));
 		
 		
 		///formato
@@ -126,9 +128,10 @@ public class RealizarConsulta extends JDialog {
 		
 		///
 		this.micita = mi;
-		setBounds(100, 100, 936, 626);
+		setBounds(100, 100, 936, 613);
 		getContentPane().setLayout(new BorderLayout());
 		setLocationRelativeTo(null);
+		contentPanel.setBackground(new Color(240, 248, 255));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
@@ -197,7 +200,7 @@ public class RealizarConsulta extends JDialog {
 		
 		cbxTipoSangre = new JComboBox();
 		cbxTipoSangre.setEditable(true);
-		cbxTipoSangre.setBackground(Color.WHITE);
+		cbxTipoSangre.setBackground(new Color(240, 248, 255));
 		cbxTipoSangre.setModel(new DefaultComboBoxModel(new String[] {"Eliga tipo Sangre", "A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"}));
 		cbxTipoSangre.setBounds(306, 169, 133, 20);
 		panel_1.add(cbxTipoSangre);
@@ -235,7 +238,7 @@ public class RealizarConsulta extends JDialog {
 		
 		JLabel label_1 = new JLabel("");
 		label_1.setIcon(new ImageIcon(RealizarConsulta.class.getResource("/Imagenes/person_user_customer_man_male_man_boy_people_1687.png")));
-		label_1.setBounds(319, 36, 97, 97);
+		label_1.setBounds(329, 32, 97, 97);
 		panel_1.add(label_1);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
@@ -246,7 +249,7 @@ public class RealizarConsulta extends JDialog {
 		panel.setLayout(null);
 		panel.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		panel.setBackground(new Color(230, 230, 250));
-		panel.setBounds(10, 272, 480, 250);
+		panel.setBounds(10, 272, 480, 240);
 		contentPanel.add(panel);
 		
 		JLabel label_6 = new JLabel("");
@@ -315,7 +318,7 @@ public class RealizarConsulta extends JDialog {
 		panel_2.setLayout(null);
 		panel_2.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		panel_2.setBackground(new Color(230, 230, 250));
-		panel_2.setBounds(500, 11, 397, 511);
+		panel_2.setBounds(500, 11, 410, 501);
 		contentPanel.add(panel_2);
 		
 		JLabel label = new JLabel("");
@@ -336,7 +339,7 @@ public class RealizarConsulta extends JDialog {
 		
 		JDateChooser fechaConsulta = new JDateChooser();
 		
-		fechaConsulta.setBounds(131, 457, 111, 20);
+		fechaConsulta.setBounds(131, 457, 137, 20);
 		panel_2.add(fechaConsulta);
 		fechaConsulta.setDate(fechaActual());
 		
@@ -396,10 +399,12 @@ pack(); // abre la ventana conforme el tamaño necesario de los componentes
 		
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(new Color(240, 248, 255));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				okButton = new JButton("Guardar Consulta");
+				okButton = new JButton("Listo");
+				okButton.setIcon(new ImageIcon(RealizarConsulta.class.getResource("/Imagenes/acceptar.png")));
 				
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
@@ -407,6 +412,7 @@ pack(); // abre la ventana conforme el tamaño necesario de los componentes
 			}
 			{
 				JButton cancelButton = new JButton("Cancelar");
+				cancelButton.setIcon(new ImageIcon(RealizarConsulta.class.getResource("/Imagenes/cancelar2.png")));
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
