@@ -15,6 +15,7 @@ import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
@@ -91,6 +92,7 @@ public class NuevaCita extends JDialog {
 	private Secretaria secre = null;
 	private Cita miCitaAuxi = null;
 	private int rowModi = -1;
+	private Date fechaDeHoy = new Date ();
 	
 	
 	/**
@@ -137,6 +139,17 @@ public class NuevaCita extends JDialog {
 		panelDatosPersona.add(lblBusquedaDePersona);
 		
 		txtBusquedaPersona = new JTextField();
+MaskFormatter formatoIDPersona = null;
+		
+		try {
+			formatoIDPersona = new MaskFormatter("###-#######-#");
+			formatoIDPersona.setPlaceholderCharacter('#');
+			
+			
+		}catch (Exception e) {
+			
+		}
+		txtBusquedaPersona = new JFormattedTextField(formatoIDPersona);
 		txtBusquedaPersona.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -154,7 +167,7 @@ public class NuevaCita extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				//Falta validar que no este vacio el textField
 				Persona miPersona = null;
-				if(!txtBusquedaPersona.getText().isEmpty()){
+				if(!txtBusquedaPersona.getText().contains("#")){
 					miPersona = Clinica.getInstance().miPersona(txtBusquedaPersona.getText().toString());
 					if(miPersona!=null){
 						JOptionPane.showMessageDialog(null, "Persona encontrada","Informacion!", JOptionPane.INFORMATION_MESSAGE);
@@ -202,7 +215,8 @@ public class NuevaCita extends JDialog {
 MaskFormatter formatoIDPersona1 = null;
 		
 		try {
-			formatoIDPersona1 = new MaskFormatter("###########");
+			formatoIDPersona1 = new MaskFormatter("###-#######-#");
+			formatoIDPersona1.setPlaceholderCharacter('#');
 			
 		}catch (Exception e) {
 			
@@ -259,7 +273,7 @@ MaskFormatter formatoIDPersona1 = null;
 		panelDatosPersona.add(lblSexo);
 		
 		cmbSexoPersona = new JComboBox();
-		cmbSexoPersona.setModel(new DefaultComboBoxModel(new String[] {"Masculino", "Femenino"}));
+		cmbSexoPersona.setModel(new DefaultComboBoxModel(new String[] {"<Sexo>","Masculino", "Femenino"}));
 		cmbSexoPersona.setBackground(new Color(240, 248, 255));
 		cmbSexoPersona.setBounds(268, 114, 166, 20);
 		panelDatosPersona.add(cmbSexoPersona);
@@ -269,15 +283,16 @@ MaskFormatter formatoIDPersona1 = null;
 		panelDatosPersona.add(lblTelefono);
 		
 		txtTelefono = new JTextField();
-MaskFormatter formatoIDPersona2 = null;
-		
+		MaskFormatter formatoIDPersona2 = null;
 		try {
 			formatoIDPersona2 = new MaskFormatter("###-###-####");
-			
+			formatoIDPersona2.setPlaceholderCharacter('#');
+	
 		}catch (Exception e) {
-			
+	
 		}
 		txtTelefono = new JFormattedTextField(formatoIDPersona2);
+		
 		txtTelefono.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -299,7 +314,7 @@ MaskFormatter formatoIDPersona2 = null;
 		panelDatosPersona.add(lblPaisDeOrigen);
 		
 		cmbPaisOrigenPersona = new JComboBox();
-		cmbPaisOrigenPersona.setModel(new DefaultComboBoxModel(new String[] {"Estados Unidos", "Republica Dominicana", "Puerto Rico", "Haiti", "Colombia", "Venezuela"}));
+		cmbPaisOrigenPersona.setModel(new DefaultComboBoxModel(new String[] {"<Pais de Origen>","Estados Unidos", "Republica Dominicana", "Puerto Rico", "Haiti", "Colombia", "Venezuela"}));
 		cmbPaisOrigenPersona.setBackground(new Color(240, 248, 255));
 		cmbPaisOrigenPersona.setBounds(268, 272, 166, 20);
 		panelDatosPersona.add(cmbPaisOrigenPersona);
@@ -496,36 +511,62 @@ MaskFormatter formatoIDPersona2 = null;
 			buttonPane.setBackground(new Color(240, 248, 255));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
-			{
+			{  
 				JButton btnListo = new JButton("Listo");
 				btnListo.setBackground(UIManager.getColor("Button.highlight"));
 				btnListo.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
+				public void actionPerformed(ActionEvent e) {
+					int invalido = 0;
+				
+				boolean ready  = false;
 				boolean vieja = false;		
 				Cita misCitas = null;
 				Calendar fecha = Calendar.getInstance();
 				fechaNacimiento.getCalendar();
 				fecha =fechaNacimiento.getCalendar();	
+				ready = validacionCampos();
+				
+				if(ready == true){
+					invalido = 0;
+				if(FechaCita.getDate().before(fechaDeHoy)==true){
+					invalido++;
+					JOptionPane.showMessageDialog(null, "Fecha de cita invalida","Aviso", JOptionPane.ERROR_MESSAGE);
+					repaint();
+				}
+				if(fechaNacimiento.getCalendar()!=null && fechaNacimiento.getDate().before(fechaDeHoy)==false){
+					invalido++;
+					JOptionPane.showMessageDialog(null, "Fecha de nacimiento invalida","Aviso", JOptionPane.ERROR_MESSAGE);
+					repaint();
+				}
+				if(txtIdPersona.isEditable()&&Clinica.getInstance().miPersona(txtIdPersona.getText().toString())!=null){
+					invalido++;
+					JOptionPane.showMessageDialog(null, "Esta cedula ya ha sido registrada","Aviso", JOptionPane.WARNING_MESSAGE);
+					repaint();
+				}
+				if(invalido == 0){
 				switch (opcion) {
 				////////////NUEVA CITA/////////////////////
 				case 0:
 					if(miPersonaAux == null){
-						if(cmbSexoPersona.getSelectedIndex()==0){ //Hombre 0 true
+						if(cmbSexoPersona.getSelectedIndex()==1){ //Hombre 0 true
 							miPersonaAux = new Persona(txtNombrePersona.getText().toString(),txtApellidoPersona.getText().toString(),txtIdPersona.getText().toString(),true,txtTelefono.getText().toString(),cmbPaisOrigenPersona.getSelectedItem().toString(),fecha,txtCorreoPersona.getText().toString());							
-						}else if (cmbSexoPersona.getSelectedIndex()==1){ //Mujer 1 false
+						}else if (cmbSexoPersona.getSelectedIndex()==2){ //Mujer 1 false
 							miPersonaAux = new Persona(txtNombrePersona.getText().toString(),txtApellidoPersona.getText().toString(),txtIdPersona.getText().toString(),false,txtTelefono.getText().toString(),cmbPaisOrigenPersona.getSelectedItem().toString(),fecha,txtCorreoPersona.getText().toString());							
 							
 						}  Clinica.getInstance().insertarPersona(miPersonaAux);
 							}
+					
 						misCitas = new Cita (miDoctor,miPersonaAux,FechaCita.getCalendar(), (Integer)spnHoraCita.getValue(),"Pendiente",secre);
 						vieja = Clinica.getInstance().citaEncontrada(misCitas);
 						if(vieja == false){
 						Clinica.getInstance().insertarCitas(misCitas);
 						Clinica.getInstance().incertarCitaADoctor(miDoctor, misCitas);
 						JOptionPane.showMessageDialog(null, "Cita creada exitosamente","Aviso", JOptionPane.INFORMATION_MESSAGE);
+						limpiado();
 						repaint();}
 						else {
 						JOptionPane.showMessageDialog(null, "Cita fue creada anteriormente","Aviso", JOptionPane.WARNING_MESSAGE);	
+						limpiado();
 						repaint();
 						}
 					break;
@@ -540,13 +581,16 @@ MaskFormatter formatoIDPersona2 = null;
 					JOptionPane.showMessageDialog(null, "Cita modificada exitosamente","Aviso", JOptionPane.INFORMATION_MESSAGE);
 					dispose();	} else{
 						JOptionPane.showMessageDialog(null, "Cita no pudo ser modificada","Aviso", JOptionPane.INFORMATION_MESSAGE);
+						limpiado();
 						repaint();
 					}
 				default:
 					break;
-				}
+				}}
 				
-					} }		
+					 invalido = 0;} else{
+						repaint();
+					} } }		
 									
 						
 						
@@ -566,9 +610,7 @@ MaskFormatter formatoIDPersona2 = null;
 							loadtable();
 							dispose();
 						
-						} else{
-							repaint();
-						}
+						} 
 						
 					}
 				});
@@ -596,8 +638,8 @@ MaskFormatter formatoIDPersona2 = null;
 			fechaNacimiento.setCalendar(miPersona.getFecha_nacimiento());
 			txtTelefono.setText(miPersona.getTelefono().toString());
 			if(miPersona.isSexo() == true){
-			cmbSexoPersona.setSelectedIndex(0);} else {
-				cmbSexoPersona.setSelectedIndex(1);
+			cmbSexoPersona.setSelectedIndex(1);} else {
+				cmbSexoPersona.setSelectedIndex(2);
 			}
 			cmbPaisOrigenPersona.setSelectedItem(miPersona.getNacionalidad().toString());
 			txtCorreoPersona.setText(miPersona.getCorreo_electronico().toString());
@@ -620,19 +662,7 @@ MaskFormatter formatoIDPersona2 = null;
 		}
 	}
 	
-	private Object[][] fillDoctores() {
-		ArrayList <Doctor> misDoctores = new ArrayList <Doctor>();
-		misDoctores =  Clinica.getInstance().doctores();
-		Object[][] result = new Object[misDoctores.size()][1];
-		String[] aux = null;
-		
-		for (int i = 0; i <misDoctores.size() ; i++) {
-			aux = new String[4];
-			aux[0] = misDoctores.get(i).getNombre()+" "+ misDoctores.get(i).getApellidos();
-			result[i] = aux;
-			}
-		return result;
-	}
+	
 	private void loadtable() {
 		//Cargar la tabla
 		model.setRowCount(0);
@@ -662,6 +692,33 @@ MaskFormatter formatoIDPersona2 = null;
 	        return;
 	    }
 	    sorter.setRowFilter(filter);
+	}
+	private boolean validacionCampos (){
+		boolean done = true;
+		if(txtIdPersona.getText().contains("#")|| txtNombrePersona.getText().isEmpty()|| txtApellidoPersona.getText().isEmpty()||
+				txtCorreoPersona.getText().isEmpty()|| txtTelefono.getText().contains("#")||txtApellidoDoctor.getText().isEmpty()||
+				txtNombreDoctor.getText().isEmpty()||cmbPaisOrigenPersona.getSelectedItem().equals("<Pais de Origen>")||cmbSexoPersona.getSelectedItem().equals("<Sexo>")
+				|| txtNombreDoctor.getText().isEmpty()||txtApellidoDoctor.getText().isEmpty()||FechaCita.getCalendar() == null ||fechaNacimiento.getCalendar()==null){ 
+			done = false;
+			JOptionPane.showMessageDialog(null, "Campos incompletos","Aviso", JOptionPane.WARNING_MESSAGE);
+		}
+		return done;
+	}
+	private void limpiado (){
+		txtIdPersona.setText("");
+		txtNombreDoctor.setText("");
+		txtNombrePersona.setText("");
+		txtApellidoDoctor.setText("");
+		txtApellidoPersona.setText("");
+		txtBusquedaDoctor.setText("");
+		txtBusquedaPersona.setText("");
+		txtCorreoPersona.setText("");
+		txtTelefono.setText("");
+		cmbPaisOrigenPersona.setSelectedIndex(0);
+		cmbSexoPersona.setSelectedIndex(0);
+		FechaCita.setCalendar(null);
+		fechaNacimiento.setCalendar(null);
+		spnHoraCita.setValue(8);
 	}
 	
 }
