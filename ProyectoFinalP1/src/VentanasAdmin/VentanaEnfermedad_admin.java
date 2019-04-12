@@ -244,7 +244,7 @@ public class VentanaEnfermedad_admin extends JDialog {
 
 
 		});
-		btnAgregar.setBounds(549, 319, 154, 38);
+		btnAgregar.setBounds(534, 319, 169, 38);
 		panel_1.add(btnAgregar);
 		
 		

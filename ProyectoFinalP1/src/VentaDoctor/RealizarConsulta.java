@@ -116,6 +116,7 @@ public class RealizarConsulta extends JDialog {
 	 */
 	@SuppressWarnings("unused")
 	public RealizarConsulta(Cita mi) {
+		setTitle("Consulta");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RealizarConsulta.class.getResource("/Imagenes/LogoPeque.png")));
 		
 		
@@ -465,7 +466,7 @@ pack(); // abre la ventana conforme el tamaño necesario de los componentes
 	}
 	  public void visualizar_tabla_ListaVacuna(){
 		  
-		    boolean[] editable = {false,true,true};
+		    final boolean[] editable = {false,true,true};
 		        tableListaVacuna.setDefaultRenderer(Object.class, new Render());
 		        DefaultTableModel dt = new DefaultTableModel(new String[]{ "Nombre", "La tiene"}
 		        ,0) {
@@ -511,7 +512,7 @@ pack(); // abre la ventana conforme el tamaño necesario de los componentes
 		    }
 	  public void visualizar_tabla_Enfermedades(){
 		  
-		    boolean[] editable = {false,true,true};
+		    final boolean[] editable = {false,true,true};
 		        tableListaEnfermeda.setDefaultRenderer(Object.class, new Render());
 		        DefaultTableModel dt = new DefaultTableModel(new String[]{ "Nombre", "La tiene"}
 		        ,0) {

@@ -217,7 +217,7 @@ public class VentanaVacuna_admin extends JDialog {
 
 				
 			});
-			btnRegistrarNuevaVacuna.setBounds(490, 150, 146, 34);
+			btnRegistrarNuevaVacuna.setBounds(446, 150, 190, 34);
 			panel_1.add(btnRegistrarNuevaVacuna);
 			
 			

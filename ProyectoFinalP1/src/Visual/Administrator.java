@@ -170,7 +170,7 @@ public class Administrator extends JFrame implements Runnable {
 		
 		lblBienvenidoa = new JLabel("");
 		lblBienvenidoa.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblBienvenidoa.setBounds(31, 151, 158, 74);
+		lblBienvenidoa.setBounds(10, 151, 179, 74);
 		Saludo();
 		panel_1.add(lblBienvenidoa);
 		
@@ -485,7 +485,7 @@ public class Administrator extends JFrame implements Runnable {
             } catch (InterruptedException e) {
             }
         }
-        if(conteo == 30000) {
+        if(conteo == 30) {
         	CargarGraficos();
         	conteo = 0;
         }

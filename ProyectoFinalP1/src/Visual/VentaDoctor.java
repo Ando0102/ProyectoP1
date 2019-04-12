@@ -49,6 +49,7 @@ import VentaDoctor.ListaPaciente;
 import VentaDoctor.pnlCitasbtn;
 
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.BoxLayout;
@@ -69,16 +70,17 @@ public class VentaDoctor extends JFrame implements Runnable {
 	private JPanel contentPane;
 	private JTextPane txtHoraYFecha;
 	private Dimension tamano;
-	private Thread Tiempo;
-	private int hora;
-	private int minutos;
-	private int segundos;
-	private int mes;
-	private int ano;
-	private int dia;
+	private Thread Tiempo3;
+	private int hora = 0;
+	private int minutos = 0;
+	private int segundos = 0;
+	private int mes = 0;
+	private int ano = 0;
+	private int dia = 0;
 	private JDateChooser dateChooser;
 	private Doctor miDoctor=null;
 	private JPanel panelCitas;
+	private JLabel lblBienvenido;
 	/*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -147,6 +149,8 @@ e1.printStackTrace();
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
+
+		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(VentaDoctor.class.getResource("/Imagenes/doctor.png")));
 		lblNewLabel.setBounds(58, 24, 89, 129);
@@ -156,26 +160,53 @@ e1.printStackTrace();
 		txtHoraYFecha.setFont(new Font("Tahoma", Font.BOLD, 16));
 		txtHoraYFecha.setBackground(new Color(240, 248, 255));
 		txtHoraYFecha.setEditable(false);
-		txtHoraYFecha.setBounds(10, 535, 179, 45);
-		
-		////////HILO PARA EL RELOJ///////////////////////////////////////////
-		Tiempo = new Thread(this);
-		Tiempo.start();
-		/////////////////////////////////////////////////////////////////
+		txtHoraYFecha.setVisible(false);
+		txtHoraYFecha.setBounds(10, 523, 179, 57);
 		panel_1.add(txtHoraYFecha);
+		
+		
+////////HILO PARA EL RELOJ///////////////////////////////////////////
+		Tiempo3 = new Thread(this);
+		Tiempo3.start();
+////////////////////////////////////////////////////////////////////////
 		
 		JButton btnNewButton = new JButton("Cerrar Sesi\u00F3n");
 		btnNewButton.setBackground(UIManager.getColor("Button.highlight"));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//cerrando la ventana
-				
+				int resp = JOptionPane.showOptionDialog(null, "Estas seguro que deseas salir?", "Advertencia!", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[] { "Si", "No"}, null); 
+    			if(resp == 0){
+ ///////////////////////////////////////fichero///////////////////////////////////////////////////////////////
+    				FileOutputStream empresa2;
+    				ObjectOutputStream empresaWrite;
+    				try {
+    					empresa2 = new  FileOutputStream("ADAClinica.dat");
+    					empresaWrite = new ObjectOutputStream(empresa2);
+    					empresaWrite.writeObject(Clinica.getInstance());
+    				empresa2.close();
+    				empresaWrite.close();
+    				} catch (FileNotFoundException e1) {
+    					System.out.println("Error: No se ha podido guardar.");
+    					// TODO Auto-generated catch block
+    					e1.printStackTrace();
+    				} catch (IOException e1) {
+    					// TODO Auto-generated catch block
+    					e1.printStackTrace();
+    				}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////    				
+    				IniciarSesion aux =  new IniciarSesion();
+    				aux.setVisible(true);
+    				dispose();						
+    			} else{
+    					repaint();
+    				}
 				
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton.setIcon(new ImageIcon(VentaDoctor.class.getResource("/Imagenes/logoout2.png")));
-		btnNewButton.setBounds(10, 436, 179, 57);
+		btnNewButton.setBounds(10, 368, 179, 57);
 		panel_1.add(btnNewButton);
 		
 		JButton btnNewButton_2 = new JButton("Agenda");
@@ -196,29 +227,8 @@ e1.printStackTrace();
 		dateChooser.setBounds(10, 591, 179, 45);
 		panel_1.add(dateChooser);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 164, 179, 57);
-		panel_1.add(scrollPane);
-		
-		JTextArea txtrDanielMsnds = new JTextArea();
-		txtrDanielMsnds.setBackground(UIManager.getColor("Button.background"));
-		txtrDanielMsnds.setText("Daniel\r\nmsnds");
-		scrollPane.setViewportView(txtrDanielMsnds);
-		
-		JButton btnEditarPerfil = new JButton("Editar Perfil\r\n");
-		btnEditarPerfil.setIcon(new ImageIcon(VentaDoctor.class.getResource("/Imagenes/edit_pencil_6320 (1).png")));
-		btnEditarPerfil.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			//editar perfil
-				
-			}
-		});
-		btnEditarPerfil.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnEditarPerfil.setBackground(UIManager.getColor("Button.highlight"));
-		btnEditarPerfil.setBounds(10, 300, 179, 57);
-		panel_1.add(btnEditarPerfil);
-		
 		JButton btnNewButton_1 = new JButton("Pacientes");
+		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			    new CambiaPanel(panelCitas, new ListaPaciente(miDoctor));
@@ -230,15 +240,14 @@ e1.printStackTrace();
 			}
 		});
 		btnNewButton_1.setIcon(new ImageIcon(VentaDoctor.class.getResource("/Imagenes/caucasian_head_man_person_people_avatar_2859.png")));
-		btnNewButton_1.setBounds(10, 368, 179, 57);
+		btnNewButton_1.setBounds(10, 300, 179, 57);
 		panel_1.add(btnNewButton_1);
-		if(miDoctor.isSexo()) {
-			String name = miDoctor.getApellidos();
-			txtrDanielMsnds.setText("Buenas,\r\nDR. "+name);
-		}else {
-			String name = miDoctor.getApellidos();
-			txtrDanielMsnds.setText("Buenas,\r\nDRA. "+name);
-		}
+		
+		lblBienvenido = new JLabel("");
+		lblBienvenido.setBounds(10, 143, 179, 45);
+		Saludo();
+		panel_1.add(lblBienvenido);
+		
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(new Color(176, 196, 222));
@@ -268,10 +277,11 @@ e1.printStackTrace();
 	@Override
 	public void run() {
 		Thread ct = Thread.currentThread();
-        while (ct == Tiempo) {
+        while (ct == Tiempo3) {
             calcula();
-            txtHoraYFecha.setText("          " + hora + ":" + minutos + ":" + segundos +"\n        " );
             
+            txtHoraYFecha.setText("\n          " + hora + ":" + minutos + ":" + segundos);
+            txtHoraYFecha.setVisible(true);
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
@@ -281,6 +291,47 @@ e1.printStackTrace();
 	}
 	
 	
+	private void Saludo() {
+		
+		if(miDoctor.isSexo()) {
+		
+		if(hora >= 12 && hora <18) {
+			
+			lblBienvenido.setText("<html><P align=center>Buenas Tardes</P> Doctor "+ miDoctor.getNombre() + " " + miDoctor.getApellidos());
+			
+		}else if(hora >=18 && hora <24) {
+			
+			lblBienvenido.setText("<html><P align=center>Buenas Noches</P> Doctor "+ miDoctor.getNombre() + " " + miDoctor.getApellidos());
+			
+		}else if(hora >= 0 && hora<12) {
+			
+			lblBienvenido.setText("<html><P align=center>Buenos Dias</P> Doctor " + miDoctor.getNombre() + " " + miDoctor.getApellidos());
+			
+		}
+		
+		}else {
+			
+			if(hora >= 12 && hora <18) {
+				
+				lblBienvenido.setText("<html><P align=center>Buenas Tardes</P> Doctora "+ miDoctor.getNombre() + " " + miDoctor.getApellidos());
+				
+			}else if(hora >=18 && hora <24) {
+				
+				lblBienvenido.setText("<html><P align=center>Buenas Noches</P> Doctora "+ miDoctor.getNombre() + " " + miDoctor.getApellidos());
+				
+			}else if(hora >= 0 && hora<12) {
+				
+				lblBienvenido.setText("<html><P align=center>Buenos Dias</P> Doctora " + miDoctor.getNombre() + " " + miDoctor.getApellidos());
+				
+			}
+			
+			
+			
+		}
+		
+	}
+
+
 	public void calcula() {
 		//Hora utilizando Hilo
         Calendar calendario = new GregorianCalendar();

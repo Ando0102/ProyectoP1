@@ -112,6 +112,7 @@ public class VentanaPacientes_admin extends JDialog {
 				
 				tablaDoctor = new JTable();
 				tablaDoctor.setModel(modelDoctor);
+				LoadTablas(1);
 				scrollPaneDoctor.setViewportView(tablaDoctor);
 			}
 			{
@@ -128,6 +129,7 @@ public class VentanaPacientes_admin extends JDialog {
 				
 				tablaSecre = new JTable();
 				tablaSecre.setModel(modelSecre);
+				LoadTablas(2);
 				scrollPaneSecre.setViewportView(tablaSecre);
 			}
 			{
@@ -144,6 +146,7 @@ public class VentanaPacientes_admin extends JDialog {
 				
 				tablaAdmin = new JTable();
 				tablaAdmin.setModel(modelAdmin);
+				LoadTablas(3);
 				scrollPaneAdmin.setViewportView(tablaAdmin);
 			}
 		}
