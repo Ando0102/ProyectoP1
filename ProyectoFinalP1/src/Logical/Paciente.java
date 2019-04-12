@@ -95,8 +95,11 @@ public class Paciente extends Persona {
 	public boolean buscar_vacuna(String nombre) {
 		//Busca una si el pasiente tiene la vacuna dada por el nombre
 		Boolean aux = false;
+		System.out.println("CANTA VACUNAS"+misVacunas.size());
 		for (Vacuna consulta : misVacunas) {
+			System.out.println("PPPPPPPPP");
 			if(consulta.getNombre_vacuna().equalsIgnoreCase(nombre)) {
+				System.out.println("Tiene la vacuna");
 				aux = true;
 				break;
 			}

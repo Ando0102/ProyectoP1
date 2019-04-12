@@ -53,6 +53,7 @@ import javax.swing.JMenuBar;
 import javax.swing.BoxLayout;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 
 public class VentaDoctor extends JFrame implements Runnable {
 
@@ -164,16 +165,11 @@ e1.printStackTrace();
 		lblNewLabel.setBounds(55, 11, 89, 129);
 		panel_1.add(lblNewLabel);
 		
-		JLabel lblBienvenidoa = new JLabel("Bienvenido/a ");
-		lblBienvenidoa.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblBienvenidoa.setBounds(55, 151, 89, 49);
-		panel_1.add(lblBienvenidoa);
-		
 		txtHoraYFecha = new JTextPane();
 		txtHoraYFecha.setFont(new Font("Tahoma", Font.BOLD, 16));
 		txtHoraYFecha.setBackground(new Color(240, 248, 255));
 		txtHoraYFecha.setEditable(false);
-		txtHoraYFecha.setBounds(54, 553, 135, 33);
+		txtHoraYFecha.setBounds(10, 553, 179, 33);
 		
 		////////HILO PARA EL RELOJ///////////////////////////////////////////
 		Tiempo = new Thread(this);
@@ -185,21 +181,15 @@ e1.printStackTrace();
 		btnNewButton.setBackground(UIManager.getColor("Button.highlight"));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				//cerrando la ventana
 				
 				
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton.setIcon(new ImageIcon(VentaDoctor.class.getResource("/Imagenes/stop_exit_close_6291.png")));
-		btnNewButton.setBounds(10, 376, 179, 57);
+		btnNewButton.setBounds(10, 395, 179, 57);
 		panel_1.add(btnNewButton);
-		
-		JButton btnNewButton_1 = new JButton("");
-		btnNewButton_1.setBackground(UIManager.getColor("Button.highlight"));
-		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton_1.setIcon(new ImageIcon(VentaDoctor.class.getResource("/Imagenes/controlPanel.png")));
-		btnNewButton_1.setBounds(10, 308, 179, 57);
-		panel_1.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Agenda");
 		btnNewButton_2.setBackground(UIManager.getColor("Button.highlight"));
@@ -213,8 +203,36 @@ e1.printStackTrace();
 		panel_1.add(btnNewButton_2);
 		
 		dateChooser = new JDateChooser();
-		dateChooser.setBounds(54, 597, 135, 33);
+		dateChooser.setBounds(10, 597, 179, 33);
 		panel_1.add(dateChooser);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 164, 179, 57);
+		panel_1.add(scrollPane);
+		
+		JTextArea txtrDanielMsnds = new JTextArea();
+		txtrDanielMsnds.setBackground(UIManager.getColor("Button.background"));
+		txtrDanielMsnds.setText("Daniel\r\nmsnds");
+		scrollPane.setViewportView(txtrDanielMsnds);
+		
+		JButton btnEditarPerfil = new JButton("Editar Perfil\r\n");
+		btnEditarPerfil.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			//editar perfil
+				
+			}
+		});
+		btnEditarPerfil.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnEditarPerfil.setBackground(Color.WHITE);
+		btnEditarPerfil.setBounds(10, 319, 179, 57);
+		panel_1.add(btnEditarPerfil);
+		if(miDoctor.isSexo()) {
+			String name = miDoctor.getApellidos();
+			txtrDanielMsnds.setText("Buenas,\r\nDR. "+name);
+		}else {
+			String name = miDoctor.getApellidos();
+			txtrDanielMsnds.setText("Buenas,\r\nDRA. "+name);
+		}
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(new Color(176, 196, 222));
@@ -301,5 +319,4 @@ e1.printStackTrace();
 		fecha.setTime(fechaActual());
 		dateChooser.setCalendar(fecha);
 	}
-	
 }

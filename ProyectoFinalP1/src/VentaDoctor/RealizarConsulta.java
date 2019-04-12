@@ -19,6 +19,11 @@ import javax.swing.JFormattedTextField;
 
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 import com.toedter.calendar.JDateChooser;
 
 import Logical.Cita;
@@ -39,6 +44,7 @@ import javax.swing.JTextPane;
 import javax.swing.JScrollBar;
 import javax.swing.JInternalFrame;
 import java.awt.Component;
+import java.awt.Desktop;
 
 import javax.swing.AbstractButton;
 import javax.swing.Box;
@@ -55,6 +61,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
@@ -326,9 +335,9 @@ public class RealizarConsulta extends JDialog {
 		panel_2.add(lblFechaConsulta);
 		
 		JDateChooser fechaConsulta = new JDateChooser();
+		
 		fechaConsulta.setBounds(131, 457, 111, 20);
 		panel_2.add(fechaConsulta);
-		fechaConsulta.setEnabled(false);
 		fechaConsulta.setDate(fechaActual());
 		
 		JLabel lblListaEnfermedades = new JLabel("Diagn\u00F3stico:\r\n\r\n");
@@ -415,7 +424,23 @@ pack(); // abre la ventana conforme el tamaño necesario de los componentes
 
 		        }	
 		        */
-		        leerDatosConsulta_CrearPasiente();
+				String telefono_emergencia ="";
+				String diagnotico = "";
+				diagnotico = textDiagnotico.getText();
+				String tiposangr="";
+				tiposangr = textPeso.getText();
+					
+				
+				telefono_emergencia = textContatoEmergencia.getText();
+				if(cbxTipoSangre.getSelectedIndex()>0&&!telefono_emergencia.equalsIgnoreCase("")
+						&&!diagnotico.equalsIgnoreCase("")&&!tiposangr.equalsIgnoreCase("")) {
+					System.out.println("Campos rellenados");
+					leerDatosConsulta_CrearPasiente();
+				}else {
+					JOptionPane.showMessageDialog(null, "No se admiten campos vacios", "ATENCION", JOptionPane.INFORMATION_MESSAGE, null);	
+					System.out.println("Debe completar los campos");
+				}
+		       
 			}
 		});
 	
@@ -445,18 +470,16 @@ pack(); // abre la ventana conforme el tamaño necesario de los componentes
 		
 		        for (Vacuna b : Clinica.getInstance().getMisVacunas()) {
 		        	 fila[0] = b.getNombre_vacuna();
-		        	 
+		        	 System.out.println("KLK");
 		        	 if(micita.getMiPersona() instanceof Paciente) {
+		        		 System.out.println("Bienvenido pasiente");
+		        		 System.out.println("ES un paciente, poniendo vacuna");
 		        		Boolean estado = false;
-		        		estado =((Paciente) micita.getMiPersona()).buscar_vacuna(b.getNombre_vacuna());
-		        	 
-		        		if(estado==true) {
-		        			fila[1] = true;
-		        		}else {
-		        			fila[1] = false;
-		        		}
+		        		estado =((Paciente) micita.getMiPersona()).buscar_vacuna(b.getNombre_vacuna());	
+		        			fila[1] = estado;
+		        			System.out.println("estado: "+estado);
 		        	 }else {
-		        		 
+		        		 System.out.println("NO un paciente, NO poniendo vacuna");
 		        		 fila[1] = false;
 		        	 }
 				    
@@ -532,6 +555,7 @@ pack(); // abre la ventana conforme el tamaño necesario de los componentes
 				if (micita.getMiPersona() instanceof Paciente) {
 					System.out.println("Cargar Dato solamente pasiente");			
 					///Se realiza consulta--------------------------------------------
+					incertandoVacunas_y_Enfermedades();
 					realiandoConsulta();
 					//----------------------------------------------------------------
 					if(checkBox_Si__Historial.isSelected()) {
@@ -539,12 +563,14 @@ pack(); // abre la ventana conforme el tamaño necesario de los componentes
 						guadarAHistorial();
 					}
 
-					incertandoVacunas_y_Enfermedades();
+					
 					
 				
 				}else {
 					// se crea el pasiente y se realiza su primera consulta
 					creandoPasiente();
+					//incertandoVacunas_y_Enfermedades();
+					
 				}
 			}
 					
@@ -610,6 +636,7 @@ pack(); // abre la ventana conforme el tamaño necesario de los componentes
 				textPeso.setText(peso.toString());
 				textPeso.setEditable(false);
 				
+				
 			}
 	  }
 	  public void cargarTipoSangre() {
@@ -658,6 +685,11 @@ pack(); // abre la ventana conforme el tamaño necesario de los componentes
 
 		  Paciente personaAux = null;
 			//falta validar mas datos
+		  if(textDiagnotico.getText().equalsIgnoreCase("")) {
+			 
+		  }else {
+			  System.out.println("Diagnotico NO esta vacio");
+		  }
 			if(textContatoEmergencia.getText().equalsIgnoreCase("(   )-   -    ")&&textPeso.getText().equalsIgnoreCase("")
 					&&textDiagnotico.getText().equalsIgnoreCase("")) {
 				     
@@ -718,6 +750,7 @@ pack(); // abre la ventana conforme el tamaño necesario de los componentes
 					 personaAux.incertar_HistorialMedico(his);
 				 }
 				 //-----------------incertando vacunas
+				
 				 for(int i=0; i<tableListaVacuna.getRowCount();i++) {
 					 //buscando enfermedades
 					 boolean va = (boolean) tableListaVacuna.getModel().getValueAt(i, 1);
@@ -726,7 +759,7 @@ pack(); // abre la ventana conforme el tamaño necesario de los componentes
 						 Vacuna miVacuna = Clinica.getInstance().buscarVacuna(nombreVacuna);
 					 
 						 if(miVacuna!=null) {
-							// personaAux.incertar_Vacuna(miVacuna);
+						     personaAux.incertar_Vacuna(miVacuna);
 							 System.out.println("Se ha incertado las vacuna");
 						 }
 						
@@ -769,6 +802,7 @@ pack(); // abre la ventana conforme el tamaño necesario de los componentes
 				}else {
 					System.out.println("Dato no se pudo actualizar");
 				}
+				 guadarAHistorial();
 				/*
 				 for (Persona mi : Clinica.getMiClinica().getMisPersonas()) {
 					if(mi instanceof Paciente) {
@@ -823,4 +857,34 @@ pack(); // abre la ventana conforme el tamaño necesario de los componentes
 
 			 }
 	  }
+		 public void generar(String nombre) throws FileNotFoundException, DocumentException {
+		        
+		        FileOutputStream archivo = new FileOutputStream(nombre + ".pdf");
+		        Document documento = new Document();
+		        PdfWriter.getInstance(documento, archivo);
+		        documento.open();
+		        
+		        Paragraph parrafo = new Paragraph("Datos Personales");
+		        parrafo.setAlignment(1);
+		        documento.add(parrafo);
+		        
+		        documento.add(new Paragraph("Nombre: " + "DANIEL"));
+		        documento.add(new Paragraph("Apellidos: " + "PENA"));
+		        documento.add(new Paragraph("Edad: " + "18"));
+		        documento.add(new Paragraph("Correo Electronico: " + "danielmornta"));
+		       
+		      //  documento.add(new I)
+		        documento.close();
+
+		    }
+
+		    public void abrir(String nombre) {
+		        try {
+		            File path = new File(nombre + ".pdf");
+		            Desktop.getDesktop().open(path);
+		        } catch (Exception ex) {
+		            JOptionPane.showMessageDialog(null, ex,"AtenciÃ³n",2);
+		        }
+		    }
+
 }
