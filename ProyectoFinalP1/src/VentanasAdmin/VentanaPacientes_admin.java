@@ -51,7 +51,7 @@ public class VentanaPacientes_admin extends JDialog {
 
 	/**
 	 * Launch the application.
-	 */
+	 *//*
 	public static void main(String[] args) {
 		try {
 			VentanaPacientes_admin dialog = new VentanaPacientes_admin();

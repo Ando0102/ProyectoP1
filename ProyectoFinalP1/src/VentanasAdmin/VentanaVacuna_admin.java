@@ -60,7 +60,7 @@ public class VentanaVacuna_admin extends JDialog {
 	private SimpleDateFormat dateformart1 = new SimpleDateFormat("dd - MM - yyyy");
 	/**
 	 * Launch the application.
-	 */
+	 *//*
 	public static void main(String[] args) {
 		try {
 			VentanaVacuna_admin dialog = new VentanaVacuna_admin();

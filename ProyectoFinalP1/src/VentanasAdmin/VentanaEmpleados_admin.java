@@ -100,7 +100,7 @@ public class VentanaEmpleados_admin extends JDialog {
 
 	/**
 	 * Launch the application.
-	 */
+	 *//*
 	
 	public static void main(String[] args) {
 		try {

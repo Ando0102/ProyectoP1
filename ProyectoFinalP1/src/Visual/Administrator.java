@@ -76,7 +76,7 @@ public class Administrator extends JFrame implements Runnable {
 	private JPanel panel_2;
 	private JLabel lblBienvenidoa;
 	
-	
+	/*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			
@@ -93,7 +93,7 @@ public class Administrator extends JFrame implements Runnable {
 				}
 			}
 		});
-	}
+	}*/
 	
 	public Administrator(User aux) {
 		setResizable(false);

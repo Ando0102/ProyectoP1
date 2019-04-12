@@ -34,7 +34,7 @@ public class VentanaCita_admin extends JDialog {
 
 	/**
 	 * Launch the application.
-	 */
+	 *//*
 	public static void main(String[] args) {
 		try {
 			VentanaCita_admin dialog = new VentanaCita_admin();
