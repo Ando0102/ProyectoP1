@@ -318,5 +318,19 @@ public class Clinica  implements Serializable{
 		return find;
 	}
 
+	public Paciente buscarPersona(String cedula) {
+		Paciente mispersona = null;
+		for (Persona mi : misPersonas) {
+			if(mi instanceof Paciente) {
+			if(mi.getCedula().equalsIgnoreCase(cedula)) {
+				mispersona = (Paciente) mi;
+			}
+			}
+		}
+		if(mispersona==null) {
+			System.out.println("No encontre a la persona Daniel");
+		}
+		return mispersona;
+	}
 	
 }
