@@ -143,7 +143,7 @@ MaskFormatter formatoIDPersona = null;
 		
 		try {
 			formatoIDPersona = new MaskFormatter("###-#######-#");
-			formatoIDPersona.setPlaceholderCharacter('#');
+			formatoIDPersona.setPlaceholderCharacter('_');
 			
 			
 		}catch (Exception e) {
@@ -167,7 +167,7 @@ MaskFormatter formatoIDPersona = null;
 			public void actionPerformed(ActionEvent e) {
 				//Falta validar que no este vacio el textField
 				Persona miPersona = null;
-				if(!txtBusquedaPersona.getText().contains("#")){
+				if(!txtBusquedaPersona.getText().contains("_")){
 					miPersona = Clinica.getInstance().miPersona(txtBusquedaPersona.getText().toString());
 					if(miPersona!=null){
 						JOptionPane.showMessageDialog(null, "Persona encontrada","Informacion!", JOptionPane.INFORMATION_MESSAGE);
@@ -191,11 +191,14 @@ MaskFormatter formatoIDPersona = null;
 						txtTelefono.setText(miPersona.getTelefono().toString());
 						txtTelefono.setEditable(false);
 						fechaNacimiento.setCalendar(miPersona.getFecha_nacimiento());
+						
 					}else{
+						
 						JOptionPane.showMessageDialog(null, "Persona no encontrada","Aviso", JOptionPane.WARNING_MESSAGE);
 					}
 					
 				} else {
+					
 					JOptionPane.showMessageDialog(null, "Favor insertar numero de identificacion","Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -216,7 +219,7 @@ MaskFormatter formatoIDPersona1 = null;
 		
 		try {
 			formatoIDPersona1 = new MaskFormatter("###-#######-#");
-			formatoIDPersona1.setPlaceholderCharacter('#');
+			formatoIDPersona1.setPlaceholderCharacter('_');
 			
 		}catch (Exception e) {
 			
@@ -286,7 +289,7 @@ MaskFormatter formatoIDPersona1 = null;
 		MaskFormatter formatoIDPersona2 = null;
 		try {
 			formatoIDPersona2 = new MaskFormatter("###-###-####");
-			formatoIDPersona2.setPlaceholderCharacter('#');
+			formatoIDPersona2.setPlaceholderCharacter('_');
 	
 		}catch (Exception e) {
 	
@@ -698,8 +701,8 @@ MaskFormatter formatoIDPersona1 = null;
 	}
 	private boolean validacionCampos (){
 		boolean done = true;
-		if(txtIdPersona.getText().contains("#")|| txtNombrePersona.getText().isEmpty()|| txtApellidoPersona.getText().isEmpty()||
-				txtCorreoPersona.getText().isEmpty()|| txtTelefono.getText().contains("#")||txtApellidoDoctor.getText().isEmpty()||
+		if(txtIdPersona.getText().contains("_")|| txtNombrePersona.getText().isEmpty()|| txtApellidoPersona.getText().isEmpty()||
+				txtCorreoPersona.getText().isEmpty()|| txtTelefono.getText().contains("_")||txtApellidoDoctor.getText().isEmpty()||
 				txtNombreDoctor.getText().isEmpty()||cmbPaisOrigenPersona.getSelectedItem().equals("<Pais de Origen>")||cmbSexoPersona.getSelectedItem().equals("<Sexo>")
 				|| txtNombreDoctor.getText().isEmpty()||txtApellidoDoctor.getText().isEmpty()||FechaCita.getCalendar() == null ||fechaNacimiento.getCalendar()==null){ 
 			done = false;
