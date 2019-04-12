@@ -527,20 +527,23 @@ MaskFormatter formatoIDPersona1 = null;
 				ready = validacionCampos();
 				
 				if(ready == true){
-					invalido = 0;
+					//invalido = 0;
 				if(FechaCita.getDate().before(fechaDeHoy)==true){
 					invalido++;
 					JOptionPane.showMessageDialog(null, "Fecha de cita invalida","Aviso", JOptionPane.ERROR_MESSAGE);
+					FechaCita.setCalendar(null);
 					repaint();
 				}
 				if(fechaNacimiento.getCalendar()!=null && fechaNacimiento.getDate().before(fechaDeHoy)==false){
 					invalido++;
 					JOptionPane.showMessageDialog(null, "Fecha de nacimiento invalida","Aviso", JOptionPane.ERROR_MESSAGE);
+					fechaNacimiento.setCalendar(null);
 					repaint();
 				}
 				if(txtIdPersona.isEditable()&&Clinica.getInstance().miPersona(txtIdPersona.getText().toString())!=null){
 					invalido++;
 					JOptionPane.showMessageDialog(null, "Esta cedula ya ha sido registrada","Aviso", JOptionPane.WARNING_MESSAGE);
+					txtIdPersona.setText("");
 					repaint();
 				}
 				if(invalido == 0){
