@@ -230,7 +230,32 @@ public class VentanaSecretaria extends JFrame {
 				int resp = JOptionPane.showOptionDialog(null, "Estas seguro que deseas salir?", "Advertencia!", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, new Object[] { "Si", "No" }, null); 
 				if(resp == 0){
 				setVisible(false);
-				inicio.setVisible(true);} else{
+				inicio.setVisible(true);
+				
+				///////////////////////////////////////FICHERO/////////////////////////////////////////////////////////
+				
+				FileOutputStream empresa2;
+				ObjectOutputStream empresaWrite;
+				try {
+					empresa2 = new  FileOutputStream("ADAClinica.dat");
+					empresaWrite = new ObjectOutputStream(empresa2);
+					empresaWrite.writeObject(Clinica.getInstance());
+				empresa2.close();
+				empresaWrite.close();
+				} catch (FileNotFoundException e1) {
+					System.out.println("Error: No se ha podido guardar.");
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				
+				///////////////////////////////////////////////////////////////////////////////////////////////////////
+				} 
+				else
+				{
 					repaint();
 				}
 			}

@@ -338,6 +338,10 @@ public class IniciarSesion extends JFrame {
 		panel_1.setBackground(new Color(176, 196, 222));
 		panel_1.setBounds(433, 175, 474, 34);
 		contentPane.add(panel_1);
+		panel_1.setLayout(new BorderLayout(0, 0));
+		
+		JLabel lblIniciarSesin = new JLabel("   Inicio de Sesi\u00F3n");
+		panel_1.add(lblIniciarSesin, BorderLayout.CENTER);
 	}
 	public static Date fechaActual() {
 		Date fecha = new Date();
