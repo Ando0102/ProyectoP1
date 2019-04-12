@@ -59,6 +59,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JRadioButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JCheckBox;
+import javax.swing.border.BevelBorder;
 
 public class VentanaSecre_admin extends JDialog {
 
@@ -122,6 +123,7 @@ public class VentanaSecre_admin extends JDialog {
 		setBounds(100, 100, 617, 557);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(new Color(240, 248, 255));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
@@ -144,12 +146,12 @@ public class VentanaSecre_admin extends JDialog {
 			panel.setLayout(new BorderLayout(0, 0));
 			{
 				tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-				tabbedPane.setBackground(new Color(230, 230, 250));
+				tabbedPane.setBackground(new Color(240, 248, 255));
 				panel.add(tabbedPane, BorderLayout.CENTER);
 				{
 					panelAgregar = new JPanel();
 					panelAgregar.setBackground(new Color(230, 230, 250));
-					panelAgregar.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informaci\u00F3n del Nuevo Empleado", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+					panelAgregar.setBorder(new TitledBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null), "Informaci\u00F3n del Nuevo Empleado", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 					tabbedPane.addTab("Agregar Nuevo Empleado", null, panelAgregar, null);
 					panelAgregar.setLayout(null);
 					{
@@ -237,6 +239,7 @@ public class VentanaSecre_admin extends JDialog {
 					}
 					{
 						cbxGenero = new JComboBox();
+						cbxGenero.setBackground(new Color(240, 248, 255));
 						cbxGenero.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent arg0) {
 								cbxGenero.setBorder(new LineBorder(new Color(192, 192, 192)));
@@ -255,6 +258,7 @@ public class VentanaSecre_admin extends JDialog {
 					}
 					{
 						cbxPais = new JComboBox();
+						cbxPais.setBackground(new Color(240, 248, 255));
 						cbxPais.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
 								cbxPais.setBorder(new LineBorder(new Color(192, 192, 192)));
@@ -299,6 +303,7 @@ public class VentanaSecre_admin extends JDialog {
 					}
 					
 					dcFechaNacimiento = new JDateChooser();
+					dcFechaNacimiento.setBackground(new Color(255, 255, 255));
 					dcFechaNacimiento.getCalendarButton().addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							dcFechaNacimiento.setBorder( new LineBorder( new Color(192, 192, 192)));
@@ -405,6 +410,7 @@ public class VentanaSecre_admin extends JDialog {
 				}
 				{
 					JPanel panel_1 = new JPanel();
+					panel_1.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 					panel_1.setBackground(new Color(230, 230, 250));
 					tabbedPane.addTab("Modificar Empleado", null, panel_1, null);
 					panel_1.setLayout(null);

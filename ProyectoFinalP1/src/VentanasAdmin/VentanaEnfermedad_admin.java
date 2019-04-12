@@ -59,7 +59,7 @@ public class VentanaEnfermedad_admin extends JDialog {
 	private JButton buttonModificar;
 	private JButton buttonEliminar;
 	private int index = 0;
-	private JButton button;
+	private JButton btnAgregar;
 
 	/**
 	 * Launch the application.
@@ -124,7 +124,7 @@ public class VentanaEnfermedad_admin extends JDialog {
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
-		panel_1.setBorder(new TitledBorder(null, "Agregar Nueva Enfermedad", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1.setBorder(new TitledBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null), "Agregar Nueva Enfermedad", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel_1.setBackground(new Color(230, 230, 250));
 		panel_1.setBounds(10, 11, 713, 368);
 		panel.add(panel_1);
@@ -172,7 +172,7 @@ public class VentanaEnfermedad_admin extends JDialog {
 			}
 		});
 		txtTratamiento.setBorder(new LineBorder(ColorEstandar));
-		txtTratamiento.setBounds(49, 238, 614, 79);
+		txtTratamiento.setBounds(49, 238, 614, 70);
 		panel_1.add(txtTratamiento);
 		
 		
@@ -189,8 +189,9 @@ public class VentanaEnfermedad_admin extends JDialog {
 		tipos.add(cbxNormal);
 
 		
-		button = new JButton("Agregar Nueva Enfermedad");
-		button.addActionListener(new ActionListener() {
+		btnAgregar = new JButton("Agregar");
+		btnAgregar.setIcon(new ImageIcon(VentanaEnfermedad_admin.class.getResource("/Imagenes/new-file_40454.png")));
+		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				String nombre, sintomas, tratamiento = null;
@@ -243,21 +244,21 @@ public class VentanaEnfermedad_admin extends JDialog {
 
 
 		});
-		button.setBounds(505, 334, 198, 23);
-		panel_1.add(button);
+		btnAgregar.setBounds(549, 319, 154, 38);
+		panel_1.add(btnAgregar);
 		
 		
 
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setLayout(null);
-		panel_2.setBorder(new TitledBorder(null, "Informaci\u00F3n de la Enfermedad", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_2.setBorder(new TitledBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null), "Informaci\u00F3n de la Enfermedad", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel_2.setBackground(new Color(230, 230, 250));
 		panel_2.setBounds(10, 390, 713, 218);
 		panel.add(panel_2);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 30, 693, 143);
+		scrollPane.setBounds(10, 23, 693, 137);
 		panel_2.add(scrollPane);
 		
 		//////////////////////////////////////TABLA/////////////////////////////////////////////////////////////
@@ -292,6 +293,7 @@ public class VentanaEnfermedad_admin extends JDialog {
 		scrollPane.setViewportView(table);
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 		buttonEliminar = new JButton("Eliminar\r\n");
+		buttonEliminar.setIcon(new ImageIcon(VentanaEnfermedad_admin.class.getResource("/Imagenes/cancelar1.png")));
 		buttonEliminar.setEnabled(false);
 		buttonEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -309,10 +311,11 @@ public class VentanaEnfermedad_admin extends JDialog {
 			
 			}
 		});
-		buttonEliminar.setBounds(614, 184, 89, 23);
+		buttonEliminar.setBounds(563, 171, 140, 36);
 		panel_2.add(buttonEliminar);
 		
 		buttonModificar = new JButton("Modificar");
+		buttonModificar.setIcon(new ImageIcon(VentanaEnfermedad_admin.class.getResource("/Imagenes/editnote_pencil_edi_6175 (1).png")));
 		buttonModificar.setEnabled(false);
 		buttonModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -334,10 +337,10 @@ public class VentanaEnfermedad_admin extends JDialog {
 				}
 				Clinica.getInstance().getEnfermedades().remove(index);
 				buttonModificar.setEnabled(false);
-				button.setText("Modificar Enfermedad");
+				btnAgregar.setText("Modificar Enfermedad");
 			}
 		});
-		buttonModificar.setBounds(515, 184, 89, 23);
+		buttonModificar.setBounds(415, 171, 140, 36);
 		panel_2.add(buttonModificar);
 	}
 
@@ -378,7 +381,7 @@ public class VentanaEnfermedad_admin extends JDialog {
 	
 	private void Limpiador() {
 		
-		button.setText("Agregar Nueva Enfermedad");
+		btnAgregar.setText("Agregar Nueva Enfermedad");
 		txtNombre.setText("");
 		txtSintomas.setText("");
 		txtTratamiento.setText("");

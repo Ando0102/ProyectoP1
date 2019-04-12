@@ -41,6 +41,7 @@ import java.util.Calendar;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.border.BevelBorder;
 
 public class VentanaVacuna_admin extends JDialog {
 
@@ -81,6 +82,7 @@ public class VentanaVacuna_admin extends JDialog {
 		setBounds(100, 100, 682, 519);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(new Color(240, 248, 255));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
@@ -111,11 +113,13 @@ public class VentanaVacuna_admin extends JDialog {
 			});
 			///////////////////////////////////////////////////////////////////////////////////7
 			JPanel panel = new JPanel();
+			panel.setBackground(new Color(240, 248, 255));
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(null);
 			
 			JPanel panel_1 = new JPanel();
-			panel_1.setBorder(new TitledBorder(null, "Registrar Nueva Vacuna", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			panel_1.setBackground(new Color(230, 230, 250));
+			panel_1.setBorder(new TitledBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null), "Registrar Nueva Vacuna", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			panel_1.setBounds(10, 11, 646, 195);
 			panel.add(panel_1);
 			panel_1.setLayout(null);
@@ -167,7 +171,8 @@ public class VentanaVacuna_admin extends JDialog {
 			dcFechadeVencimiento.setBounds(418, 90, 139, 20);
 			panel_1.add(dcFechadeVencimiento);
 			
-			btnRegistrarNuevaVacuna = new JButton("Registrar Nueva Vacuna");
+			btnRegistrarNuevaVacuna = new JButton("Registrar ");
+			btnRegistrarNuevaVacuna.setIcon(new ImageIcon(VentanaVacuna_admin.class.getResource("/Imagenes/new-file_40454.png")));
 			btnRegistrarNuevaVacuna.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					String nombre = null;
@@ -212,18 +217,19 @@ public class VentanaVacuna_admin extends JDialog {
 
 				
 			});
-			btnRegistrarNuevaVacuna.setBounds(439, 157, 197, 27);
+			btnRegistrarNuevaVacuna.setBounds(490, 150, 146, 34);
 			panel_1.add(btnRegistrarNuevaVacuna);
 			
 			
 			JPanel panel_2 = new JPanel();
-			panel_2.setBorder(new TitledBorder(null, "Vacunas Existentes", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			panel_2.setBackground(new Color(230, 230, 250));
+			panel_2.setBorder(new TitledBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null), "Vacunas Existentes", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			panel_2.setBounds(10, 217, 646, 252);
 			panel.add(panel_2);
 			panel_2.setLayout(null);
 			
 			scrollPane = new JScrollPane();
-			scrollPane.setBounds(10, 25, 626, 179);
+			scrollPane.setBounds(10, 24, 626, 166);
 			panel_2.add(scrollPane);
 			
 			String[] titu = {"Nombre de la Vacuna", "Fecha de Vencimiento"};
@@ -256,6 +262,7 @@ public class VentanaVacuna_admin extends JDialog {
 			scrollPane.setViewportView(table);
 			
 			buttonModificar = new JButton("Modificar");
+			buttonModificar.setIcon(new ImageIcon(VentanaVacuna_admin.class.getResource("/Imagenes/editnote_pencil_edi_6175 (1).png")));
 			buttonModificar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					Vacuna aux = null;
@@ -273,11 +280,12 @@ public class VentanaVacuna_admin extends JDialog {
 					btnRegistrarNuevaVacuna.setText("Modificar Vacuna");
 				}
 			});
-			buttonModificar.setBounds(448, 215, 89, 23);
+			buttonModificar.setBounds(354, 201, 133, 37);
 			buttonModificar.setEnabled(false);
 			panel_2.add(buttonModificar);
 			
 			buttonEliminar = new JButton("Eliminar");
+			buttonEliminar.setIcon(new ImageIcon(VentanaVacuna_admin.class.getResource("/Imagenes/cancelar1.png")));
 			buttonEliminar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					
@@ -295,7 +303,7 @@ public class VentanaVacuna_admin extends JDialog {
 					}
 				
 			});
-			buttonEliminar.setBounds(547, 215, 89, 23);
+			buttonEliminar.setBounds(503, 201, 133, 37);
 			buttonEliminar.setEnabled(false);
 			panel_2.add(buttonEliminar);
 	

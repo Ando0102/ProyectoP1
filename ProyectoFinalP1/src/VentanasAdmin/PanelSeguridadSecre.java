@@ -55,11 +55,11 @@ public class PanelSeguridadSecre extends JDialog {
 		setBounds(100, 100, 617, 541);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
-		getContentPane().setBackground(new Color(230, 230, 250));
+		getContentPane().setBackground(new Color(240, 248, 255));
 		
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informaci\u00F3n Privada del Nuevo Empleado", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel.setBorder(new TitledBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null), "Informaci\u00F3n Privada del Nuevo Empleado", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel.setBounds(10, 11, 591, 490);
 		panel.setBackground(new Color(230, 230, 250));
 		getContentPane().add(panel);

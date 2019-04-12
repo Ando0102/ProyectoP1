@@ -26,6 +26,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import java.awt.Color;
 
 public class VentanaPacientes_admin extends JDialog {
 
@@ -70,14 +71,17 @@ public class VentanaPacientes_admin extends JDialog {
 		setBounds(100, 100, 820, 491);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(new Color(240, 248, 255));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+			tabbedPane.setBackground(new Color(240, 255, 255));
 			contentPanel.add(tabbedPane, BorderLayout.CENTER);
 			{
 				JPanel panelPacientes = new JPanel();
+				panelPacientes.setBackground(new Color(230, 230, 250));
 				tabbedPane.addTab("Lista de Pacientes", null, panelPacientes, null);
 				panelPacientes.setLayout(new BorderLayout(0, 0));
 				
