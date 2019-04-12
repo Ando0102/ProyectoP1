@@ -206,8 +206,8 @@ public class VentanaPacientes_admin extends JDialog {
 				if(Clinica.getInstance().getMisPersonas().get(i) instanceof Secretaria) {
 					
 					filaSecre[0] = Clinica.getInstance().getMisPersonas().get(i).getNombre() + " " + Clinica.getInstance().getMisPersonas().get(i).getApellidos();
-					filaSecre[1] = ((Secretaria)Clinica.getInstance().getMisPersonas().get(i)).getUsuario();
-					filaSecre[2] = ContadorCitas(i);
+					filaSecre[1] = ContadorCitas(i);
+					filaSecre[2] = ((Secretaria)Clinica.getInstance().getMisPersonas().get(i)).getUsuario();
 					filaSecre[3] = Clinica.getInstance().getMisPersonas().get(i).getTelefono();
 					modelSecre.addRow(filaSecre);
 				}
