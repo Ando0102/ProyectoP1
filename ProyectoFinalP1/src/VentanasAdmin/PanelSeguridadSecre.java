@@ -46,7 +46,7 @@ public class PanelSeguridadSecre extends JDialog {
 	private JButton btnNewButton;
 	
 	
-	public PanelSeguridadSecre(final JTextField txtApellido, final JFormattedTextField txtCedula, final JTextField txtCorreoElect, final JTextField txtDireccion, final JTextField txtNombre, final JFormattedTextField txtTelefono, final JComboBox cbxGenero, final JComboBox cbxPais, final JDateChooser dcFechaNacimiento, final JCheckBox rbtDoctor, final JCheckBox rbtSecre, final JCheckBox rtbAdministrador) {
+	public PanelSeguridadSecre(final JTextField txtApellido, final JFormattedTextField txtCedula, final JTextField txtCorreoElect, final JTextField txtNombre, final JFormattedTextField txtTelefono, final JComboBox cbxGenero, final JComboBox cbxPais, final JDateChooser dcFechaNacimiento, final JCheckBox rbtDoctor, final JCheckBox rbtSecre, final JCheckBox rtbAdministrador) {
 		setModal(true);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(PanelSeguridadSecre.class.getResource("/Imagenes/LogoPeque.png")));
 		setResizable(false);
@@ -66,24 +66,6 @@ public class PanelSeguridadSecre extends JDialog {
 		panel.setLayout(null);
 	
 		
-		/*JEditorPane textPane = new JEditorPane();
-		textPane.setEditable(false);
-		textPane.setBounds(160, 27, 249, 196);
-		textPane.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		textPane.setBackground(new Color(230, 230, 250));
-		textPane.setText("<html><center> Hola");
-		SimpleAttributeSet keyWord = new SimpleAttributeSet();
-		StyleConstants.setForeground(keyWord, Color.BLACK);
-		StyleConstants.setBold(keyWord, true);
-
-		/*try
-		{
-		    doc.insertString(0, "Por este medio se le informa que la siguiente informaci\u00F3n que usted mismo sumistrar\u00E1 a continuaci\u00F3n, es de total confidencialidad para su persona. Es su deber mantener en secreto y no divulgar u compartir con nadie est\u00E1 informaci\u00F3n, sin importar que a las personas las cuales usted desea compartirla sean colegas o superiores de usted.  Absolutamente nadie debe de saber est\u00E1 informaci\u00F3n a demas de usted. Es su deber como profesional y miembro de est\u00E1 instituci\u00F3n cumplir esta normal. " , null );
-		    doc.insertString(doc.getLength(), "\n", null );
-		}
-		catch(Exception e) { System.out.println(e); }
-		
-		panel.add(textPane);*/
 		
 		JButton btnNewButton_1 = new JButton("Atras");
 		btnNewButton_1.setBounds(343, 436, 114, 43);
@@ -97,7 +79,6 @@ public class PanelSeguridadSecre extends JDialog {
 				aux2.txtApellido.setText(txtApellido.getText());
 				aux2.txtCedula.setValue(txtCedula.getValue());
 				aux2.txtCorreoElect.setText(txtCorreoElect.getText());
-				aux2.txtDireccion.setText(txtDireccion.getText());
 				aux2.txtTelefono.setValue(txtTelefono.getValue());
 				aux2.dcFechaNacimiento.setCalendar(dcFechaNacimiento.getCalendar());
 				dispose();
@@ -162,12 +143,12 @@ public class PanelSeguridadSecre extends JDialog {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				String nombre, cedula, apellido, correo, direccion, telefono, nacionalidad, usuario = null, contraseña, rol = null;
+				String nombre, cedula, apellido, correo, telefono, nacionalidad, usuario = null, contraseña, rol = null;
 				boolean sexo = false;
 				Calendar fecha_de_nacimiento  = Calendar.getInstance();
 
 				
-				if((dcFechaNacimiento.getDate()!=null)&&!txtNombre.getText().equalsIgnoreCase("") && !txtApellido.getText().equalsIgnoreCase("") && !txtCorreoElect.getText().equalsIgnoreCase("") && !txtDireccion.getText().equalsIgnoreCase("") && cbxGenero.getSelectedIndex() != 0 &&
+				if((dcFechaNacimiento.getDate()!=null)&&!txtNombre.getText().equalsIgnoreCase("") && !txtApellido.getText().equalsIgnoreCase("") && !txtCorreoElect.getText().equalsIgnoreCase("")  && cbxGenero.getSelectedIndex() != 0 &&
 						txtCedula.getValue() != null && txtTelefono.getValue() != null && !txtUsuario.getText().equalsIgnoreCase("") && !passwordField.getText().equalsIgnoreCase("") && !passwordField_1.getText().equalsIgnoreCase("") && cbxPais.getSelectedIndex() != 0) {
 					
 					if(!VerificadorUsuario(usuario)) {
@@ -179,7 +160,6 @@ public class PanelSeguridadSecre extends JDialog {
 						 cedula = (String) txtCedula.getValue();
 						 correo = txtCorreoElect.getText();
 						 telefono = (String)txtTelefono.getValue();
-						 direccion = txtDireccion.getText();
 						usuario = txtUsuario.getText();
 						contraseña = passwordField_1.getText();
 						nacionalidad = cbxPais.getSelectedItem().toString();
