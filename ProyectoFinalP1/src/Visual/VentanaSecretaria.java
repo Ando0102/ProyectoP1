@@ -150,7 +150,7 @@ public class VentanaSecretaria extends JFrame {
 		JPanel panelBienvenida = new JPanel();
 		panelBienvenida.setBackground(new Color(176, 196, 222));
 		panelBienvenida.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		panelBienvenida.setBounds(10, 11, 199, 707);
+		panelBienvenida.setBounds(10, 11, 199, 657);
 		panel.add(panelBienvenida);
 		panelBienvenida.setLayout(null);
 		
@@ -227,7 +227,7 @@ public class VentanaSecretaria extends JFrame {
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				IniciarSesion inicio = new IniciarSesion();
-				int resp = JOptionPane.showOptionDialog(null, "Estas seguro que deseas salir?", "Advertencia!", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, new Object[] { "Si", "No" }, null); 
+				int resp = JOptionPane.showOptionDialog(null, "Estas seguro que deseas salir?", "Advertencia!", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[] { "Si", "No" }, null); 
 				if(resp == 0){
 				setVisible(false);
 				inicio.setVisible(true);
@@ -275,7 +275,7 @@ public class VentanaSecretaria extends JFrame {
 					aux = Clinica.getInstance().getMisCitas().get(row);
 					if(aux!=null){
 						if(aux.getEstado().equalsIgnoreCase("Pendiente")|| aux.getEstado().equalsIgnoreCase("Modificada")){
-							int resp = JOptionPane.showOptionDialog(null, "Estas seguro que deseas cancelarla?", "Advertencia!", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, new Object[] { "Si", "No" }, null); 
+							int resp = JOptionPane.showOptionDialog(null, "Estas seguro que deseas cancelarla?", "Advertencia", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[] { "Si", "No" }, null); 
 							if(resp == 0){
 								aux.setEstado("Cancelada");
 								loadtable();} else{
@@ -296,12 +296,12 @@ public class VentanaSecretaria extends JFrame {
 		JPanel panelCitas = new JPanel();
 		panelCitas.setBackground(new Color(176, 196, 222));
 		panelCitas.setBorder(new TitledBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null), "Lista de Citas:", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panelCitas.setBounds(219, 11, 1121, 707);
+		panelCitas.setBounds(219, 11, 1121, 657);
 		panel.add(panelCitas);
 		panelCitas.setLayout(null);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 61, 1101, 613);
+		scrollPane.setBounds(10, 61, 1101, 585);
 		panelCitas.add(scrollPane);
 		
 		model = new DefaultTableModel();
