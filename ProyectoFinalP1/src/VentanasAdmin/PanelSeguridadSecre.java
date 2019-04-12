@@ -72,7 +72,7 @@ public class PanelSeguridadSecre extends JDialog {
 		panel.add(btnNewButton_1);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VentanaSecre_admin aux2 = new VentanaSecre_admin();
+				VentanaEmpleados_admin aux2 = new VentanaEmpleados_admin();
 				aux2.cbxGenero.setSelectedIndex(cbxGenero.getSelectedIndex());
 				aux2.txtNombre.setText(txtNombre.getText());
 				aux2.cbxPais.setSelectedIndex(cbxPais.getSelectedIndex());
@@ -190,7 +190,7 @@ public class PanelSeguridadSecre extends JDialog {
 									Clinica.setCantidadDoctor(Clinica.getCantidadDoctor() + 1);
 									JOptionPane.showMessageDialog(null, "Nueva Doctor Agregado", "Información", JOptionPane.INFORMATION_MESSAGE, null);
 									setVisible(false);
-									VentanaSecre_admin aux2 = new VentanaSecre_admin();
+									VentanaEmpleados_admin aux2 = new VentanaEmpleados_admin();
 									aux2.dispose();
 									
 								}else if(rbtSecre.isSelected()) {
@@ -200,7 +200,7 @@ public class PanelSeguridadSecre extends JDialog {
 									Clinica.setCantidadSecretaria(Clinica.getCantidadSecretaria() + 1);
 									JOptionPane.showMessageDialog(null, "Nueva Secretaria Agregada", "Información", JOptionPane.INFORMATION_MESSAGE, null);
 									setVisible(false);
-									VentanaSecre_admin aux2 = new VentanaSecre_admin();
+									VentanaEmpleados_admin aux2 = new VentanaEmpleados_admin();
 									aux2.dispose();
 									
 								}else {
@@ -210,7 +210,7 @@ public class PanelSeguridadSecre extends JDialog {
 									Clinica.setCantidadDoctor(Clinica.getCantidadDoctor() + 1);
 									JOptionPane.showMessageDialog(null, "Nuevo Administrador Agregado", "Información", JOptionPane.INFORMATION_MESSAGE, null);
 									setVisible(false);
-									VentanaSecre_admin aux2 = new VentanaSecre_admin();
+									VentanaEmpleados_admin aux2 = new VentanaEmpleados_admin();
 									aux2.dispose();
 						
 								}

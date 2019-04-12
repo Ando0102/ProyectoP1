@@ -61,7 +61,7 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JCheckBox;
 import javax.swing.border.BevelBorder;
 
-public class VentanaSecre_admin extends JDialog {
+public class VentanaEmpleados_admin extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	public JTextField txtNombre;
@@ -104,7 +104,7 @@ public class VentanaSecre_admin extends JDialog {
 	
 	public static void main(String[] args) {
 		try {
-			VentanaSecre_admin dialog = new VentanaSecre_admin();
+			VentanaEmpleados_admin dialog = new VentanaEmpleados_admin();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -115,11 +115,11 @@ public class VentanaSecre_admin extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public VentanaSecre_admin() {
+	public VentanaEmpleados_admin() {
 		setResizable(false);
 		setModal(true);
 		setTitle("Informaci\u00F3n de los empleados");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaSecre_admin.class.getResource("/Imagenes/LogoPeque.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaEmpleados_admin.class.getResource("/Imagenes/LogoPeque.png")));
 		setBounds(100, 100, 617, 557);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
@@ -156,7 +156,7 @@ public class VentanaSecre_admin extends JDialog {
 					panelAgregar.setLayout(null);
 					{
 						JLabel lblNewLabel_1 = new JLabel("");
-						lblNewLabel_1.setIcon(new ImageIcon(VentanaSecre_admin.class.getResource("/Imagenes/plus_15650.png")));
+						lblNewLabel_1.setIcon(new ImageIcon(VentanaEmpleados_admin.class.getResource("/Imagenes/plus_15650.png")));
 						lblNewLabel_1.setBounds(412, 142, 72, 67);
 						panelAgregar.add(lblNewLabel_1);
 					}
@@ -297,7 +297,7 @@ public class VentanaSecre_admin extends JDialog {
 					}
 					{
 						JLabel lblNewLabel = new JLabel("");
-						lblNewLabel.setIcon(new ImageIcon(VentanaSecre_admin.class.getResource("/Imagenes/users.png")));
+						lblNewLabel.setIcon(new ImageIcon(VentanaEmpleados_admin.class.getResource("/Imagenes/users.png")));
 						lblNewLabel.setBounds(439, 60, 125, 128);
 						panelAgregar.add(lblNewLabel);
 					}
@@ -397,7 +397,7 @@ public class VentanaSecre_admin extends JDialog {
 
 							
 						});
-						btnNewButton.setIcon(new ImageIcon(VentanaSecre_admin.class.getResource("/Imagenes/arrowPeque\u00F1a.png")));
+						btnNewButton.setIcon(new ImageIcon(VentanaEmpleados_admin.class.getResource("/Imagenes/arrowPeque\u00F1a.png")));
 						btnNewButton.setBounds(461, 438, 125, 41);
 						panelAgregar.add(btnNewButton);
 					}
@@ -423,7 +423,7 @@ public class VentanaSecre_admin extends JDialog {
 						PanelinfoEmpleado.setLayout(null);
 						{
 							JLabel label = new JLabel("");
-							label.setIcon(new ImageIcon(VentanaSecre_admin.class.getResource("/Imagenes/Rueda_dentada.png")));
+							label.setIcon(new ImageIcon(VentanaEmpleados_admin.class.getResource("/Imagenes/Rueda_dentada.png")));
 							label.setBounds(447, 122, 93, 70);
 							PanelinfoEmpleado.add(label);
 						}
@@ -473,7 +473,7 @@ public class VentanaSecre_admin extends JDialog {
 						}
 						{
 							JLabel lblNewLabel_5 = new JLabel("");
-							lblNewLabel_5.setIcon(new ImageIcon(VentanaSecre_admin.class.getResource("/Imagenes/doctora.png")));
+							lblNewLabel_5.setIcon(new ImageIcon(VentanaEmpleados_admin.class.getResource("/Imagenes/doctora.png")));
 							lblNewLabel_5.setBounds(473, 71, 93, 107);
 							PanelinfoEmpleado.add(lblNewLabel_5);
 						}
@@ -519,7 +519,7 @@ public class VentanaSecre_admin extends JDialog {
 						
 						btnNewButton_2.setBounds(316, 442, 130, 36);
 						panel_1.add(btnNewButton_2);
-						btnNewButton_2.setIcon(new ImageIcon(VentanaSecre_admin.class.getResource("/Imagenes/acceptar.png")));
+						btnNewButton_2.setIcon(new ImageIcon(VentanaEmpleados_admin.class.getResource("/Imagenes/acceptar.png")));
 					}
 					{
 						JButton btnNewButton_1 = new JButton("Cancelar\r\n");
@@ -530,7 +530,7 @@ public class VentanaSecre_admin extends JDialog {
 						});
 						btnNewButton_1.setBounds(456, 442, 130, 36);
 						panel_1.add(btnNewButton_1);
-						btnNewButton_1.setIcon(new ImageIcon(VentanaSecre_admin.class.getResource("/Imagenes/cancelar2.png")));
+						btnNewButton_1.setIcon(new ImageIcon(VentanaEmpleados_admin.class.getResource("/Imagenes/cancelar2.png")));
 					}
 					
 					JPanel panel_2 = new JPanel();

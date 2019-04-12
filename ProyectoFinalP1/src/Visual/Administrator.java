@@ -20,9 +20,8 @@ import Logical.Persona;
 import Logical.User;
 import VentanasAdmin.VentanaCita_admin;
 import VentanasAdmin.VentanaEnfermedad_admin;
-import VentanasAdmin.VentanaEstadisticas;
 import VentanasAdmin.VentanaPacientes_admin;
-import VentanasAdmin.VentanaSecre_admin;
+import VentanasAdmin.VentanaEmpleados_admin;
 import VentanasAdmin.VentanaVacuna_admin;
 
 
@@ -214,7 +213,7 @@ public class Administrator extends JFrame implements Runnable {
         botonEmpleados.setText("Empleados   ");
         botonEmpleados.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
-        		VentanaSecre_admin aux = new VentanaSecre_admin();
+        		VentanaEmpleados_admin aux = new VentanaEmpleados_admin();
         		aux.setVisible(true);
         	}
         });

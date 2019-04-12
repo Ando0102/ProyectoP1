@@ -88,7 +88,7 @@ public class VentanaPacientes_admin extends JDialog {
 				scrollPanePacientes = new JScrollPane();
 				panelPacientes.add(scrollPanePacientes, BorderLayout.CENTER);
 				
-				String[] titu = {"Nombre del Paciente", "Genéro", "Fecha de Nacimiento", "Telefono"};
+				String[] titu = {"Nombre", "Genéro", "Fecha de Nacimiento", "Telefono"};
 				modelPacientes = new DefaultTableModel();
 				modelPacientes.setColumnIdentifiers(titu);
 				

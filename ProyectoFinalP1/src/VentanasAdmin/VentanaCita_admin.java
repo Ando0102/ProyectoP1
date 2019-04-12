@@ -68,7 +68,7 @@ public class VentanaCita_admin extends JDialog {
 				scrollPane = new JScrollPane();
 				panel.add(scrollPane, BorderLayout.CENTER);
 				
-				String[] titu = {"Nombre del Paciente de la Cita", "Doctor", "Secretaria", "Fecha", "Estado"};
+				String[] titu = {"Nombre de la Persona", "Doctor", "Secretaria", "Fecha", "Estado"};
 				model = new DefaultTableModel();
 				model.setColumnIdentifiers(titu);
 				
